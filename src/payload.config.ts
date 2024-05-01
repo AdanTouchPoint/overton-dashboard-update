@@ -10,7 +10,7 @@ import AfterNavLinks from './customComponents/afterNavLink';
 import Campaing from './customComponents/Custome/Campaing';
 import EditCampaing from './customComponents/Custome/EditCampaing'
 export default buildConfig({
-  serverURL: 'http://localhost:8080',
+  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:8080',
   admin: {
     user: Users.slug,
     bundler: webpackBundler(),

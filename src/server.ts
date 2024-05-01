@@ -23,7 +23,7 @@ const start = async () :Promise<void> => {
   // Add your own express routes here
 
 
-  app.listen( 8080, async () => {
+  app.listen( process.env.PORT || 8080, async () => {
     payload.logger.info(`Server listening on port ${process.env.PORT}`)
   })
 

@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction,FormEvent} from 'react';
+import React, {FormEvent} from 'react';
 import { useAuth } from 'payload/components/utilities';
 import { createCampaing } from '../../lib/createCampaing';
 import { CreateRepoLabel } from '../../lib/gitHubRequests';
@@ -10,10 +10,10 @@ const baseClass = 'after-dashboard';
 const MainForm: React.FC<MainFormProps> = ({setHideSB,setHidePD,setHideAP,setProjectData,projectData,setHideMainForm,hideMainForm}) => {
 const user = useAuth()
 const click = async () => {
-  //Funcion que crea repo y proyecto en vercel dependiendo el tipo de proyecto elegido
-  //si todo OK oculta MainForm y Muestra el Form correspondiente el tipo elegid
- //const campaing = await createCampaing(projectData)
- console.log(projectData) 
+const campaing = await createCampaing(projectData)
+const name : string = campaing.name
+await  CreateRepoLabel(name)
+hideForms(projectData,setHideSB ,setHidePD,setHideAP,setHideMainForm)
 }
 const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   const info : ProjectData = {

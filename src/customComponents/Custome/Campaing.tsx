@@ -6,7 +6,6 @@ import SubmissionBuilderForm from './SubmissionBuilderForm';
 import PoliticallDirectForm from './PoliticallDirectForm';
 import AlertthePressForm from './AlertthePressForm';
 import Success from './Success';
-import { HideElements } from '../types';
 import {ProjectData} from '../interfaces'
 const baseClass = 'after-dashboard';
 
@@ -17,12 +16,8 @@ const [hideMainForm,setHideMainForm] =useState(false)
 const [hideSB,setHideSB] =  useState(true)
 const [hidePD, setHidePD] = useState(true)
 const [hideAP, setHideAP] = useState(true)
-//Estado para ocultar pantalla final
 const [hideSuccess,setHideSuccess] = useState(true)
-//estado para recolectar data del proyecto
 const [projectData,setProjectData]= useState<ProjectData>()
-
-console.log(user.user)
 	return (
     <DefaultTemplate>
 		<div className={baseClass}>
@@ -38,19 +33,19 @@ console.log(user.user)
       <SubmissionBuilderForm 
         hideSB={hideSB}
         setHideSuccess={setHideSuccess}
-        />
+      />
       <PoliticallDirectForm 
         hidePD={hidePD}
         setHideSuccess={setHideSuccess}
-        />
+      />
       <AlertthePressForm 
         hideAP={hideAP}
         setHideSuccess={setHideSuccess}
-        />
+      />
       <Success
         hideSuccess={hideSuccess}
         setHideSuccess={setHideSuccess}
-        />
+      />
 		</div> 
     </DefaultTemplate>
 	);

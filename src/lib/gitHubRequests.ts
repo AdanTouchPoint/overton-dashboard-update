@@ -1,15 +1,13 @@
 import { ProjectData } from "../customComponents/interfaces";
 import repoSelector from "./gitHubLinks";
-
+ const token = process.env.GHTOKEN
 const createGhRepo  = async ( projectData: ProjectData ) => {
     try {
-        const token = process.env.GHTOKEN
-        console.log("ghr")
         const myHeaders: Headers = new Headers();
         myHeaders.append("X-GitHub-Api-Version", "2022-11-28");
         myHeaders.append("accept", "application/vnd.github+json");
         myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Authorization",token );
+        myHeaders.append("Authorization",token);
         const { repo, description, campaingType } = projectData;
         const raw : string = JSON.stringify({
             "name": repo,
@@ -26,8 +24,8 @@ const createGhRepo  = async ( projectData: ProjectData ) => {
           }; 
         const response = await fetch(repoSelector(campaingType) , requestOptions); // Realiza la petición al endpoint
        if (response.status !== 201) {
-        throw new Error(`Error al crear el repositorio por favor verifica tus datos`);
-       }
+            return response
+    }
        return response.json()
         // Retorna los datos de la respuesta en formato JSON
     } catch (error) {
@@ -37,7 +35,6 @@ const createGhRepo  = async ( projectData: ProjectData ) => {
 
 const setPermissions  = async (name: string) => {
     try {
-        const token = process.env.GHTOKEN
         const myHeaders : Headers = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Authorization", token);
@@ -66,7 +63,6 @@ const setPermissions  = async (name: string) => {
 
 const CreateRepoLabel = async (name: string) => {
     try {
-        const token = process.env.GHTOKEN
         const myHeaders: Headers = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Authorization", token);

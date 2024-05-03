@@ -1,10 +1,10 @@
 import { ProjectData } from "../customComponents/interfaces";
-
+const token = process.env.VERCELTOKEN
 const createProject = async (projectData: ProjectData,name: string) => {
     try {
         const myHeaders: Headers = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Authorization", process.env.VERCELTOKEN);
+        myHeaders.append("Authorization", token);
         const {repo,description,content,title,clientId} = projectData
         const raw: string = JSON.stringify({
             "name": repo,
@@ -91,7 +91,7 @@ const createProject = async (projectData: ProjectData,name: string) => {
 const getProjectInfo = async (project: string) => {
     try {
         const myHeaders: Headers = new Headers();
-        myHeaders.append("Authorization", process.env.VERCELTOKEN);
+        myHeaders.append("Authorization", token);
 
         const requestOptions: RequestInit = {
             method: "GET",

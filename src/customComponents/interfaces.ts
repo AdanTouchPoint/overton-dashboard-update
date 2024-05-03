@@ -11,7 +11,7 @@ export interface ProjectData {
 export interface MainFormProps {
     setHideMainForm: (value: boolean) => void;
     hideMainForm: boolean;
-    projectData: ProjectData | undefined; // Cambia 'ProjectData' por el tipo adecuado de tus datos de proyecto
+    projectData: ProjectData | undefined; 
     setProjectData: Dispatch<SetStateAction<ProjectData>>;
     setHideSB: (value: boolean) => void;
     setHidePD: (value: boolean) => void;
@@ -35,6 +35,6 @@ export interface MainFormProps {
   }
   export interface GHLinks {
     AP: string;
-    PC: string;
+    PD: string;
     SB: string;
   }

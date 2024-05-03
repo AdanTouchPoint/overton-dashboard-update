@@ -5,10 +5,6 @@ const baseClass = 'after-dashboard';
 
 const CampaingType = () => {
 
-const user = useAuth()
-
-
-console.log(user.user.gtagUrl)
 	return (
 	<div  className={baseClass}>
       <div className="gutter--left gutter--right collection-list__wrap">

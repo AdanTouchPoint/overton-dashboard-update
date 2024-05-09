@@ -22,7 +22,6 @@ const start = async () :Promise<void> => {
 
   // Add your own express routes here
 
-
   app.listen( port, async () => {
     payload.logger.info(`Server listening on port: ${port}`)
   })

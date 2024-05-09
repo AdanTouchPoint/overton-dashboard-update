@@ -77,11 +77,11 @@ const createProject = async (projectData: ProjectData,name: string) => {
             redirect: "follow"
         };
 
-        const response = await fetch("https://api.vercel.com/v9/projects", requestOptions) // Realiza la petición al endpoint
+        const response = await fetch("https://api.vercel.com/v9/projects", requestOptions)
         if (response.status !== 200) {
           throw new Error(`Error al crear un proyecto en vercel por favor verifica tus datos`);
          }
-        return await response.json(); // Retorna los datos de la respuesta en formato JSON
+        return await response.json();
     } catch (error) {
         throw new Error(error.message);
     }

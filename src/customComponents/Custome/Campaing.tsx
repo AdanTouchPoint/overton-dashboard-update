@@ -11,7 +11,6 @@ const baseClass = 'after-dashboard';
 
 const Campaing: React.FC = () => {  
 const user = useAuth()
-//Estados para ocultar forms
 const [hideMainForm,setHideMainForm] =useState(false)
 const [hideSB,setHideSB] =  useState(true)
 const [hidePD, setHidePD] = useState(true)

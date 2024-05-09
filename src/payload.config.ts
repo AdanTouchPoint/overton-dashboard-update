@@ -4,6 +4,7 @@ import { mongooseAdapter } from '@payloadcms/db-mongodb' // database-adapter-imp
 import { slateEditor } from '@payloadcms/richtext-slate'
 import { webpackBundler } from '@payloadcms/bundler-webpack'
 // import Examples from './collections/Examples';
+import MainPages from './collections/MainPages';
 import Users from './collections/Users';
 import Pages from './collections/Pages';
 import AfterNavLinks from './customComponents/afterNavLink';
@@ -30,7 +31,8 @@ export default buildConfig({
   },
   collections: [
     Users,
-    Pages
+    Pages,
+    MainPages
     // Add Collections here
     // Examples,
   ],

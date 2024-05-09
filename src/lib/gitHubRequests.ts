@@ -22,12 +22,11 @@ const createGhRepo  = async ( projectData: ProjectData ) => {
             body: raw,
             redirect: "follow"
           }; 
-        const response = await fetch(repoSelector(campaingType) , requestOptions); // Realiza la petición al endpoint
+        const response = await fetch(repoSelector(campaingType) , requestOptions);
        if (response.status !== 201) {
             return response
     }
        return response.json()
-        // Retorna los datos de la respuesta en formato JSON
     } catch (error) {
         throw new Error(error.message);
     }

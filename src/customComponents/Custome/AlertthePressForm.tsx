@@ -10,11 +10,30 @@ const user = useAuth()
       <div className="gutter--left gutter--right collection-list__wrap">
       <br/>
         <p>
-        AlertthePressForm
+        Alert the Press Form
         </p>
+       <span> 
+        <h3>Main Page</h3>
         <div>title<input type='text'></input></div>
         <div>description<input type='text'></input></div>
-        <div>button<input type='text'></input></div>
+        </span>
+        <span> 
+        <h3>email page</h3>
+        <div>title<input type='text'></input></div>
+        <div>description<input type='text'></input></div>
+        <div>instructions<input type='text'></input></div>
+        </span>
+        <span> 
+        <h3>reviewEmail page</h3>
+        <div>title<input type='text'></input></div>
+        <div>description<input type='text'></input></div>
+        </span>
+        <span> 
+        <h3>ThankYou Page</h3>
+        <div>title<input type='text'></input></div>
+        <div>description<input type='text'></input></div>
+        <div>instructions<input type='text'></input></div>
+        </span>
       </div>
 	</div> 
 

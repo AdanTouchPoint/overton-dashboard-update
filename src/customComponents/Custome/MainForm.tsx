@@ -5,15 +5,12 @@ import { CreateRepoLabel } from '../../lib/gitHubRequests';
 import { hideForms } from '../../lib/hideComponents';
 import { MainFormProps, ProjectData } from '../interfaces';
 const baseClass = 'after-dashboard';
-
-
 const MainForm: React.FC<MainFormProps> = ({setHideSB,setHidePD,setHideAP,setProjectData,projectData,setHideMainForm,hideMainForm}) => {
-const user = useAuth()
 const click = async () => {
-const campaing = await createCampaing(projectData)
-const name : string = campaing.name
-await  CreateRepoLabel(name)
-hideForms(projectData,setHideSB ,setHidePD,setHideAP,setHideMainForm)
+  const campaing = await createCampaing(projectData)
+  const name : string = campaing.name
+  await  CreateRepoLabel(name)
+  hideForms(projectData,setHideSB ,setHidePD,setHideAP,setHideMainForm)
 }
 const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   const info : ProjectData = {

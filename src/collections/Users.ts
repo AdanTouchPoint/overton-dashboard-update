@@ -11,17 +11,14 @@ const Users: CollectionConfig = {
   },
   fields: [
     {
-
       name: 'name',
       type: 'text', 
     },
     {
- 
     name: 'lastName',
     type: 'text', 
     },
     {
-
     name: 'city',
     type: 'text', 
     },

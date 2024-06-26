@@ -76,7 +76,6 @@ const createProject = async (projectData: ProjectData,name: string) => {
             body: raw,
             redirect: "follow"
         };
-
         const response = await fetch("https://api.vercel.com/v9/projects", requestOptions)
         if (response.status !== 200) {
           throw new Error(`Error al crear un proyecto en vercel por favor verifica tus datos`);
@@ -85,9 +84,7 @@ const createProject = async (projectData: ProjectData,name: string) => {
     } catch (error) {
         throw new Error(error.message);
     }
-
 }
-
 const getProjectInfo = async (project: string) => {
     try {
         const myHeaders: Headers = new Headers();
@@ -98,7 +95,6 @@ const getProjectInfo = async (project: string) => {
             headers: myHeaders,
             redirect: "follow"
         };
-
         const response = await fetch(`https://api.vercel.com/v9/projects/${project}`, requestOptions) // Realiza la petición al endpoint
         if (response.status !== 201) {
           throw new Error(`Error al modificar los permisos en el repositorio por favor verifica tus datos`);
@@ -107,6 +103,5 @@ const getProjectInfo = async (project: string) => {
     } catch (error) {
         throw new Error(error.message);
     }
-    
 }
 export {createProject, getProjectInfo}

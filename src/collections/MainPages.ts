@@ -218,8 +218,4 @@ const MainPages: CollectionConfig = {
         },
     ],
   }
-  
   export default MainPages;
-
-
-  

@@ -8,7 +8,6 @@ export const isAdmin: isAdmin = ({ req: { user } }) => {
         // Return true or false based on if the user has an admin role
     return Boolean(role === 'admin');
   }
-  
   export const isAdminFieldLevel: isAdmin = ( { req: { user } } ) => {
     const role = user.roles
         // Return true or false based on if the user has an admin role

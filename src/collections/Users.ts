@@ -38,17 +38,17 @@ const Users: CollectionConfig = {
     // Admins can update all, but any other logged in user can only update themselves
     update: isAdminFieldLevel,
     },
-  options: [
-    {
-      label: 'Admin',
-      value: 'admin',
+    options: [
+      {
+        label: 'Admin',
+        value: 'admin',
+      },
+      {
+        label: 'Client',
+        value: 'client',
+      },
+    ]
     },
-    {
-      label: 'Client',
-      value: 'client',
-    },
-  ]
-},
   ],
 };
 

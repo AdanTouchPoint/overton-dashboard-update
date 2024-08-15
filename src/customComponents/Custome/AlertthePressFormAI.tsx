@@ -10,7 +10,6 @@ const user = useAuth()
       <br/>
         <p>
         Alert the Press AI Form
-
         </p>
        <span> 
         <h3>Main Page</h3>

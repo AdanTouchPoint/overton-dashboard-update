@@ -1,5 +1,3 @@
-  //Funcion que crea repo y proyecto en vercel dependiendo el tipo de proyecto elegido
-  //si todo OK oculta MainForm y Muestra el Form correspondiente el tipo elegido 
 import { createGhRepo, setPermissions, CreateRepoLabel } from "./gitHubRequests";
 import { createProject } from "./vercelRequests";
 import { ProjectData } from "../customComponents/interfaces";

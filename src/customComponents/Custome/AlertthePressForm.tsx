@@ -16,6 +16,7 @@ const user = useAuth()
         <h3>Main Page</h3>
         <div>title<input type='text'></input></div>
         <div>description<input type='text'></input></div>
+        <div>color</div>
         </span>
         <span> 
         <h3>email page</h3>
@@ -34,6 +35,7 @@ const user = useAuth()
         <div>description<input type='text'></input></div>
         <div>instructions<input type='text'></input></div>
         </span>
+        <span>message email, message tweet, tym</span>
       </div>
 	</div> 
 

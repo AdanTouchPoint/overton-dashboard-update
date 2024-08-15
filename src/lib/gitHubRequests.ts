@@ -25,7 +25,7 @@ const createGhRepo  = async ( projectData: ProjectData ) => {
         const response = await fetch(repoSelector(campaingType) , requestOptions);
        if (response.status !== 201) {
             return response
-    }
+        }
        return response.json()
     } catch (error) {
         throw new Error(error.message);
@@ -52,12 +52,11 @@ const setPermissions  = async (name: string) => {
         const response = await fetch(`https://api.github.com/repos/AdanTouchPoint/${name}/actions/permissions/workflow`, requestOptions ) // Realiza la petición al endpoint
         if (response.status !== 204) {
             throw new Error(`Error al modificar los permisos en el repositorio por favor verifica tus datos`);
-           }
+        }
         return response; // Retorna los datos de la respuesta en formato JSON
     } catch (error) {
         throw new Error(error.message);
     }
-
 }
 
 const CreateRepoLabel = async (name: string) => {
@@ -80,12 +79,11 @@ const CreateRepoLabel = async (name: string) => {
         const response = await fetch(`https://api.github.com/repos/AdanTouchPoint/${name}/labels`, requestOptions) // Realiza la petición al endpoint
         if (response.status !== 201) {
             throw new Error(`Error al crear etiqueta de autodeploy para el proyecto`);
-           }
+        }
         return response.json(); // Retorna los datos de la respuesta en formato JSON
     } catch (error) {
         throw new Error(error.message);
-    }
-    
+    }    
 }
     
 export {createGhRepo, setPermissions, CreateRepoLabel}

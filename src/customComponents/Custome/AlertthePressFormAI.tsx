@@ -2,7 +2,7 @@ import React from 'react';
 import { useAuth } from 'payload/components/utilities';
 const baseClass = 'after-dashboard';
 import { SBprops } from '../interfaces';
-const AlertthePressFormAI: React.FC<SBprops> = ({hideSB , setHideSuccess}) => {
+const AlertthePressFormAI: React.FC<SBprops> = ({projectData, setProjectData, hideSB , setHideSuccess}) => {
 const user = useAuth()
 	return (
 	<div hidden={hideSB} className={baseClass}>

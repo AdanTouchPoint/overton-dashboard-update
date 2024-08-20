@@ -3,7 +3,7 @@ import { useAuth } from 'payload/components/utilities';
 import { PDprops } from '../interfaces';
 const baseClass = 'after-dashboard';
 
-const PoliticallDirectForm: React.FC<PDprops> = ({hidePD,setHideSuccess}) => {
+const PoliticallDirectForm: React.FC<PDprops> = ({projectData, setProjectData, hidePD, setHideSuccess}) => {
 const user = useAuth()
 	return (
 	<div hidden={hidePD} className={baseClass}>

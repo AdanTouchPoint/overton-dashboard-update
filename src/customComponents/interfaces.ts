@@ -18,18 +18,26 @@ export interface MainFormProps {
     setHideAP: (value: boolean) => void;
   }
   export interface SBprops {
+    projectData: ProjectData | undefined; 
+    setProjectData: Dispatch<SetStateAction<ProjectData>>;
     hideSB: boolean;
     setHideSuccess: (value: boolean) => void;
   }
   export interface APprops {
+    projectData: ProjectData | undefined; 
+    setProjectData: Dispatch<SetStateAction<ProjectData>>;
     hideAP: boolean;
     setHideSuccess: (value: boolean) => void;
   }
   export interface PDprops {
+    projectData: ProjectData | undefined; 
+    setProjectData: Dispatch<SetStateAction<ProjectData>>;
     hidePD: boolean;
     setHideSuccess: (value: boolean) => void;
   }
   export interface SuccessProps {
+    projectData: ProjectData | undefined; 
+    setProjectData: Dispatch<SetStateAction<ProjectData>>;
     hideSuccess: boolean;
     setHideSuccess: Dispatch<SetStateAction<boolean>>;
   }

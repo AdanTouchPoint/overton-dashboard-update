@@ -3,7 +3,7 @@ import { useAuth } from 'payload/components/utilities';
 import { APprops } from '../interfaces';
 const baseClass = 'after-dashboard';
 
-const AlertthePressForm: React.FC<APprops> = ({hideAP, setHideSuccess}) => {
+const AlertthePressForm: React.FC<APprops> = ({projectData, setProjectData, hideAP, setHideSuccess}) => {
 const user = useAuth()
 	return (
 	<div hidden={hideAP} className={baseClass}>

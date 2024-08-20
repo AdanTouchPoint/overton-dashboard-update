@@ -4,7 +4,7 @@ import { SuccessProps } from '../interfaces';
 
 const baseClass = 'after-dashboard';
 
-const Success: React.FC<SuccessProps> = ({hideSuccess, setHideSuccess}) => {
+const Success: React.FC<SuccessProps> = ({projectData, setProjectData, hideSuccess, setHideSuccess}) => {
 const user = useAuth()
 	return (
 	<div hidden={hideSuccess} className={baseClass}>

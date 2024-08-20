@@ -29,19 +29,27 @@ const [projectData,setProjectData]= useState<ProjectData>()
         setHidePD={setHidePD}
         setHideAP={setHideAP}
       />
-      <SubmissionBuilderForm 
+      <SubmissionBuilderForm
+        projectData={projectData}
+        setProjectData={setProjectData} 
         hideSB={hideSB}
         setHideSuccess={setHideSuccess}
       />
-      <PoliticallDirectForm 
+      <PoliticallDirectForm
+        projectData={projectData}
+        setProjectData={setProjectData} 
         hidePD={hidePD}
         setHideSuccess={setHideSuccess}
       />
-      <AlertthePressForm 
+      <AlertthePressForm
+        projectData={projectData}
+        setProjectData={setProjectData} 
         hideAP={hideAP}
         setHideSuccess={setHideSuccess}
       />
       <Success
+        projectData={projectData}
+        setProjectData={setProjectData}
         hideSuccess={hideSuccess}
         setHideSuccess={setHideSuccess}
       />

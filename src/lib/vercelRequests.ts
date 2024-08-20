@@ -97,7 +97,7 @@ const getProjectInfo = async (project: string) => {
         };
         const response = await fetch(`https://api.vercel.com/v9/projects/${project}`, requestOptions) // Realiza la petición al endpoint
         if (response.status !== 201) {
-          throw new Error(`Error al modificar los permisos en el repositorio por favor verifica tus datos`);
+          throw new Error(`Error al consultar el repositorio por favor verifica tus datos`);
          }
         return await response.json(); // Retorna los datos de la respuesta en formato JSON
     } catch (error) {

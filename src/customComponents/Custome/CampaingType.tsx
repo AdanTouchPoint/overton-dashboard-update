@@ -4,8 +4,7 @@ import { useAuth } from 'payload/components/utilities';
 const baseClass = 'after-dashboard';
 
 const CampaingType = () => {
-
-	return (
+return (
 	<div  className={baseClass}>
       <div className="gutter--left gutter--right collection-list__wrap">
       <br/>
@@ -17,8 +16,7 @@ const CampaingType = () => {
         <div>option 3<input type='checkbox'></input></div>
       </div>
 	</div> 
-
-	);
+);
 };
 
 export default CampaingType;

@@ -5,7 +5,6 @@ import { ProjectData } from "../customComponents/interfaces";
 const createCampaing  = async (projectData: ProjectData) => {
   try {
   const GHRepo = await createGhRepo(projectData) 
-  console.log(GHRepo)
   const name : string = GHRepo.name
   const writePermisions = await setPermissions(name)
   return  await createProject(projectData,name)

@@ -8,7 +8,6 @@ const baseClass = 'after-dashboard';
 const MainForm: React.FC<MainFormProps> = ({setHideSB,setHidePD,setHideAP,setProjectData,projectData,setHideMainForm,hideMainForm}) => {
 const click = async () => {
   const campaing = await createCampaing(projectData)
-  console.log(campaing)
   const name : string = campaing.name
   await  CreateRepoLabel(name)
   hideForms(projectData,setHideSB ,setHidePD,setHideAP,setHideMainForm)
@@ -35,15 +34,15 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
       </p>
       <div>
         <label>Name:</label>
-        <input name='repo' onChange={handleOnChange} type="text" />
+        <input name='ci-repo' onChange={handleOnChange} type="text" />
       </div>
       <div>
         <label>Description:</label>
-        <input name='description' onChange={handleOnChange} type="text" />
+        <input name='ci-description' onChange={handleOnChange} type="text" />
       </div>
       <div>
         <label>Title:</label>
-        <input name='title' onChange={handleOnChange} type="text" />
+        <input name='ci-title' onChange={handleOnChange} type="text" />
       </div>
       <button onClick={click}>Next</button>
       </div>

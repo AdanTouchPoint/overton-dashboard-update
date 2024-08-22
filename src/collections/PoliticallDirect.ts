@@ -2,17 +2,24 @@ import { CollectionConfig } from 'payload/types';
 import {isAdminOrSelf} from '../access/isAdminOrSelf'
 import {isAdminFieldLevel} from '../access/isAdmin'
 import {FormBlock} from '../blocks/FieldsForm'
+import CustomeCampaingList from '../customComponents/Custome/CustomeCampaingList'
+import {beforeChangeHook} from '../hooks/beforeCreateCampaing' 
 // Example Collection - For reference only, this must be added to payload.config.ts to be used.
 const PoliticallDirect: CollectionConfig = {
   slug: 'politicall',
   admin: {
+    components: {
+      views: {
+        Edit: CustomeCampaingList
+      }
+    },
     description: {
       es: "Aqui puedes cambiar la imagen y los textos de la pagina principal",
       en: "Here you can change the background image and text of the main page",
     },
   },
   access:{
-          // Only admins can create users
+    // Only admins can create users
   create: isAdminOrSelf,
   // Admins can read all, but any other logged in user can only read themselves
   read: isAdminOrSelf,
@@ -24,8 +31,8 @@ const PoliticallDirect: CollectionConfig = {
   fields: [
       {
           type: "group",
-          name: "header",
-          label: { es: "Encabezado", en: "Header" },
+          name: "mainform",
+          label: { es: "Formulario principal", en: "Main Form" },
           fields: [
             {
               label: { es: "Titulo Principal", en: "Main Title" },
@@ -36,99 +43,35 @@ const PoliticallDirect: CollectionConfig = {
             {
               label: { es: "Instrucciones", en: "Instructions" },
               name: "instructions", // required
-              type: "textarea", // required
+              type: "text", // required
               
             },
           ],
       },
       {
           type: "group",
-          name: "form",
-          label: { es: "Formulario", en: "Form" },
+          name: "emailform",
+          label: { es: "Formulario de email", en: "Email Form" },
           fields: [
             {
-              label: { es: "Subtitulo", en: "Form Subtitle" },
-              name: "subtitleForm", // required
-              type: "text", // required
-            },
-            {
-              type: "row",
-              fields: [
-                     {
-                      name:'formFields',
-                      label:{es:'Campos del Formulario', en:'Form Fields'},
-                      type:'blocks',
-                      minRows:1,
-                      maxRows:20,
-                      blocks:[
-                          FormBlock
-                      ]
-                },
-              ],
-            },
-            {
               type: "row",
               fields: [
                 {
-                  label: {
-                    es: " Etiqueta URL Terminos y Condiciones",
-                    en: "Terms & Conditions URL Label",
+                    label: { es: "Titulo ", en: "Title" },
+                    name: "title", // required
+                    type: "text", // required
                   },
-                  name: "termsLabel", // required
-                  type: "text", // required
-                  admin: {
-                    width: "50%",
-                  },
-                },
-                {
-                  label: {
-                    es: " URL Terminos y Condiciones",
-                    en: "Terms & Conditions URL",
-                  },
-                  name: "terms", // required
-                  type: "text", // required
-                  admin: {
-                    width: "50%",
-                  },
-                },
-              ],
-            },
-            {
-              label: { es: "Boton Buscar", en: "Search Button" },
-              name: "findButton", // required
-              type: "text", // required
-            },
-          ],
+      
+                  {
+                    label: { es: "Instrucciones", en: "Instructions" },
+                    name: "instructions", // required
+                    type: "text", // required
+                    
+                  }
+              ]
+            }
+          ]
       },  
-      {
-          type: "group",
-          name: "EmailViewwithAI",
-          label: { es: "Previsualizacion", en: "Email AI" },
-          fields: [
-              
-            {
-              type: "row",
-              fields: [
-                {
-                  label: { es: "Titulo", en: "Title" },
-                  name: "titleAI", // required
-                  type: "text", // required
-                  admin: {
-                  width: "50%",
-                  },
-                },
-                {
-                  label: { es: "Instrucciones", en: "Instructions" },
-                  name: "intructionsAI", // required
-                  type: "text", // required
-                  admin: {
-                  width: "50%",
-                  },
-                }
-              ],
-            },
-          ],
-      },
       {
           type: "group",
           name: "EmailViewnoAI",
@@ -158,6 +101,42 @@ const PoliticallDirect: CollectionConfig = {
           ],
       },
       {
+        type: "group",
+        name: "SuccessPage",
+        label: { es: "deploy exitoso", en: "Success Page"},
+        fields: [
+          {
+            type: "row",
+            fields: [
+              {
+                label: { es: "Titulo", en: "Title" },
+                name: "titleNoAI", // required
+                type: "text", // required
+                admin: {
+                width: "50%",
+                },
+              },
+              {
+                label: { es: "Descripcion", en: "Description" },
+                name: "descriptionNoAI", // required
+                type: "text", // required
+                admin: {
+                width: "50%",
+                },
+              },
+              {
+                label: { es: "Instrucciones", en: "Instructions" },
+                name: "intructionsNoAI", // required
+                type: "text", // required
+                admin: {
+                width: "50%",
+                },
+              }
+            ],
+          },
+        ],
+    },
+      {
           type: "group",
           name: "PromptAI",
           label: { es: "Prompt", en: "Prompt AI" },
@@ -177,6 +156,34 @@ const PoliticallDirect: CollectionConfig = {
             },
           ],
       },
+      {
+        type: "group",
+        name: "EmailViewwithAI",
+        label: { es: "Previsualizacion", en: "Email AI" },
+        fields: [  
+          {
+            type: "row",
+            fields: [
+              {
+                label: { es: "Titulo", en: "Title" },
+                name: "titleAI", // required
+                type: "text", // required
+                admin: {
+                width: "50%",
+                },
+              },
+              {
+                label: { es: "Instrucciones", en: "Instructions" },
+                name: "intructionsAI", // required
+                type: "text", // required
+                admin: {
+                width: "50%",
+                },
+              }
+            ],
+          },
+        ],
+    },
       {
           name: "clientId",
           type: "relationship",
@@ -208,6 +215,9 @@ const PoliticallDirect: CollectionConfig = {
           },
       },
   ],
+  hooks: {
+    beforeChange: [beforeChangeHook]
+  }
 }
 
 export default PoliticallDirect;

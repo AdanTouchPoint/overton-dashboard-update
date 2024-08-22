@@ -8,7 +8,9 @@ const hideForms = async (projectData: ProjectData,setHideSB ,setHidePD,setHideAP
     campaingType === 'AP' ? setHideAP(false) : null
     setHideMainForm(true)
   }
-
+const hideElements = (state) => {
+  return 
+}
 export {
     hideForms
 }

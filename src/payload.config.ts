@@ -7,6 +7,7 @@ import { webpackBundler } from '@payloadcms/bundler-webpack'
 import MainPages from './collections/MainPages';
 import Users from './collections/Users';
 import Pages from './collections/Pages';
+import PoliticallDirect from './collections/PoliticallDirect';
 import AfterNavLinks from './customComponents/afterNavLink';
 import Campaing from './customComponents/Custome/Campaing';
 import EditCampaing from './customComponents/Custome/EditCampaing'
@@ -32,7 +33,8 @@ export default buildConfig({
   collections: [
     Users,
     Pages,
-    MainPages
+    MainPages,
+    PoliticallDirect
     // Add Collections here
     // Examples,
   ],

@@ -10,7 +10,11 @@ const PoliticallDirect: CollectionConfig = {
   admin: {
     components: {
       views: {
-        Edit: CustomeCampaingList
+        Edit: {
+          Default: {
+            actions: [CustomeCampaingList],
+          },
+        },
       }
     },
     description: {

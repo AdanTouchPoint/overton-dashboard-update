@@ -33,6 +33,12 @@ const click = () => {
         <div>instructions<input name='ef-instructions' onChange={handleOnChange} type='text'></input></div>
         </span>
         <span> 
+        <h3>email form AI</h3>
+        <div>title<input name='efai-title' onChange={handleOnChange} type='text'></input></div>
+        <div>description<input name='efai-description' onChange={handleOnChange} type='text'></input></div>
+        <div>instructions<input name='efai-instructions' onChange={handleOnChange} type='text'></input></div>
+        </span>
+        <span> 
         <h3>reviewEmail page</h3>
         <div>title<input name='rep-title' onChange={handleOnChange} type='text'></input></div>
         <div>description<input name='rep-description' onChange={handleOnChange} type='text'></input></div>

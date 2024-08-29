@@ -54,8 +54,8 @@ const SubmissionBuilder: CollectionConfig = {
       },
       {
           type: "group",
-          name: "emailform",
-          label: { es: "Formulario de email", en: "Email Form" },
+          name: "questions",
+          label: { es: "Preguntas", en: "Questions" },
           fields: [
             {
               type: "row",
@@ -78,36 +78,25 @@ const SubmissionBuilder: CollectionConfig = {
       },  
       {
           type: "group",
-          name: "EmailViewnoAI",
-          label: { es: "Previsualizacion", en: "Email No AI" },
+          name: "Privacy",
+          label: { es: "Privacidad", en: "Privacy" },
           fields: [
             {
               type: "row",
               fields: [
                 {
-                  label: { es: "Titulo", en: "Title" },
-                  name: "titleNoAI", // required
+                  label: { es: "Titulo ", en: "Title" },
+                  name: "title", // required
                   type: "text", // required
-                  admin: {
-                  width: "50%",
-                  },
-                },
-                {
-                  label: { es: "Instrucciones", en: "Instructions" },
-                  name: "intructionsNoAI", // required
-                  type: "text", // required
-                  admin: {
-                  width: "50%",
-                  },
                 }
-              ],
-            },
-          ],
+              ]
+            }
+          ]
       },
       {
         type: "group",
-        name: "SuccessPage",
-        label: { es: "deploy exitoso", en: "Success Page"},
+        name: "emailPreview",
+        label: { es: "Previsualizacion", en: "Email Preview" },
         fields: [
           {
             type: "row",
@@ -115,14 +104,6 @@ const SubmissionBuilder: CollectionConfig = {
               {
                 label: { es: "Titulo", en: "Title" },
                 name: "titleNoAI", // required
-                type: "text", // required
-                admin: {
-                width: "50%",
-                },
-              },
-              {
-                label: { es: "Descripcion", en: "Description" },
-                name: "descriptionNoAI", // required
                 type: "text", // required
                 admin: {
                 width: "50%",
@@ -139,38 +120,26 @@ const SubmissionBuilder: CollectionConfig = {
             ],
           },
         ],
-    },
-      {
-          type: "group",
-          name: "PromptAI",
-          label: { es: "Prompt", en: "Prompt AI" },
-          fields: [
-            {
-              type: "row",
-              fields: [
-                {
-                  label: { es: "Prompt AI", en: "Prompt AI" },
-                  name: "promptAI", // required
-                  type: "text", // required
-                  admin: {
-                  width: "50%",
-                  },
-                },
-              ],
-            },
-          ],
-      },
+    }, 
       {
         type: "group",
-        name: "EmailViewwithAI",
-        label: { es: "Previsualizacion", en: "Email AI" },
-        fields: [  
+        name: "SuccessPage",
+        label: { es: "deploy exitoso", en: "Success Page"},
+        fields: [
           {
             type: "row",
             fields: [
               {
                 label: { es: "Titulo", en: "Title" },
-                name: "titleAI", // required
+                name: "title", // required
+                type: "text", // required
+                admin: {
+                width: "50%",
+                },
+              },
+              {
+                label: { es: "Descripcion", en: "Description" },
+                name: "description", // required
                 type: "text", // required
                 admin: {
                 width: "50%",
@@ -178,7 +147,7 @@ const SubmissionBuilder: CollectionConfig = {
               },
               {
                 label: { es: "Instrucciones", en: "Instructions" },
-                name: "intructionsAI", // required
+                name: "intructions", // required
                 type: "text", // required
                 admin: {
                 width: "50%",

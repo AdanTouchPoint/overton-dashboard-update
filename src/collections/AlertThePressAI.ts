@@ -53,8 +53,8 @@ const AlertThePressAI: CollectionConfig = {
       },
       {
           type: "group",
-          name: "emailform",
-          label: { es: "Formulario de email", en: "Email Form" },
+          name: "emailFormAi",
+          label: { es: "Formulario de email con AI", en: "Email Form with AI" },
           fields: [
             {
               type: "row",
@@ -72,18 +72,40 @@ const AlertThePressAI: CollectionConfig = {
               ]
             }
           ]
-      },  
+      },
+      {
+        type: "group",
+        name: "emailform",
+        label: { es: "Formulario de email", en: "Email Form" },
+        fields: [
+          {
+            type: "row",
+            fields: [
+              {
+                  label: { es: "Titulo ", en: "Title" },
+                  name: "title", // required
+                  type: "text", // required
+              },
+              {
+                  label: { es: "Instrucciones", en: "Instructions" },
+                  name: "instructions", // required
+                  type: "text", // required
+              }
+            ]
+          }
+        ]
+    },
       {
           type: "group",
-          name: "EmailViewnoAI",
-          label: { es: "Previsualizacion", en: "Email No AI" },
+          name: "emailPreview",
+          label: { es: "Previsualizacion", en: "Email Preview" },
           fields: [
             {
               type: "row",
               fields: [
                 {
                   label: { es: "Titulo", en: "Title" },
-                  name: "titleNoAI", // required
+                  name: "title", // required
                   type: "text", // required
                   admin: {
                   width: "50%",
@@ -91,7 +113,7 @@ const AlertThePressAI: CollectionConfig = {
                 },
                 {
                   label: { es: "Instrucciones", en: "Instructions" },
-                  name: "intructionsNoAI", // required
+                  name: "intructions", // required
                   type: "text", // required
                   admin: {
                   width: "50%",
@@ -111,7 +133,7 @@ const AlertThePressAI: CollectionConfig = {
             fields: [
               {
                 label: { es: "Titulo", en: "Title" },
-                name: "titleNoAI", // required
+                name: "title", // required
                 type: "text", // required
                 admin: {
                 width: "50%",
@@ -119,7 +141,7 @@ const AlertThePressAI: CollectionConfig = {
               },
               {
                 label: { es: "Descripcion", en: "Description" },
-                name: "descriptionNoAI", // required
+                name: "description", // required
                 type: "text", // required
                 admin: {
                 width: "50%",
@@ -127,7 +149,7 @@ const AlertThePressAI: CollectionConfig = {
               },
               {
                 label: { es: "Instrucciones", en: "Instructions" },
-                name: "intructionsNoAI", // required
+                name: "intructions", // required
                 type: "text", // required
                 admin: {
                 width: "50%",
@@ -157,34 +179,6 @@ const AlertThePressAI: CollectionConfig = {
             },
           ],
       },
-      {
-        type: "group",
-        name: "EmailViewwithAI",
-        label: { es: "Previsualizacion", en: "Email AI" },
-        fields: [  
-          {
-            type: "row",
-            fields: [
-              {
-                label: { es: "Titulo", en: "Title" },
-                name: "titleAI", // required
-                type: "text", // required
-                admin: {
-                width: "50%",
-                },
-              },
-              {
-                label: { es: "Instrucciones", en: "Instructions" },
-                name: "intructionsAI", // required
-                type: "text", // required
-                admin: {
-                width: "50%",
-                },
-              }
-            ],
-          },
-        ],
-    },
     {
         name: "clientId",
         type: "relationship",

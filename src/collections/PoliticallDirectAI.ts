@@ -5,8 +5,8 @@ import {FormBlock} from '../blocks/FieldsForm'
 import CustomeCampaingList from '../customComponents/Custome/CustomeCampaingList'
 import {beforeChangeHook} from '../hooks/beforeCreateCampaing' 
 // Example Collection - For reference only, this must be added to payload.config.ts to be used.
-const AlertThePress: CollectionConfig = {
-  slug: 'alertPress',
+const PoliticallDirectAI: CollectionConfig = {
+  slug: 'politcallDirectAi',
   admin: {
     components: {
       views: {
@@ -54,8 +54,8 @@ const AlertThePress: CollectionConfig = {
       },
       {
           type: "group",
-          name: "emailform",
-          label: { es: "Formulario de email", en: "Email Form" },
+          name: "emailformAI",
+          label: { es: "Formulario de email", en: "Email Form AI" },
           fields: [
             {
               type: "row",
@@ -71,22 +71,56 @@ const AlertThePress: CollectionConfig = {
                     name: "instructions", // required
                     type: "text", // required
                     
-                  }
+                  },
+                  {
+                    label: { es: "Descripcion", en: "Description" },
+                    name: "description", // required
+                    type: "text", // required
+                  },
               ]
             }
           ]
-      },  
+      },
+      {
+        type: "group",
+        name: "emailform",
+        label: { es: "Formulario de email", en: "Email Form" },
+        fields: [
+          {
+            type: "row",
+            fields: [
+              {
+                  label: { es: "Titulo ", en: "Title" },
+                  name: "title", // required
+                  type: "text", // required
+                },
+    
+                {
+                  label: { es: "Instrucciones", en: "Instructions" },
+                  name: "instructions", // required
+                  type: "text", // required
+                  
+                },
+                {
+                    label: { es: "Descripcion", en: "Description" },
+                    name: "description", // required
+                    type: "text", // required
+                },
+            ]
+          }
+        ]
+    },  
       {
           type: "group",
-          name: "EmailViewnoAI",
-          label: { es: "Previsualizacion", en: "Email No AI" },
+          name: "emailPreview",
+          label: { es: "Previsualizacion", en: "Email Preview" },
           fields: [
             {
               type: "row",
               fields: [
                 {
                   label: { es: "Titulo", en: "Title" },
-                  name: "titleNoAI", // required
+                  name: "title", // required
                   type: "text", // required
                   admin: {
                   width: "50%",
@@ -94,7 +128,7 @@ const AlertThePress: CollectionConfig = {
                 },
                 {
                   label: { es: "Instrucciones", en: "Instructions" },
-                  name: "intructionsNoAI", // required
+                  name: "intructions", // required
                   type: "text", // required
                   admin: {
                   width: "50%",
@@ -161,34 +195,6 @@ const AlertThePress: CollectionConfig = {
           ],
       },
       {
-        type: "group",
-        name: "EmailViewwithAI",
-        label: { es: "Previsualizacion", en: "Email AI" },
-        fields: [  
-          {
-            type: "row",
-            fields: [
-              {
-                label: { es: "Titulo", en: "Title" },
-                name: "titleAI", // required
-                type: "text", // required
-                admin: {
-                width: "50%",
-                },
-              },
-              {
-                label: { es: "Instrucciones", en: "Instructions" },
-                name: "intructionsAI", // required
-                type: "text", // required
-                admin: {
-                width: "50%",
-                },
-              }
-            ],
-          },
-        ],
-    },
-      {
           name: "clientId",
           type: "relationship",
           relationTo: "users",
@@ -224,4 +230,4 @@ const AlertThePress: CollectionConfig = {
   }
 }
 
-export default AlertThePress;
+export default PoliticallDirectAI;

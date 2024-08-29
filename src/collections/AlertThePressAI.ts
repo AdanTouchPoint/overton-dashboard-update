@@ -5,8 +5,8 @@ import {FormBlock} from '../blocks/FieldsForm'
 import CustomeCampaingList from '../customComponents/Custome/CustomeCampaingList'
 import {beforeChangeHook} from '../hooks/beforeCreateCampaing' 
 // Example Collection - For reference only, this must be added to payload.config.ts to be used.
-const AlertThePress: CollectionConfig = {
-  slug: 'alertPress',
+const AlertThePressAI: CollectionConfig = {
+  slug: 'alertPressAi',
   admin: {
     components: {
       views: {
@@ -43,7 +43,6 @@ const AlertThePress: CollectionConfig = {
               name: "mainTitle", // required
               type: "text", // required
             },
-
             {
               label: { es: "Instrucciones", en: "Instructions" },
               name: "instructions", // required
@@ -64,14 +63,12 @@ const AlertThePress: CollectionConfig = {
                     label: { es: "Titulo ", en: "Title" },
                     name: "title", // required
                     type: "text", // required
-                  },
-      
-                  {
+                },
+                {
                     label: { es: "Instrucciones", en: "Instructions" },
                     name: "instructions", // required
                     type: "text", // required
-                    
-                  }
+                }
               ]
             }
           ]
@@ -188,40 +185,40 @@ const AlertThePress: CollectionConfig = {
           },
         ],
     },
-      {
-          name: "clientId",
-          type: "relationship",
-          relationTo: "users",
-          required: true,
-          admin: { hidden: true },
+    {
+        name: "clientId",
+        type: "relationship",
+        relationTo: "users",
+        required: true,
+        admin: { hidden: true },
           // If user is not admin, set the site by default
           // to the first site that they have access to
-          defaultValue: ({ user }) => {
+        defaultValue: ({ user }) => {
             if (user) {
               return user.id;
             }
-          },
-          access: {
+        },
+        access: {
             // Only admins can create users
             create: isAdminFieldLevel,
             read: isAdminFieldLevel,
             // Admins can update all, but any other logged in user can only update themselves
             update: isAdminFieldLevel,
-          },
-      },
-      {
-          name: "active", // required
-          type: "checkbox", // required
-          label: "Aplicar",
-          defaultValue: true,
-          admin: {
-            readOnly: true,
-          },
-      },
+        },
+    },
+    {
+        name: "active", // required
+        type: "checkbox", // required
+        label: "Aplicar",
+        defaultValue: true,
+        admin: {
+        readOnly: true,
+        },
+    },
   ],
   hooks: {
     beforeChange: [beforeChangeHook]
   }
 }
 
-export default AlertThePress;
+export default AlertThePressAI;

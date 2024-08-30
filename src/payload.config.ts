@@ -8,6 +8,11 @@ import MainPages from './collections/MainPages';
 import Users from './collections/Users';
 import Pages from './collections/Pages';
 import PoliticallDirect from './collections/PoliticallDirect';
+import PoliticallDirectAI from './collections/PoliticallDirectAI';
+import AlertThePress from './collections/AlertThePress';
+import AlertThePressAI from './collections/AlertThePressAI';
+import SubmissionBuilder from './collections/SubmissionBuilder';
+import SubmissionBuilderAI from './collections/SubmissionBuilderAI';
 import AfterNavLinks from './customComponents/afterNavLink';
 import Campaing from './customComponents/Custome/Campaing';
 import EditCampaing from './customComponents/Custome/EditCampaing'
@@ -34,7 +39,12 @@ export default buildConfig({
     Users,
     Pages,
     MainPages,
-    PoliticallDirect
+    PoliticallDirect,
+    PoliticallDirectAI,
+    AlertThePress,
+    AlertThePressAI,
+    SubmissionBuilder,
+    SubmissionBuilderAI
     // Add Collections here
     // Examples,
   ],

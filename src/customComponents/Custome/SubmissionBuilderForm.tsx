@@ -1,7 +1,10 @@
-import React, {FormEvent} from 'react';
+import React, {FormEvent,useEffect} from 'react';
 import { useAuth } from 'payload/components/utilities';
 const baseClass = 'after-dashboard';
+import {getProjectInfo} from '../../lib/vercelRequests'
 import { SBprops, ProjectData } from '../interfaces';
+import { CreateRepoLabel } from '../../lib/gitHubRequests';
+
 const SubmissionBuilderForm: React.FC<SBprops> = ({projectData, setProjectData, hideSB, setHideSuccess}) => {
 const user = useAuth()
 const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
@@ -11,9 +14,15 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   }
   return setProjectData(info)
 }
-const click = () => {
-  setHideSuccess(false)
-}
+
+const click = async () => {
+  const deployInfo = await getProjectInfo(projectData.repo)
+  console.log(deployInfo)
+   setHideSuccess(false)
+ }
+ useEffect(()=>{
+  CreateRepoLabel(projectData.repo) 
+  },[])
 	return (
 	<div hidden={hideSB} className={baseClass}>
       <div className="gutter--left gutter--right collection-list__wrap">

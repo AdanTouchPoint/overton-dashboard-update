@@ -1,6 +1,8 @@
-import React, {FormEvent} from 'react';
+import React, {FormEvent,useEffect} from 'react';
 import { useAuth } from 'payload/components/utilities';
 import { PDprops, ProjectData } from '../interfaces';
+import {getProjectInfo} from '../../lib/vercelRequests'
+import { CreateRepoLabel } from '../../lib/gitHubRequests';
 const baseClass = 'after-dashboard';
 const PoliticallDirectFormAI: React.FC<PDprops> = ({projectData, setProjectData,hidePD,setHideSuccess}) => {
 const user = useAuth()
@@ -11,9 +13,14 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   }
   return setProjectData(info)
 }
-const click = () => {
-  setHideSuccess(false)
-}
+const click = async () => {
+  const deployInfo = await getProjectInfo(projectData.repo)
+  console.log(deployInfo)
+   setHideSuccess(false)
+ }
+ useEffect(()=>{
+  CreateRepoLabel(projectData.repo) 
+  },[])
 	return (
 	<div hidden={hidePD} className={baseClass}>
   <div className="gutter--left gutter--right collection-list__wrap">

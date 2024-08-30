@@ -1,16 +1,17 @@
 import React, {FormEvent} from 'react';
 import { useAuth } from 'payload/components/utilities';
-import { createCampaing } from '../../lib/createCampaing';
-import { CreateRepoLabel } from '../../lib/gitHubRequests';
+import { createCampaing,statusValidator } from '../../lib/createCampaing';
 import { hideForms } from '../../lib/hideComponents';
 import { MainFormProps, ProjectData } from '../interfaces';
 const baseClass = 'after-dashboard';
 const MainForm: React.FC<MainFormProps> = ({setHideSB,setHidePD,setHideAP,setProjectData,projectData,setHideMainForm,hideMainForm}) => {
 const click = async () => {
-  const campaing = await createCampaing(projectData)
-  const name : string = campaing.name
-  await  CreateRepoLabel(name)
-  hideForms(projectData,setHideSB ,setHidePD,setHideAP,setHideMainForm)
+  try {
+    const campaing = await createCampaing(projectData)
+    await hideForms(projectData,setHideSB ,setHidePD,setHideAP,setHideMainForm)
+} catch (error) {
+    throw new Error (error)
+  }
 }
 const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   const info : ProjectData = {
@@ -18,7 +19,7 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
     [(event.target as HTMLInputElement).name]: (event.target as HTMLInputElement).value
   }
   return setProjectData(info)
-}
+} 
 	return (
 		<div className={baseClass}>
       <div hidden={hideMainForm} className="gutter--left gutter--right collection-list__wrap">
@@ -34,15 +35,15 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
       </p>
       <div>
         <label>Name:</label>
-        <input name='ci-repo' onChange={handleOnChange} type="text" />
+        <input name='repo' onChange={handleOnChange} type="text" />
       </div>
       <div>
         <label>Description:</label>
-        <input name='ci-description' onChange={handleOnChange} type="text" />
+        <input name='description' onChange={handleOnChange} type="text" />
       </div>
       <div>
         <label>Title:</label>
-        <input name='ci-title' onChange={handleOnChange} type="text" />
+        <input name='title' onChange={handleOnChange} type="text" />
       </div>
       <button onClick={click}>Next</button>
       </div>

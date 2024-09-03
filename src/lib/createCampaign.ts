@@ -2,7 +2,7 @@ import { createGhRepo, setPermissions, CreateRepoLabel } from "./gitHubRequests"
 import { createProject } from "./vercelRequests";
 import { ProjectData } from "../customComponents/interfaces";
 
-const createCampaing  = async (projectData: ProjectData) => {
+const createCampaign  = async (projectData: ProjectData) => {
   try {
   const GHRepo = await createGhRepo(projectData)
   statusValidator(GHRepo.status, 201,'Error al crear  el repositorio , por favor verifica los datos')
@@ -27,5 +27,5 @@ const statusValidator = (status,code,message) : void => {
     throw new Error(message);
   }}
 export {
-  createCampaing, statusValidator
+  createCampaign, statusValidator
 }

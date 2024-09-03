@@ -1,5 +1,5 @@
 import { ProjectData } from "../customComponents/interfaces";
-const token = process.env.VERCELTOKEN
+const token = process.env.NEXT_VERCEL_TOKEN
 const createProject = async (projectData: ProjectData,name: string) => {
     try {
         const myHeaders: Headers = new Headers();

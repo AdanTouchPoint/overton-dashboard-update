@@ -2,7 +2,7 @@ import { CollectionConfig } from 'payload/types';
 import {isAdminOrSelf} from '../access/isAdminOrSelf'
 import {isAdminFieldLevel} from '../access/isAdmin'
 import {FormBlock} from '../blocks/FieldsForm'
-import CustomeCampaingList from '../customComponents/Custome/CustomeCampaingList'
+import CustomeCampaingList from '../customComponents/Custome/CustomeCampaignList'
 import {beforeChangeHook} from '../hooks/beforeCreateCampaing' 
 // Example Collection - For reference only, this must be added to payload.config.ts to be used.
 const SubmissionBuilder: CollectionConfig = {

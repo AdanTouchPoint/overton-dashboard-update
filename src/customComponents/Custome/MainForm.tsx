@@ -1,13 +1,13 @@
 import React, {FormEvent} from 'react';
 import { useAuth } from 'payload/components/utilities';
-import { createCampaing,statusValidator } from '../../lib/createCampaing';
+import { createCampaign,statusValidator } from '../../lib/createCampaign';
 import { hideForms } from '../../lib/hideComponents';
 import { MainFormProps, ProjectData } from '../interfaces';
 const baseClass = 'after-dashboard';
 const MainForm: React.FC<MainFormProps> = ({setHideSB,setHidePD,setHideAP,setProjectData,projectData,setHideMainForm,hideMainForm}) => {
 const click = async () => {
   try {
-    const campaing = await createCampaing(projectData)
+    const campaing = await createCampaign(projectData)
     await hideForms(projectData,setHideSB ,setHidePD,setHideAP,setHideMainForm)
 } catch (error) {
     throw new Error (error)

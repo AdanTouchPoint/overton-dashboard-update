@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import DefaultList from "payload/dist/admin/components/views/collections/Edit/Default.js";
 import { useAuth } from "payload/components/utilities";
-import './campaingList.css'
+import './campaignList.css'
 import { MinimalTemplate } from "payload/components/templates";
 import { Button } from "payload/components/elements";
 const CustomList = (props) => {

@@ -14,7 +14,6 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   }
   return setProjectData(info)
 }
-
 const click = async () => {
   const deployInfo = await getProjectInfo(projectData.repo)
   console.log(deployInfo)

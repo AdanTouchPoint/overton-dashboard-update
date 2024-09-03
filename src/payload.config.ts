@@ -14,8 +14,8 @@ import AlertThePressAI from './collections/AlertThePressAI';
 import SubmissionBuilder from './collections/SubmissionBuilder';
 import SubmissionBuilderAI from './collections/SubmissionBuilderAI';
 import AfterNavLinks from './customComponents/afterNavLink';
-import Campaing from './customComponents/Custome/Campaing';
-import EditCampaing from './customComponents/Custome/EditCampaing'
+import Campaing from './customComponents/Custome/Campaign';
+import EditCampaing from './customComponents/Custome/EditCampaign'
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:8080',
   admin: {

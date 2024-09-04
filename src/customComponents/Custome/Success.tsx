@@ -6,9 +6,9 @@ const baseClass = 'after-dashboard';
 
 const Success: React.FC<SuccessProps> = ({projectData, setProjectData, hideSuccess, setHideSuccess}) => {
 const user = useAuth()
-useEffect(()=>{
+/*useEffect(()=>{
   console.log(getProjectInfo(projectData.repo) )
-  },[])
+  },[])*/
 	return (
 	<div hidden={hideSuccess} className={baseClass}>
       <div className="gutter--left gutter--right collection-list__wrap">

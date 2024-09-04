@@ -7,7 +7,7 @@ const baseClass = 'after-dashboard';
 const MainForm: React.FC<MainFormProps> = ({setHideSB,setHidePD,setHideAP,setProjectData,projectData,setHideMainForm,hideMainForm}) => {
 const click = async () => {
   try {
-    const campaing = await createCampaign(projectData)
+    //const campaing = await createCampaign(projectData)
     await hideForms(projectData,setHideSB ,setHidePD,setHideAP,setHideMainForm)
 } catch (error) {
     throw new Error (error)

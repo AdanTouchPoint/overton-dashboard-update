@@ -14,7 +14,7 @@ const createCampaign = async (query) => {
         subject
       } = query;
     const leads = await payload.create({
-        collection: "conversiones", // required
+        collection: "conversiones", // change to campaignType for dynamic search
         data: {
           // required
           names: firstName,

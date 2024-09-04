@@ -29,39 +29,39 @@ const Campaing: React.FC = () => {
           setHidePD={setHidePD}
           setHideAP={setHideAP}
         />
-        {hideSB === false ? (
+        { !hideSB && (
           <SubmissionBuilderForm
             projectData={projectData}
             setProjectData={setProjectData}
             hideSB={hideSB}
             setHideSuccess={setHideSuccess}
           />
-        ) : null}
+        )}
 
-        {hidePD === false ? (
+        { !hidePD && (
           <PoliticallDirectForm
             projectData={projectData}
             setProjectData={setProjectData}
             hidePD={hidePD}
             setHideSuccess={setHideSuccess}
           />
-        ) : null}
-        {hideAP === false ? (
+        ) }
+        { !hideAP && (
           <AlertthePressForm
             projectData={projectData}
             setProjectData={setProjectData}
             hideAP={hideAP}
             setHideSuccess={setHideSuccess}
           />
-        ) : null}
-{hideSuccess === false ? (
+        ) }
+        { !hideSuccess && (
           <Success
           projectData={projectData}
           setProjectData={setProjectData}
           hideSuccess={hideSuccess}
           setHideSuccess={setHideSuccess}
         />
-): null}
+        ) }
       </div>
     </DefaultTemplate>
   );

@@ -1,3 +1,4 @@
+import { response } from "express";
 import { ProjectData } from "../customComponents/interfaces";
 const token = process.env.NEXT_VERCEL_TOKEN
 const createProject = async (projectData: ProjectData,name: string) => {
@@ -85,6 +86,35 @@ const createProject = async (projectData: ProjectData,name: string) => {
         throw new Error(error.message);
     }
 }
+const deployProject = async (fullName: string, id: number) => {
+  try {
+const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+myHeaders.append("Authorization", token);
+
+const raw = JSON.stringify({
+  "name": "popo",
+  "gitSource": {
+    "type": "github",
+    "repo": fullName,
+    "ref": "master",
+    "repoId": id
+  }
+});
+
+const requestOptions: RequestInit = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+const deploy = fetch("https://api.vercel.com/v13/deployments", requestOptions)
+return deploy
+  } catch (error) {
+    console.error(error)
+  }
+}
 const getProjectInfo = async (project: string) => {
     try {
         const myHeaders: Headers = new Headers();
@@ -104,4 +134,4 @@ const getProjectInfo = async (project: string) => {
         throw new Error(error.message);
     }
 }
-export {createProject, getProjectInfo}
+export {createProject, getProjectInfo,deployProject}

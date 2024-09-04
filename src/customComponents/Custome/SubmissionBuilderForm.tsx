@@ -15,13 +15,12 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   return setProjectData(info)
 }
 const click = async () => {
-  const deployInfo = await getProjectInfo(projectData.repo)
-  console.log(deployInfo)
+// createCampaing
    setHideSuccess(false)
  }
- useEffect(()=>{
+ /*useEffect(()=>{
   CreateRepoLabel(projectData.repo) 
-  },[])
+  },[])*/
 	return (
 	<div hidden={hideSB} className={baseClass}>
       <div className="gutter--left gutter--right collection-list__wrap">

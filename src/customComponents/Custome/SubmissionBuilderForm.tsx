@@ -5,7 +5,7 @@ import {getProjectInfo} from '../../lib/vercelRequests'
 import { SBprops, ProjectData } from '../interfaces';
 import { CreateRepoLabel } from '../../lib/gitHubRequests';
 
-const SubmissionBuilderForm: React.FC<SBprops> = ({projectData, setProjectData, hideSB, setHideSuccess}) => {
+const SubmissionBuilderForm: React.FC<SBprops> = ({projectData, setProjectData, hideSB, setHideSuccess, setHideSB}) => {
 const user = useAuth()
 const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   const info : ProjectData = {
@@ -16,7 +16,8 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
 }
 const click = async () => {
 // createCampaing
-   setHideSuccess(false)
+  setHideSB(true)
+  setHideSuccess(false)
  }
  /*useEffect(()=>{
   CreateRepoLabel(projectData.repo) 
@@ -30,28 +31,28 @@ const click = async () => {
         </p>
        <span> 
         <h3>Main form</h3>
-        <div>title<input name='mf-title' onChange={handleOnChange} type='text'></input></div>
-        <div>description<input name='mf-description' onChange={handleOnChange} type='text'></input></div>
+        <div>title<input name='mftitle' onChange={handleOnChange} type='text'></input></div>
+        <div>description<input name='mfdescription' onChange={handleOnChange} type='text'></input></div>
         </span>
         <span> 
         <h3>questions page</h3>
-        <div>title<input name='qp-title' onChange={handleOnChange} type='text'></input></div>
-        <div>instructions<input name='qp-instructions' onChange={handleOnChange} type='text'></input></div>
+        <div>title<input name='qptitle' onChange={handleOnChange} type='text'></input></div>
+        <div>instructions<input name='qpinstructions' onChange={handleOnChange} type='text'></input></div>
         </span>
         <span> 
         <h3>privacy page</h3>
-        <div>title<input name='pp-title' onChange={handleOnChange} type='text'></input></div>
+        <div>title<input name='pptitle' onChange={handleOnChange} type='text'></input></div>
         </span>
         <span> 
         <h3>reviewEmail page</h3>
-        <div>title<input name='rep-title' onChange={handleOnChange} type='text'></input></div>
-        <div>description<input name='rep-description' onChange={handleOnChange} type='text'></input></div>
+        <div>title<input name='reptitle' onChange={handleOnChange} type='text'></input></div>
+        <div>instructions<input name='repinstructions' onChange={handleOnChange} type='text'></input></div>
         </span>
         <span> 
         <h3>ThankYou Page</h3>
-        <div>title<input name='typ-title' onChange={handleOnChange} type='text'></input></div>
-        <div>description<input name='typ-description' onChange={handleOnChange} type='text'></input></div>
-        <div>instructions<input name='typ-instructions' onChange={handleOnChange} type='text'></input></div>
+        <div>title<input name='typtitle' onChange={handleOnChange} type='text'></input></div>
+        <div>description<input name='typdescription' onChange={handleOnChange} type='text'></input></div>
+        <div>instructions<input name='typinstructions' onChange={handleOnChange} type='text'></input></div>
         </span>
         <button onClick={click}>Create</button>
       </div>

@@ -25,6 +25,6 @@ const statusValidator = (status,code,message) : void => {
   if (status !== code ) {
     throw new Error(message);
   }}
-export {
-  createCampaign, statusValidator
+export default {
+  createCampaign
 }

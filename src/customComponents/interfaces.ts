@@ -6,6 +6,7 @@ export interface ProjectData {
     content: string;
     clientId: string;
     title: string;
+    homepage: string
   }
 
 export interface MainFormProps {
@@ -22,6 +23,7 @@ export interface MainFormProps {
     setProjectData: Dispatch<SetStateAction<ProjectData>>;
     hideSB: boolean;
     setHideSuccess: (value: boolean) => void;
+    setHideSB: (value: boolean) => void;
   }
   export interface APprops {
     projectData: ProjectData | undefined; 

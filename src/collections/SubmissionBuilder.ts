@@ -78,7 +78,7 @@ const SubmissionBuilder: CollectionConfig = {
       },  
       {
           type: "group",
-          name: "Privacy",
+          name: "privacy",
           label: { es: "Privacidad", en: "Privacy" },
           fields: [
             {
@@ -103,7 +103,7 @@ const SubmissionBuilder: CollectionConfig = {
             fields: [
               {
                 label: { es: "Titulo", en: "Title" },
-                name: "titleNoAI", // required
+                name: "title", // required
                 type: "text", // required
                 admin: {
                 width: "50%",
@@ -111,7 +111,7 @@ const SubmissionBuilder: CollectionConfig = {
               },
               {
                 label: { es: "Instrucciones", en: "Instructions" },
-                name: "intructionsNoAI", // required
+                name: "intructions", // required
                 type: "text", // required
                 admin: {
                 width: "50%",

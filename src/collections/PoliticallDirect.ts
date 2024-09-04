@@ -43,7 +43,6 @@ const PoliticallDirect: CollectionConfig = {
               name: "mainTitle", // required
               type: "text", // required
             },
-
             {
               label: { es: "Instrucciones", en: "Instructions" },
               name: "instructions", // required
@@ -86,7 +85,7 @@ const PoliticallDirect: CollectionConfig = {
               fields: [
                 {
                   label: { es: "Titulo", en: "Title" },
-                  name: "titleNoAI", // required
+                  name: "title", // required
                   type: "text", // required
                   admin: {
                   width: "50%",
@@ -94,7 +93,7 @@ const PoliticallDirect: CollectionConfig = {
                 },
                 {
                   label: { es: "Instrucciones", en: "Instructions" },
-                  name: "intructionsNoAI", // required
+                  name: "intructions", // required
                   type: "text", // required
                   admin: {
                   width: "50%",
@@ -106,7 +105,7 @@ const PoliticallDirect: CollectionConfig = {
       },
       {
         type: "group",
-        name: "SuccessPage",
+        name: "successPage",
         label: { es: "deploy exitoso", en: "Success Page"},
         fields: [
           {
@@ -114,7 +113,7 @@ const PoliticallDirect: CollectionConfig = {
             fields: [
               {
                 label: { es: "Titulo", en: "Title" },
-                name: "titleNoAI", // required
+                name: "title", // required
                 type: "text", // required
                 admin: {
                 width: "50%",
@@ -122,7 +121,7 @@ const PoliticallDirect: CollectionConfig = {
               },
               {
                 label: { es: "Descripcion", en: "Description" },
-                name: "descriptionNoAI", // required
+                name: "description", // required
                 type: "text", // required
                 admin: {
                 width: "50%",
@@ -130,7 +129,7 @@ const PoliticallDirect: CollectionConfig = {
               },
               {
                 label: { es: "Instrucciones", en: "Instructions" },
-                name: "intructionsNoAI", // required
+                name: "intructions", // required
                 type: "text", // required
                 admin: {
                 width: "50%",

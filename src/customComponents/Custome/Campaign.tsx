@@ -35,6 +35,7 @@ const Campaing: React.FC = () => {
             setProjectData={setProjectData}
             hideSB={hideSB}
             setHideSuccess={setHideSuccess}
+            setHideSB={setHideSB}
           />
         )}
 

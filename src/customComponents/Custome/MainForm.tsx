@@ -1,6 +1,5 @@
 import React, {FormEvent} from 'react';
 import { useAuth } from 'payload/components/utilities';
-import { createCampaign,statusValidator } from '../../lib/createCampaign';
 import { hideForms } from '../../lib/hideComponents';
 import { MainFormProps, ProjectData } from '../interfaces';
 const baseClass = 'after-dashboard';
@@ -27,9 +26,9 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
       <p>
         Choose Campaing Type:
         </p>
-        <div>option 1<input onChange={handleOnChange} name='campaingType' value={'SB'} type='checkbox'></input></div>
-        <div>option 2<input onChange={handleOnChange} name='campaingType' value={'PD'} type='checkbox'></input></div>
-        <div>option 3<input onChange={handleOnChange} name='campaingType' value={'AP'} type='checkbox'></input></div>
+        <div>option 1<input onChange={handleOnChange} name='campaignType' value={'SB'} type='checkbox'></input></div>
+        <div>option 2<input onChange={handleOnChange} name='campaignType' value={'PD'} type='checkbox'></input></div>
+        <div>option 3<input onChange={handleOnChange} name='campaignType' value={'AP'} type='checkbox'></input></div>
       <p>
         Campaing Info
       </p>

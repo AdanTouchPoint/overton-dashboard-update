@@ -8,7 +8,7 @@ const createGhRepo = async (projectData: ProjectData) => {
     myHeaders.append("accept", "application/vnd.github+json");
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", token);
-    const { repo, description, campaingType } = projectData;
+    const { repo, description, campaignType } = projectData;
     const raw: string = JSON.stringify({
       name: repo,
       description: description,
@@ -22,7 +22,7 @@ const createGhRepo = async (projectData: ProjectData) => {
       body: raw,
       redirect: "follow",
     };
-    const response = await fetch(repoSelector(campaingType), requestOptions);
+    const response = await fetch(repoSelector(campaignType), requestOptions);
     return response;
   } catch (error) {
     throw new Error(error.message);

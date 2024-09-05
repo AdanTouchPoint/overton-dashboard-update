@@ -95,18 +95,12 @@ export const createCampaign = async (query) => {
       return APObj
     }
   };
-  const leads = await payload.create({
+  const data = await payload.create({
     collection: `${campaignType}`, // change to campaignType for dynamic search
-    data: {
-      // required
-      mainform: {
-        mainTitle: mftitle,
-        description: mfdescription,
-      },
-    },
+    data:dbSave(),
     overrideAccess: true,
   });
-  return leads;
+  return data;
 };
 
 export const getAllCampaign = async (query) => {

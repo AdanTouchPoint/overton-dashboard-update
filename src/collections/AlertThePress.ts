@@ -6,7 +6,7 @@ import CustomeCampaingList from '../customComponents/Custome/CustomeCampaignList
 import {beforeChangeHook} from '../hooks/beforeCreateCampaing' 
 // Example Collection - For reference only, this must be added to payload.config.ts to be used.
 const AlertThePress: CollectionConfig = {
-  slug: 'alertPress',
+  slug: 'AP',
   admin: {
     components: {
       views: {

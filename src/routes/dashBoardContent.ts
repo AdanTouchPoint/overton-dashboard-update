@@ -1,7 +1,7 @@
 import { Router } from "express";
 const router = Router();
 import payload from "payload";
-/*router.get("/theme", async (req, res) => {
+/*router.post("/campaign", async (req, res) => {
     try {
       const query = req.query;
       const theme = await ThemeController.Theme(query);

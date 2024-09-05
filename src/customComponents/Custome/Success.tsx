@@ -21,20 +21,29 @@ const renderWaitMessage = () => {
 }
 const renderSuccessMessage = () => {
   return (
-    <div>Success!</div>
+    <div>
+      <h1>Success!</h1>
+       <h2>URL :{projectData.homepage} </h2>
+    </div>
+   
   )
 }
  useEffect( () => {
-const fetchInfo = async () => {
-const data = await getRepoInfo('popo')
+const fetchInfo = async (projectData) => {
+const data = await getRepoInfo(projectData?.repo)
 const urlDeploy= await data.json()
 setProjectData({
   ...projectData,
   homepage: urlDeploy.homepage
 })
-createCampaign 
+const save = await createCampaign(projectData)
 }
-fetchInfo()
+setLoading(true)
+setTimeout(() => {
+  fetchInfo(projectData)
+  setLoading(false) 
+}, 60000);
+
   // si el deploy fue exitoso despues de 1 minuto , preparar data para guardar en bd
 
   }, [] )

@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 export interface ProjectData {
     repo: string;
     description : string;
-    campaingType: string;
+    campaignType: string;
     content: string;
     clientId: string;
     title: string;

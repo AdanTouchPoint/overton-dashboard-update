@@ -6,7 +6,7 @@ import CustomeCampaignList from '../customComponents/Custome/CustomeCampaignList
 import {beforeChangeHook} from '../hooks/beforeCreateCampaing' 
 // Example Collection - For reference only, this must be added to payload.config.ts to be used.
 const PoliticallDirect: CollectionConfig = {
-  slug: 'politicall',
+  slug: 'PD',
   admin: {
     components: {
       views: {

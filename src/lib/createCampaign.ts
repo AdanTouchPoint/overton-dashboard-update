@@ -13,7 +13,7 @@ const createCampaign  = async (projectData: ProjectData) => {
   statusValidator(writePermisions.status, 204,`Error al modificar los permisos en el repositorio por favor verifica tus datos`)
   const vercelRequest = await createProject(projectData,name)
   statusValidator(vercelRequest.status,200,'Error al crear un proyecto en vercel por favor verifica tus datos')
-  const deploy = await deployProject(fullName ,id)
+  const deploy = await deployProject(fullName , id, projectData.repo)
   statusValidator(deploy.status,200,'Error al desplegar el proyecto por favor verifica tus datos')
   return deploy
   } catch (error) {
@@ -25,6 +25,6 @@ const statusValidator = (status,code,message) : void => {
   if (status !== code ) {
     throw new Error(message);
   }}
-export default {
-  createCampaign
+export {
+  createCampaign, statusValidator
 }

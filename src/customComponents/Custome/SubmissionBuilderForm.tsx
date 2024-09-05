@@ -1,9 +1,8 @@
 import React, {FormEvent,useEffect} from 'react';
 import { useAuth } from 'payload/components/utilities';
 const baseClass = 'after-dashboard';
-import {getProjectInfo} from '../../lib/vercelRequests'
+import {createCampaign} from '../../lib/createCampaign'
 import { SBprops, ProjectData } from '../interfaces';
-import { CreateRepoLabel } from '../../lib/gitHubRequests';
 
 const SubmissionBuilderForm: React.FC<SBprops> = ({projectData, setProjectData, hideSB, setHideSuccess, setHideSB}) => {
 const user = useAuth()
@@ -15,7 +14,7 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   return setProjectData(info)
 }
 const click = async () => {
-// createCampaing
+ const data = await  createCampaign(projectData)
   setHideSB(true)
   setHideSuccess(false)
  }

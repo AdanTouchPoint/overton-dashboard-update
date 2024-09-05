@@ -1,6 +1,6 @@
 import { response } from "express";
 import { ProjectData } from "../customComponents/interfaces";
-const token = process.env.NEXT_VERCEL_TOKEN
+const token = process.env.NEXT_VERCEL_TOKEN;
 const createProject = async (projectData: ProjectData,name: string) => {
     try {
         const myHeaders: Headers = new Headers();
@@ -86,14 +86,14 @@ const createProject = async (projectData: ProjectData,name: string) => {
         throw new Error(error.message);
     }
 }
-const deployProject = async (fullName: string, id: number) => {
+const deployProject = async (fullName: string, id: number,repo :string) => {
   try {
 const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 myHeaders.append("Authorization", token);
 
 const raw = JSON.stringify({
-  "name": "popo",
+  "name": repo,
   "gitSource": {
     "type": "github",
     "repo": fullName,

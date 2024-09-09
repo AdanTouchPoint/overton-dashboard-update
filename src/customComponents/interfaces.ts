@@ -6,7 +6,20 @@ export interface ProjectData {
     content: string;
     clientId: string;
     title: string;
-    homepage: string
+    homepage: string;
+    typdescription,
+    typinstructions,
+    typtitle,
+    mfdescription,
+    mftitle,
+    repinstructions,
+    reptitle,
+    qptitle,
+    qpinstructions,
+    pptitle,
+    eftitle,
+    efinstructions,
+    efdescription
   }
 
 export interface MainFormProps {

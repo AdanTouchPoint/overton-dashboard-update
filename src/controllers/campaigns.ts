@@ -1,7 +1,9 @@
 import payload from "payload";
+import { ProjectData } from "../customComponents/interfaces";
 
-export const createCampaign = async (query) => {
+export async function createCampaign (query){
   const {
+    clientId,
     campaignType,
     description,
     mfdescription,
@@ -20,7 +22,8 @@ export const createCampaign = async (query) => {
       name: repo,
       title:title,
       description: description,
-      url: homepage
+      url: homepage,
+      clientId: clientId
     },
     mainform: {
       mainTitle: mftitle,
@@ -42,8 +45,16 @@ export const createCampaign = async (query) => {
       description: typdescription,
       instructions: typinstructions,
     },
+    clientId: clientId
   };
   const PDObj = {
+    campaignData: {
+      name: repo,
+      title:title,
+      description: description,
+      url: homepage,
+      clientId: clientId
+    },
     mainform: {
       mainTitle: mftitle,
       description: mfdescription,
@@ -65,6 +76,13 @@ export const createCampaign = async (query) => {
     },
   };
   const APObj = {
+    campaignData: {
+      name: repo,
+      title:title,
+      description: description,
+      url: homepage,
+      clientId: clientId
+    },
     mainform: {
       mainTitle: mftitle,
       description: mfdescription,

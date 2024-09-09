@@ -10,7 +10,7 @@ import { ProjectData } from "../interfaces";
 const baseClass = "after-dashboard";
 
 const Campaing: React.FC = () => {
-  const user = useAuth();
+
   const [hideMainForm, setHideMainForm] = useState(false);
   const [hideSB, setHideSB] = useState(true);
   const [hidePD, setHidePD] = useState(true);

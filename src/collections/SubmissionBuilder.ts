@@ -123,7 +123,7 @@ const SubmissionBuilder: CollectionConfig = {
     }, 
       {
         type: "group",
-        name: "SuccessPage",
+        name: "successPage",
         label: { es: "deploy exitoso", en: "Success Page"},
         fields: [
           {

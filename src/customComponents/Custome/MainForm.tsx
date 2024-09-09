@@ -4,8 +4,15 @@ import { hideForms } from '../../lib/hideComponents';
 import { MainFormProps, ProjectData } from '../interfaces';
 const baseClass = 'after-dashboard';
 const MainForm: React.FC<MainFormProps> = ({setHideSB,setHidePD,setHideAP,setProjectData,projectData,setHideMainForm,hideMainForm}) => {
-const click = async () => {
+const  user = useAuth();
+const id = user.user.id
+  const click = async () => {
   try {
+    const data  : ProjectData =  {
+      ...projectData,
+      clientId: id
+    }
+    await setProjectData(data)
     //const campaing = await createCampaign(projectData)
     await hideForms(projectData,setHideSB ,setHidePD,setHideAP,setHideMainForm)
 } catch (error) {

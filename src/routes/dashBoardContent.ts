@@ -6,10 +6,8 @@ import {createCampaign} from '../controllers/campaigns'
 router.post("/campaign", async (req, res) => {
     try {
       const query = req.query;
-      console.log(query)
-      const data = await createCampaign(query)
-      console.log(data);
-
+      const objReady = await JSON.parse(query.info)
+      const data = await createCampaign(objReady)
       res.json({
         success: true,
         message: "theme founded",

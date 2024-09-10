@@ -69,7 +69,8 @@ function prepareData(params:ProjectData) {
       description: typdescription,
       instructions: typinstructions,
     },
-    clientId: clientId
+    clientId: clientId,
+    campaignType: campaignType
   };
   const PDObj = {
     campaignData: {
@@ -129,7 +130,7 @@ function prepareData(params:ProjectData) {
   const readyData = (campaignType: string) => {
     if (campaignType === "SB") {
       return SBObj;
-    }
+    } 
     if (campaignType === "PD") {
       return PDObj
     }

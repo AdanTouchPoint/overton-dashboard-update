@@ -9,10 +9,10 @@ async function fetchData (petitionMethod, backendURLBase,endpoint,info){
     const datos = await data.json()
     return datos
 }
-async function fetchCampaignData (projectData) {
+async function postCampaignData (projectData) {
     const petition = {
         backendURLBase : "http://localhost:8080/",
-        endpoint: "dashBoardServices/campaigns",
+        endpoint: "dashBoardContent/campaign",
         method: "POST",
     }
     const objPrepare = await prepareData(projectData)
@@ -20,12 +20,7 @@ async function fetchCampaignData (projectData) {
     const request = await fetchData(petition.method,petition.backendURLBase,petition.endpoint,readyData)
     console.log(request)
 }
-
-
-
-
-
 export {
-    fetchData
+    fetchData, postCampaignData
 }
 

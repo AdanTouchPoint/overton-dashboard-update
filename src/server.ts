@@ -1,6 +1,6 @@
 import express from 'express';
 import payload from 'payload';
-import dashboardContent from './routes/dashBoardContent';
+import dashBoardContent from './routes/dashBoardContent';
 require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 8080
@@ -19,7 +19,7 @@ const start = async () :Promise<void> => {
   })
   // Add your own express routes here
 
-  app.use('/dashboardContent', dashboardContent);
+  app.use('/dashBoardContent', dashBoardContent);
   
   app.listen( port, async () => {
     payload.logger.info(`Server listening on port: ${port}`)

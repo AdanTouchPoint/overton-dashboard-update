@@ -2,10 +2,10 @@ import payload from "payload";
 import { ProjectData } from "../customComponents/interfaces";
 import { prepareData } from "../lib/createCampaign";
 export async function createCampaign (query){
-
+  console.log(query, 'here starts')
   const data = await payload.create({
     collection: `${query.campaignType}`, // change to campaignType for dynamic search
-    data:prepareData(query),
+    data:query,
     overrideAccess: true,
   });
   return data;

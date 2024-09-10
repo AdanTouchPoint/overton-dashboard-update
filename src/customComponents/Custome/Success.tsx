@@ -3,7 +3,7 @@ import { useAuth } from 'payload/components/utilities';
 import { SuccessProps } from '../interfaces';
 import {getRepoInfo} from '../../lib/gitHubRequests'
 import './loading.css'
-import { createCampaign } from '../../controllers/campaigns';
+import { postCampaignData } from '../../lib/requestsAPI';
 const baseClass = 'after-dashboard';
 
 const Success: React.FC<SuccessProps> = ({projectData, setProjectData, hideSuccess, setHideSuccess}) => {
@@ -36,13 +36,13 @@ setProjectData({
   ...projectData,
   homepage: urlDeploy.homepage
 })
-const save = await createCampaign(projectData)
+const save = await postCampaignData(projectData)
 }
 setLoading(true)
 setTimeout(() => {
   fetchInfo(projectData)
   setLoading(false) 
-}, 60000);
+}, 1000);
 
   // si el deploy fue exitoso despues de 1 minuto , preparar data para guardar en bd
 

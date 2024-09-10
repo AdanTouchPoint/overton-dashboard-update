@@ -25,6 +25,121 @@ const statusValidator = (status,code,message) : void => {
   if (status !== code ) {
     throw new Error(message);
   }}
+function prepareData(params:ProjectData) {
+  const {
+    clientId,
+    campaignType,
+    description,
+    mfdescription,
+    mftitle,
+    repinstructions,
+    reptitle,
+    repo,
+    title,
+    typdescription,
+    typinstructions,
+    typtitle,
+    homepage
+  } = params;
+  const SBObj = {
+    campaignData: {
+      name: repo,
+      title:title,
+      description: description,
+      url: homepage,
+      clientId: clientId
+    },
+    mainform: {
+      mainTitle: mftitle,
+      instructions: mfdescription,
+    },
+    questions: {
+      title: params?.qptitle,
+      instructions: params?.qpinstructions,
+    },
+    privacy: {
+      title: params?.pptitle,
+    },
+    emailPreview: {
+      title: reptitle,
+      instructions: repinstructions,
+    },
+    successPage: {
+      title: typtitle,
+      description: typdescription,
+      instructions: typinstructions,
+    },
+    clientId: clientId
+  };
+  const PDObj = {
+    campaignData: {
+      name: repo,
+      title:title,
+      description: description,
+      url: homepage,
+      clientId: clientId
+    },
+    mainform: {
+      mainTitle: mftitle,
+      description: mfdescription,
+    },
+    emailform: {
+      title: params?.eftitle,
+      instructions: params?.efinstructions,
+      description: params?.efdescription,
+
+    },
+    emailPreview: {
+      title: reptitle,
+      instructions: repinstructions,
+    },
+    successPage: {
+      title: typtitle,
+      description: typdescription,
+      instructions: typinstructions,
+    },
+  };
+  const APObj = {
+    campaignData: {
+      name: repo,
+      title:title,
+      description: description,
+      url: homepage,
+      clientId: clientId
+    },
+    mainform: {
+      mainTitle: mftitle,
+      description: mfdescription,
+    },
+    emailform: {
+      title: params?.eftitle,
+      instructions: params?.efinstructions,
+      description: params?.efdescription,
+    },
+    emailPreview: {
+      title: reptitle,
+      instructions: repinstructions,
+    },
+    successPage: {
+      title: typtitle,
+      description: typdescription,
+      instructions: typinstructions,
+    },
+  };
+  const readyData = (campaignType: string) => {
+    if (campaignType === "SB") {
+      return SBObj;
+    }
+    if (campaignType === "PD") {
+      return PDObj
+    }
+    if( campaignType === "AP") {
+      return APObj
+    }
+  };
+  return readyData(campaignType)
+  
+} 
 export {
-  createCampaign, statusValidator
+  createCampaign, statusValidator,prepareData
 }

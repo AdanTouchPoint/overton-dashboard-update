@@ -18,9 +18,9 @@ const click = async () => {
   setHideSB(true)
   setHideSuccess(false)
  }
- /*useEffect(()=>{
-  CreateRepoLabel(projectData.repo) 
-  },[])*/
+ useEffect(()=>{
+  console.log(projectData)
+  },[])
 	return (
 	<div hidden={hideSB} className={baseClass}>
       <div className="gutter--left gutter--right collection-list__wrap">

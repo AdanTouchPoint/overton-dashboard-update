@@ -82,7 +82,7 @@ function prepareData(params:ProjectData) {
     },
     mainform: {
       mainTitle: mftitle,
-      description: mfdescription,
+      instructions: mfdescription,
     },
     emailform: {
       title: params?.eftitle,
@@ -99,6 +99,8 @@ function prepareData(params:ProjectData) {
       description: typdescription,
       instructions: typinstructions,
     },
+    clientId: clientId,
+    campaignType: campaignType
   };
   const APObj = {
     campaignData: {
@@ -110,7 +112,7 @@ function prepareData(params:ProjectData) {
     },
     mainform: {
       mainTitle: mftitle,
-      description: mfdescription,
+      instructions: mfdescription,
     },
     emailform: {
       title: params?.eftitle,
@@ -126,6 +128,8 @@ function prepareData(params:ProjectData) {
       description: typdescription,
       instructions: typinstructions,
     },
+    clientId: clientId,
+    campaignType: campaignType
   };
   const readyData = (campaignType: string) => {
     if (campaignType === "SB") {

@@ -45,6 +45,7 @@ const Campaing: React.FC = () => {
             setProjectData={setProjectData}
             hidePD={hidePD}
             setHideSuccess={setHideSuccess}
+            setHidePD={setHidePD}
           />
         ) }
         { !hideAP && (
@@ -53,6 +54,7 @@ const Campaing: React.FC = () => {
             setProjectData={setProjectData}
             hideAP={hideAP}
             setHideSuccess={setHideSuccess}
+            setHideAP={setHideAP}
           />
         ) }
         { !hideSuccess && (

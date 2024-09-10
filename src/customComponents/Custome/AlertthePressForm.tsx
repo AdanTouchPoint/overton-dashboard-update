@@ -1,12 +1,8 @@
 import React, {FormEvent,useEffect} from 'react';
-import { useAuth } from 'payload/components/utilities';
-import { APprops } from '../interfaces';
-import {getProjectInfo} from '../../lib/vercelRequests'
-import { ProjectData } from '../interfaces';
-import { CreateRepoLabel } from '../../lib/gitHubRequests';
+import { APprops, ProjectData } from '../interfaces';
+import {createCampaign} from '../../lib/createCampaign'
 const baseClass = 'after-dashboard';
-const AlertthePressForm: React.FC<APprops> = ({projectData, setProjectData, hideAP, setHideSuccess}) => {
-const user = useAuth()
+const AlertthePressForm: React.FC<APprops> = ({projectData, setProjectData, hideAP, setHideSuccess,setHideAP}) => {
 const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   const info : ProjectData = {
     ...projectData,
@@ -15,13 +11,10 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   return setProjectData(info)
 }
 const click = async () => {
-  const deployInfo = await getProjectInfo(projectData.repo)
-  console.log(deployInfo)
+  const data = await  createCampaign(projectData)
+   setHideAP(true)
    setHideSuccess(false)
- }
- useEffect(()=>{
-  CreateRepoLabel(projectData.repo) 
-  },[])
+  }
 	return (
 	<div hidden={hideAP} className={baseClass}>
       <div className="gutter--left gutter--right collection-list__wrap">
@@ -51,7 +44,6 @@ const click = async () => {
         <div>description<input name='typdescription' onChange={handleOnChange} type='text'></input></div>
         <div>instructions<input name='typinstructions' onChange={handleOnChange} type='text'></input></div>
         </span>
-        <span>message email, message tweet, tym</span>
         <button onClick={click}>Create</button>
       </div>
 	</div> 

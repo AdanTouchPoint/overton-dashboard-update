@@ -40,13 +40,13 @@ const PoliticallDirect: CollectionConfig = {
           fields: [
             {
               label: { es: "Titulo Principal", en: "Main Title" },
-              name: "mainTitle", // required
-              type: "text", // required
+              name: "mainTitle", 
+              type: "text", 
             },
             {
               label: { es: "Instrucciones", en: "Instructions" },
-              name: "instructions", // required
-              type: "text", // required
+              name: "instructions", 
+              type: "text", 
               
             },
           ],
@@ -61,14 +61,20 @@ const PoliticallDirect: CollectionConfig = {
               fields: [
                 {
                     label: { es: "Titulo ", en: "Title" },
-                    name: "title", // required
-                    type: "text", // required
+                    name: "title", 
+                    type: "text", 
                   },
       
                   {
                     label: { es: "Instrucciones", en: "Instructions" },
-                    name: "instructions", // required
-                    type: "text", // required
+                    name: "instructions", 
+                    type: "text", 
+                    
+                  },
+                  {
+                    label: { es: "Descripcion", en: "Description" },
+                    name: "description", 
+                    type: "text", 
                     
                   }
               ]
@@ -85,16 +91,16 @@ const PoliticallDirect: CollectionConfig = {
               fields: [
                 {
                   label: { es: "Titulo", en: "Title" },
-                  name: "title", // required
-                  type: "text", // required
+                  name: "title", 
+                  type: "text", 
                   admin: {
                   width: "50%",
                   },
                 },
                 {
                   label: { es: "Instrucciones", en: "Instructions" },
-                  name: "intructions", // required
-                  type: "text", // required
+                  name: "instructions", 
+                  type: "text", 
                   admin: {
                   width: "50%",
                   },
@@ -113,24 +119,24 @@ const PoliticallDirect: CollectionConfig = {
             fields: [
               {
                 label: { es: "Titulo", en: "Title" },
-                name: "title", // required
-                type: "text", // required
+                name: "title", 
+                type: "text", 
                 admin: {
                 width: "50%",
                 },
               },
               {
                 label: { es: "Descripcion", en: "Description" },
-                name: "description", // required
-                type: "text", // required
+                name: "description", 
+                type: "text", 
                 admin: {
                 width: "50%",
                 },
               },
               {
                 label: { es: "Instrucciones", en: "Instructions" },
-                name: "intructions", // required
-                type: "text", // required
+                name: "instructions", 
+                type: "text", 
                 admin: {
                 width: "50%",
                 },
@@ -161,8 +167,8 @@ const PoliticallDirect: CollectionConfig = {
           },
       },
       {
-          name: "active", // required
-          type: "checkbox", // required
+          name: "active", 
+          type: "checkbox", 
           label: "Aplicar",
           defaultValue: true,
           admin: {

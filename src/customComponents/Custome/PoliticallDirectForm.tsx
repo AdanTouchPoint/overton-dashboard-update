@@ -1,11 +1,9 @@
 import React, {FormEvent, useEffect} from 'react';
 import { useAuth } from 'payload/components/utilities';
 import { PDprops, ProjectData } from '../interfaces';
-import {getProjectInfo} from '../../lib/vercelRequests'
-import { CreateRepoLabel } from '../../lib/gitHubRequests';
+import {createCampaign} from '../../lib/createCampaign'
 const baseClass = 'after-dashboard';
-const PoliticallDirectForm: React.FC<PDprops> = ({projectData, setProjectData, hidePD, setHideSuccess}) => {
-const user = useAuth()
+const PoliticallDirectForm: React.FC<PDprops> = ({projectData, setProjectData, hidePD, setHideSuccess,setHidePD}) => {
 const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   const info : ProjectData = {
     ...projectData,
@@ -14,13 +12,10 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   return setProjectData(info)
 }
 const click = async () => {
-  const deployInfo = await getProjectInfo(projectData.repo)
-  console.log(deployInfo)
+  const data = await  createCampaign(projectData)
+   setHidePD(true)
    setHideSuccess(false)
- }
- useEffect(()=>{
- CreateRepoLabel(projectData.repo) 
- },[])
+  }
 	return (
 	<div hidden={hidePD} className={baseClass}>
       <div className="gutter--left gutter--right collection-list__wrap">
@@ -30,7 +25,7 @@ const click = async () => {
         </p>
        <span> 
         <h3>Main Form</h3>
-        <div>title<input name='mf-title'  onChange={handleOnChange} type='text'></input></div>
+        <div>title<input name='mftitle'  onChange={handleOnChange} type='text'></input></div>
         <div>description<input name='mfdescription' onChange={handleOnChange} type='text'></input></div>
         </span>
         <span> 

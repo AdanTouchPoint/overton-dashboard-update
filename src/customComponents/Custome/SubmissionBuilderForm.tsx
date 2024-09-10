@@ -1,11 +1,9 @@
 import React, {FormEvent,useEffect} from 'react';
-import { useAuth } from 'payload/components/utilities';
 const baseClass = 'after-dashboard';
 import {createCampaign} from '../../lib/createCampaign'
 import { SBprops, ProjectData } from '../interfaces';
 
 const SubmissionBuilderForm: React.FC<SBprops> = ({projectData, setProjectData, hideSB, setHideSuccess, setHideSB}) => {
-const user = useAuth()
 const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   const info : ProjectData = {
     ...projectData,
@@ -18,9 +16,6 @@ const click = async () => {
   setHideSB(true)
   setHideSuccess(false)
  }
- useEffect(()=>{
-  console.log(projectData)
-  },[])
 	return (
 	<div hidden={hideSB} className={baseClass}>
       <div className="gutter--left gutter--right collection-list__wrap">

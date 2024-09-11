@@ -3,11 +3,24 @@ import { useAuth } from 'payload/components/utilities';
 import { hideForms } from '../../lib/hideComponents';
 import { MainFormProps, ProjectData } from '../interfaces';
 const baseClass = 'after-dashboard';
-const MainForm: React.FC<MainFormProps> = ({setHideSB,setHidePD,setHideAP,setProjectData,projectData,setHideMainForm,hideMainForm}) => {
+const MainForm: React.FC<MainFormProps> = ({setHideSB,setHidePD,setHideAP,setProjectData,projectData,setHideMainForm,hideMainForm,setErr,err}) => {
 const  user = useAuth();
 const id = user.user.id
+const verifyInputs = ( projectData ) => {
+  if (
+    !projectData?.campaignType?.trim() || 
+    !projectData?.repo?.trim() || 
+    !projectData?.description?.trim() || 
+    !projectData?.title?.trim()
+  )
+    { setErr(true)
+    throw new Error("Llena todos los campos"); 
+  }
+
+}
   const click = async () => {
   try {
+  const validate = await verifyInputs(projectData)
     const data  : ProjectData =  {
       ...projectData,
       clientId: id

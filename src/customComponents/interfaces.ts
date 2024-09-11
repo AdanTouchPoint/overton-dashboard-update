@@ -30,6 +30,8 @@ export interface MainFormProps {
     setHideSB: (value: boolean) => void;
     setHidePD: (value: boolean) => void;
     setHideAP: (value: boolean) => void;
+    err: boolean;
+    setErr: (value: boolean) => void;
   }
   export interface SBprops {
     projectData: ProjectData | undefined; 
@@ -37,26 +39,40 @@ export interface MainFormProps {
     hideSB: boolean;
     setHideSuccess: (value: boolean) => void;
     setHideSB: (value: boolean) => void;
+    setHidePD: (value: boolean) => void;
+    setHideAP: (value: boolean) => void;
+    err:boolean;
+    setErr: (value: boolean) => void;
   }
   export interface APprops {
     projectData: ProjectData | undefined; 
     setProjectData: Dispatch<SetStateAction<ProjectData>>;
     hideAP: boolean;
     setHideSuccess: (value: boolean) => void;
+    setHideSB: (value: boolean) => void;
+    setHidePD: (value: boolean) => void;
     setHideAP: (value: boolean) => void;
+    err: boolean;
+    setErr: (value: boolean) => void;
   }
   export interface PDprops {
     projectData: ProjectData | undefined; 
     setProjectData: Dispatch<SetStateAction<ProjectData>>;
     hidePD: boolean;
     setHideSuccess: (value: boolean) => void;
+    setHideSB: (value: boolean) => void;
     setHidePD: (value: boolean) => void;
+    setHideAP: (value: boolean) => void;
+    err: boolean;
+    setErr: (value: boolean) => void;
   }
   export interface SuccessProps {
     projectData: ProjectData | undefined; 
     setProjectData: Dispatch<SetStateAction<ProjectData>>;
     hideSuccess: boolean;
     setHideSuccess: Dispatch<SetStateAction<boolean>>;
+    err: boolean;
+    setErr: (value: boolean) => void;
   }
   export interface GHLinks {
     AP: string;

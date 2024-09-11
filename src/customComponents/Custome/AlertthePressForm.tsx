@@ -2,7 +2,7 @@ import React, {FormEvent,useEffect} from 'react';
 import { APprops, ProjectData } from '../interfaces';
 import {createCampaign} from '../../lib/createCampaign'
 const baseClass = 'after-dashboard';
-const AlertthePressForm: React.FC<APprops> = ({projectData, setProjectData, hideAP, setHideSuccess,setHideAP}) => {
+const AlertthePressForm: React.FC<APprops> = ({projectData, setProjectData, hideAP, setHideSuccess,setErr,err,setHideAP,setHideSB,setHidePD}) => {
 const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   const info : ProjectData = {
     ...projectData,
@@ -11,9 +11,7 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   return setProjectData(info)
 }
 const click = async () => {
-  const data = await  createCampaign(projectData)
-   setHideAP(true)
-   setHideSuccess(false)
+  const data = await  createCampaign(projectData,setErr,setHideSuccess,setHideSB,setHideAP,setHidePD)
   }
 	return (
 	<div hidden={hideAP} className={baseClass}>

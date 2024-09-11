@@ -3,7 +3,7 @@ const baseClass = 'after-dashboard';
 import {createCampaign} from '../../lib/createCampaign'
 import { SBprops, ProjectData } from '../interfaces';
 
-const SubmissionBuilderForm: React.FC<SBprops> = ({projectData, setProjectData, hideSB, setHideSuccess, setHideSB}) => {
+const SubmissionBuilderForm: React.FC<SBprops> = ({projectData, setProjectData, hideSB, setHideSuccess,setErr,err, setHideAP,setHideSB,setHidePD}) => {
 const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   const info : ProjectData = {
     ...projectData,
@@ -12,9 +12,7 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   return setProjectData(info)
 }
 const click = async () => {
- const data = await  createCampaign(projectData)
-  setHideSB(true)
-  setHideSuccess(false)
+  const data = await  createCampaign(projectData,setErr,setHideSuccess,setHideSB,setHideAP,setHidePD)
  }
 	return (
 	<div hidden={hideSB} className={baseClass}>

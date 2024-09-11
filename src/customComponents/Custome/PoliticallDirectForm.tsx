@@ -3,7 +3,7 @@ import { useAuth } from 'payload/components/utilities';
 import { PDprops, ProjectData } from '../interfaces';
 import {createCampaign} from '../../lib/createCampaign'
 const baseClass = 'after-dashboard';
-const PoliticallDirectForm: React.FC<PDprops> = ({projectData, setProjectData, hidePD, setHideSuccess,setHidePD}) => {
+const PoliticallDirectForm: React.FC<PDprops> = ({projectData, setProjectData, hidePD, setHideSuccess,setHidePD,setErr,err,setHideSB,setHideAP}) => {
 const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   const info : ProjectData = {
     ...projectData,
@@ -11,10 +11,8 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   }
   return setProjectData(info)
 }
-const click = async () => {
-  const data = await  createCampaign(projectData)
-   setHidePD(true)
-   setHideSuccess(false)
+  const click = async () => {
+  const data = await  createCampaign(projectData,setErr,setHideSuccess,setHideSB,setHideAP,setHidePD)
   }
 	return (
 	<div hidden={hidePD} className={baseClass}>

@@ -2,27 +2,35 @@ import { createGhRepo, setPermissions, CreateRepoLabel } from "./gitHubRequests"
 import { createProject, deployProject } from "./vercelRequests";
 import { ProjectData } from "../customComponents/interfaces";
 
-const createCampaign  = async (projectData: ProjectData) => {
+const createCampaign  = async (projectData: ProjectData, setErr,setHideSuccess,setHideSB,setHideAP,setHidePD) => {
   try {
   const GHRepo = await createGhRepo(projectData)
-  statusValidator(GHRepo.status, 201,'Error al crear  el repositorio , por favor verifica los datos')
+  statusValidator(GHRepo.status, 201,'Error al crear  el repositorio , por favor verifica los datos',setErr)
   const requestdata = await GHRepo.json()
   const {name,fullName, id } = requestdata
   //extract id, fullName of repo info
   const writePermisions = await setPermissions(name)
-  statusValidator(writePermisions.status, 204,`Error al modificar los permisos en el repositorio por favor verifica tus datos`)
+  statusValidator(writePermisions.status, 204,`Error al modificar los permisos en el repositorio por favor verifica tus datos`,setErr)
   const vercelRequest = await createProject(projectData,name)
-  statusValidator(vercelRequest.status,200,'Error al crear un proyecto en vercel por favor verifica tus datos')
+ statusValidator(vercelRequest.status,200,'Error al crear un proyecto en vercel por favor verifica tus datos',setErr)
   const deploy = await deployProject(fullName , id, projectData.repo)
-  statusValidator(deploy.status,200,'Error al desplegar el proyecto por favor verifica tus datos')
+  statusValidator(deploy.status,200,'Error al desplegar el proyecto por favor verifica tus datos',setErr)
+  hideForms(projectData, setHideSB,setHideAP,setHidePD)
+  setHideSuccess(true)
   return deploy
   } catch (error) {
     console.error('Oops! Algo salio mal:', error.message);
     return error
   }
 }
-const statusValidator = (status,code,message) : void => {
+const hideForms = (projectData: ProjectData, setHideSB,setHideAP,setHidePD)=>{
+  if(projectData.campaignType === 'SB') return setHideSB(true)
+  if(projectData.campaignType === 'AP') return setHideAP(true)
+  if(projectData.campaignType === 'PD') return setHidePD(true)  
+}
+const statusValidator = (status,code,message,setErr) : void => {
   if (status !== code ) {
+    setErr(true)
     throw new Error(message);
   }}
 function prepareData(params:ProjectData) {

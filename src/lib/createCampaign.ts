@@ -16,17 +16,22 @@ const createCampaign  = async (projectData: ProjectData, setErr,setHideSuccess,s
   const deploy = await deployProject(fullName , id, projectData.repo)
   statusValidator(deploy.status,200,'Error al desplegar el proyecto por favor verifica tus datos',setErr)
   hideForms(projectData, setHideSB,setHideAP,setHidePD)
-  setHideSuccess(true)
-  return deploy
+  return true
   } catch (error) {
     console.error('Oops! Algo salio mal:', error.message);
     return error
   }
 }
 const hideForms = (projectData: ProjectData, setHideSB,setHideAP,setHidePD)=>{
-  if(projectData.campaignType === 'SB') return setHideSB(true)
-  if(projectData.campaignType === 'AP') return setHideAP(true)
-  if(projectData.campaignType === 'PD') return setHidePD(true)  
+  if(projectData.campaignType === 'SB'){
+    setHideSB(true) 
+  }
+  if(projectData.campaignType === 'AP')  {
+    setHideAP(true) 
+  }
+  if(projectData.campaignType === 'PD')  {
+    setHidePD(true) 
+  }  
 }
 const statusValidator = (status,code,message,setErr) : void => {
   if (status !== code ) {

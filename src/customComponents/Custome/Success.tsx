@@ -42,7 +42,7 @@ setLoading(true)
 setTimeout(() => {
   fetchInfo(projectData)
   setLoading(false) 
-}, 1000);
+}, 60000);
 
   // si el deploy fue exitoso despues de 1 minuto , preparar data para guardar en bd
 

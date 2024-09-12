@@ -13,6 +13,9 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
 }
 const click = async () => {
   const data = await  createCampaign(projectData,setErr,setHideSuccess,setHideSB,setHideAP,setHidePD)
+  if(data === true ){
+    setHideSuccess(false)
+  }
  }
 	return (
 	<div hidden={hideSB} className={baseClass}>

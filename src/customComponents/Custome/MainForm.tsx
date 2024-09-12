@@ -26,7 +26,6 @@ const verifyInputs = ( projectData ) => {
       clientId: id
     }
     await setProjectData(data)
-    //const campaing = await createCampaign(projectData)
     await hideForms(projectData,setHideSB ,setHidePD,setHideAP,setHideMainForm)
 } catch (error) {
     throw new Error (error)

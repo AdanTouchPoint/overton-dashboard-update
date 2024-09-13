@@ -12,7 +12,7 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   return setProjectData(info)
 }
   const click = async () => {
-  const data = await  createCampaign(projectData,setErr,setHideSuccess,setHideSB,setHideAP,setHidePD)
+  const data = await  createCampaign(projectData,setErr,setHideSB,setHideAP,setHidePD,setProjectData)
   if(data === true ){
     setHideSuccess(false)
   }

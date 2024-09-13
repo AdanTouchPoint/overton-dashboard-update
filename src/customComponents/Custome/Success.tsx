@@ -30,7 +30,7 @@ const renderSuccessMessage = () => {
 }
  useEffect( () => {
 const fetchInfo = async (projectData) => {
-const data = await getRepoInfo(projectData?.repo)
+const data = await getRepoInfo(projectData?.name)
 const urlDeploy= await data.json()
 setProjectData({
   ...projectData,

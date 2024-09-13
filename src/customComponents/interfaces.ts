@@ -19,7 +19,8 @@ export interface ProjectData {
     pptitle,
     eftitle,
     efinstructions,
-    efdescription
+    efdescription,
+    name
   }
 
 export interface MainFormProps {

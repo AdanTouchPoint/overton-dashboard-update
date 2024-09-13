@@ -2,18 +2,22 @@ import { createGhRepo, setPermissions, CreateRepoLabel } from "./gitHubRequests"
 import { createProject, deployProject } from "./vercelRequests";
 import { ProjectData } from "../customComponents/interfaces";
 
-const createCampaign  = async (projectData: ProjectData, setErr,setHideSuccess,setHideSB,setHideAP,setHidePD) => {
+const createCampaign  = async (projectData: ProjectData, setErr,setHideSB,setHideAP,setHidePD, setProjectData) => {
   try {
   const GHRepo = await createGhRepo(projectData)
   statusValidator(GHRepo.status, 201,'Error al crear  el repositorio , por favor verifica los datos',setErr)
   const requestdata = await GHRepo.json()
   const {name,fullName, id } = requestdata
   //extract id, fullName of repo info
+  setProjectData({
+    ...projectData,
+    name: name
+  })
   const writePermisions = await setPermissions(name)
   statusValidator(writePermisions.status, 204,`Error al modificar los permisos en el repositorio por favor verifica tus datos`,setErr)
   const vercelRequest = await createProject(projectData,name)
  statusValidator(vercelRequest.status,200,'Error al crear un proyecto en vercel por favor verifica tus datos',setErr)
-  const deploy = await deployProject(fullName , id, projectData.repo)
+  const deploy = await deployProject(fullName , id, name)
   statusValidator(deploy.status,200,'Error al desplegar el proyecto por favor verifica tus datos',setErr)
   hideForms(projectData, setHideSB,setHideAP,setHidePD)
   return true
@@ -22,7 +26,7 @@ const createCampaign  = async (projectData: ProjectData, setErr,setHideSuccess,s
     return error
   }
 }
-const hideForms = (projectData: ProjectData, setHideSB,setHideAP,setHidePD)=>{
+const hideForms = (projectData: ProjectData, setHideSB,setHideAP,setHidePD) => {
   if(projectData.campaignType === 'SB'){
     setHideSB(true) 
   }
@@ -37,7 +41,8 @@ const statusValidator = (status,code,message,setErr) : void => {
   if (status !== code ) {
     setErr(true)
     throw new Error(message);
-  }}
+  }
+}
 function prepareData(params:ProjectData) {
   const {
     clientId,
@@ -156,7 +161,6 @@ function prepareData(params:ProjectData) {
     }
   };
   return readyData(campaignType)
-  
 } 
 export {
   createCampaign, statusValidator,prepareData

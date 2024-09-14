@@ -32,20 +32,29 @@ const renderSuccessMessage = () => {
 const fetchInfo = async (projectData) => {
 const data = await getRepoInfo(projectData?.name)
 const urlDeploy= await data.json()
+if ( !urlDeploy.homepage) {
+  setTimeout(async () => {
+    const data = await getRepoInfo(projectData?.name)
+    const urlDeploy= await data.json()
+   await setProjectData({
+      ...projectData,
+      homepage: urlDeploy.homepage
+    })
+    return postCampaignData(projectData) 
+  }, 5000);
+}
 setProjectData({
   ...projectData,
   homepage: urlDeploy.homepage
 })
-const save = await postCampaignData(projectData)
+return postCampaignData(projectData)
 }
 setLoading(true)
 setTimeout(() => {
   fetchInfo(projectData)
   setLoading(false) 
 }, 60000);
-
   // si el deploy fue exitoso despues de 1 minuto , preparar data para guardar en bd
-
   }, [] )
   console.log(projectData)
 	return (

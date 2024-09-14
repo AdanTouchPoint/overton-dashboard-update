@@ -9,7 +9,7 @@ const createProject = async (projectData: ProjectData,name: string) => {
         myHeaders.append("Authorization", token);
         const {repo,description,content,title,clientId} = projectData
         const raw: string = JSON.stringify({
-            "name": name,
+            "name": name.toLowerCase(),
             "framework": "nextjs",
             "gitRepository": {
               "type": "github",
@@ -94,7 +94,7 @@ myHeaders.append("Content-Type", "application/json");
 myHeaders.append("Authorization", token);
 
 const raw = JSON.stringify({
-  "name": name,
+  "name": name.toLowerCase(),
   "gitSource": {
     "type": "github",
     "repo": fullName,

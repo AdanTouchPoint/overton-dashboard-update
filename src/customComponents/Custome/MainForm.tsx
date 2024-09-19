@@ -1,11 +1,13 @@
-import React, {FormEvent} from 'react';
+import React, {FormEvent,useId,useEffect} from 'react';
 import { useAuth } from 'payload/components/utilities';
 import { hideForms } from '../../lib/hideComponents';
 import { MainFormProps, ProjectData } from '../interfaces';
 const baseClass = 'after-dashboard';
 const MainForm: React.FC<MainFormProps> = ({setHideSB,setHidePD,setHideAP,setProjectData,projectData,setHideMainForm,hideMainForm,setErr,err}) => {
 const  user = useAuth();
-const id = user.user.id
+const userId = user.user.id
+const idCamp = useId()
+
 const verifyInputs = ( projectData ) => {
   if (
     !projectData?.campaignType?.trim() || 
@@ -18,14 +20,21 @@ const verifyInputs = ( projectData ) => {
   }
 
 }
+useEffect(() => {
+  const data  : ProjectData =  {
+    ...projectData,
+    id: idCamp,
+    clientId: userId
+  }
+  return setProjectData(data)
+}, []);
+
   const click = async () => {
   try {
+  console.log(projectData)
   const validate = await verifyInputs(projectData)
-    const data  : ProjectData =  {
-      ...projectData,
-      clientId: id
-    }
-    await setProjectData(data)
+  //añadir request para guardar en BD
+    //await setProjectData(data)
     await hideForms(projectData,setHideSB ,setHidePD,setHideAP,setHideMainForm)
 } catch (error) {
     throw new Error (error)

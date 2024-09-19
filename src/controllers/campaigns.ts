@@ -10,7 +10,21 @@ export async function createCampaign (query){
   });
   return data;
 };
-
+export async function updateCampaign (query){
+  console.log(query, 'here starts update')
+  const data = await payload.update({
+    collection: `${query.campaignType}`, // change to campaignType for dynamic search
+    data:query,
+    overrideAccess: true,
+    where: {
+      id: {
+        equals: query.id,// cambiar a campaign id
+      },
+    },
+  });
+  console.log(data)
+  return data;
+};
 export const getAllCampaign = async (query) => {
   const leads = await payload.find({
     collection: "conversiones",

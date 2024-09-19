@@ -1,7 +1,7 @@
 import { Router } from "express";
 const router = Router();
 import payload from "payload";
-import {createCampaign} from '../controllers/campaigns'
+import {createCampaign, updateCampaign} from '../controllers/campaigns'
 
 router.post("/campaign", async (req, res) => {
     try {
@@ -10,7 +10,26 @@ router.post("/campaign", async (req, res) => {
       const data = await createCampaign(objReady)
       res.json({
         success: true,
-        message: "theme founded",
+        message: "campaign create done",
+        data
+      });
+    } catch (error) {
+      res.status(400);
+      res.json({
+        success: false,
+        message: error.message,
+      });
+    }
+  });
+  router.put("/campaign", async (req, res) => {
+    try {
+      const query = req.query;
+      console.log(query)
+      //const objReady = await JSON.parse(query.info)
+      const data = await updateCampaign(query)
+      res.json({
+        success: true,
+        message: "campaign update done",
         data
       });
     } catch (error) {

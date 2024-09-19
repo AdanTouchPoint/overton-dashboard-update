@@ -20,7 +20,20 @@ async function postCampaignData (projectData) {
     const request = await fetchData(petition.method,petition.backendURLBase,petition.endpoint,readyData)
     console.log(request)
 }
+// añadir update request
+
+async function updateCampaignData (projectData) {
+    const petition = {
+        backendURLBase : "http://localhost:8080/",
+        endpoint: "dashBoardContent/campaign",
+        method: "PUT",
+    }
+    const objPrepare = await prepareData(projectData)
+    const readyData = await JSON.stringify(objPrepare)
+    const request = await fetchData(petition.method,petition.backendURLBase,petition.endpoint,readyData)
+    console.log(request)
+}
 export {
-    fetchData, postCampaignData
+    fetchData, postCampaignData,updateCampaignData
 }
 

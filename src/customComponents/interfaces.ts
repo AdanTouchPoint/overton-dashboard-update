@@ -21,6 +21,7 @@ export interface ProjectData {
     efinstructions,
     efdescription,
     name
+    id
   }
 
 export interface MainFormProps {

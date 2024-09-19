@@ -8,8 +8,6 @@ const baseClass = 'after-dashboard';
 const MainForm: React.FC<MainFormProps> = ({setHideSB,setHidePD,setHideAP,setProjectData,projectData,setHideMainForm,hideMainForm,setErr,err}) => {
 const  user = useAuth();
 const userId = user.user.id
-const idCamp = useId()
-
 const verifyInputs = ( projectData ) => {
   if (
     !projectData?.campaignType?.trim() || 
@@ -25,7 +23,6 @@ const verifyInputs = ( projectData ) => {
 useEffect(() => {
   const data  : ProjectData =  {
     ...projectData,
-    id: idCamp,
     clientId: userId
   }
   return setProjectData(data)
@@ -33,11 +30,16 @@ useEffect(() => {
 
   const click = async () => {
   try {
-  console.log(projectData)
   const validate = await verifyInputs(projectData)
   //añadir request para guardar en BD
     //await setProjectData(data)
-    postCampaignData(projectData)
+    const data = await postCampaignData(projectData)
+    //console.log(data)
+    const id = await  data.data.id
+    setProjectData({
+      ...projectData,
+      id: id 
+    })
     await hideForms(projectData,setHideSB ,setHidePD,setHideAP,setHideMainForm)
 } catch (error) {
     throw new Error (error)

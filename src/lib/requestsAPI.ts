@@ -18,7 +18,7 @@ async function postCampaignData (projectData) {
     const objPrepare = await prepareData(projectData)
     const readyData = await JSON.stringify(objPrepare)
     const request = await fetchData(petition.method,petition.backendURLBase,petition.endpoint,readyData)
-    console.log(request)
+    return request
 }
 // añadir update request
 

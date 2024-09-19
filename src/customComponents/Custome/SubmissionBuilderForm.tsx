@@ -17,6 +17,7 @@ const click = async () => {
     setHideSuccess(false)
   }
  }
+ console.log(projectData)
 	return (
 	<div hidden={hideSB} className={baseClass}>
       <div className="gutter--left gutter--right collection-list__wrap">

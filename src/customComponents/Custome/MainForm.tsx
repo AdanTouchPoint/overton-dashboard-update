@@ -2,6 +2,8 @@ import React, {FormEvent,useId,useEffect} from 'react';
 import { useAuth } from 'payload/components/utilities';
 import { hideForms } from '../../lib/hideComponents';
 import { MainFormProps, ProjectData } from '../interfaces';
+import { createCampaign } from '../../lib/createCampaign';
+import { postCampaignData } from '../../lib/requestsAPI';
 const baseClass = 'after-dashboard';
 const MainForm: React.FC<MainFormProps> = ({setHideSB,setHidePD,setHideAP,setProjectData,projectData,setHideMainForm,hideMainForm,setErr,err}) => {
 const  user = useAuth();
@@ -35,6 +37,7 @@ useEffect(() => {
   const validate = await verifyInputs(projectData)
   //añadir request para guardar en BD
     //await setProjectData(data)
+    postCampaignData(projectData)
     await hideForms(projectData,setHideSB ,setHidePD,setHideAP,setHideMainForm)
 } catch (error) {
     throw new Error (error)

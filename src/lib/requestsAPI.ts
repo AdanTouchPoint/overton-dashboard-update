@@ -33,7 +33,17 @@ async function updateCampaignData (projectData) {
     const request = await fetchData(petition.method,petition.backendURLBase,petition.endpoint,readyData)
     console.log(request)
 }
+async function getCampaigns (clientId) {
+    const petition = {
+        backendURLBase : "http://localhost:8080/",
+        endpoint: "dashBoardContent/campaign",
+        method: "GET",
+    }
+    const request = await fetchData(petition.method,petition.backendURLBase,petition.endpoint,clientId)
+    console.log(request)
+    return request
+}
 export {
-    fetchData, postCampaignData,updateCampaignData
+    fetchData, postCampaignData,updateCampaignData,getCampaigns
 }
 

@@ -14,7 +14,7 @@ const baseClass = "after-dashboard";
 
 const Campaing: React.FC = () => {
   const [hideMainForm, setHideMainForm] = useState(false);
-  const [hideSB, setHideSB] = useState(true);
+  const [hideSB, setHideSB] = useState(false);
   const [hidePD, setHidePD] = useState(true);
   const [hideAP, setHideAP] = useState(true);
   const [hideSuccess, setHideSuccess] = useState(true);

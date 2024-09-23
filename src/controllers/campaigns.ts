@@ -1,6 +1,4 @@
 import payload from "payload";
-import { ProjectData } from "../customComponents/interfaces";
-import { prepareData } from "../lib/createCampaign";
 export async function createCampaign (query){
   console.log(query, 'here starts')
   const data = await payload.create({
@@ -25,19 +23,26 @@ export async function updateCampaign (query){
   console.log(data)
   return data;
 };
-export const getAllCampaign = async (query) => {
-  const leads = await payload.find({
-    collection: "conversiones",
+export const getAllCampaigns = async (query) => {
+  const findOptions = {
     sort: "-updatedAt",
     limit: 0,
     depth: 0,
     where: {
       clientId: {
-        equals: query.clientId,
+        equals: query.info,
       },
     },
-  });
-  return leads;
+  };
+
+  // Ejecutar consultas en paralelo
+  const [SB, AP, PD] = await Promise.all([
+    payload.find({ ...findOptions, collection: "SB" }),
+    payload.find({ ...findOptions, collection: "AP" }),
+    payload.find({ ...findOptions, collection: "PD" }),
+  ]);
+
+  return { SB, AP, PD };
 };
 
 

@@ -23,7 +23,11 @@ export interface ProjectData {
     name
     id
   }
-
+export interface QuestionInputs {
+  name: string,
+  label: string,
+  type: string
+}
 export interface MainFormProps {
     setHideMainForm: (value: boolean) => void;
     hideMainForm: boolean;

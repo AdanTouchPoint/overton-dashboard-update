@@ -40,7 +40,7 @@ async function getCampaigns (clientId) {
         method: "GET",
     }
     const request = await fetchData(petition.method,petition.backendURLBase,petition.endpoint,clientId)
-    console.log(request)
+    //console.log(request)
     return request
 }
 export {

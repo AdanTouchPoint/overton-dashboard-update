@@ -1,14 +1,13 @@
 import { createGhRepo, setPermissions, CreateRepoLabel } from "./gitHubRequests";
 import { createProject, deployProject } from "./vercelRequests";
 import { ProjectData } from "../customComponents/interfaces";
-
+import { hideForms } from "./hideComponents";
 const createCampaign  = async (projectData: ProjectData, setErr,setHideSB,setHideAP,setHidePD, setProjectData) => {
   try {
   const GHRepo = await createGhRepo(projectData)
   statusValidator(GHRepo.status, 201,'Error al crear  el repositorio , por favor verifica los datos',setErr)
   const requestdata = await GHRepo.json()
   const {name,fullName, id } = requestdata
-  //extract id, fullName of repo info
   setProjectData({
     ...projectData,
     name: name
@@ -19,14 +18,14 @@ const createCampaign  = async (projectData: ProjectData, setErr,setHideSB,setHid
  statusValidator(vercelRequest.status,200,'Error al crear un proyecto en vercel por favor verifica tus datos',setErr)
   const deploy = await deployProject(fullName , id, name)
   statusValidator(deploy.status,200,'Error al desplegar el proyecto por favor verifica tus datos',setErr)
-  hideForms(projectData, setHideSB,setHideAP,setHidePD)
+  hideForms(projectData, setHideSB,setHideAP,setHidePD,true)
   return true
   } catch (error) {
     console.error('Oops! Algo salio mal:', error.message);
     return error
   }
 }
-const hideForms = (projectData: ProjectData, setHideSB,setHideAP,setHidePD) => {
+/*const hideForms = (projectData: ProjectData, setHideSB,setHideAP,setHidePD) => {
   if(projectData.campaignType === 'SB'){
     setHideSB(true) 
   }
@@ -36,7 +35,7 @@ const hideForms = (projectData: ProjectData, setHideSB,setHideAP,setHidePD) => {
   if(projectData.campaignType === 'PD')  {
     setHidePD(true) 
   }  
-}
+}*/
 const statusValidator = (status,code,message,setErr) : void => {
   if (status !== code ) {
     setErr(true)

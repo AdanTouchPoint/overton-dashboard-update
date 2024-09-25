@@ -51,6 +51,7 @@ const Campaing: React.FC = () => {
         />
         { !hideSB && (
           <SubmissionBuilderForm
+            setHideMainForm={setHideMainForm}
             projectData={projectData}
             setProjectData={setProjectData}
             hideSB={hideSB}

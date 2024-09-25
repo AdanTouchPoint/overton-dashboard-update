@@ -1,15 +1,10 @@
 import { ProjectData } from "../customComponents/interfaces";
 
-const hideForms = async (projectData: ProjectData,setHideSB ,setHidePD,setHideAP,setHideMainForm) => {
+const hideForms = async (projectData: ProjectData,setHideSB ,setHidePD,setHideAP,status) => {
     const {campaignType} = projectData;
-    console.log(campaignType)
-    campaignType === 'SB' ? setHideSB(false) : null
-    campaignType === 'PD' ? setHidePD(false) : null
-    campaignType === 'AP' ? setHideAP(false) : null
-    setHideMainForm(true)
-  }
-const hideElements = (state) => {
-  return 
+    campaignType === 'SB' ? setHideSB(status) : null
+    campaignType === 'PD' ? setHidePD(status) : null
+    campaignType === 'AP' ? setHideAP(status) : null
 }
 export {
     hideForms

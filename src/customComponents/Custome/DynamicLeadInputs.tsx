@@ -26,7 +26,7 @@ export default function DynamicLeadInputs({ projectData, setProjectData }) {
   }
 
   return (
-    <div className="container">
+    <div className="select-label">
     {inputs.map((input, index) => (
       <div key={index} className="input-row">
         <select

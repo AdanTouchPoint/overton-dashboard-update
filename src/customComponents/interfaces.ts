@@ -49,6 +49,7 @@ export interface MainFormProps {
     setHideAP: (value: boolean) => void;
     err:boolean;
     setErr: (value: boolean) => void;
+    setHideMainForm: (value: boolean) => void;
   }
   export interface APprops {
     projectData: ProjectData | undefined; 

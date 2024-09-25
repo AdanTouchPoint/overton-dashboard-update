@@ -40,7 +40,8 @@ useEffect(() => {
       ...projectData,
       id: id 
     })
-    await hideForms(projectData,setHideSB ,setHidePD,setHideAP,setHideMainForm)
+    setHideMainForm(true)
+    await hideForms(projectData,setHideSB ,setHidePD,setHideAP,false)
 } catch (error) {
     throw new Error (error)
   }

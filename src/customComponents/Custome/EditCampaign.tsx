@@ -8,6 +8,8 @@ const EditCampaing: React.FC = () => {
 const [renderCamp,setRenderCamp]= useState()
 const user = useAuth()
 const userId = user.user.id
+
+
 useEffect(() => {
     if (userId) {  // Asegúrate de que userId esté definido antes de ejecutar la llamada
       const fetchCampaigns = async () => {
@@ -22,6 +24,7 @@ useEffect(() => {
       fetchCampaigns();
     }
   }, [userId]); // Añadir userId como dependencia
+
   const renderAllData = (campaignTypes, renderCamp) => {		
 	return campaignTypes.map((ele) => (
 	  <div key={ele} className="gutter--left gutter--right collection-list__wrap">

@@ -22,6 +22,20 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
   const [showPrivacySection, setShowPrivacySection] = useState(false);
   const [showEmailSection, setShowEmailSection] = useState(false);
   const [showTYSection, setShowTYSection] = useState(false);
+  const [inputStyles, setInputStyles] = useState({
+    fontFamily: 'Arial',
+    fontSize: '16px',
+    color: '#000000',
+  });
+
+  const handleStyleChange = (e) => {
+    const { name, value } = e.target;
+    setInputStyles((prevStyles) => ({
+      ...prevStyles,
+      [name]: value,
+    }));
+  };
+
   const handleOnChange = (event: FormEvent<HTMLInputElement>) => {
     const info: ProjectData = {
       ...projectData,
@@ -46,21 +60,73 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
   };
   const renderMainFormSection = () => {
     return (
-      <span>
+      <section>
         <h3>Main form</h3>
         <div>
-          title
-          <input name="mftitle" onChange={handleOnChange} type="text"></input>
-        </div>
-        <div>
-          description
-          <input
-            className="main-form-inputs"
-            name="mfdescription"
-            onChange={handleOnChange}
-            type="text"
-          ></input>
-        </div>
+        <label htmlFor="fontFamily">Font:</label>
+        <select
+          name="fontFamily"
+          id="fontFamily"
+          value={inputStyles.fontFamily}
+          onChange={handleStyleChange}
+        >
+          <option value="Arial">Arial</option>
+          <option value="Helvetica">Helvetica</option>
+          <option value="Times New Roman">Times New Roman</option>
+          <option value="Courier New">Courier New</option>
+        </select>
+
+        <label htmlFor="fontSize">Size:</label>
+        <select
+          name="fontSize"
+          id="fontSize"
+          value={inputStyles.fontSize}
+          onChange={handleStyleChange}
+        >
+          <option value="12px">12px</option>
+          <option value="16px">16px</option>
+          <option value="20px">20px</option>
+          <option value="24px">24px</option>
+        </select>
+
+        <label htmlFor="color">Color:</label>
+        <input
+          type="color"
+          name="color"
+          id="color"
+          value={inputStyles.color}
+          onChange={handleStyleChange}
+        />
+      </div>
+
+      <div>
+        title
+        <input
+          name="mftitle"
+          onChange={handleOnChange}
+          type="text"
+          style={{
+            fontFamily: inputStyles.fontFamily,
+            fontSize: inputStyles.fontSize,
+            color: inputStyles.color,
+          }}
+        />
+      </div>
+
+      <div>
+        description
+        <input
+          className="main-form-inputs"
+          name="mfdescription"
+          onChange={handleOnChange}
+          type="text"
+          style={{
+            fontFamily: inputStyles.fontFamily,
+            fontSize: inputStyles.fontSize,
+            color: inputStyles.color,
+          }}
+        />
+      </div>
         <DynamicLeadInputs
           projectData={projectData}
           setProjectData={setProjectData}
@@ -75,12 +141,12 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
         <button onClick={() => handleClicks(setHideMainForm, setHideSB)}>
           Back
         </button>
-      </span>
+      </section>
     );
   };
   const renderPrivacySection = () => {
     return (
-      <span>
+      <section>
         <h3>privacy page</h3>
         <div>
           title
@@ -100,12 +166,12 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
         >
           Back
         </button>
-      </span>
+      </section>
     );
   };
   const renderQuestionsSection = () => {
     return (
-      <span>
+      <section>
         <h3>questions page</h3>
         <div>
           title
@@ -137,12 +203,12 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
         >
           Back
         </button>
-      </span>
+      </section>
     );
   };
   const renderEmailSection = () => {
     return (
-      <span>
+      <div>
         <h3>reviewEmail page</h3>
         <div>
           title
@@ -168,12 +234,12 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
         >
           Back
         </button>
-      </span>
+      </div>
     );
   };
   const renderTYSection = () => {
     return (
-      <span>
+      <div>
         <h3>ThankYou Page</h3>
         <div>
           title
@@ -200,7 +266,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
         >
           Back
         </button>
-      </span>
+      </div>
     );
   };
   const handleClicks = (set1, set2) => {

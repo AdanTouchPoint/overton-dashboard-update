@@ -9,12 +9,10 @@ import Success from "./Success";
 import { ProjectData } from "../interfaces";
 import { Button } from "payload/components/elements";
 import './campaignList.css'
-
 const baseClass = "after-dashboard";
-
 const Campaing: React.FC = () => {
   const [hideMainForm, setHideMainForm] = useState(false);
-  const [hideSB, setHideSB] = useState(false);
+  const [hideSB, setHideSB] = useState(true);
   const [hidePD, setHidePD] = useState(true);
   const [hideAP, setHideAP] = useState(true);
   const [hideSuccess, setHideSuccess] = useState(true);
@@ -34,7 +32,6 @@ const Campaing: React.FC = () => {
       </div>
     )
   }
- 
   return (
     <DefaultTemplate>
       <div className={baseClass}>

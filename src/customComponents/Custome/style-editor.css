@@ -1,0 +1,24 @@
+
+    .style-editor {
+      background-color: #f0f0f000;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      width: 120px;
+
+    }
+    .style-input {
+      margin-bottom: 10px;
+    }
+    label {
+      display: inline-block;
+      width: 150px;
+      margin-right: 10px;
+    }
+    input {
+      width: 200px;
+      padding: 5px;
+    }
+.content-editor{
+    width:120px;
+}

@@ -5,6 +5,8 @@ import { SBprops, ProjectData, QuestionInputs } from "../interfaces";
 import DynamicQuestions from "./DynamicQuestions";
 import DynamicLeadInputs from "./DynamicLeadInputs";
 import "./sb.css";
+import StyleEditor from "./StyleEditor";
+import ContentEditor from "./ContentEditor";
 const SubmissionBuilderForm: React.FC<SBprops> = ({
   projectData,
   setProjectData,
@@ -22,20 +24,46 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
   const [showPrivacySection, setShowPrivacySection] = useState(false);
   const [showEmailSection, setShowEmailSection] = useState(false);
   const [showTYSection, setShowTYSection] = useState(false);
-  const [inputStyles, setInputStyles] = useState({
-    fontFamily: 'Arial',
-    fontSize: '16px',
-    color: '#000000',
+  const [styles, setStyles] = useState({
+    backgroundColor: '#2c3e50',
+    inputBackground: '#34495e',
+    buttonColor: '#e74c3c',
+    linkColor: '#3498db',
+    fontFamily: 'Arial, sans-serif',
+    formWidth: '400px',
+    formPadding: '30px',
+    borderRadius: '10px',
   });
-
-  const handleStyleChange = (e) => {
-    const { name, value } = e.target;
-    setInputStyles((prevStyles) => ({
+  const [content,setContent] = useState({
+    title: {
+      text: 'xxx',
+      textColor:'#ffffff',
+      fontSize: '16px',
+    },
+    instructions: {
+      text: 'xxx',
+      textColor:'#ffffff',
+      fontSize: '16px',
+    },
+    tac:  {
+      text: 'xxx',
+      textColor:'#ffffff',
+      fontSize: '16px',
+    },
+    button:'sss' //color
+  })
+  const handleStyleChange = (key: string, value: string) => {
+    setStyles(prevStyles => ({
       ...prevStyles,
-      [name]: value,
+      [key]: value
     }));
   };
-
+  const handleContentChange = (key: string, value: string) => {
+    setContent(prevContent => ({
+      ...prevContent,
+      [key]: value
+    }));
+  };
   const handleOnChange = (event: FormEvent<HTMLInputElement>) => {
     const info: ProjectData = {
       ...projectData,
@@ -60,88 +88,70 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
   };
   const renderMainFormSection = () => {
     return (
-      <section>
-        <h3>Main form</h3>
-        <div>
-        <label htmlFor="fontFamily">Font:</label>
-        <select
-          name="fontFamily"
-          id="fontFamily"
-          value={inputStyles.fontFamily}
-          onChange={handleStyleChange}
-        >
-          <option value="Arial">Arial</option>
-          <option value="Helvetica">Helvetica</option>
-          <option value="Times New Roman">Times New Roman</option>
-          <option value="Courier New">Courier New</option>
-        </select>
-
-        <label htmlFor="fontSize">Size:</label>
-        <select
-          name="fontSize"
-          id="fontSize"
-          value={inputStyles.fontSize}
-          onChange={handleStyleChange}
-        >
-          <option value="12px">12px</option>
-          <option value="16px">16px</option>
-          <option value="20px">20px</option>
-          <option value="24px">24px</option>
-        </select>
-
-        <label htmlFor="color">Color:</label>
-        <input
-          type="color"
-          name="color"
-          id="color"
-          value={inputStyles.color}
-          onChange={handleStyleChange}
-        />
+      <div
+        className="activism-platform-container"
+        style={{
+          fontFamily: styles.fontFamily,
+        }}
+      >
+        <div className="contentEditor-container">
+          <ContentEditor content={content} onContentChange={handleContentChange}/>
+        </div>
+        <div className="activism-form-container">
+          <div
+            className="activism-form"
+            style={{
+              backgroundColor: styles.backgroundColor,
+              width: styles.formWidth,
+              padding: styles.formPadding,
+              borderRadius: styles.borderRadius,
+            }}
+          >
+            <h1 className="form-title">{content.title.text}</h1>
+            <p className="form-description">
+            {content.instructions.text}
+            </p>
+            <DynamicLeadInputs
+              projectData={projectData}
+              setProjectData={setProjectData}
+            />
+            <div className="form-group checkbox-group">
+              <label>
+                <input
+                  type="checkbox"
+                  name="termsAccepted"
+                  //checked={formData.termsAccepted}
+                  onChange={handleOnChange}
+                  required
+                />
+                <span style={{ color: styles.linkColor }}>
+                  {content.tac.text}
+                </span>
+              </label>
+            </div>
+            <button
+              type="submit"
+              className="submit-button"
+              style={{
+                backgroundColor: styles.buttonColor,
+                color: content.button,
+              }}
+            >
+              {content.button}
+            </button>
+          </div>
+          <button
+            onClick={() =>
+              handleClicks(setShowMainSection, setShowPrivacySection)
+            }
+          >
+            Next
+          </button>
+          <button onClick={() => handleClicks(setHideMainForm, setHideSB)}>
+            Back
+          </button>
+        </div>
       </div>
-
-      <div>
-        title
-        <input
-          name="mftitle"
-          onChange={handleOnChange}
-          type="text"
-          style={{
-            fontFamily: inputStyles.fontFamily,
-            fontSize: inputStyles.fontSize,
-            color: inputStyles.color,
-          }}
-        />
-      </div>
-
-      <div>
-        description
-        <input
-          className="main-form-inputs"
-          name="mfdescription"
-          onChange={handleOnChange}
-          type="text"
-          style={{
-            fontFamily: inputStyles.fontFamily,
-            fontSize: inputStyles.fontSize,
-            color: inputStyles.color,
-          }}
-        />
-      </div>
-        <DynamicLeadInputs
-          projectData={projectData}
-          setProjectData={setProjectData}
-        />
-        <button
-          onClick={() =>
-            handleClicks(setShowMainSection, setShowPrivacySection)
-          }
-        >
-          Next
-        </button>
-        <button onClick={() => handleClicks(setHideMainForm, setHideSB)}>
-          Back
-        </button>
-      </section>
     );
   };
   const renderPrivacySection = () => {
@@ -274,21 +284,24 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
     set2(true);
   };
   console.log(projectData);
+  console.log(styles)
+  console.log(content)
   return (
-    <div hidden={hideSB} className={"contenedor main-form-flex-container"}>
-      <div className={"container instructions"}>
-        <br />
-        <div className={"form-container container-content"}>
-          <p>Submission Builder Form</p>
+    <div hidden={hideSB} className={"main-flex-container"}>
+
+          <div className="styleEditor-container">
+          <StyleEditor styles={styles} onStyleChange={handleStyleChange} />
+          </div>
+
+          <div className="pageView-container">
           {showMainSection && renderMainFormSection()}
           {showPrivacySection && renderPrivacySection()}
           {showQuestionsSection && renderQuestionsSection()}
           {showEmailSection && renderEmailSection()}
           {showTYSection && renderTYSection()}
-          <button onClick={click}>Create</button>
-        </div>
-      </div>
-    </div>
+          </div>
+          {/*<button onClick={click}>Create</button>*/}
+    </div> 
   );
 };
 

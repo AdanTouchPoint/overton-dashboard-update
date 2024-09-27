@@ -26,9 +26,9 @@ export default function DynamicLeadInputs({ projectData, setProjectData }) {
   }
 
   return (
-    <div className="select-label">
+    <div className="form-group">
     {inputs.map((input, index) => (
-      <div key={index} className="input-row">
+      <div key={index} className="form-group">
         <select
           value={input}
           onChange={(e) => handleInputChange(index, e.target.value)}

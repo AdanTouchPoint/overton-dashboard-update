@@ -1,92 +1,82 @@
-import React, { FormEvent, useState } from "react";
-const baseClass = "after-dashboard";
-import { createCampaign } from "../../lib/createCampaign";
-import { SBprops, ProjectData, QuestionInputs } from "../interfaces";
-import DynamicQuestions from "./DynamicQuestions";
-import DynamicLeadInputs from "./DynamicLeadInputs";
+
+import React, { useReducer, useState, FormEvent } from 'react';
+import { initialContentState, ContentState } from '../../lib/contentState';
+import { contentReducer, ContentAction } from '../../lib/contentReducer';
+import StyleEditor from './StyleEditor';
+import ContentEditor from './ContentEditor';
+import DynamicLeadInputs from './DynamicLeadInputs';
+import { SBprops, ProjectData } from '../interfaces';
+import { createCampaign } from '../../lib/createCampaign';
 import "./sb.css";
-import StyleEditor from "./StyleEditor";
-import ContentEditor from "./ContentEditor";
+type ActiveSection = 'mainform' | 'privacy' | 'questions' | 'email' | 'ty';
 const SubmissionBuilderForm: React.FC<SBprops> = ({
   projectData,
   setProjectData,
   hideSB,
   setHideSuccess,
   setErr,
-  err,
   setHideAP,
-  setHideSB,
   setHidePD,
-  setHideMainForm,
+  setHideSB
 }) => {
-  const [showMainSection, setShowMainSection] = useState(true);
-  const [showQuestionsSection, setShowQuestionsSection] = useState(false);
-  const [showPrivacySection, setShowPrivacySection] = useState(false);
-  const [showEmailSection, setShowEmailSection] = useState(false);
-  const [showTYSection, setShowTYSection] = useState(false);
   const [styles, setStyles] = useState({
     backgroundColor: '#2c3e50',
     inputBackground: '#34495e',
-    buttonColor: '#e74c3c',
-    linkColor: '#3498db',
     fontFamily: 'Arial, sans-serif',
     formWidth: '400px',
     formPadding: '30px',
     borderRadius: '10px',
   });
-  const [content,setContent] = useState({
-    title: {
-      text: 'xxx',
-      textColor:'#ffffff',
-      fontSize: '16px',
-    },
-    instructions: {
-      text: 'xxx',
-      textColor:'#ffffff',
-      fontSize: '16px',
-    },
-    tac:  {
-      text: 'xxx',
-      textColor:'#ffffff',
-      fontSize: '16px',
-    },
-    button:'sss' //color
-  })
+
+  const [activeSection, setActiveSection] = useState<ActiveSection>('mainform');
+  const [content, dispatchContent] = useReducer<
+    React.Reducer<ContentState, ContentAction>
+  >(contentReducer, initialContentState);
+
+  const handleContentChange = (keys: string[], value: any) => {
+    dispatchContent({
+      type: 'UPDATE_CONTENT',
+      payload: { keys, value },
+    });
+  };
+
   const handleStyleChange = (key: string, value: string) => {
-    setStyles(prevStyles => ({
+    setStyles((prevStyles) => ({
       ...prevStyles,
-      [key]: value
+      [key]: value,
     }));
   };
-  const handleContentChange = (key: string, value: string) => {
-    setContent(prevContent => ({
-      ...prevContent,
-      [key]: value
-    }));
-  };
+
   const handleOnChange = (event: FormEvent<HTMLInputElement>) => {
-    const info: ProjectData = {
-      ...projectData,
-      [(event.target as HTMLInputElement).name]: (
-        event.target as HTMLInputElement
-      ).value,
-    };
-    return setProjectData(info);
+    const { name, value } = event.currentTarget;
+    setProjectData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
+
   const click = async () => {
-    const data = await createCampaign(
-      projectData,
-      setErr,
-      setHideSB,
-      setHideAP,
-      setHidePD,
-      setProjectData
-    );
-    if (data === true) {
-      setHideSuccess(false);
+    try {
+      const data = await createCampaign(
+        projectData,
+        setErr,
+        setHideSB,
+        setHideAP,
+        setHidePD,
+        setProjectData
+      );
+      if (data === true) {
+        setHideSuccess(false);
+      }
+    } catch (error: any) {
+      console.error('Error creating campaign:', error);
+      setErr(error.message || 'An error occurred');
     }
   };
+
   const renderMainFormSection = () => {
+    const { mainform } = content;
+
     return (
       <div
         className="activism-platform-container"
@@ -94,9 +84,6 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
           fontFamily: styles.fontFamily,
         }}
       >
-        <div className="contentEditor-container">
-          <ContentEditor content={content} onContentChange={handleContentChange}/>
-        </div>
         <div className="activism-form-container">
           <div
             className="activism-form"
@@ -107,9 +94,23 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
               borderRadius: styles.borderRadius,
             }}
           >
-            <h1 className="form-title">{content.title.text}</h1>
-            <p className="form-description">
-            {content.instructions.text}
+            <h1
+              style={{
+                color: mainform.title.textColor,
+                fontSize: mainform.title.fontSize,
+              }}
+              className="form-title"
+            >
+              {mainform.title.text}
+            </h1>
+            <p
+              style={{
+                color: mainform.instructions.textColor,
+                fontSize: mainform.instructions.fontSize,
+              }}
+              className="form-description"
+            >
+              {mainform.instructions.text}
             </p>
             <DynamicLeadInputs
               projectData={projectData}
@@ -120,189 +121,185 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
                 <input
                   type="checkbox"
                   name="termsAccepted"
-                  //checked={formData.termsAccepted}
                   onChange={handleOnChange}
                   required
                 />
-                <span style={{ color: styles.linkColor }}>
-                  {content.tac.text}
+                <span
+                  style={{
+                    color: mainform.tac.textColor,
+                    fontSize: mainform.tac.fontSize,
+                  }}
+                >
+                  {mainform.tac.text}
                 </span>
               </label>
             </div>
             <button
-              type="submit"
+              type="button"
               className="submit-button"
               style={{
-                backgroundColor: styles.buttonColor,
-                color: content.button,
+                backgroundColor: mainform.button,
               }}
+              onClick={() => setActiveSection('privacy')}
             >
-              {content.button}
+              NEXT
             </button>
           </div>
-          <button
-            onClick={() =>
-              handleClicks(setShowMainSection, setShowPrivacySection)
-            }
-          >
-            Next
-          </button>
-          <button onClick={() => handleClicks(setHideMainForm, setHideSB)}>
-            Back
-          </button>
         </div>
       </div>
     );
   };
+
   const renderPrivacySection = () => {
+    const { privacy } = content;
+
     return (
-      <section>
-        <h3>privacy page</h3>
-        <div>
-          title
-          <input name="pptitle" onChange={handleOnChange} type="text"></input>
-        </div>
-        <button
-          onClick={() =>
-            handleClicks(setShowPrivacySection, setShowEmailSection)
-          }
+      <section
+        style={{
+          backgroundColor: styles.backgroundColor,
+          width: styles.formWidth,
+          padding: styles.formPadding,
+          borderRadius: styles.borderRadius,
+        }}
+      >
+        <h3
+          style={{
+            color: privacy.title.textColor,
+            fontSize: privacy.title.fontSize,
+          }}
         >
-          Next
-        </button>
-        <button
-          onClick={() =>
-            handleClicks(setShowPrivacySection, setShowMainSection)
-          }
-        >
-          Back
-        </button>
+          {privacy.title.text}
+        </h3>
+        {/* Contenido adicional */}
+        <button onClick={() => setActiveSection('questions')}>Next</button>
+        <button onClick={() => setActiveSection('mainform')}>Back</button>
       </section>
     );
   };
+
   const renderQuestionsSection = () => {
+    const { questions } = content;
+
     return (
       <section>
-        <h3>questions page</h3>
-        <div>
-          title
-          <input name="qptitle" onChange={handleOnChange} type="text"></input>
-        </div>
-        <div>
-          instructions
-          <input
-            name="qpinstructions"
-            onChange={handleOnChange}
-            type="text"
-          ></input>
-        </div>
-        <DynamicQuestions
-          projectData={projectData}
-          setProjectData={setProjectData}
-        />
-        <button
-          onClick={() =>
-            handleClicks(setShowQuestionsSection, setShowEmailSection)
-          }
+        <h3
+          style={{
+            color: questions.title.textColor,
+            fontSize: questions.title.fontSize,
+          }}
         >
-          Next
-        </button>
-        <button
-          onClick={() =>
-            handleClicks(setShowQuestionsSection, setShowPrivacySection)
-          }
+          {questions.title.text}
+        </h3>
+        <p
+          style={{
+            color: questions.instructions.textColor,
+            fontSize: questions.instructions.fontSize,
+          }}
         >
-          Back
-        </button>
+          {questions.instructions.text}
+        </p>
+        {/* Componente DynamicQuestions o contenido adicional */}
+        <button onClick={() => setActiveSection('email')}>Next</button>
+        <button onClick={() => setActiveSection('privacy')}>Back</button>
       </section>
     );
   };
+
   const renderEmailSection = () => {
+    const { email } = content;
+
     return (
-      <div>
-        <h3>reviewEmail page</h3>
-        <div>
-          title
-          <input name="reptitle" onChange={handleOnChange} type="text"></input>
-        </div>
-        <div>
-          instructions
-          <input
-            name="repinstructions"
-            onChange={handleOnChange}
-            type="text"
-          ></input>
-        </div>
-        <button
-          onClick={() => handleClicks(setShowEmailSection, setShowTYSection)}
+      <section>
+        <h3
+          style={{
+            color: email.title.textColor,
+            fontSize: email.title.fontSize,
+          }}
         >
-          Next
-        </button>
-        <button
-          onClick={() =>
-            handleClicks(setShowEmailSection, setShowQuestionsSection)
-          }
+          {email.title.text}
+        </h3>
+        <p
+          style={{
+            color: email.instructions.textColor,
+            fontSize: email.instructions.fontSize,
+          }}
         >
-          Back
-        </button>
-      </div>
+          {email.instructions.text}
+        </p>
+        {/* Contenido adicional */}
+        <button onClick={() => setActiveSection('ty')}>Next</button>
+        <button onClick={() => setActiveSection('questions')}>Back</button>
+      </section>
     );
   };
+
   const renderTYSection = () => {
+    const { ty } = content;
+
     return (
-      <div>
-        <h3>ThankYou Page</h3>
-        <div>
-          title
-          <input name="typtitle" onChange={handleOnChange} type="text"></input>
-        </div>
-        <div>
-          description
-          <input
-            name="typdescription"
-            onChange={handleOnChange}
-            type="text"
-          ></input>
-        </div>
-        <div>
-          instructions
-          <input
-            name="typinstructions"
-            onChange={handleOnChange}
-            type="text"
-          ></input>
-        </div>
-        <button
-          onClick={() => handleClicks(setShowTYSection, setShowEmailSection)}
+      <section>
+        <h3
+          style={{
+            color: ty.title.textColor,
+            fontSize: ty.title.fontSize,
+          }}
         >
-          Back
-        </button>
-      </div>
+          {ty.title.text}
+        </h3>
+        <p
+          style={{
+            color: ty.description.textColor,
+            fontSize: ty.description.fontSize,
+          }}
+        >
+          {ty.description.text}
+        </p>
+        <p
+          style={{
+            color: ty.instructions.textColor,
+            fontSize: ty.instructions.fontSize,
+          }}
+        >
+          {ty.instructions.text}
+        </p>
+        {/* Contenido adicional */}
+        <button onClick={() => setActiveSection('email')}>Back</button>
+      </section>
     );
   };
-  const handleClicks = (set1, set2) => {
-    set1(false);
-    set2(true);
+
+  const renderSection = () => {
+    switch (activeSection) {
+      case 'mainform':
+        return renderMainFormSection();
+      case 'privacy':
+        return renderPrivacySection();
+      case 'questions':
+        return renderQuestionsSection();
+      case 'email':
+        return renderEmailSection();
+      case 'ty':
+        return renderTYSection();
+      default:
+        return renderMainFormSection();
+    }
   };
-  console.log(projectData);
-  console.log(styles)
-  console.log(content)
+
   return (
-    <div hidden={hideSB} className={"main-flex-container"}>
-
-          <div className="styleEditor-container">
-          <StyleEditor styles={styles} onStyleChange={handleStyleChange} />
-          </div>
-
-          <div className="pageView-container">
-          {showMainSection && renderMainFormSection()}
-          {showPrivacySection && renderPrivacySection()}
-          {showQuestionsSection && renderQuestionsSection()}
-          {showEmailSection && renderEmailSection()}
-          {showTYSection && renderTYSection()}
-          </div>
-          {/*<button onClick={click}>Create</button>*/}
-    </div> 
-  );
+    <div hidden={hideSB} className="main-flex-container">
+      <div className="style-editor-container">
+        <StyleEditor styles={styles} onStyleChange={handleStyleChange} />
+      </div>
+      <div className="content-editor-container">
+        <ContentEditor
+          content={content}
+          activeSection={activeSection}
+          onContentChange={handleContentChange}
+        />
+      </div>
+      <div className="preview-container">{renderSection()}</div>
+    </div>
+  )
 };
 
 export default SubmissionBuilderForm;

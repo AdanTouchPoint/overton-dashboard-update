@@ -1,74 +1,71 @@
 import React from 'react';
-import './style-editor.css'
+import { ContentState } from '../../lib/contentState';
+import './sb.css'
 
-// Props para ContentEditor
 interface ContentEditorProps {
-  content: any;
-  onContentChange: (key: string, value: any) => void;
+  content: ContentState;
+  activeSection: string;
+  onContentChange: (keys: string[], value: any) => void;
 }
 
-// Componente ContentEditor
-const ContentEditor: React.FC<ContentEditorProps> = ({ content, onContentChange }) => {
-  const handleInputChange = (key: string, subKey: string, value: string) => {
-    // Actualizamos solo la propiedad correcta dentro del objeto
-    onContentChange(key, { ...content[key], [subKey]: value });
+const ContentEditor: React.FC<ContentEditorProps> = ({
+  content,
+  activeSection,
+  onContentChange,
+}) => {
+  // Access the content for the active section
+  const activeContent = content[`${activeSection}`];
+
+  const renderContent = (contentObj: any, parentKeys: string[] = []) => {
+    return Object.entries(contentObj).map(([key, value]) => {
+      const currentKeys = [...parentKeys, key];
+
+      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+        return (
+          <div key={currentKeys.join('-')} className="content-section">
+            <h3>{key.charAt(0).toUpperCase() + key.slice(1)}</h3>
+            {renderContent(value, currentKeys)}
+          </div>
+        );
+      } else {
+        // Determine the input type based on the property name
+        let inputType = 'text';
+        if (key.toLowerCase().includes('color')) {
+          inputType = 'color';
+        } else if (key.toLowerCase().includes('fontsize')) {
+          inputType = 'number';
+        } else if (key.toLowerCase().includes('text')) {
+          inputType = 'text';
+        }
+
+        return (
+          <div key={currentKeys.join('-')} className="content-input">
+            <label htmlFor={currentKeys.join('-')}>
+              {key.charAt(0).toUpperCase() + key.slice(1)}:
+            </label>
+            <input
+              type={inputType}
+              id={currentKeys.join('-')}
+              value={value}
+              onChange={(e) => onContentChange(currentKeys, e.target.value)}
+            />
+          </div>
+        );
+      }
+    });
   };
 
   return (
     <div className="content-editor">
-      <h2>Element Editor</h2>
-      {Object.entries(content).map(([key, value]) => (
-        <div key={key} className="style-input">
-          <h3>{key}</h3>
-
-          {/* Si la propiedad es un objeto (con text, textColor, fontSize) */}
-          {typeof value === 'object' && value !== null ? (
-            <>
-              <div>
-                <label htmlFor={`${key}-text`}>Text:</label>
-                <input
-                  type="text"
-                  id={`${key}-text`}
-                  value={value.text}
-                  onChange={(e) => handleInputChange(key, 'text', e.target.value)}
-                />
-              </div>
-              <div>
-                <label htmlFor={`${key}-textColor`}>Text Color:</label>
-                <input
-                  type="color"
-                  id={`${key}-textColor`}
-                  value={value.textColor}
-                  onChange={(e) => handleInputChange(key, 'textColor', e.target.value)}
-                />
-              </div>
-              <div>
-                <label htmlFor={`${key}-fontSize`}>Font Size:</label>
-                <input
-                  type="text"
-                  id={`${key}-fontSize`}
-                  value={value.fontSize}
-                  onChange={(e) => handleInputChange(key, 'fontSize', e.target.value)}
-                />
-              </div>
-            </>
-          ) : (
-            // Si es un valor simple (como button)
-            <div>
-              <label htmlFor={key}>{key}:</label>
-              <input
-                type="color"
-                id={key}
-                value={value as string}
-                onChange={(e) => onContentChange(key, e.target.value)}
-              />
-            </div>
-          )}
-        </div>
-      ))}
+      <h2>
+        Content Editor -{' '}
+        {activeSection.charAt(0).toUpperCase() + activeSection.slice(1)}
+      </h2>
+      {activeContent ? renderContent(activeContent, [`${activeSection}View`]) : (
+        <p>No content available for this section.</p>
+      )}
     </div>
   );
 };
-
 
 export default ContentEditor;

@@ -61,7 +61,7 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
         Content Editor -{' '}
         {activeSection.charAt(0).toUpperCase() + activeSection.slice(1)}
       </h2>
-      {activeContent ? renderContent(activeContent, [`${activeSection}View`]) : (
+      {activeContent ? renderContent(activeContent, [`${activeSection}`]) : (
         <p>No content available for this section.</p>
       )}
     </div>

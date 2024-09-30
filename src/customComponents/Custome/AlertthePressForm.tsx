@@ -2,7 +2,7 @@ import React, {FormEvent,useEffect} from 'react';
 import { APprops, ProjectData } from '../interfaces';
 import {createCampaign} from '../../lib/createCampaign'
 const baseClass = 'after-dashboard';
-const AlertthePressForm: React.FC<APprops> = ({projectData, setProjectData, hideAP, setHideSuccess,setErr,err,setHideAP,setHideSB,setHidePD}) => {
+const AlertthePressForm: React.FC<APprops> = ({projectData, setProjectData, setErr,err,setActiveForm}) => {
 const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   const info : ProjectData = {
     ...projectData,
@@ -11,13 +11,13 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   return setProjectData(info)
 }
 const click = async () => {
-  const data = await  createCampaign(projectData,setErr,setHideSB,setHideAP,setHidePD,setProjectData)
+  const data = await  createCampaign(projectData,setErr,setProjectData)
   if(data === true ){
-    setHideSuccess(false)
+    setActiveForm('success')
   }
   }
 	return (
-	<div hidden={hideAP} className={baseClass}>
+	<div className={baseClass}>
       <div className="gutter--left gutter--right collection-list__wrap">
       <br/>
         <p>

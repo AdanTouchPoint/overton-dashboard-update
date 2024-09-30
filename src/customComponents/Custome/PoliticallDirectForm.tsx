@@ -3,7 +3,7 @@ import { useAuth } from 'payload/components/utilities';
 import { PDprops, ProjectData } from '../interfaces';
 import {createCampaign} from '../../lib/createCampaign'
 const baseClass = 'after-dashboard';
-const PoliticallDirectForm: React.FC<PDprops> = ({projectData, setProjectData, hidePD, setHideSuccess,setHidePD,setErr,err,setHideSB,setHideAP}) => {
+const PoliticallDirectForm: React.FC<PDprops> = ({projectData, setProjectData, setActiveForm, setErr,err}) => {
 const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   const info : ProjectData = {
     ...projectData,
@@ -12,13 +12,13 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   return setProjectData(info)
 }
   const click = async () => {
-  const data = await  createCampaign(projectData,setErr,setHideSB,setHideAP,setHidePD,setProjectData)
+  const data = await  createCampaign(projectData,setErr,setProjectData)
   if(data === true ){
-    setHideSuccess(false)
+    setActiveForm('success')
   }
   }
 	return (
-	<div hidden={hidePD} className={baseClass}>
+	<div className={baseClass}>
       <div className="gutter--left gutter--right collection-list__wrap">
       <br/>
         <p>

@@ -12,12 +12,8 @@ type ActiveSection = 'mainform' | 'privacy' | 'questions' | 'email' | 'ty';
 const SubmissionBuilderForm: React.FC<SBprops> = ({
   projectData,
   setProjectData,
-  hideSB,
-  setHideSuccess,
   setErr,
-  setHideAP,
-  setHidePD,
-  setHideSB
+  setActiveForm
 }) => {
   const [styles, setStyles] = useState({
     backgroundColor: '#2c3e50',
@@ -27,7 +23,6 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
     formPadding: '30px',
     borderRadius: '10px',
   });
-
   const [activeSection, setActiveSection] = useState<ActiveSection>('mainform');
   const [content, dispatchContent] = useReducer<
     React.Reducer<ContentState, ContentAction>
@@ -60,13 +55,10 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
       const data = await createCampaign(
         projectData,
         setErr,
-        setHideSB,
-        setHideAP,
-        setHidePD,
         setProjectData
       );
       if (data === true) {
-        setHideSuccess(false);
+        setActiveForm('success');
       }
     } catch (error: any) {
       console.error('Error creating campaign:', error);
@@ -286,7 +278,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
   };
 
   return (
-    <div hidden={hideSB} className="main-flex-container">
+    <div className="main-flex-container">
       <div className="style-editor-container">
         <StyleEditor styles={styles} onStyleChange={handleStyleChange} />
       </div>

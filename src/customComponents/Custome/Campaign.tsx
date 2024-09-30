@@ -11,11 +11,7 @@ import { Button } from "payload/components/elements";
 import './campaignList.css'
 const baseClass = "after-dashboard";
 const Campaing: React.FC = () => {
-  const [hideMainForm, setHideMainForm] = useState(false);
-  const [hideSB, setHideSB] = useState(false);
-  const [hidePD, setHidePD] = useState(true);
-  const [hideAP, setHideAP] = useState(true);
-  const [hideSuccess, setHideSuccess] = useState(true);
+  const [activeForm,setActiveForm] = useState('main')
   const [projectData, setProjectData] = useState<ProjectData>();
   const [err,setErr] = useState(false)
   const modal = () => {
@@ -35,66 +31,49 @@ const Campaing: React.FC = () => {
   return (
     <DefaultTemplate>
       <div className={baseClass}>
-        <MainForm
-          setHideMainForm={setHideMainForm}
-          hideMainForm={hideMainForm}
+        {activeForm === 'main' &&(        
+          <MainForm
           projectData={projectData}
           setProjectData={setProjectData}
-          setHideSB={setHideSB}
-          setHidePD={setHidePD}
-          setHideAP={setHideAP}
+          setActiveForm={setActiveForm}
           err={err}
           setErr={setErr}
-        />
-        { !hideSB && (
+        />) }
+        { activeForm === 'SB' && (
           <SubmissionBuilderForm
-            setHideMainForm={setHideMainForm}
             projectData={projectData}
             setProjectData={setProjectData}
-            hideSB={hideSB}
-            setHideSuccess={setHideSuccess}
-            setHideSB={setHideSB}
             err={err}
             setErr={setErr}
-            setHidePD={setHidePD}
-            setHideAP={setHideAP}
+            setActiveForm={setActiveForm}
           />
         )}
 
-        { !hidePD && (
+        { activeForm === 'PD' && (
           <PoliticallDirectForm
-            projectData={projectData}
-            setProjectData={setProjectData}
-            hidePD={hidePD}
-            setHideSuccess={setHideSuccess}
-            setHidePD={setHidePD}
-            err={err}
-            setErr={setErr}
-            setHideSB={setHideSB}
-            setHideAP={setHideAP}
+          projectData={projectData}
+          setProjectData={setProjectData}
+          err={err}
+          setErr={setErr}
+          setActiveForm={setActiveForm}
           />
         ) }
-        { !hideAP && (
+        { activeForm === 'AP' && (
           <AlertthePressForm
-            projectData={projectData}
-            setProjectData={setProjectData}
-            hideAP={hideAP}
-            setHideSuccess={setHideSuccess}
-            setHideAP={setHideAP}
-            err={err}
-            setErr={setErr}
-            setHideSB={setHideSB}
-            setHidePD={setHidePD}
+          projectData={projectData}
+          setProjectData={setProjectData}
+          err={err}
+          setErr={setErr}
+          setActiveForm={setActiveForm}
           />
         ) }
-        { !hideSuccess && (
+        { activeForm === 'success' && (
           <Success
           projectData={projectData}
           setProjectData={setProjectData}
-          hideSuccess={hideSuccess}
-          setHideSuccess={setHideSuccess}
           err={err}
           setErr={setErr}
+          setActiveForm={setActiveForm}
         />
         ) }
         {

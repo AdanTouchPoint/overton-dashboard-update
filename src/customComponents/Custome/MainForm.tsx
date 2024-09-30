@@ -5,7 +5,7 @@ import { MainFormProps, ProjectData } from '../interfaces';
 import { createCampaign } from '../../lib/createCampaign';
 import { postCampaignData } from '../../lib/requestsAPI';
 const baseClass = 'after-dashboard';
-const MainForm: React.FC<MainFormProps> = ({setHideSB,setHidePD,setHideAP,setProjectData,projectData,setHideMainForm,hideMainForm,setErr,err}) => {
+const MainForm: React.FC<MainFormProps> = ({setProjectData,projectData,setErr,err,setActiveForm}) => {
 const  user = useAuth();
 const userId = user.user.id
 const verifyInputs = ( projectData ) => {
@@ -40,8 +40,9 @@ useEffect(() => {
       ...projectData,
       id: id 
     })
-    setHideMainForm(true)
-    await hideForms(projectData,setHideSB ,setHidePD,setHideAP,false)
+    //await setHideMainForm(true)
+    await setActiveForm(projectData.campaignType)
+    //await hideForms(projectData,setHideSB ,setHidePD,setHideAP,false)
 } catch (error) {
     throw new Error (error)
   }
@@ -55,7 +56,7 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
 } 
 	return (
 		<div className={baseClass}>
-      <div hidden={hideMainForm} className="gutter--left gutter--right collection-list__wrap">
+      <div className="gutter--left gutter--right collection-list__wrap">
       <br/>
       <p>
         Choose Campaing Type:

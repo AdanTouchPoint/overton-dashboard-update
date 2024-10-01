@@ -36,7 +36,7 @@ export default function DynamicLeadInputs({ projectData, setProjectData }) {
         >
             <option value="">Seleccione una opción</option>
             <option value="name" disabled={isOptionDisabled("name")}>Nombre</option>
-            <option value="cp" disabled={isOptionDisabled("cp")}>Código Postal</option>
+            <option value="postalcode" disabled={isOptionDisabled("postalcode")}>Código Postal</option>
             <option value="email" disabled={isOptionDisabled("email")}>Email</option>
             <option value="state" disabled={isOptionDisabled("state")}>Estado</option>
             <option value="city" disabled={isOptionDisabled("city")}>Ciudad</option>

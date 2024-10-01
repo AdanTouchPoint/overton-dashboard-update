@@ -32,17 +32,13 @@ useEffect(() => {
   try {
   const validate = await verifyInputs(projectData)
   //añadir request para guardar en BD
-    //await setProjectData(data)
     const data = await postCampaignData(projectData)
-    //console.log(data)
     const id = await  data.data.id
     setProjectData({
       ...projectData,
       id: id 
     })
-    //await setHideMainForm(true)
     await setActiveForm(projectData.campaignType)
-    //await hideForms(projectData,setHideSB ,setHidePD,setHideAP,false)
 } catch (error) {
     throw new Error (error)
   }

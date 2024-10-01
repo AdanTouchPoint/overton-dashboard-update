@@ -6,15 +6,25 @@ export interface TextStyle {
   }
   
   export interface ViewContent {
+
     title: TextStyle;
     instructions?: TextStyle;
     description?: TextStyle;
     tac?: TextStyle;
     button?: string;
   }
+  export interface inputOptions{
+    name?: string;
+    postalCode?: string;
+    city?: string;
+    phone?: string;
+    email?: string;
+    state?:string;
+  }
   
   export interface ContentState {
     mainform: ViewContent;
+    //mainFormInputs: inputOptions;
     privacy: ViewContent;
     questions: ViewContent;
     email: ViewContent;
@@ -27,6 +37,7 @@ export interface TextStyle {
         textColor: '#ffffff',
         fontSize: '16px',
       },
+      mainFormInputs:[],
       instructions: {
         text: 'Instrucciones principales',
         textColor: '#ffffff',

@@ -68,7 +68,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
 
   const renderMainFormSection = () => {
     const { mainform } = content;
-
+    const inputs = mainform?.mainFormInputs || [] 
     return (
       <div
         className="activism-platform-container"
@@ -104,10 +104,29 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
             >
               {mainform.instructions.text}
             </p>
-            <DynamicLeadInputs
-              projectData={projectData}
-              setProjectData={setProjectData}
-            />
+              {
+                inputs.length > 0 ? inputs.map((element,index)=>{
+                return(  
+                <div key={index} className="form-group checkbox-group">
+                  <label>
+                    <span
+                      style={{
+                        color: mainform.tac.textColor,
+                        fontSize: mainform.tac.fontSize,
+                      }}
+                    >
+                      {element}
+                      <input
+                      type="text"
+                      name={element}
+                      disabled
+                    />
+                    </span>
+                  </label>
+                </div>
+                )
+                }) : null
+              }
             <div className="form-group checkbox-group">
               <label>
                 <input
@@ -144,28 +163,39 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
 
   const renderPrivacySection = () => {
     const { privacy } = content;
-
+  
     return (
-      <section
+      <div
+      className="activism-platform-container"
+      style={{
+        fontFamily: styles.fontFamily,
+      }}
+    >
+      <div className="activism-form-container">
+        <div
+          className="activism-form"
+          style={{
+            backgroundColor: styles.backgroundColor,
+            width: styles.formWidth,
+            padding: styles.formPadding,
+            borderRadius: styles.borderRadius,
+          }}
+        ><h3 
+        className="form-title"
         style={{
-          backgroundColor: styles.backgroundColor,
-          width: styles.formWidth,
-          padding: styles.formPadding,
-          borderRadius: styles.borderRadius,
+          color: privacy.title.textColor,
+          fontSize: privacy.title.fontSize,
         }}
       >
-        <h3
-          style={{
-            color: privacy.title.textColor,
-            fontSize: privacy.title.fontSize,
-          }}
-        >
-          {privacy.title.text}
-        </h3>
-        {/* Contenido adicional */}
-        <button onClick={() => setActiveSection('questions')}>Next</button>
-        <button onClick={() => setActiveSection('mainform')}>Back</button>
-      </section>
+        {privacy.title.text}
+      </h3>
+      {/* Contenido adicional */}
+      <button onClick={() => setActiveSection('questions')}>Next</button>
+      <button onClick={() => setActiveSection('mainform')}>Back</button>
+  
+        </div>
+      </div>
+    </div>
     );
   };
 
@@ -173,7 +203,22 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
     const { questions } = content;
 
     return (
-      <section>
+      <div
+      className="activism-platform-container"
+      style={{
+        fontFamily: styles.fontFamily,
+      }}
+    >
+      <div className="activism-form-container">
+        <div
+          className="activism-form"
+          style={{
+            backgroundColor: styles.backgroundColor,
+            width: styles.formWidth,
+            padding: styles.formPadding,
+            borderRadius: styles.borderRadius,
+          }}
+        >
         <h3
           style={{
             color: questions.title.textColor,
@@ -193,7 +238,10 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
         {/* Componente DynamicQuestions o contenido adicional */}
         <button onClick={() => setActiveSection('email')}>Next</button>
         <button onClick={() => setActiveSection('privacy')}>Back</button>
-      </section>
+  
+        </div>
+      </div>
+    </div>
     );
   };
 
@@ -201,7 +249,22 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
     const { email } = content;
 
     return (
-      <section>
+      <div
+      className="activism-platform-container"
+      style={{
+        fontFamily: styles.fontFamily,
+      }}
+    >
+      <div className="activism-form-container">
+        <div
+          className="activism-form"
+          style={{
+            backgroundColor: styles.backgroundColor,
+            width: styles.formWidth,
+            padding: styles.formPadding,
+            borderRadius: styles.borderRadius,
+          }}
+        >
         <h3
           style={{
             color: email.title.textColor,
@@ -221,7 +284,10 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
         {/* Contenido adicional */}
         <button onClick={() => setActiveSection('ty')}>Next</button>
         <button onClick={() => setActiveSection('questions')}>Back</button>
-      </section>
+  
+        </div>
+      </div>
+    </div>
     );
   };
 
@@ -229,7 +295,22 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
     const { ty } = content;
 
     return (
-      <section>
+      <div
+      className="activism-platform-container"
+      style={{
+        fontFamily: styles.fontFamily,
+      }}
+    >
+      <div className="activism-form-container">
+        <div
+          className="activism-form"
+          style={{
+            backgroundColor: styles.backgroundColor,
+            width: styles.formWidth,
+            padding: styles.formPadding,
+            borderRadius: styles.borderRadius,
+          }}
+        >
         <h3
           style={{
             color: ty.title.textColor,
@@ -256,7 +337,9 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
         </p>
         {/* Contenido adicional */}
         <button onClick={() => setActiveSection('email')}>Back</button>
-      </section>
+        </div>
+      </div>
+    </div>
     );
   };
 
@@ -295,3 +378,4 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
 };
 
 export default SubmissionBuilderForm;
+

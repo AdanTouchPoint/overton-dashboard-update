@@ -2,6 +2,8 @@
 
 import React from 'react';
 import './sb.css'
+import { Smartphone, TabletSmartphone, AppWindowMac } from 'lucide-react';
+
 interface StyleEditorProps {
   styles: { [key: string]: string };
   onStyleChange: (key: string, value: string) => void;
@@ -37,11 +39,15 @@ const StyleEditor: React.FC<StyleEditorProps> = ({ styles, onStyleChange }) => {
       </div>
       <div>
         <label>Form Width: </label>
-        <input
-          type="text"
-          value={styles.formWidth}
-          onChange={(e) => onStyleChange('formWidth', e.target.value)}
-        />
+        <button onClick={(e)=> onStyleChange('formWidth','400px')} >
+          <Smartphone className="icon"/>
+        </button>
+        <button onClick={(e)=> onStyleChange('formWidth','800px')}>
+          <TabletSmartphone className="icon"/>
+        </button>
+        <button onClick={(e)=> onStyleChange('formWidth','1200px')}> 
+          <AppWindowMac className="icon"/>
+        </button>
       </div>
       <div>
         <label>Form Padding: </label>

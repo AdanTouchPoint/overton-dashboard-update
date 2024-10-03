@@ -104,7 +104,8 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
             >
               {mainform.instructions.text}
             </p>
-              {
+             <div className='dynamic-inputs'>
+             {
                 inputs.length > 0 ? inputs.map((element,index)=>{
                 return(  
                 <div key={index} className="form-group checkbox-group">
@@ -127,6 +128,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
                 )
                 }) : null
               }
+             </div>
             <div className="form-group checkbox-group">
               <label>
                 <input

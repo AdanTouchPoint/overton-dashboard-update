@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ContentState } from "../../lib/contentState";
 import "./sb.css";
-import { PlusCircle, Trash } from "lucide-react";
+import { PlusCircle, MinusCircle } from "lucide-react";
 
 interface ContentEditorProps {
   content: ContentState;
@@ -87,12 +87,14 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
         options.find((option) => option.value === key)?.label || key;
 
       return (
-        <div key={key} className="content-input">
+<div className="content-section">
+<div key={key} className="content-select-input">
           <span>{label}</span>
           <button className="remove-btn" onClick={() => handleRemoveField(key)}>
-            <Trash className="icon" />
+            <MinusCircle className="icon" />
           </button>
         </div>
+</div>
       );
     });
   };

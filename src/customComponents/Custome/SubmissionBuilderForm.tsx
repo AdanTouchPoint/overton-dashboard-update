@@ -1,5 +1,5 @@
 
-import React, { useReducer, useState, FormEvent } from 'react';
+import React, { useReducer, useState, FormEvent,useEffect } from 'react';
 import { initialContentState, ContentState } from '../../lib/contentState';
 import { contentReducer, ContentAction } from '../../lib/contentReducer';
 import StyleEditor from './StyleEditor';
@@ -23,6 +23,15 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
     formPadding: '30px',
     borderRadius: '10px',
   });
+  const [flexDirect,setFlexDirec]=useState<string>()
+  const responsiveViews=(size,setState)=>{
+    if(size === '1200px') return setState('row')
+    if(size ==='800px' || size === '400px') return setState('column')
+  }
+useEffect(() => {
+  const flexD = responsiveViews(styles.formWidth, setFlexDirec)
+  return flexD
+}, [styles]);
   const [activeSection, setActiveSection] = useState<ActiveSection>('mainform');
   const [content, dispatchContent] = useReducer<
     React.Reducer<ContentState, ContentAction>
@@ -104,7 +113,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
             >
               {mainform.instructions.text}
             </p>
-             <div className='dynamic-inputs'>
+             <div className='dynamic-inputs' style={{flexDirection: flexDirect}}>
              {
                 inputs.length > 0 ? inputs.map((element,index)=>{
                 return(  

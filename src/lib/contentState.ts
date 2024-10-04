@@ -6,7 +6,6 @@ export interface TextStyle {
   }
   
   export interface ViewContent {
-
     title: TextStyle;
     instructions?: TextStyle;
     description?: TextStyle;
@@ -56,6 +55,23 @@ export interface TextStyle {
         textColor: '#ffffff',
         fontSize: '16px',
       },
+      privacyOptions: {
+        public: {
+          text: 'Título de privacidad',
+          textColor: '#ffffff',
+          fontSize: '16px', 
+        },
+        confidential: {
+          text: 'Título de privacidad',
+          textColor: '#ffffff',
+          fontSize: '16px', 
+        },
+        nameWithHeld: {
+          text: 'Título de privacidad',
+          textColor: '#ffffff',
+          fontSize: '16px', 
+        }
+      }
     },
     questions: {
       title: {

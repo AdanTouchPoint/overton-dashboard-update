@@ -8,6 +8,7 @@ import DynamicLeadInputs from './DynamicLeadInputs';
 import { SBprops, ProjectData } from '../interfaces';
 import { createCampaign } from '../../lib/createCampaign';
 import "./sb.css";
+import { renderMainFormSection } from './SubmissionBuilder/NoAI/MainFormSection';
 type ActiveSection = 'mainform' | 'privacy' | 'questions' | 'email' | 'ty';
 const SubmissionBuilderForm: React.FC<SBprops> = ({
   projectData,
@@ -23,8 +24,8 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
     formPadding: '30px',
     borderRadius: '10px',
   });
-  const [flexDirect,setFlexDirec]=useState<string>()
-  const responsiveViews=(size,setState)=>{
+  const [flexDirect,setFlexDirec] = useState<string>()
+  const responsiveViews = (size,setState) => {
     if(size === '1200px') return setState('row')
     if(size ==='800px' || size === '400px') return setState('column')
   }
@@ -75,7 +76,7 @@ useEffect(() => {
     }
   };
 
-  const renderMainFormSection = () => {
+  /*const renderMainFormSection = () => {
     const { mainform } = content;
     const inputs = mainform?.mainFormInputs || [] 
     return (
@@ -170,11 +171,11 @@ useEffect(() => {
         </div>
       </div>
     );
-  };
+  };*/
 
   const renderPrivacySection = () => {
     const { privacy } = content;
-  
+    //const data = privacy?.privacyOptions
     return (
       <div
       className="activism-platform-container"
@@ -200,10 +201,26 @@ useEffect(() => {
       >
         {privacy.title.text}
       </h3>
+        <div className='activism-form' >
+        <label> Public</label>
+        <h5 style={{
+        color: privacy.privacyOptions.public.textColor,
+        fontSize: privacy.privacyOptions.public.fontSize,
+      }}>{privacy.privacyOptions.public.text}</h5>
+        <label> Confidential</label>
+        <h5 style={{
+        color: privacy.privacyOptions.confidential.textColor,
+        fontSize: privacy.privacyOptions.confidential.fontSize,
+      }}>{privacy.privacyOptions.confidential.text}</h5>
+        <label> NameWithHeld</label>
+        <h5 style={{
+        color: privacy.privacyOptions.nameWithHeld.textColor,
+        fontSize: privacy.privacyOptions.nameWithHeld.fontSize,
+      }}>{privacy.privacyOptions.nameWithHeld.text}</h5>
+        </div>
       {/* Contenido adicional */}
-      <button onClick={() => setActiveSection('questions')}>Next</button>
-      <button onClick={() => setActiveSection('mainform')}>Back</button>
-  
+      <button className="submit-button" onClick={() => setActiveSection('mainform')}>Back</button>
+      <button className="submit-button" onClick={() => setActiveSection('questions')}>Next</button>
         </div>
       </div>
     </div>
@@ -292,10 +309,10 @@ useEffect(() => {
         >
           {email.instructions.text}
         </p>
+        <textarea style={{resize: 'none'}} disabled rows="10" cols="50">Email ... </textarea>
         {/* Contenido adicional */}
-        <button onClick={() => setActiveSection('ty')}>Next</button>
         <button onClick={() => setActiveSection('questions')}>Back</button>
-  
+        <button onClick={() => setActiveSection('ty')}>Next</button>
         </div>
       </div>
     </div>
@@ -357,7 +374,7 @@ useEffect(() => {
   const renderSection = () => {
     switch (activeSection) {
       case 'mainform':
-        return renderMainFormSection();
+        return renderMainFormSection(content,styles,setActiveSection,flexDirect);
       case 'privacy':
         return renderPrivacySection();
       case 'questions':
@@ -367,7 +384,7 @@ useEffect(() => {
       case 'ty':
         return renderTYSection();
       default:
-        return renderMainFormSection();
+        return renderMainFormSection(content,styles,setActiveSection,flexDirect);
     }
   };
 

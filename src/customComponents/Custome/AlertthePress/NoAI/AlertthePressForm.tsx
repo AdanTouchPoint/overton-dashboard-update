@@ -1,6 +1,6 @@
 import React, {FormEvent,useEffect} from 'react';
-import { APprops, ProjectData } from '../interfaces';
-import {createCampaign} from '../../lib/createCampaign'
+import { APprops, ProjectData } from '../../../interfaces';
+import {createCampaign} from '../../../../lib/createCampaign'
 const baseClass = 'after-dashboard';
 const AlertthePressForm: React.FC<APprops> = ({projectData, setProjectData, setErr,err,setActiveForm}) => {
 const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {

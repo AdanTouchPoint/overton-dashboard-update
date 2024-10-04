@@ -1,7 +1,7 @@
 // StyleEditor.tsx
 
 import React from 'react';
-import './sb.css'
+import '../sb.css'
 import { Smartphone, TabletSmartphone, AppWindowMac } from 'lucide-react';
 
 interface StyleEditorProps {

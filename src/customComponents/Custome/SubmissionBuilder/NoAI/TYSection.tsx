@@ -1,4 +1,6 @@
-const renderTYSection = () => {
+import React from 'react';
+
+export const renderTYSection = (content, styles, setActiveSection) => {
     const { ty } = content;
 
     return (
@@ -42,7 +44,6 @@ const renderTYSection = () => {
         >
           {ty.instructions.text}
         </p>
-        {/* Contenido adicional */}
         <button onClick={() => setActiveSection('email')}>Back</button>
         </div>
       </div>

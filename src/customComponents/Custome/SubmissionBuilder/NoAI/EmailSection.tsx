@@ -1,4 +1,6 @@
-const renderEmailSection = () => {
+import React from 'react';
+
+export const renderEmailSection = (content,styles,setActiveSection) => {
     const { email } = content;
 
     return (

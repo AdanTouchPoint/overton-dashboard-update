@@ -1,4 +1,6 @@
-const renderPrivacySection = () => {
+import React from 'react';
+
+export const renderPrivacySection = (content, styles, setActiveSection) => {
     const { privacy } = content;
     //const data = privacy?.privacyOptions
     return (

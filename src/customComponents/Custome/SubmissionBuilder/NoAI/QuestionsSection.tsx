@@ -1,4 +1,6 @@
-const renderQuestionsSection = () => {
+import React from 'react';
+
+export const renderQuestionsSection = (content,styles, setActiveSection) => {
     const { questions } = content;
 
     return (

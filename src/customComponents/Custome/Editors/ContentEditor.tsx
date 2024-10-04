@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { ContentState } from "../../lib/contentState";
-import "./sb.css";
+import { ContentState } from "../../../lib/contentState";
+import "../sb.css";
 import { PlusCircle, MinusCircle } from "lucide-react";
 
 interface ContentEditorProps {

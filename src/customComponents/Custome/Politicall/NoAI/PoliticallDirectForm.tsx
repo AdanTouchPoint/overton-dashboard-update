@@ -1,7 +1,7 @@
 import React, {FormEvent, useEffect} from 'react';
 import { useAuth } from 'payload/components/utilities';
-import { PDprops, ProjectData } from '../interfaces';
-import {createCampaign} from '../../lib/createCampaign'
+import { PDprops, ProjectData } from '../../../interfaces';
+import {createCampaign} from '../../../../lib/createCampaign' 
 const baseClass = 'after-dashboard';
 const PoliticallDirectForm: React.FC<PDprops> = ({projectData, setProjectData, setActiveForm, setErr,err}) => {
 const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {

@@ -11,7 +11,7 @@ async function fetchData (petitionMethod, backendURLBase,endpoint,info){
 }
 async function postCampaignData (projectData) {
     const petition = {
-        backendURLBase : "http://localhost:8080/",
+        backendURLBase : process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:8080',
         endpoint: "dashBoardContent/campaign",
         method: "POST",
     }
@@ -24,7 +24,7 @@ async function postCampaignData (projectData) {
 
 async function updateCampaignData (projectData) {
     const petition = {
-        backendURLBase : "http://localhost:8080/",
+        backendURLBase : process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:8080',
         endpoint: "dashBoardContent/campaign",
         method: "PUT",
     }
@@ -35,7 +35,7 @@ async function updateCampaignData (projectData) {
 }
 async function getCampaigns (clientId) {
     const petition = {
-        backendURLBase : "http://localhost:8080/",
+        backendURLBase : process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:8080',
         endpoint: "dashBoardContent/campaign",
         method: "GET",
     }

@@ -36,7 +36,7 @@ export const renderEmailSection = (content,styles,setActiveSection) => {
         >
           {email.instructions.text}
         </p>
-        <textarea style={{resize: 'none'}} disabled rows="10" cols="50">Email ... </textarea>
+        <textarea style={{resize: 'none'}} disabled rows={10} cols={50}>Email ... </textarea>
         {/* Contenido adicional */}
         <button  className="submit-button" onClick={() => setActiveSection('questions')}>Back</button>
         <button  className="submit-button" onClick={() => setActiveSection('ty')}>Next</button>

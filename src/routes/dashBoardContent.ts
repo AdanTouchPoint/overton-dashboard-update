@@ -2,11 +2,14 @@ import { Router } from "express";
 const router = Router();
 import payload from "payload";
 import {createCampaign, updateCampaign, getAllCampaigns} from '../controllers/campaigns'
-
+import { ParsedQs } from 'qs'
 router.post("/campaign", async (req, res) => {
     try {
-      const query = req.query;
-      const objReady = await JSON.parse(query.info)
+      interface MyQuery extends ParsedQs {
+        info: string;
+      }
+      const query = req.query as MyQuery;
+      const objReady = JSON.parse(query.info);
       const data = await createCampaign(objReady)
       res.json({
         success: true,

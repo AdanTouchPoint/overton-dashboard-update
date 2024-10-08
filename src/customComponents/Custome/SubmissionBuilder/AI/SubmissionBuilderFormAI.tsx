@@ -1,4 +1,4 @@
-import React, {FormEvent,useEffect} from 'react';
+/* import React, {FormEvent,useEffect} from 'react';
 import { useAuth } from 'payload/components/utilities';
 const baseClass = 'after-dashboard';
 import { SBprops,ProjectData } from '../interfaces';
@@ -58,4 +58,4 @@ const click = async () => {
 	);
 };
 
-export default SubmissionBuilderFormAI;
+export default SubmissionBuilderFormAI; */

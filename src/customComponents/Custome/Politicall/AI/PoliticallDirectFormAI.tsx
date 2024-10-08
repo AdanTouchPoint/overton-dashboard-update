@@ -1,4 +1,4 @@
-import React, {FormEvent,useEffect} from 'react';
+/* import React, {FormEvent,useEffect} from 'react';
 import { useAuth } from 'payload/components/utilities';
 import { PDprops, ProjectData } from '../interfaces';
 import {getProjectInfo} from '../../lib/vercelRequests'
@@ -63,4 +63,4 @@ const click = async () => {
 	);
 };
 
-export default PoliticallDirectFormAI;
+export default PoliticallDirectFormAI; */

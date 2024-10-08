@@ -6,7 +6,7 @@ import './loading.css'
 import { postCampaignData } from '../../lib/requestsAPI';
 const baseClass = 'after-dashboard';
 
-const Success: React.FC<SuccessProps> = ({projectData, setProjectData, hideSuccess, setHideSuccess}) => {
+const Success: React.FC<SuccessProps> = ({projectData, setProjectData}) => {
 const [loading, setLoading] = useState(false) 
 const user = useAuth()
 const renderWaitMessage = () => {
@@ -58,7 +58,7 @@ setTimeout(() => {
   }, [] )
   console.log(projectData)
 	return (
-	<div hidden={hideSuccess} className={baseClass}>
+	<div className={baseClass}>
       <div className="gutter--left gutter--right collection-list__wrap">
       <br/>
         { loading && renderWaitMessage() }

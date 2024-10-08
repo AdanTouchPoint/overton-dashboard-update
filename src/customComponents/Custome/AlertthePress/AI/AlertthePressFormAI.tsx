@@ -1,10 +1,10 @@
-import React, {FormEvent,useEffect} from 'react';
+/* import React, {FormEvent,useEffect} from 'react';
 import { useAuth } from 'payload/components/utilities';
 import {getProjectInfo} from '../../../../lib/vercelRequests'
 import { CreateRepoLabel } from '../../../../lib/gitHubRequests';
 const baseClass = 'after-dashboard';
 import { SBprops, ProjectData} from '../../../interfaces';
-const AlertthePressFormAI: React.FC<SBprops> = ({projectData, setProjectData, hideSB , setHideSuccess}) => {
+const AlertthePressFormAI = ({projectData, setProjectData, hideSB , setHideSuccess}) => {
 const user = useAuth()
 const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   const info : ProjectData = {
@@ -62,4 +62,4 @@ useEffect(()=>{
 	);
 };
 
-export default AlertthePressFormAI;
+export default AlertthePressFormAI; */

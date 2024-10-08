@@ -12,7 +12,7 @@ async function fetchData (petitionMethod, backendURLBase,endpoint,info){
 async function postCampaignData (projectData) {
     const petition = {
         backendURLBase : process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:8080',
-        endpoint: "dashBoardContent/campaign",
+        endpoint: "/dashBoardContent/campaign",
         method: "POST",
     }
     const objPrepare = await prepareData(projectData)
@@ -25,7 +25,7 @@ async function postCampaignData (projectData) {
 async function updateCampaignData (projectData) {
     const petition = {
         backendURLBase : process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:8080',
-        endpoint: "dashBoardContent/campaign",
+        endpoint: "/dashBoardContent/campaign",
         method: "PUT",
     }
     const objPrepare = await prepareData(projectData)
@@ -36,7 +36,7 @@ async function updateCampaignData (projectData) {
 async function getCampaigns (clientId) {
     const petition = {
         backendURLBase : process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:8080',
-        endpoint: "dashBoardContent/campaign",
+        endpoint: "/dashBoardContent/campaign",
         method: "GET",
     }
     const request = await fetchData(petition.method,petition.backendURLBase,petition.endpoint,clientId)

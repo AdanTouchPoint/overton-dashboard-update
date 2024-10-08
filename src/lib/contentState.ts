@@ -84,6 +84,7 @@ export interface TextStyle {
         textColor: '#ffffff',
         fontSize: '16px',
       },
+      questions:[],
       button: '#00ff00', // Color del botón
     },
     email: {

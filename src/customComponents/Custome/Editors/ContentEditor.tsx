@@ -29,7 +29,6 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
     { value: "city", label: "Ciudad" },
     { value: "phone", label: "Teléfono" },
   ];
-
   // Efecto para inicializar selectedOptions con los campos ya existentes en 'mainform'
   useEffect(() => {
     if (activeSection === "mainform" && mainformContent) {
@@ -58,47 +57,79 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
         const updatedFields = [...existingFields, selectedValue];
         const keys = ['mainform', 'mainFormInputs'];
         onContentChange(keys, updatedFields);
-  
         // Reiniciar el campo select
         setSelectedValue('');
       }
     }
   };
-  
 
   // Manejar la eliminación de un campo en 'mainform'
   const handleRemoveField = (field: string) => {
-    // Obtener los campos existentes en 'mainFormInputs'
-    const existingFields = content["mainform"]["mainFormInputs"] || [];
-
-    // Actualizar la lista eliminando el campo
-    const updatedFields = existingFields.filter((input) => input !== field);
-
-    // Actualizar el estado del contenido
-    const keys = ["mainform", "mainFormInputs"];
-    onContentChange(keys, updatedFields);
+      // Obtener los campos existentes en 'mainFormInputs'
+      const existingFields = content["mainform"]["mainFormInputs"] || [];
+  
+      // Actualizar la lista eliminando el campo
+      const updatedFields = existingFields.filter((input) => input !== field);
+  
+      // Actualizar el estado del contenido
+      const keys = ["mainform", "mainFormInputs"];
+      onContentChange(keys, updatedFields);
   };
 
+  const [questionsValue,setQuestionsValue] = useState('')
+  const handleChangeQuestions = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuestionsValue(e.target.value);
+  };
+
+  const handleAddQuestion = () => {
+    if (questionsValue.trim() !== '') {
+      const existingQuestions = content["questions"]["questions"] || [];
+      const updatedQuestions = [...existingQuestions, questionsValue];
+      const keys = ['questions', 'questions'];
+      onContentChange(keys, updatedQuestions);
+      setQuestionsValue('');
+    }
+  };
+  const handleRemoveQuestion = (index: number) => {
+    const existingQuestions = content["questions"]["questions"] || [];
+    const updatedQuestions = existingQuestions.filter((_, i) => i !== index);
+    const keys = ['questions', 'questions'];
+    onContentChange(keys, updatedQuestions);
+  };
+  
   // Función para renderizar los campos agregados en 'mainform'
   const renderDynamicFields = () => {
     const mainFormInputs = content["mainform"]["mainFormInputs"] || [];
     return mainFormInputs?.map((key) => {
       const label =
         options.find((option) => option.value === key)?.label || key;
-
       return (
-<div className="content-section">
-<div key={key} className="content-select-input">
+      <div className="content-section">
+        <div key={key} className="content-select-input">
           <span>{label}</span>
           <button className="remove-btn" onClick={() => handleRemoveField(key)}>
             <MinusCircle className="icon" />
           </button>
         </div>
-</div>
+      </div>
       );
     });
   };
-
+  const renderDynamicQuestions = () => {
+    const questions = content["questions"]["questions"] || [];
+    return questions.map((question, index) => {
+      return (
+        <div key={index} className="content-section">
+          <div className="content-select-input">
+            <span>{question}</span>
+            <button className="remove-btn" onClick={() => handleRemoveQuestion(index)}>
+              <MinusCircle className="icon" />
+            </button>
+          </div>
+        </div>
+      );
+    });
+  };
   // Función para renderizar el contenido de la sección activa (sin incluir los campos dinámicos de 'mainform')
   const renderContent = (contentObj: any, parentKeys: string[] = []) => {
     return Object.entries(contentObj).map(([key, value]) => {
@@ -120,13 +151,14 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
         if (activeSection === "mainform" && selectedOptions.includes(key)) {
           return null;
         }
-        let inputType = 'text';
-        if (key.toLowerCase().includes('color')) {
-          inputType = 'color';
-        } else if (key.toLowerCase().includes('fontsize')) {
-          inputType = 'text';
-        } else if (key.toLowerCase().includes('text')) {
-          inputType = 'text';
+        // Excluir el campo 'questions' si estamos en la sección 'questions'
+        if (activeSection === "questions" && key === "questions") {
+          return null;
+        }
+        // Lógica para determinar el tipo de input
+        let inputType = "text";
+        if (key.toLowerCase().includes("color")) {
+          inputType = "color";
         }
         return (
           <div key={currentKeys.join("-")} className="content-input">
@@ -190,6 +222,29 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
           {renderDynamicFields()}
         </>
       )}
+{activeSection === "questions" && (
+  <>
+    <h3>Preguntas</h3>
+    <div className="select-inputs">
+      <div className="content-input">
+        <label>Pregunta:</label>
+        <input
+          type="text"
+          value={questionsValue}
+          onChange={handleChangeQuestions}
+        />
+      </div>
+      <button onClick={handleAddQuestion} className="add-btn">
+        <PlusCircle className="icon" />
+        Agregar
+      </button>
+    </div>
+    {/* Renderizar las preguntas agregadas */}
+    {renderDynamicQuestions()}
+  </>
+)}
+
+
 
       {/* Renderizar el contenido de la sección activa */}
       {content[activeSection] ? (

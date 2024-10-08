@@ -18,6 +18,7 @@ export const renderTYSection = (content, styles, setActiveSection) => {
             width: styles.formWidth,
             padding: styles.formPadding,
             borderRadius: styles.borderRadius,
+            textAlign: 'center'
           }}
         >
         <h3
@@ -44,7 +45,7 @@ export const renderTYSection = (content, styles, setActiveSection) => {
         >
           {ty.instructions.text}
         </p>
-        <button onClick={() => setActiveSection('email')}>Back</button>
+        <button className="submit-button" onClick={() => setActiveSection('email')}>Back</button>
         </div>
       </div>
     </div>

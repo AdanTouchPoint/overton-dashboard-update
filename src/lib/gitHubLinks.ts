@@ -1,11 +1,11 @@
 import { GHLinks } from "../customComponents/interfaces"
 
 const GHLinks :  GHLinks = { 
-    AP: "https://api.github.com/repos/AdanTouchPoint/moira-template/generate",
+    AP: "https://github.com/AdanTouchPoint/alrert_the_press_NOAI/generate",
 
-    PD: "https://api.github.com/repos/AdanTouchPoint/emailbuilder-demo/generate",
+    PD: "https://github.com/AdanTouchPoint/overtonredesignNOAI/generate",
     
-    SB: "https://api.github.com/repos/AdanTouchPoint/politicall-mrBeaton/generate"
+    SB: "https://github.com/AdanTouchPoint/originalBuilderNoAI/generate"
 }
 
 const repoSelector = (campaingType: string) : string => {

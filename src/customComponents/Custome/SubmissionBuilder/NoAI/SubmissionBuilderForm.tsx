@@ -33,10 +33,10 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
     if(size === '1200px') return setState('row')
     if(size ==='800px' || size === '400px') return setState('column')
   }
-useEffect(() => {
+  useEffect(() => {
   const flexD = responsiveViews(styles.formWidth, setFlexDirec)
   return flexD
-}, [styles]);
+  }, [styles]);
   const [activeSection, setActiveSection] = useState<ActiveSection>('mainform');
   const [content, dispatchContent] = useReducer<
     React.Reducer<ContentState, ContentAction>

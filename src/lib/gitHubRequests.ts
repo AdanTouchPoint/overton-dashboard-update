@@ -1,6 +1,6 @@
 import { ProjectData } from "../customComponents/interfaces";
 import repoSelector from "./gitHubLinks";
-const token = process.env.NEXT_GH_TOKEN;
+const token = process.env.GH_TOKEN;
 const createGhRepo = async (projectData: ProjectData) => {
   try {
     const myHeaders: Headers = new Headers();

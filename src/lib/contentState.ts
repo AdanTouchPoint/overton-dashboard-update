@@ -30,6 +30,12 @@ export interface TextStyle {
     ty: ViewContent;
   }
   export const initialContentState = {
+    clientId:'',
+    projectData: {
+      title:'',
+      description:'',
+      campaignType: ''
+    },
     mainform: {
       title: {
         text: 'Título principal',

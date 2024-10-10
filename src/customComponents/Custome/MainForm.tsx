@@ -1,13 +1,17 @@
-import React, {FormEvent,useId,useEffect} from 'react';
+import React, {useReducer,FormEvent,useId,useEffect} from 'react';
+import { initialContentState, ContentState } from '../../lib/contentState';
+import { contentReducer, ContentAction } from '../../lib/contentReducer';
 import { useAuth } from 'payload/components/utilities';
-import { hideForms } from '../../lib/hideComponents';
 import { MainFormProps, ProjectData } from '../interfaces';
-import { createCampaign } from '../../lib/createCampaign';
 import { postCampaignData } from '../../lib/requestsAPI';
+
 const baseClass = 'after-dashboard';
 const MainForm: React.FC<MainFormProps> = ({setProjectData,projectData,setErr,err,setActiveForm}) => {
 const  user = useAuth();
 const userId = user.user.id
+const [content, dispatchContent] = useReducer<
+React.Reducer<ContentState, ContentAction>
+>(contentReducer, initialContentState);
 const verifyInputs = ( projectData ) => {
   if (
     !projectData?.campaignType?.trim() || 
@@ -20,35 +24,41 @@ const verifyInputs = ( projectData ) => {
   }
 
 }
+const path=['projectData']
+const handleDataChanges = (keys: string[], value: any) => {
+  dispatchContent({
+    type: 'UPDATE_CONTENT',
+    payload: { keys, value },
+  });
+}
 useEffect(() => {
-  const data  : ProjectData =  {
-    ...projectData,
-    clientId: userId
-  }
-  return setProjectData(data)
+  const key=['clientId']
+  return handleDataChanges(key,userId)
 }, []);
-
+const existingData = content['projectData']
   const click = async () => {
   try {
-  const validate = await verifyInputs(projectData)
+  const validate = await verifyInputs(existingData)
   //añadir request para guardar en BD
-    const data = await postCampaignData(projectData)
+    const data = await postCampaignData(content)
     const id = await  data.data.id
-    setProjectData({
-      ...projectData,
+    const payload = {
+      ...existingData,
       id: id 
-    })
-    await setActiveForm(projectData.campaignType)
+    }
+    handleDataChanges(path,payload)
+    setActiveForm(existingData.campaignType)
+    
 } catch (error) {
     throw new Error (error)
   }
 }
 const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   const info : ProjectData = {
-    ...projectData,
+    ...existingData,
     [(event.target as HTMLInputElement).name]: (event.target as HTMLInputElement).value
   }
-  return setProjectData(info)
+  return handleDataChanges(path,info)
 } 
 	return (
 		<div className={baseClass}>

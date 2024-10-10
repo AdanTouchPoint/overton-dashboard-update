@@ -4,7 +4,6 @@ import { initialContentState, ContentState } from '../../../../lib/contentState'
 import { contentReducer, ContentAction } from '../../../../lib/contentReducer';
 import StyleEditor from '../../Editors/StyleEditor';
 import ContentEditor from '../../Editors/ContentEditor';
-import DynamicLeadInputs from '../../DynamicLeadInputs';
 import { SBprops, ProjectData } from '../../../interfaces';
 import { createCampaign } from '../../../../lib/createCampaign';
 import "../../sb.css";

@@ -34,6 +34,38 @@ const SubmissionBuilder: CollectionConfig = {
   },
   fields: [
       {
+        type: "group",
+          name: "projectData",
+          label: { es: "datos de proyecto", en: "Project Data" },
+          fields: [
+            {
+              label: "title",
+              name: "title",
+              type:"text"
+            },
+            {
+              label: "repo",
+              name: "repo",
+              type:"text"
+            },
+            {
+              label: "description",
+              name: "description",
+              type:"text"
+            },
+            {
+              label: "campaign type",
+              name: "campaignType",
+              type:"text"
+            },
+            {
+              label: "clientId",
+              name: "clientId",
+              type:"text"
+            },
+          ]
+      },
+      {
           type: "group",
           name: "mainform",
           label: { es: "Formulario principal", en: "Main Form" },

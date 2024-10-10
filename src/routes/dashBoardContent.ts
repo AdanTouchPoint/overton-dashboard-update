@@ -10,6 +10,7 @@ router.post("/campaign", async (req, res) => {
       }
       const query = req.query as MyQuery;
       const objReady = JSON.parse(query.info);
+      console.log(objReady)
       const data = await createCampaign(objReady)
       res.json({
         success: true,

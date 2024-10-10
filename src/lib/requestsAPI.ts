@@ -15,9 +15,10 @@ async function postCampaignData (projectData) {
         endpoint: "/dashBoardContent/campaign",
         method: "POST",
     }
-    const objPrepare = await prepareData(projectData)
-    const readyData = await JSON.stringify(objPrepare)
-    const request = await fetchData(petition.method,petition.backendURLBase,petition.endpoint,readyData)
+    //const objPrepare = await prepareData(projectData)
+    const readyData =  JSON.stringify(projectData)
+    console.log(readyData)
+    const request = await fetchData(petition.method,petition.backendURLBase,petition.endpoint,encodeURIComponent(readyData))
     return request
 }
 // añadir update request

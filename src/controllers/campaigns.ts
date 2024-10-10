@@ -2,7 +2,7 @@ import payload from "payload";
 export async function createCampaign (query){
   console.log(query, 'here starts')
   const data = await payload.create({
-    collection: `${query.campaignType}`, // change to campaignType for dynamic search
+    collection: `${query.projectData.campaignType}`, // change to campaignType for dynamic search
     data:query,
     overrideAccess: true,
   });
@@ -11,7 +11,7 @@ export async function createCampaign (query){
 export async function updateCampaign (query){
   console.log(query, 'here starts update')
   const data = await payload.update({
-    collection: `${query.campaignType}`, // change to campaignType for dynamic search
+    collection: `${query.projectData.campaignType}`, // change to campaignType for dynamic search
     data:query,
     overrideAccess: true,
     where: {

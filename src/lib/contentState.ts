@@ -36,7 +36,11 @@ export interface TextStyle {
         textColor: '#ffffff',
         fontSize: '16px',
       },
-      mainFormInputs:[],
+      mainFormInputs:[{
+        text: 'name',
+        textColor: '#ffffff',
+        fontSize: '16px',
+      }],
       instructions: {
         text: 'Instrucciones principales',
         textColor: '#ffffff',
@@ -84,7 +88,11 @@ export interface TextStyle {
         textColor: '#ffffff',
         fontSize: '16px',
       },
-      questions:[],
+      questions:[{
+        text: 'question1',
+        textColor: '#ffffff',
+        fontSize: '16px',
+      }],
       button: '#00ff00', // Color del botón
     },
     email: {

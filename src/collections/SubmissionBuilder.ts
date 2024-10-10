@@ -40,15 +40,69 @@ const SubmissionBuilder: CollectionConfig = {
           fields: [
             {
               label: { es: "Titulo Principal", en: "Main Title" },
-              name: "mainTitle", // required
-              type: "text", // required
+              name: "title", // required
+              type: "group", // required
+              fields:[{
+                label: "text",
+                name: "text",
+                type:"text"
+              },
+              {
+                label: "fontSize",
+                name: "fontSize",
+                type:"text"
+              },
+              {
+                label: "colorText",
+                name: "colorText",
+                type:"text"
+              },
+            ]
             },
 
             {
               label: { es: "Instrucciones", en: "Instructions" },
               name: "instructions", // required
-              type: "text", // required
-              
+              type: "group", // required
+              fields:[
+                {
+                  label: "text",
+                  name: "text",
+                  type:"text"
+                },
+                {
+                  label: "fontSize",
+                  name: "fontSize",
+                  type:"text"
+                },
+                {
+                  label: "colorText",
+                  name: "colorText",
+                  type:"text"
+                },   
+              ]
+            },
+            {
+              label: { es: "inputs", en: "inputs" },
+              name: "mainFormInputs", // required
+              type: "array", // required
+              fields:[
+                {
+                  label: "text",
+                  name: "text",
+                  type:"text"
+                },
+                {
+                  label: "fontSize",
+                  name: "fontSize",
+                  type:"text"
+                },
+                {
+                  label: "colorText",
+                  name: "colorText",
+                  type:"text"
+                },   
+              ]
             },
           ],
       },
@@ -61,17 +115,70 @@ const SubmissionBuilder: CollectionConfig = {
               type: "row",
               fields: [
                 {
-                    label: { es: "Titulo ", en: "Title" },
-                    name: "title", // required
-                    type: "text", // required
+                  label: { es: "Titulo", en: "Title" },
+                  name: "title", // required
+                  type: "group", // required
+                  fields:[{
+                    label: "text",
+                    name: "text",
+                    type:"text"
                   },
-      
+                  {
+                    label: "fontSize",
+                    name: "fontSize",
+                    type:"text"
+                  },
+                  {
+                    label: "colorText",
+                    name: "colorText",
+                    type:"text"
+                  },
+                ]
+                },
                   {
                     label: { es: "Instrucciones", en: "Instructions" },
                     name: "instructions", // required
-                    type: "text", // required
-                    
-                  }
+                    type: "group", // required
+                    fields:[
+                      {
+                        label: "text",
+                        name: "text",
+                        type:"text"
+                      },
+                      {
+                        label: "fontSize",
+                        name: "fontSize",
+                        type:"text"
+                      },
+                      {
+                        label: "colorText",
+                        name: "colorText",
+                        type:"text"
+                      },   
+                    ]
+                  },
+                  {
+                    label: { es: "preguntas", en: "questions" },
+                    name: "questions", // required
+                    type: "array", // required
+                    fields:[
+                      {
+                        label: "text",
+                        name: "text",
+                        type:"text"
+                      },
+                      {
+                        label: "fontSize",
+                        name: "fontSize",
+                        type:"text"
+                      },
+                      {
+                        label: "colorText",
+                        name: "colorText",
+                        type:"text"
+                      },   
+                    ]
+                  },
               ]
             }
           ]
@@ -85,10 +192,96 @@ const SubmissionBuilder: CollectionConfig = {
               type: "row",
               fields: [
                 {
-                  label: { es: "Titulo ", en: "Title" },
+                  label: { es: "Titulo", en: "Title" },
                   name: "title", // required
-                  type: "text", // required
-                }
+                  type: "group", // required
+                  fields:[{
+                    label: "text",
+                    name: "text",
+                    type:"text"
+                  },
+                  {
+                    label: "fontSize",
+                    name: "fontSize",
+                    type:"text"
+                  },
+                  {
+                    label: "colorText",
+                    name: "colorText",
+                    type:"text"
+                  },
+                ]
+                },
+                {
+                  label: { es: "privacidad", en: "privacy" },
+                  name: "privacyOptions", // required
+                  type: "group", // required
+                  fields:[
+                    {
+                      name: 'confidential',
+                      type: 'group',
+                      fields:[
+                        {
+                          label: "text",
+                          name: "text",
+                          type:"text"
+                        },
+                        {
+                          label: "fontSize",
+                          name: "fontSize",
+                          type:"text"
+                        },
+                        {
+                          label: "colorText",
+                          name: "colorText",
+                          type:"text"
+                        },
+                      ]
+                    },
+                    {
+                      name: 'public',
+                      type: 'group',
+                      fields:[
+                        {
+                          label: "text",
+                          name: "text",
+                          type:"text"
+                        },
+                        {
+                          label: "fontSize",
+                          name: "fontSize",
+                          type:"text"
+                        },
+                        {
+                          label: "colorText",
+                          name: "colorText",
+                          type:"text"
+                        },
+                      ]
+                    },
+                    {
+                      name: 'nameWithHeld',
+                      type: 'group',
+                      fields:[
+                        {
+                          label: "text",
+                          name: "text",
+                          type:"text"
+                        },
+                        {
+                          label: "fontSize",
+                          name: "fontSize",
+                          type:"text"
+                        },
+                        {
+                          label: "colorText",
+                          name: "colorText",
+                          type:"text"
+                        },
+                      ]
+                    },
+                ]
+                },
               ]
             }
           ]
@@ -104,19 +297,46 @@ const SubmissionBuilder: CollectionConfig = {
               {
                 label: { es: "Titulo", en: "Title" },
                 name: "title", // required
-                type: "text", // required
-                admin: {
-                width: "50%",
+                type: "group", // required
+                fields:[{
+                  label: "text",
+                  name: "text",
+                  type:"text"
                 },
+                {
+                  label: "fontSize",
+                  name: "fontSize",
+                  type:"text"
+                },
+                {
+                  label: "colorText",
+                  name: "colorText",
+                  type:"text"
+                },
+              ]
               },
-              {
-                label: { es: "Instrucciones", en: "Instructions" },
-                name: "intructions", // required
-                type: "text", // required
-                admin: {
-                width: "50%",
+                {
+                  label: { es: "Instrucciones", en: "Instructions" },
+                  name: "instructions", // required
+                  type: "group", // required
+                  fields:[
+                    {
+                      label: "text",
+                      name: "text",
+                      type:"text"
+                    },
+                    {
+                      label: "fontSize",
+                      name: "fontSize",
+                      type:"text"
+                    },
+                    {
+                      label: "colorText",
+                      name: "colorText",
+                      type:"text"
+                    },   
+                  ]
                 },
-              }
             ],
           },
         ],
@@ -130,29 +350,70 @@ const SubmissionBuilder: CollectionConfig = {
             type: "row",
             fields: [
               {
-                label: { es: "Titulo", en: "Title" },
-                name: "title", // required
-                type: "text", // required
-                admin: {
-                width: "50%",
+                  label: { es: "Titulo", en: "Title" },
+                  name: "title", // required
+                  type: "group", // required
+                  fields:[{
+                    label: "text",
+                    name: "text",
+                    type:"text"
+                  },
+                  {
+                    label: "fontSize",
+                    name: "fontSize",
+                    type:"text"
+                  },
+                  {
+                    label: "colorText",
+                    name: "colorText",
+                    type:"text"
+                  },
+                ]
                 },
-              },
-              {
-                label: { es: "Descripcion", en: "Description" },
-                name: "description", // required
-                type: "text", // required
-                admin: {
-                width: "50%",
-                },
-              },
-              {
-                label: { es: "Instrucciones", en: "Instructions" },
-                name: "intructions", // required
-                type: "text", // required
-                admin: {
-                width: "50%",
-                },
-              }
+                  {
+                    label: { es: "descripcion", en: "Description" },
+                    name: "description", // required
+                    type: "group", // required
+                    fields:[
+                      {
+                        label: "text",
+                        name: "text",
+                        type:"text"
+                      },
+                      {
+                        label: "fontSize",
+                        name: "fontSize",
+                        type:"text"
+                      },
+                      {
+                        label: "colorText",
+                        name: "colorText",
+                        type:"text"
+                      },   
+                    ]
+                  },
+                  {
+                    label: { es: "Instrucciones", en: "Instructions" },
+                    name: "instructions", // required
+                    type: "group", // required
+                    fields:[
+                      {
+                        label: "text",
+                        name: "text",
+                        type:"text"
+                      },
+                      {
+                        label: "fontSize",
+                        name: "fontSize",
+                        type:"text"
+                      },
+                      {
+                        label: "colorText",
+                        name: "colorText",
+                        type:"text"
+                      },   
+                    ]
+                  },
             ],
           },
         ],

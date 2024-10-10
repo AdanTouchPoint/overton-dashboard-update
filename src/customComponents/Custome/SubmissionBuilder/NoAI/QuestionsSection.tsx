@@ -2,7 +2,29 @@ import React from "react";
 import '../../sb.css'
 export const renderQuestionsSection = (content, styles, setActiveSection) => {
   const { questions } = content;
-  const renderQuestions = (questions) => {};
+  const inputs = questions?.questions || [] 
+  const renderDynamicInputs = () => {
+    return inputs.map((field: any, index: number) => (
+      <div key={index} className="form-group">
+        <label>
+          <span
+            style={{
+              color: field.textColor,
+              fontSize: field.fontSize,
+            }}
+          >
+            {field.text.charAt(0).toUpperCase() + field.text.slice(1)}
+          </span>
+          <input
+            type="text"
+            name={field.text}
+            disabled
+          />
+        </label>
+      </div>
+    ));
+  };
+
   return (
     <div
       className="activism-platform-container"
@@ -37,19 +59,7 @@ export const renderQuestionsSection = (content, styles, setActiveSection) => {
             {questions.instructions.text}
           </p>
           <h5>Questions</h5>
-          {questions.questions.map((element) => {
-            return <div className="question">
-            <span>
-              {element}
-              <input
-                type="text"
-                name={element}
-                disabled
-              />
-            </span>
-
-            </div>;
-          })}
+            {renderDynamicInputs()}
           {/* Componente DynamicQuestions o contenido adicional */}
           <button className="submit-button" onClick={() => setActiveSection("privacy")}>Back</button>
           <button className="submit-button" onClick={() => setActiveSection("email")}>Next</button>

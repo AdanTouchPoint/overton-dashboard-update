@@ -1,7 +1,7 @@
 import { response } from "express";
 import { ProjectData } from "../customComponents/interfaces";
 import { validatestring } from "./misc";
-const token = process.env.VERCEL_TOKEN;
+const token = process.env.REACT_APP_VERCEL_TOKEN;
 const createProject = async (projectData: ProjectData,name: string) => {
     try {
         const myHeaders: Headers = new Headers();

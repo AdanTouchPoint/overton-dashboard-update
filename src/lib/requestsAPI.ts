@@ -43,7 +43,17 @@ async function getCampaigns (clientId) {
     //console.log(request)
     return request
 }
+async function deployProject(projectData) {
+    const petition = {
+        backendURLBase : process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:8080',
+        endpoint: "/dashBoardServices/deploy-project",
+        method: "GET",
+    }
+    console.log(projectData)
+    const request = await fetchData(petition.method,petition.backendURLBase,petition.endpoint,projectData)
+    return request
+}
 export {
-    fetchData, postCampaignData,updateCampaignData,getCampaigns
+    fetchData, postCampaignData,updateCampaignData,getCampaigns, deployProject
 }
 

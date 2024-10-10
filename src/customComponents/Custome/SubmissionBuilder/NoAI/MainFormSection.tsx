@@ -3,6 +3,28 @@ import React from 'react';
 export const renderMainFormSection = (content, styles, setActiveSection, flexDirect) => {
     const { mainform } = content;
     const inputs = mainform?.mainFormInputs || [] 
+    const renderDynamicInputs = () => {
+      return inputs.map((field: any, index: number) => (
+        <div key={index} className="form-group">
+          <label>
+            <span
+              style={{
+                color: field.textColor,
+                fontSize: field.fontSize,
+              }}
+            >
+              {field.text.charAt(0).toUpperCase() + field.text.slice(1)}
+            </span>
+            <input
+              type="text"
+              name={field.text}
+              disabled
+            />
+          </label>
+        </div>
+      ));
+    };
+  
     return (
       <div
         className="activism-platform-container"
@@ -39,29 +61,7 @@ export const renderMainFormSection = (content, styles, setActiveSection, flexDir
               {mainform.instructions.text}
             </p>
              <div className='dynamic-inputs' style={{flexDirection: flexDirect}}>
-             {
-                inputs.length > 0 ? inputs.map((element,index)=>{
-                return(  
-                <div key={index} className="form-group checkbox-group">
-                  <label>
-                    <span
-                      style={{
-                        color: mainform.tac.textColor,
-                        fontSize: mainform.tac.fontSize,
-                      }}
-                    >
-                      {element}
-                      <input
-                      type="text"
-                      name={element}
-                      disabled
-                    />
-                    </span>
-                  </label>
-                </div>
-                )
-                }) : null
-              }
+             {renderDynamicInputs()}
              </div>
             <div className="form-group checkbox-group">
               <label>

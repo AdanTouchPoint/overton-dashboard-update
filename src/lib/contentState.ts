@@ -34,7 +34,8 @@ export interface TextStyle {
     projectData: {
       title:'',
       description:'',
-      campaignType: ''
+      campaignType: '',
+      id:''
     },
     mainform: {
       title: {

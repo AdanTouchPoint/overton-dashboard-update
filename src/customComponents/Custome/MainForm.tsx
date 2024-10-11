@@ -1,17 +1,14 @@
-import React, {useReducer,FormEvent,useId,useEffect} from 'react';
-import { initialContentState, ContentState } from '../../lib/contentState';
-import { contentReducer, ContentAction } from '../../lib/contentReducer';
+import React, {FormEvent,useEffect} from 'react';
+
 import { useAuth } from 'payload/components/utilities';
 import { MainFormProps, ProjectData } from '../interfaces';
 import { postCampaignData } from '../../lib/requestsAPI';
 
 const baseClass = 'after-dashboard';
-const MainForm: React.FC<MainFormProps> = ({setProjectData,projectData,setErr,err,setActiveForm}) => {
+const MainForm: React.FC<MainFormProps> = ({content,dispatchContent,setErr,err,setActiveForm}) => {
 const  user = useAuth();
 const userId = user.user.id
-const [content, dispatchContent] = useReducer<
-React.Reducer<ContentState, ContentAction>
->(contentReducer, initialContentState);
+
 const verifyInputs = ( projectData ) => {
   if (
     !projectData?.campaignType?.trim() || 

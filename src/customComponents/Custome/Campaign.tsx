@@ -1,5 +1,4 @@
-import React, { useState,useEffect } from "react";
-import { useAuth } from "payload/components/utilities";
+import React, { useState,useReducer } from "react";
 import { DefaultTemplate } from "payload/components/templates";
 import MainForm from "./MainForm";
 import SubmissionBuilderForm from "./SubmissionBuilder/NoAI/SubmissionBuilderForm";
@@ -9,11 +8,16 @@ import Success from "./Success";
 import { ProjectData } from "../interfaces";
 import { Button } from "payload/components/elements";
 import './campaignList.css'
+import { initialContentState, ContentState } from '../../lib/contentState';
+import { contentReducer, ContentAction } from '../../lib/contentReducer';
 const baseClass = "after-dashboard";
 const Campaing: React.FC = () => {
   const [activeForm,setActiveForm] = useState('main')
   const [projectData, setProjectData] = useState<ProjectData>();
   const [err,setErr] = useState(false)
+  const [content, dispatchContent] = useReducer<
+  React.Reducer<ContentState, ContentAction>
+>(contentReducer, initialContentState);
   const modal = () => {
     const closemodal = () => {
       setErr(false)
@@ -33,19 +37,16 @@ const Campaing: React.FC = () => {
       <div className={baseClass}>
         {activeForm === 'main' &&(        
           <MainForm
-          projectData={projectData}
-          setProjectData={setProjectData}
           setActiveForm={setActiveForm}
           err={err}
           setErr={setErr}
+          content={content}
+          dispatchContent={dispatchContent}
         />) }
         { activeForm === 'SB' && (
           <SubmissionBuilderForm
-            projectData={projectData}
-            setProjectData={setProjectData}
-            err={err}
-            setErr={setErr}
-            setActiveForm={setActiveForm}
+            content={content}
+            dispatchContent={dispatchContent}
           />
         )}
 

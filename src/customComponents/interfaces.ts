@@ -29,18 +29,15 @@ export interface QuestionInputs {
   type: string
 }
 export interface MainFormProps {
-    projectData: ProjectData | undefined; 
-    setProjectData: Dispatch<SetStateAction<ProjectData>>;
     err: boolean;
     setErr: (value: boolean) => void;
     setActiveForm: (value: string) => void;
+    content,
+    dispatchContent;
   }
   export interface SBprops {
-    projectData: ProjectData | undefined; 
-    setProjectData: Dispatch<SetStateAction<ProjectData>>;
-    err:boolean;
-    setErr: (value: boolean) => void;
-    setActiveForm: (value: string) => void;
+    content,
+    dispatchContent
   }
   export interface APprops {
     projectData: ProjectData | undefined; 

@@ -38,7 +38,6 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
       );
       setSelectedOptions(existingFields);
     }
-    console.log(content);
   }, [activeSection, mainformContent]);
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -270,7 +269,7 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
     });
   };
   const deploy = (content) => {
-    console.log(JSON.stringify(content));
+    console.log(content);
   };
   return (
     <div className="content-editor">

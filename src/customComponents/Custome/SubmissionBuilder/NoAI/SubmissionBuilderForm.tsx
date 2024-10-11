@@ -1,7 +1,5 @@
 
-import React, { useReducer, useState, FormEvent,useEffect } from 'react';
-import { initialContentState, ContentState } from '../../../../lib/contentState';
-import { contentReducer, ContentAction } from '../../../../lib/contentReducer';
+import React, {  useState, FormEvent,useEffect } from 'react';
 import StyleEditor from '../../Editors/StyleEditor';
 import ContentEditor from '../../Editors/ContentEditor';
 import { SBprops, ProjectData } from '../../../interfaces';
@@ -14,10 +12,9 @@ import { renderEmailSection } from './EmailSection';
 import { renderTYSection } from './TYSection';
 type ActiveSection = 'mainform' | 'privacy' | 'questions' | 'email' | 'ty';
 const SubmissionBuilderForm: React.FC<SBprops> = ({
-  projectData,
-  setProjectData,
-  setErr,
-  setActiveForm
+
+  content, 
+  dispatchContent
 }) => {
   const [styles, setStyles] = useState({
     backgroundColor: '#2c3e50',
@@ -37,9 +34,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
   return flexD
   }, [styles]);
   const [activeSection, setActiveSection] = useState<ActiveSection>('mainform');
-  const [content, dispatchContent] = useReducer<
-    React.Reducer<ContentState, ContentAction>
-  >(contentReducer, initialContentState);
+
 
   const handleContentChange = (keys: string[], value: any) => {
     dispatchContent({
@@ -55,7 +50,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
     }));
   };
 
-  const handleOnChange = (event: FormEvent<HTMLInputElement>) => {
+/*  const handleOnChange = (event: FormEvent<HTMLInputElement>) => {
     const { name, value } = event.currentTarget;
     setProjectData((prevData) => ({
       ...prevData,
@@ -77,7 +72,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
       console.error('Error creating campaign:', error);
       setErr(error.message || 'An error occurred');
     }
-  };
+  };*/
   const renderSection = () => {
     switch (activeSection) {
       case 'mainform':

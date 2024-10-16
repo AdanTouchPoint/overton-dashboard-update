@@ -8,16 +8,13 @@ import Success from "./Success";
 import { ProjectData } from "../interfaces";
 import { Button } from "payload/components/elements";
 import './campaignList.css'
-import { initialContentState, ContentState } from '../../lib/contentState';
-import { contentReducer, ContentAction } from '../../lib/contentReducer';
+
 const baseClass = "after-dashboard";
 const Campaing: React.FC = () => {
   const [activeForm,setActiveForm] = useState('main')
   const [projectData, setProjectData] = useState<ProjectData>();
   const [err,setErr] = useState(false)
-  const [content, dispatchContent] = useReducer<
-  React.Reducer<ContentState, ContentAction>
->(contentReducer, initialContentState);
+
   const modal = () => {
     const closemodal = () => {
       setErr(false)
@@ -40,13 +37,12 @@ const Campaing: React.FC = () => {
           setActiveForm={setActiveForm}
           err={err}
           setErr={setErr}
-          content={content}
-          dispatchContent={dispatchContent}
+          projectData={projectData}
+          setProjectData={setProjectData}
         />) }
         { activeForm === 'SB' && (
           <SubmissionBuilderForm
-            content={content}
-            dispatchContent={dispatchContent}
+          projectData={projectData}
           />
         )}
 

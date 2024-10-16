@@ -29,7 +29,7 @@ export interface TextStyle {
     email: ViewContent;
     ty: ViewContent;
   }
-  export const initialContentState = {
+  export const initialContentStateSB = {
     clientId:'',
     projectData: {
       title:'',

@@ -3,6 +3,7 @@ import React from 'react';
 export const renderPrivacySection = (content, styles, setActiveSection) => {
     const { privacy } = content;
     //const data = privacy?.privacyOptions
+    console.log(content)
     return (
       <div
       className="activism-platform-container"

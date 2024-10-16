@@ -5,7 +5,7 @@ import { MainFormProps, ProjectData } from '../interfaces';
 import { postCampaignData } from '../../lib/requestsAPI';
 
 const baseClass = 'after-dashboard';
-const MainForm: React.FC<MainFormProps> = ({content,dispatchContent,setErr,err,setActiveForm}) => {
+const MainForm: React.FC<MainFormProps> = ({setErr,err,setActiveForm,projectData,setProjectData}) => {
 const  user = useAuth();
 const userId = user.user.id
 
@@ -21,30 +21,19 @@ const verifyInputs = ( projectData ) => {
   }
 
 }
-const path=['projectData']
-const handleDataChanges = (keys: string[], value: any) => {
-  dispatchContent({
-    type: 'UPDATE_CONTENT',
-    payload: { keys, value },
-  });
-}
-useEffect(() => {
-  const key=['clientId']
-  return handleDataChanges(key,userId)
-}, []);
-const existingData = content['projectData']
   const click = async () => {
   try {
-  const validate = await verifyInputs(existingData)
+  const validate = await verifyInputs(projectData)
   //añadir request para guardar en BD
-    const data = await postCampaignData(content)
+    const prepareData= { projectData, clientId: userId}
+    const data = await postCampaignData(prepareData)
     const id = await  data.data.id
     const payload = {
-      ...existingData,
+      ...projectData,
       id: id 
     }
-    handleDataChanges(path,payload)
-    setActiveForm(existingData.campaignType)
+    setProjectData(payload)
+    setActiveForm(projectData.campaignType)
     
 } catch (error) {
     throw new Error (error)
@@ -52,10 +41,10 @@ const existingData = content['projectData']
 }
 const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   const info : ProjectData = {
-    ...existingData,
+    ...projectData,
     [(event.target as HTMLInputElement).name]: (event.target as HTMLInputElement).value
   }
-  return handleDataChanges(path,info)
+  return setProjectData(info)
 } 
 	return (
 		<div className={baseClass}>

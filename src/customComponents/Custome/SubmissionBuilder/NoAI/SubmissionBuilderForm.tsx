@@ -1,21 +1,22 @@
 
-import React, {  useState, FormEvent,useEffect } from 'react';
+import React, { useReducer, useState, useEffect } from 'react';
 import StyleEditor from '../../Editors/StyleEditor';
 import ContentEditor from '../../Editors/ContentEditor';
 import { SBprops, ProjectData } from '../../../interfaces';
-import { createCampaign } from '../../../../lib/createCampaign';
 import "../../sb.css";
 import { renderMainFormSection } from './MainFormSection';
 import { renderPrivacySection } from './PrivacySection';
 import { renderQuestionsSection } from './QuestionsSection';
 import { renderEmailSection } from './EmailSection';
 import { renderTYSection } from './TYSection';
+import { initialContentStateSB, ContentState } from '../../../../lib/contentState';
+import { contentReducer, ContentAction } from '../../../../lib/contentReducer';
 type ActiveSection = 'mainform' | 'privacy' | 'questions' | 'email' | 'ty';
-const SubmissionBuilderForm: React.FC<SBprops> = ({
-
-  content, 
-  dispatchContent
+const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData
 }) => {
+  const [content, dispatchContent] = useReducer<
+  React.Reducer<ContentState, ContentAction>
+>(contentReducer, initialContentStateSB);
   const [styles, setStyles] = useState({
     backgroundColor: '#2c3e50',
     inputBackground: '#34495e',
@@ -25,17 +26,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
     borderRadius: '10px',
   });
   const [flexDirect,setFlexDirec] = useState<string>()
-  const responsiveViews = (size,setState) => {
-    if(size === '1200px') return setState('row')
-    if(size ==='800px' || size === '400px') return setState('column')
-  }
-  useEffect(() => {
-  const flexD = responsiveViews(styles.formWidth, setFlexDirec)
-  return flexD
-  }, [styles]);
   const [activeSection, setActiveSection] = useState<ActiveSection>('mainform');
-
-
   const handleContentChange = (keys: string[], value: any) => {
     dispatchContent({
       type: 'UPDATE_CONTENT',
@@ -49,6 +40,21 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
       [key]: value,
     }));
   };
+  const responsiveViews = (size,setState) => {
+    if(size === '1200px') return setState('row')
+    if(size ==='800px' || size === '400px') return setState('column')
+  }
+  useEffect(() => {
+  const flexD = responsiveViews(styles.formWidth, setFlexDirec)
+  return flexD
+  }, [styles]);
+
+  useEffect(() => {
+  const path=['projectData']
+  handleContentChange(path,projectData)
+},[projectData])
+
+
 
 /*  const handleOnChange = (event: FormEvent<HTMLInputElement>) => {
     const { name, value } = event.currentTarget;

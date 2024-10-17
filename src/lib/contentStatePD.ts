@@ -21,17 +21,14 @@ export interface TextStyle {
     state?:string;
   }
   
-  export interface ContentState {
+  export interface ContentStatePD {
     mainform: ViewContent;
     //mainFormInputs: inputOptions;
-    emailform?: ViewContent;
-    emailreview?: ViewContent
-    privacy?: ViewContent;
-    questions?: ViewContent;
-    email?: ViewContent;
+    emailform: ViewContent;
+    emailreview: ViewContent;
     ty: ViewContent;
   }
-  export const initialContentStateSB = {
+  export const initialContentStatePD = {
     clientId:'',
     projectData: {
       title:'',
@@ -62,49 +59,7 @@ export interface TextStyle {
       },
       button: '#ff0000', // Color del botón
     },
-    privacy: {
-      title: {
-        text: 'Título de privacidad',
-        textColor: '#ffffff',
-        fontSize: '16px',
-      },
-      privacyOptions: {
-        public: {
-          text: 'Título de privacidad',
-          textColor: '#ffffff',
-          fontSize: '16px', 
-        },
-        confidential: {
-          text: 'Título de privacidad',
-          textColor: '#ffffff',
-          fontSize: '16px', 
-        },
-        nameWithHeld: {
-          text: 'Título de privacidad',
-          textColor: '#ffffff',
-          fontSize: '16px', 
-        }
-      }
-    },
-    questions: {
-      title: {
-        text: 'Título de preguntas',
-        textColor: '#ffffff',
-        fontSize: '16px',
-      },
-      instructions: {
-        text: 'Instrucciones de preguntas',
-        textColor: '#ffffff',
-        fontSize: '16px',
-      },
-      questions:[{
-        text: 'question1',
-        textColor: '#ffffff',
-        fontSize: '16px',
-      }],
-      button: '#00ff00', // Color del botón
-    },
-    email: {
+    emailform: {
       title: {
         text: 'Título de email',
         textColor: '#ffffff',
@@ -117,6 +72,19 @@ export interface TextStyle {
       },
       button: '#0000ff', // Color del botón
     },
+    emailreview: {
+        title: {
+          text: 'Título de email',
+          textColor: '#ffffff',
+          fontSize: '16px',
+        },
+        instructions: {
+          text: 'Instrucciones de email',
+          textColor: '#ffffff',
+          fontSize: '16px',
+        },
+        button: '#0000ff', // Color del botón
+      },
     ty: {
       title: {
         text: 'Título de agradecimiento',

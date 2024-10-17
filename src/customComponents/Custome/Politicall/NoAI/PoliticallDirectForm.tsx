@@ -1,56 +1,114 @@
-import React, {FormEvent, useEffect} from 'react';
-import { useAuth } from 'payload/components/utilities';
-import { PDprops, ProjectData } from '../../../interfaces';
-import {createCampaign} from '../../../../lib/createCampaign' 
-const baseClass = 'after-dashboard';
-const PoliticallDirectForm: React.FC<PDprops> = ({projectData, setProjectData, setActiveForm, setErr,err}) => {
-const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
-  const info : ProjectData = {
-    ...projectData,
-    [(event.target as HTMLInputElement).name]: (event.target as HTMLInputElement).value
-  }
-  return setProjectData(info)
-}
-  const click = async () => {
-  const data = await  createCampaign(projectData,setErr,setProjectData)
-  if(data === true ){
-    setActiveForm('success')
-  }
-  }
-	return (
-	<div className={baseClass}>
-      <div className="gutter--left gutter--right collection-list__wrap">
-      <br/>
-        <p>
-        Politicall Direct Form
-        </p>
-       <span> 
-        <h3>Main Form</h3>
-        <div>title<input name='mftitle'  onChange={handleOnChange} type='text'></input></div>
-        <div>description<input name='mfdescription' onChange={handleOnChange} type='text'></input></div>
-        </span>
-        <span> 
-        <h3>email form</h3>
-        <div>title<input name='eftitle' onChange={handleOnChange} type='text'></input></div>
-        <div>description<input name='efdescription' onChange={handleOnChange} type='text'></input></div>
-        <div>instructions<input name='efinstructions' onChange={handleOnChange} type='text'></input></div>
-        </span>
-        <span> 
-        <h3>reviewEmail page</h3>
-        <div>title<input name='reptitle' onChange={handleOnChange} type='text'></input></div>
-        <div>instructions<input name='repinstructions' onChange={handleOnChange} type='text'></input></div>
-        </span>
-        <span> 
-        <h3>ThankYou Page</h3>
-        <div>title<input name='typtitle' onChange={handleOnChange} type='text'></input></div>
-        <div>description<input name='typdescription' onChange={handleOnChange} type='text'></input></div>
-        <div>instructions<input name='typinstructions' onChange={handleOnChange} type='text'></input></div>
-        </span>
-        <button onClick={click}>Create</button>
-      </div>
-	</div> 
 
-	);
+import React, { useReducer, useState, useEffect } from 'react';
+import StyleEditor from '../../Editors/StyleEditor';
+import ContentEditor from '../../Editors/ContentEditor';
+import { PDprops, ProjectData } from '../../../interfaces';
+import "../../sb.css";
+import { renderMainFormSection } from './MainFormSection';
+import { renderEmailSection } from './EmailFormSection';
+import { renderEmailReviewSection} from './EmailReviewSection'
+import { renderTYSection } from './TYSection';
+import { initialContentStatePD, ContentStatePD } from '../../../../lib/contentStatePD';
+import { contentReducerPD, ContentActionPD } from '../../../../lib/contentReducerPD';
+type ActiveSection = 'mainform' | 'emailform' | 'emailreview' | 'ty';
+const PoliticallDirectForm: React.FC<PDprops> = ({ projectData
+}) => {
+  const [content, dispatchContent] = useReducer<
+  React.Reducer<ContentStatePD, ContentActionPD>
+>(contentReducerPD, initialContentStatePD);
+  const [styles, setStyles] = useState({
+    backgroundColor: '#2c3e50',
+    inputBackground: '#34495e',
+    fontFamily: 'Arial, sans-serif',
+    formWidth: '400px',
+    formPadding: '30px',
+    borderRadius: '10px',
+  });
+  const [flexDirect,setFlexDirec] = useState<string>()
+  const [activeSection, setActiveSection] = useState<ActiveSection>('mainform');
+  const handleContentChange = (keys: string[], value: any) => {
+    dispatchContent({
+      type: 'UPDATE_CONTENT',
+      payload: { keys, value },
+    });
+  };
+
+  const handleStyleChange = (key: string, value: string) => {
+    setStyles((prevStyles) => ({
+      ...prevStyles,
+      [key]: value,
+    }));
+  };
+  const responsiveViews = (size,setState) => {
+    if(size === '1200px') return setState('row')
+    if(size ==='800px' || size === '400px') return setState('column')
+  }
+  useEffect(() => {
+  const flexD = responsiveViews(styles.formWidth, setFlexDirec)
+  return flexD
+  }, [styles]);
+
+  useEffect(() => {
+  const path=['projectData']
+  handleContentChange(path,projectData)
+},[projectData])
+
+
+
+/*  const handleOnChange = (event: FormEvent<HTMLInputElement>) => {
+    const { name, value } = event.currentTarget;
+    setProjectData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const click = async () => {
+    try {
+      const data = await createCampaign(
+        projectData,
+        setErr,
+        setProjectData
+      );
+      if (data === true) {
+        setActiveForm('success');
+      }
+    } catch (error: any) {
+      console.error('Error creating campaign:', error);
+      setErr(error.message || 'An error occurred');
+    }
+  };*/
+  const renderSection = () => {
+    switch (activeSection) {
+      case 'mainform':
+        return renderMainFormSection(content,styles,setActiveSection,flexDirect);
+      case 'emailform':
+        return renderEmailSection(content,styles,setActiveSection);
+      case 'emailreview':
+        return renderEmailReviewSection(content,styles,setActiveSection);
+      case 'ty':
+        return renderTYSection(content,styles,setActiveSection);
+      default:
+        return renderMainFormSection(content,styles,setActiveSection,flexDirect);
+    }
+  };
+
+  return (
+    <div className="main-flex-container">
+      <div className="style-editor-container">
+        <StyleEditor styles={styles} onStyleChange={handleStyleChange} />
+      </div>
+      <div className="content-editor-container">
+        <ContentEditor
+          content={content}
+          activeSection={activeSection}
+          onContentChange={handleContentChange}
+        />
+      </div>
+      <div className="preview-container">{renderSection()}</div>
+    </div>
+  )
 };
 
 export default PoliticallDirectForm;
+

@@ -49,19 +49,11 @@ const Campaing: React.FC = () => {
         { activeForm === 'PD' && (
           <PoliticallDirectForm
           projectData={projectData}
-          setProjectData={setProjectData}
-          err={err}
-          setErr={setErr}
-          setActiveForm={setActiveForm}
           />
         ) }
         { activeForm === 'AP' && (
           <AlertthePressForm
           projectData={projectData}
-          setProjectData={setProjectData}
-          err={err}
-          setErr={setErr}
-          setActiveForm={setActiveForm}
           />
         ) }
         { activeForm === 'success' && (

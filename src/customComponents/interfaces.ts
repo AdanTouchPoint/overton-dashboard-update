@@ -42,17 +42,11 @@ export interface MainFormProps {
   }
   export interface APprops {
     projectData: ProjectData | undefined; 
-    setProjectData: Dispatch<SetStateAction<ProjectData>>;
-    setActiveForm: (value: string) => void;
-    err: boolean;
-    setErr: (value: boolean) => void;
+
   }
   export interface PDprops {
     projectData: ProjectData | undefined; 
-    setProjectData: Dispatch<SetStateAction<ProjectData>>;
-    setActiveForm: (value: string) => void;
-    err: boolean;
-    setErr: (value: boolean) => void;
+
   }
   export interface SuccessProps {
     projectData: ProjectData | undefined; 

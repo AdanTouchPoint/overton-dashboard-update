@@ -4,18 +4,17 @@ import StyleEditor from '../../Editors/StyleEditor';
 import ContentEditor from '../../Editors/ContentEditor';
 import { PDprops, ProjectData } from '../../../interfaces';
 import "../../sb.css";
-import { renderMainFormSection } from './MainFormSection';
-import { renderEmailSection } from './EmailFormSection';
-import { renderEmailReviewSection} from './EmailReviewSection'
-import { renderTYSection } from './TYSection';
+import { renderMainFormSection } from '../../components base/MainFormSection';
+import { renderEmailSection } from '../../components base/EmailFormSection';
+import { renderEmailReviewSection} from '../../components base/EmailReviewSection'
+import { renderTYSection } from '../../components base/TYSection';
 import { initialContentStatePD, ContentStatePD } from '../../../../lib/contentStatePD';
 import { contentReducerPD, ContentActionPD } from '../../../../lib/contentReducerPD';
 type ActiveSection = 'mainform' | 'emailform' | 'emailreview' | 'ty';
+
 const PoliticallDirectForm: React.FC<PDprops> = ({ projectData
 }) => {
-  const [content, dispatchContent] = useReducer<
-  React.Reducer<ContentStatePD, ContentActionPD>
->(contentReducerPD, initialContentStatePD);
+  const [content, dispatchContent] = useReducer<React.Reducer<ContentStatePD, ContentActionPD>>(contentReducerPD, initialContentStatePD);
   const [styles, setStyles] = useState({
     backgroundColor: '#2c3e50',
     inputBackground: '#34495e',
@@ -32,7 +31,6 @@ const PoliticallDirectForm: React.FC<PDprops> = ({ projectData
       payload: { keys, value },
     });
   };
-
   const handleStyleChange = (key: string, value: string) => {
     setStyles((prevStyles) => ({
       ...prevStyles,
@@ -52,9 +50,6 @@ const PoliticallDirectForm: React.FC<PDprops> = ({ projectData
   const path=['projectData']
   handleContentChange(path,projectData)
 },[projectData])
-
-
-
 /*  const handleOnChange = (event: FormEvent<HTMLInputElement>) => {
     const { name, value } = event.currentTarget;
     setProjectData((prevData) => ({

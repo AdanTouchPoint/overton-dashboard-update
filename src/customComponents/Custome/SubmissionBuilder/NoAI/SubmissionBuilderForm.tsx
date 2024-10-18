@@ -5,18 +5,17 @@ import ContentEditor from '../../Editors/ContentEditor';
 import { SBprops, ProjectData } from '../../../interfaces';
 import "../../sb.css";
 import { renderMainFormSection } from './MainFormSection';
-import { renderPrivacySection } from './PrivacySection';
-import { renderQuestionsSection } from './QuestionsSection';
+import { renderPrivacySection } from '../../components base/PrivacySection';
+import { renderQuestionsSection } from '../../components base/QuestionsSection';
 import { renderEmailSection } from './EmailSection';
 import { renderTYSection } from './TYSection';
 import { initialContentStateSB, ContentState } from '../../../../lib/contentState';
 import { contentReducer, ContentAction } from '../../../../lib/contentReducer';
 type ActiveSection = 'mainform' | 'privacy' | 'questions' | 'email' | 'ty';
+
 const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData
 }) => {
-  const [content, dispatchContent] = useReducer<
-  React.Reducer<ContentState, ContentAction>
->(contentReducer, initialContentStateSB);
+  const [content, dispatchContent] = useReducer<React.Reducer<ContentState, ContentAction>>(contentReducer, initialContentStateSB);
   const [styles, setStyles] = useState({
     backgroundColor: '#2c3e50',
     inputBackground: '#34495e',
@@ -25,7 +24,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData
     formPadding: '30px',
     borderRadius: '10px',
   });
-  const [flexDirect,setFlexDirec] = useState<string>()
+  const [flexDirect,setFlexDirect] = useState<string>()
   const [activeSection, setActiveSection] = useState<ActiveSection>('mainform');
   const handleContentChange = (keys: string[], value: any) => {
     dispatchContent({
@@ -33,7 +32,6 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData
       payload: { keys, value },
     });
   };
-
   const handleStyleChange = (key: string, value: string) => {
     setStyles((prevStyles) => ({
       ...prevStyles,
@@ -45,17 +43,13 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData
     if(size ==='800px' || size === '400px') return setState('column')
   }
   useEffect(() => {
-  const flexD = responsiveViews(styles.formWidth, setFlexDirec)
+  const flexD = responsiveViews(styles.formWidth, setFlexDirect)
   return flexD
   }, [styles]);
-
   useEffect(() => {
   const path=['projectData']
   handleContentChange(path,projectData)
 },[projectData])
-
-
-
 /*  const handleOnChange = (event: FormEvent<HTMLInputElement>) => {
     const { name, value } = event.currentTarget;
     setProjectData((prevData) => ({

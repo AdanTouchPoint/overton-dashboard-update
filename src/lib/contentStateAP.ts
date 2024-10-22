@@ -28,7 +28,7 @@ export interface TextStyle {
     emailreview: ViewContent;
     ty: ViewContent;
   }
-  export const initialContentStatePD = {
+  export const initialContentStateAP = {
     clientId:'',
     projectData: {
       title:'',

@@ -50,29 +50,6 @@ const PoliticallDirectForm: React.FC<PDprops> = ({ projectData
   const path=['projectData']
   handleContentChange(path,projectData)
 },[projectData])
-/*  const handleOnChange = (event: FormEvent<HTMLInputElement>) => {
-    const { name, value } = event.currentTarget;
-    setProjectData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const click = async () => {
-    try {
-      const data = await createCampaign(
-        projectData,
-        setErr,
-        setProjectData
-      );
-      if (data === true) {
-        setActiveForm('success');
-      }
-    } catch (error: any) {
-      console.error('Error creating campaign:', error);
-      setErr(error.message || 'An error occurred');
-    }
-  };*/
   const renderSection = () => {
     switch (activeSection) {
       case 'mainform':

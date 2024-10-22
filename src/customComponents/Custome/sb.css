@@ -1,6 +1,111 @@
 /* SubmissionBuilderForm.css */
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
 
+/* mainform styles */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.section-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.option {
+  margin-bottom: 10px;
+}
+
+.option label {
+  display: flex;
+  align-items: center;
+}
+
+.option input {
+  margin-right: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.submit-button {
+  background-color: #0070f3;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #005bb5;
+}
+
+.campaign-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-direction: row;
+}
+
+.campaign-card {
+  width: 82%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.campaign-card input[type="checkbox"] {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transform: scale(1.5);
+  z-index: 1;
+}
+
+.campaign-card label {
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.campaign-card img {
+  width: 100%;
+  height: auto;
+}
+
+.campaign-card h3 {
+  margin: 10px 0 5px;
+  font-size: 1.2em;
+}
+
+.campaign-card p {
+  font-size: 0.95em;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .campaign-card {
+    width: 100%;
+  }
+}
 
 /* Estilos generales */
 body {

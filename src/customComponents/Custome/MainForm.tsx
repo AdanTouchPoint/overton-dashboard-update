@@ -1,8 +1,12 @@
 import React, {FormEvent,useEffect} from 'react';
-
+import "./sb.css"
 import { useAuth } from 'payload/components/utilities';
 import { MainFormProps, ProjectData } from '../interfaces';
 import { postCampaignData } from '../../lib/requestsAPI';
+import sbImage from '../assets/SBImage.png'
+import pdImage from '../assets/PDImage.png'
+import apImage from '../assets/APImage.png'
+
 
 const baseClass = 'after-dashboard';
 const MainForm: React.FC<MainFormProps> = ({setErr,err,setActiveForm,projectData,setProjectData}) => {
@@ -47,33 +51,61 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
   return setProjectData(info)
 } 
 	return (
-		<div className={baseClass}>
-      <div className="gutter--left gutter--right collection-list__wrap">
-      <br/>
-      <p>
-        Choose Campaing Type:
-        </p>
-        <div>option 1<input onChange={handleOnChange} name='campaignType' value={'SB'} type='checkbox'></input></div>
-        <div>option 2<input onChange={handleOnChange} name='campaignType' value={'PD'} type='checkbox'></input></div>
-        <div>option 3<input onChange={handleOnChange} name='campaignType' value={'AP'} type='checkbox'></input></div>
-      <p>
-        Campaing Info
-      </p>
-      <div>
-        <label>Name:</label>
-        <input name='repo' onChange={handleOnChange} type="text" />
+<div className={baseClass}>
+  <div className="gutter--left gutter--right collection-list__wrap form-container">
+    <br />
+    <p className="section-title">Choose Campaign Type:</p>
+    <div className="campaign-options">
+      <div className="campaign-card">
+        <input
+          onChange={handleOnChange}
+          name="campaignType"
+          value="SB"
+          type="checkbox"
+          id="campaign-sb"
+        />
+        <label htmlFor="campaign-sb">
+          <img src={sbImage} alt="Option 1 Image" />
+          <h3>Option 1</h3>
+          <p>Brief description of Option 1.</p>
+        </label>
       </div>
-      <div>
-        <label>Description:</label>
-        <input name='description' onChange={handleOnChange} type="text" />
+
+      <div className="campaign-card">
+        <input
+          onChange={handleOnChange}
+          name="campaignType"
+          value="PD"
+          type="checkbox"
+          id="campaign-pd"
+        />
+        <label htmlFor="campaign-pd">
+          <img src={pdImage} alt="Option 2 Image" />
+          <h3>Option 2</h3>
+          <p>Brief description of Option 2.</p>
+        </label>
       </div>
-      <div>
-        <label>Title:</label>
-        <input name='title' onChange={handleOnChange} type="text" />
+
+      <div className="campaign-card">
+        <input
+          onChange={handleOnChange}
+          name="campaignType"
+          value="AP"
+          type="checkbox"
+          id="campaign-ap"
+        />
+        <label htmlFor="campaign-ap">
+          <img src={apImage} alt="Option 3 Image" />
+          <h3>Option 3</h3>
+          <p>Brief description of Option 3.</p>
+        </label>
       </div>
-      <button onClick={click}>Next</button>
-      </div>
-		</div> 
+    </div>
+
+  </div>
+</div>
+
+  
 	);
 };
 

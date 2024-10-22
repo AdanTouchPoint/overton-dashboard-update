@@ -56,6 +56,7 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
     <br />
     <p className="section-title">Choose Campaign Type:</p>
     <div className="campaign-options">
+      {/* Tarjeta 1 */}
       <div className="campaign-card">
         <input
           onChange={handleOnChange}
@@ -67,10 +68,10 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
         <label htmlFor="campaign-sb">
           <img src={sbImage} alt="Option 1 Image" />
           <h3>Option 1</h3>
-          <p>Brief description of Option 1.</p>
+          <p>Breve descripción de la Opción 1.</p>
         </label>
       </div>
-
+      {/* Tarjeta 2 */}
       <div className="campaign-card">
         <input
           onChange={handleOnChange}
@@ -82,10 +83,10 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
         <label htmlFor="campaign-pd">
           <img src={pdImage} alt="Option 2 Image" />
           <h3>Option 2</h3>
-          <p>Brief description of Option 2.</p>
+          <p>Breve descripción de la Opción 2.</p>
         </label>
       </div>
-
+      {/* Tarjeta 3 */}
       <div className="campaign-card">
         <input
           onChange={handleOnChange}
@@ -97,13 +98,31 @@ const handleOnChange = (event: FormEvent<HTMLInputElement>)  => {
         <label htmlFor="campaign-ap">
           <img src={apImage} alt="Option 3 Image" />
           <h3>Option 3</h3>
-          <p>Brief description of Option 3.</p>
+          <p>Breve descripción de la Opción 3.</p>
         </label>
       </div>
     </div>
 
+    {/* Resto del formulario */}
+    <p className="section-title">Campaign Info</p>
+    <div className="form-group">
+      <label>Name:</label>
+      <input name="repo" onChange={handleOnChange} type="text" />
+    </div>
+    <div className="form-group">
+      <label>Description:</label>
+      <input name="description" onChange={handleOnChange} type="text" />
+    </div>
+    <div className="form-group">
+      <label>Title:</label>
+      <input name="title" onChange={handleOnChange} type="text" />
+    </div>
+    <button onClick={click} className="submit-button">
+      Next
+    </button>
   </div>
 </div>
+
 
   
 	);

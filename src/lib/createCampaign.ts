@@ -26,17 +26,7 @@ const createCampaign  = async (projectData: ProjectData, setErr,setProjectData) 
     return false;
   }
 }
-/*const hideForms = (projectData: ProjectData, setHideSB,setHideAP,setHidePD) => {
-  if(projectData.campaignType === 'SB'){
-    setHideSB(true) 
-  }
-  if(projectData.campaignType === 'AP')  {
-    setHideAP(true) 
-  }
-  if(projectData.campaignType === 'PD')  {
-    setHidePD(true) 
-  }  
-}*/
+
 const statusValidator = (status,code,message,setErr) : void => {
   if (status !== code ) {
     setErr(true)

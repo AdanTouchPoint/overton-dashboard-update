@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ContentState } from "../../../lib/contentState";
 import "../sb.css";
 import { PlusCircle, MinusCircle } from "lucide-react";
-
+import  {deployProject} from '../../../lib/requestsAPI'
 interface ContentEditorProps {
   content: ContentState;
   activeSection: string;
@@ -268,8 +268,14 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
       }
     });
   };
-  const deploy = (content) => {
-    console.log(content);
+  const deploy = async (content) => {
+try {
+  console.log(content);
+  const deploy = await deployProject(content)
+} catch (error) {
+  throw new Error("Something goes wrong!");
+  
+}
   };
   return (
     <div className="content-editor">

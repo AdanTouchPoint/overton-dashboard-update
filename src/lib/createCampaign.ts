@@ -1,35 +1,26 @@
 import { createGhRepo, setPermissions, CreateRepoLabel } from "./gitHubRequests";
 import { createProject, deployProject } from "./vercelRequests";
 import { ProjectData } from "../customComponents/interfaces";
-import { hideForms } from "./hideComponents";
-const createCampaign  = async (projectData: ProjectData, setErr,setProjectData) => {
+const createCampaign  = async (projectData: ProjectData) => {
   try {
   const GHRepo = await createGhRepo(projectData)
-  statusValidator(GHRepo.status, 201,'Error al crear  el repositorio , por favor verifica los datos',setErr)
+  statusValidator(GHRepo.status, 201,'Error al crear  el repositorio , por favor verifica los datos')
   const requestdata = await GHRepo.json()
   const {name,fullName, id } = requestdata
-  setProjectData({
-    ...projectData,
-    name: name
-  })
   const writePermisions = await setPermissions(name)
-  statusValidator(writePermisions.status, 204,`Error al modificar los permisos en el repositorio por favor verifica tus datos`,setErr)
+  statusValidator(writePermisions.status, 204,`Error al modificar los permisos en el repositorio por favor verifica tus datos`)
   const vercelRequest = await createProject(projectData,name)
- statusValidator(vercelRequest.status,200,'Error al crear un proyecto en vercel por favor verifica tus datos',setErr)
+  statusValidator(vercelRequest.status,200,'Error al crear un proyecto en vercel por favor verifica tus datos')
   const deploy = await deployProject(fullName , id, name)
-  statusValidator(deploy.status,200,'Error al desplegar el proyecto por favor verifica tus datos',setErr)
-  //hideForms(projectData, setHideSB,setHideAP,setHidePD,true)
+  statusValidator(deploy.status,200,'Error al desplegar el proyecto por favor verifica tus datos')
   return true
   } catch (error) {
     console.error('Oops! Algo salio mal:', error.message);
-    setErr(error.message || 'Ha ocurrido un error inesperado');
     return false;
   }
 }
-
-const statusValidator = (status,code,message,setErr) : void => {
+const statusValidator = (status,code,message) : void => {
   if (status !== code ) {
-    setErr(true)
     throw new Error(message);
   }
 }

@@ -5,6 +5,7 @@ import dashBoardContent from './routes/dashBoardContent';
 import dashboardServices from './routes/dashboardServices';
 require('dotenv').config();
 const app = express();
+app.use(express.json())
 const port = process.env.PORT || 8080
 // Redirect root to Admin panel
 app.get('/', (_, res) => {

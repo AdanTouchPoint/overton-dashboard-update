@@ -54,10 +54,10 @@ async function deployProject(projectData) {
     }
     const requestOptions = {
         method: "POST",
-        body : projectData,
         headers: {
-        "Content-Type": "application/json",
-    },
+            "Content-Type": "application/json" // Añadir encabezado Content-Type
+        },
+        body: stringifyData
     }
     const request = await fetch(`${petition.backendURLBase}${petition.endpoint}`,requestOptions)
     return request

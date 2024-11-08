@@ -1,9 +1,12 @@
 import { Router } from "express";
+import { createCampaign } from "../controllers/campaigns";
 const router = Router();
 router.post("/deploy-project", async (req, res) => {
     try {
         console.log(req.body)
-        res.status(200).json({ status: 'OK' });
+        const projectData = req.body
+        const data = await createCampaign(projectData)
+        res.status(200).json({ data: data });
     } catch (error) {
       res.status(400);
       res.json({
@@ -12,8 +15,9 @@ router.post("/deploy-project", async (req, res) => {
       });
     }
   });  
-  router.get('/deployment-status/:deploymentId', async (req, res) => {
-    const { deploymentId } = req.params;
+  router.get('/deployment-status/:deployId', async (req, res) => {
+    const { deployId } = req.params;
+    console.log(deployId)
       try {
        /* const statusResponse = await axios.get(`https://api.vercel.com/v13/deployments/${deploymentId}`, {
             headers: { Authorization: `Bearer ${process.env.VERCEL_TOKEN}` }

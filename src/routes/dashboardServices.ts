@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createCampaign } from "../controllers/campaigns";
+import { createCampaign } from "../lib/createCampaign";
 const router = Router();
 router.post("/deploy-project", async (req, res) => {
     try {

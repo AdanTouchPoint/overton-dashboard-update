@@ -1,13 +1,14 @@
 import { response } from "express";
 import { ProjectData } from "../customComponents/interfaces";
 import { validatestring } from "./misc";
-const token = process.env.REACT_APP_VERCEL_TOKEN;
-const createProject = async (projectData: ProjectData,name: string) => {
+const token = process.env.VERCEL_TOKEN;
+const createProject = async (projectData,name: string) => {
     try {
         const myHeaders: Headers = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Authorization", token);
-        const {repo,description,content,title,clientId} = projectData
+        const data = projectData.projectData
+        const {repo,description,content,title,clientId} = data
         const raw: string = JSON.stringify({
             "name": name.toLowerCase(),
             "framework": "nextjs",

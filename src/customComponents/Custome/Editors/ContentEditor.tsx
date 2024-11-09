@@ -3,6 +3,8 @@ import { ContentState } from "../../../lib/contentState";
 import "../sb.css";
 import { PlusCircle, MinusCircle } from "lucide-react";
 import  {deployProject} from '../../../lib/requestsAPI'
+import { useAuth } from "payload/components/utilities";
+
 interface ContentEditorProps {
   content: ContentState;
   activeSection: string;
@@ -14,9 +16,10 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
   activeSection,
   onContentChange,
 }) => {
+  const user = useAuth();
+const userId = user.user.id;
   // Acceder al contenido de la sección 'mainform'
   const mainformContent = content["mainform"];
-
   // Estado para rastrear las opciones seleccionadas en 'mainform'
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [questionsValue, setQuestionsValue] = useState("");
@@ -43,6 +46,11 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(event.target.value);
   };
+  useEffect(() => {
+    const path = ['clientId'];
+    const clientId = userId
+    onContentChange(path,clientId)
+  }, []);
   const handleAddField = () => {
     if (selectedValue) {
       // Obtener los campos existentes en 'mainFormInputs'
@@ -224,7 +232,6 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
   const renderContent = (contentObj: any, parentKeys: string[] = []) => {
     return Object.entries(contentObj).map(([key, value]) => {
       const currentKeys = [...parentKeys, key];
-
       if (
         typeof value === "object" &&
         value !== null &&

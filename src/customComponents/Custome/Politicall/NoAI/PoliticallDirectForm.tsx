@@ -83,4 +83,3 @@ const PoliticallDirectForm: React.FC<PDprops> = ({ projectData
 };
 
 export default PoliticallDirectForm;
-

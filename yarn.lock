@@ -4811,10 +4811,6 @@
   "resolved" "https://registry.npmjs.org/node-releases/-/node-releases-2.0.14.tgz"
   "version" "2.0.14"
 
-"nodemailer@6.9.8":
-  "integrity" "sha512-cfrYUk16e67Ks051i4CntM9kshRYei1/o/Gi8K1d+R34OIs21xdFnW7Pt7EucmVKA0LKtqUGNcjMZ7ehjl49mQ=="
-  "resolved" "https://registry.npmjs.org/nodemailer/-/nodemailer-6.9.8.tgz"
-  "version" "6.9.8"
 
 "nodemon@^2.0.6":
   "integrity" "sha512-B8YqaKMmyuCO7BowF1Z1/mkPqLk6cs/l63Ojtd6otKjMx47Dq1utxfRxcavH1I7VSaL8n5BUaoutadnsX3AAVQ=="

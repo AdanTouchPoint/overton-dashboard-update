@@ -39,6 +39,7 @@ const MainForm: React.FC<MainFormProps> = ({
       const payload = {
         ...projectData,
         id: id,
+        clientId: userId
       };
       setProjectData(payload);
       setActiveForm(projectData.campaignType);

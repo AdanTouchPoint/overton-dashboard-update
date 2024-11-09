@@ -1,14 +1,16 @@
 import { ProjectData } from "../customComponents/interfaces";
 import repoSelector from "./gitHubLinks";
-const token = process.env.REACT_APP_GH_TOKEN;
-const createGhRepo = async (projectData: ProjectData) => {
+const token = process.env.GH_TOKEN;
+const createGhRepo = async (projectData) => {
   try {
     const myHeaders: Headers = new Headers();
     myHeaders.append("X-GitHub-Api-Version", "2022-11-28");
     myHeaders.append("accept", "application/vnd.github+json");
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", token);
-    const { repo, description, campaignType } = projectData;
+    console.log(projectData.projectData)
+    const data = projectData.projectData
+    const { repo, description, campaignType } = data;
     const raw: string = JSON.stringify({
       name: repo,
       description: description,
@@ -23,6 +25,7 @@ const createGhRepo = async (projectData: ProjectData) => {
       redirect: "follow",
     };
     const response = await fetch(repoSelector(campaignType), requestOptions);
+    console.log(response)
     return response;
   } catch (error) {
     throw new Error(error.message);

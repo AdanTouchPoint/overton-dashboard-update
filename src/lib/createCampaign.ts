@@ -13,7 +13,7 @@ const createCampaign  = async (projectData: ProjectData) => {
   statusValidator(vercelRequest.status,200,'Error al crear un proyecto en vercel por favor verifica tus datos')
   const deploy = await deployProject(fullName , id, name)
   statusValidator(deploy.status,200,'Error al desplegar el proyecto por favor verifica tus datos')
-  return true
+  return deploy
   } catch (error) {
     console.error('Oops! Algo salio mal:', error.message);
     return false;
@@ -23,6 +23,9 @@ const statusValidator = (status,code,message) : void => {
   if (status !== code ) {
     throw new Error(message);
   }
+}
+const getDeployId= () => {
+  
 }
 function prepareData(params:ProjectData) {
   const {

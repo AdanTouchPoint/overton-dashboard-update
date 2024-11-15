@@ -11,7 +11,7 @@ import { renderTYSection } from '../../components base/TYSection';
 import { initialContentStateAP, ContentStateAP} from '../../../../lib/contentStateAP';
 import { contentReducerAP, ContentActionAP } from '../../../../lib/contentReducerAP';
 type ActiveSection = 'mainform' | 'emailform' | 'emailreview' | 'ty';
-const AlertthePressForm: React.FC<APprops> = ({ projectData
+const AlertthePressForm: React.FC<APprops> = ({ projectData, setActiveForm
 }) => {
   const [content, dispatchContent] = useReducer<React.Reducer<ContentStateAP, ContentActionAP>>(contentReducerAP, initialContentStateAP);
   const [styles, setStyles] = useState({
@@ -94,6 +94,7 @@ const AlertthePressForm: React.FC<APprops> = ({ projectData
       </div>
       <div className="content-editor-container">
         <ContentEditor
+          setActiveForm={setActiveForm}
           content={content}
           activeSection={activeSection}
           onContentChange={handleContentChange}

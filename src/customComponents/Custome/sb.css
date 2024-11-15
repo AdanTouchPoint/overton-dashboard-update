@@ -19,7 +19,7 @@
   overflow: hidden;
   position: relative;
   transition: transform 0.2s;
-  width: 600px
+  /*width: 600px*/
 }
 .ctype {
   margin: 150px

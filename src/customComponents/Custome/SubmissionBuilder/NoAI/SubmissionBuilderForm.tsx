@@ -13,7 +13,7 @@ import { initialContentStateSB, ContentState } from '../../../../lib/contentStat
 import { contentReducer, ContentAction } from '../../../../lib/contentReducer';
 type ActiveSection = 'mainform' | 'privacy' | 'questions' | 'email' | 'ty';
 
-const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData
+const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData, setActiveForm
 }) => {
   const [content, dispatchContent] = useReducer<React.Reducer<ContentState, ContentAction>>(contentReducer, initialContentStateSB);
   const [styles, setStyles] = useState({
@@ -97,6 +97,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData
       </div>
       <div className="content-editor-container">
         <ContentEditor
+          setActiveForm= {setActiveForm}
           content={content}
           activeSection={activeSection}
           onContentChange={handleContentChange}

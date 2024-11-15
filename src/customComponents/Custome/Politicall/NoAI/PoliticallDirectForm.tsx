@@ -12,7 +12,7 @@ import { initialContentStatePD, ContentStatePD } from '../../../../lib/contentSt
 import { contentReducerPD, ContentActionPD } from '../../../../lib/contentReducerPD';
 type ActiveSection = 'mainform' | 'emailform' | 'emailreview' | 'ty';
 
-const PoliticallDirectForm: React.FC<PDprops> = ({ projectData
+const PoliticallDirectForm: React.FC<PDprops> = ({ projectData, setActiveForm
 }) => {
   const [content, dispatchContent] = useReducer<React.Reducer<ContentStatePD, ContentActionPD>>(contentReducerPD, initialContentStatePD);
   const [styles, setStyles] = useState({
@@ -72,6 +72,7 @@ const PoliticallDirectForm: React.FC<PDprops> = ({ projectData
       </div>
       <div className="content-editor-container">
         <ContentEditor
+          setActiveForm={setActiveForm}
           content={content}
           activeSection={activeSection}
           onContentChange={handleContentChange}

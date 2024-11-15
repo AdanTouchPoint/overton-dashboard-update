@@ -4,14 +4,17 @@ import "../sb.css";
 import { PlusCircle, MinusCircle } from "lucide-react";
 import  {deployProject} from '../../../lib/requestsAPI'
 import { useAuth } from "payload/components/utilities";
+import { getProjectInfo } from "../../../lib/vercelRequests";
 
 interface ContentEditorProps {
+  setActiveForm: (value: string) => void;
   content: ContentState;
   activeSection: string;
   onContentChange: (keys: string[], value: any) => void;
 }
 
 const ContentEditor: React.FC<ContentEditorProps> = ({
+  setActiveForm,
   content,
   activeSection,
   onContentChange,
@@ -277,8 +280,20 @@ const userId = user.user.id;
   };
   const deploy = async (content) => {
 try {
-  console.log(content);
+  
   const deploy = await deployProject(content)
+  console.log(deploy);
+  setActiveForm('success')
+  //const getDeployInfo = getProjectInfo('projectName')
+  /*deploy ok ? 
+ 
+
+  take deployID and request to vercel to check status 
+  when deploy is ready :
+  1 show url deploy
+  2 save in db  allData
+  
+  */
 } catch (error) {
   throw new Error("Something goes wrong!");
   

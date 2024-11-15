@@ -38,15 +38,16 @@ export interface MainFormProps {
   }
   export interface SBprops {
     projectData: ProjectData | undefined; 
-
+    setActiveForm: (value: string) => void;
   }
   export interface APprops {
-    projectData: ProjectData | undefined; 
+    projectData: ProjectData | undefined;
+    setActiveForm: (value: string) => void;
 
   }
   export interface PDprops {
     projectData: ProjectData | undefined; 
-
+    setActiveForm: (value: string) => void;
   }
   export interface SuccessProps {
     projectData: ProjectData | undefined; 

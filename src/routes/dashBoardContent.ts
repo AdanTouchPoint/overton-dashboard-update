@@ -1,7 +1,6 @@
 import { Router } from "express";
 const router = Router();
-import payload from "payload";
-import {createCampaign, updateCampaign, getAllCampaigns} from '../controllers/campaigns'
+import {createCampaign, updateCampaign, getAllCampaigns, getCampaignById} from '../controllers/campaigns'
 import { ParsedQs } from 'qs'
 router.post("/campaign", async (req, res) => {
     try {
@@ -53,6 +52,25 @@ router.post("/campaign", async (req, res) => {
       res.json({
         success: true,
         message: "campaign update done",
+        data
+      });
+    } catch (error) {
+      res.status(400);
+      res.json({
+        success: false,
+        message: error.message,
+      });
+    }
+  });
+  router.get("/campaignContentId", async (req, res) => {
+    try {
+      const query = req.query;
+      console.log(query)
+      //const objReady = await JSON.parse(query.info)
+      const data = await getCampaignById(query)
+      res.json({
+        success: true,
+        message: "campaign found",
         data
       });
     } catch (error) {

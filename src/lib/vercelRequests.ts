@@ -1,6 +1,4 @@
-import { response } from "express";
-import { ProjectData } from "../customComponents/interfaces";
-import { validatestring } from "./misc";
+
 const token = process.env.VERCEL_TOKEN;
 const createProject = async (projectData,name: string) => {
     try {
@@ -8,7 +6,7 @@ const createProject = async (projectData,name: string) => {
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Authorization", token);
         const data = projectData.projectData
-        const {repo,description,content,title,clientId} = data
+        const {repo,description,content,title,clientId,id} = data
         const raw: string = JSON.stringify({
             "name": name.toLowerCase(),
             "framework": "nextjs",
@@ -17,6 +15,12 @@ const createProject = async (projectData,name: string) => {
               "repo": `AdanTouchpoint/${name}`
             },
             "environmentVariables": [
+                {
+                  "key": "NEXT_PUBLIC_CAMPAING_ID",
+                  "target": "production",
+                  "type": "plain",
+                  "value": id
+                },
                 {
                   "key": "NEXT_PUBLIC_PAGE_CONTENT",
                   "target": "production",
@@ -45,7 +49,7 @@ const createProject = async (projectData,name: string) => {
                   "key": "NEXT_PUBLIC_CLIENT_ID",
                   "target": "production",
                   "type": "plain",
-                  "value": "63eeadb6349fdc3da0069046"
+                  "value": clientId
                 },
                 {
                   "key": "NEXT_PUBLIC_URL",

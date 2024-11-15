@@ -34,15 +34,31 @@ export const getAllCampaigns = async (query) => {
       },
     },
   };
-
   // Ejecutar consultas en paralelo
   const [SB, AP, PD] = await Promise.all([
     payload.find({ ...findOptions, collection: "SB" }),
     payload.find({ ...findOptions, collection: "AP" }),
     payload.find({ ...findOptions, collection: "PD" }),
   ]);
-
   return { SB, AP, PD };
 };
+export const getCampaignById= async(query) => {
+  const data = await payload.find({
+    collection: `${query.campaignType}`, // change to campaignType for dynamic search
+    overrideAccess: true,
+    where:{
+      clientId: {
+        equals: query.clientId,
+      },
+      and: [
+        {
+          id: {
+            equals: query.id,
+          },
+        },
+      ],
+    }
+  });
+}
 
 

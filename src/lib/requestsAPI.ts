@@ -25,14 +25,22 @@ async function postCampaignData (projectData) {
 // añadir update request
 
 async function updateCampaignData (projectData) {
+    const readyData = await JSON.stringify(projectData)
     const petition = {
         backendURLBase : process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:8080',
-        endpoint: "/dashBoardContent/campaign",
+        endpoint: "/dashBoardContent/updateCampaign",
         method: "PUT",
     }
-    const objPrepare = await prepareData(projectData)
-    const readyData = await JSON.stringify(objPrepare)
-    const request = await fetchData(petition.method,petition.backendURLBase,petition.endpoint,readyData)
+    const requestOptions = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json" // Añadir encabezado Content-Type
+        },
+        body: readyData
+    }
+    console.log(readyData)
+    //onst objPrepare = await prepareData(projectData)
+    const request = await fetch(`${petition.method,petition.backendURLBase,petition.endpoint}`,requestOptions)
     console.log(request)
 }
 async function getCampaigns (clientId) {

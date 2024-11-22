@@ -16,7 +16,7 @@ export async function updateCampaign (query){
     overrideAccess: true,
     where: {
       id: {
-        equals: query.id,// cambiar a campaign id
+        equals: query.projectData.id // cambiar a campaign id
       },
     },
   });

@@ -20,9 +20,18 @@ export interface TextStyle {
     email?: string;
     state?:string;
   }
+  export interface styleProps {
+    backgroundColor: string;
+    borderRadius: string;
+    fontFamily: string;
+    formPadding: string;
+    formWidth: string;
+    inputBackground: string;
+  }
   
   export interface ContentState {
     mainform: ViewContent;
+    style: styleProps;
     //mainFormInputs: inputOptions;
     emailform?: ViewContent;
     emailreview?: ViewContent
@@ -38,6 +47,14 @@ export interface TextStyle {
       description:'',
       campaignType: '',
       id:''
+    },
+    style:{
+      backgroundColor:"#2c3e50",
+      borderRadius: "10px",
+      fontFamily:"Arial, sans-serif",
+      formPadding: "30px",
+      formWidth: "400px",
+      inputBackground:"#34495e"
     },
     mainform: {
       title: {

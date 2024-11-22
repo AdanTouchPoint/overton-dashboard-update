@@ -33,6 +33,70 @@ const AlertThePress: CollectionConfig = {
   delete: isAdminOrSelf,
   },
   fields: [
+    {
+      type: "group",
+        name: "projectData",
+        label: { es: "datos de proyecto", en: "Project Data" },
+        fields: [
+          {
+            label: "title",
+            name: "title",
+            type:"text"
+          },
+          {
+            label: "repo",
+            name: "repo",
+            type:"text"
+          },
+          {
+            label: "description",
+            name: "description",
+            type:"text"
+          },
+          {
+            label: "campaign type",
+            name: "campaignType",
+            type:"text"
+          },
+          {
+            label: "campaign URL",
+            name: "homepage",
+            type:"text"
+          },
+          {
+            label: "clientId",
+            name: "clientId",
+            type:"text"
+          },
+        ]
+    },
+    {
+      type: "group",
+        name: "style",
+        label: { es: "estilos del formulario", en: "form styles" },
+        fields: [
+          {
+            label: "backgroundColor",
+            name: "backgroundColor",
+            type:"text"
+          },
+          {
+            label: "inputBackground",
+            name: "inputBackground",
+            type:"text"
+          },
+          {
+            label: "fontFamily",
+            name: "fontFamily",
+            type:"text"
+          },
+          {
+            label: "borderRadius",
+            name: "borderRadius",
+            type:"text"
+          },
+        ]
+    },
       {
           type: "group",
           name: "mainform",
@@ -40,15 +104,47 @@ const AlertThePress: CollectionConfig = {
           fields: [
             {
               label: { es: "Titulo Principal", en: "Main Title" },
-              name: "mainTitle", 
-              type: "text", 
+              name: "title", // required
+              type: "group", // required
+              fields:[{
+                label: "text",
+                name: "text",
+                type:"text"
+              },
+              {
+                label: "fontSize",
+                name: "fontSize",
+                type:"text"
+              },
+              {
+                label: "textColor",
+                name: "textColor",
+                type:"text"
+              },
+            ]
             },
 
             {
               label: { es: "Instrucciones", en: "Instructions" },
-              name: "instructions", 
-              type: "text", 
-              
+              name: "instructions", // required
+              type: "group", // required
+              fields:[
+                {
+                  label: "text",
+                  name: "text",
+                  type:"text"
+                },
+                {
+                  label: "fontSize",
+                  name: "fontSize",
+                  type:"text"
+                },
+                {
+                  label: "textColor",
+                  name: "textColor",
+                  type:"text"
+                },   
+              ]
             },
           ],
       },
@@ -58,27 +154,71 @@ const AlertThePress: CollectionConfig = {
           label: { es: "Formulario de email", en: "Email Form" },
           fields: [
             {
-              type: "row",
-              fields: [
+              label: { es: "Titulo Principal", en: "Main Title" },
+              name: "title", // required
+              type: "group", // required
+              fields:[{
+                label: "text",
+                name: "text",
+                type:"text"
+              },
+              {
+                label: "fontSize",
+                name: "fontSize",
+                type:"text"
+              },
+              {
+                label: "textColor",
+                name: "textColor",
+                type:"text"
+              },
+            ]
+            },
+            {
+              label: { es: "Instrucciones", en: "Instructions" },
+              name: "instructions", // required
+              type: "group", // required
+              fields:[
                 {
-                    label: { es: "Titulo ", en: "Title" },
-                    name: "title", 
-                    type: "text", 
-                  },
-                  {
-                    label: { es: "Instrucciones", en: "Instructions" },
-                    name: "instructions", 
-                    type: "text", 
-                    
-                  },
-                  {
-                    label: { es: "Descripcion", en: "Description" },
-                    name: "description", 
-                    type: "text", 
-                    
-                  }
+                  label: "text",
+                  name: "text",
+                  type:"text"
+                },
+                {
+                  label: "fontSize",
+                  name: "fontSize",
+                  type:"text"
+                },
+                {
+                  label: "textColor",
+                  name: "textColor",
+                  type:"text"
+                },   
               ]
-            }
+            },
+            
+            {
+              label: { es: "Descripcion", en: "Description" },
+              name: "description", // required
+              type: "group", // required
+              fields:[
+                {
+                  label: "text",
+                  name: "text",
+                  type:"text"
+                },
+                {
+                  label: "fontSize",
+                  name: "fontSize",
+                  type:"text"
+                },
+                {
+                  label: "textColor",
+                  name: "textColor",
+                  type:"text"
+                },   
+              ]
+            },
           ]
       },  
       {
@@ -90,57 +230,125 @@ const AlertThePress: CollectionConfig = {
               type: "row",
               fields: [
                 {
-                  label: { es: "Titulo", en: "Title" },
-                  name: "title", 
-                  type: "text", 
-                  admin: {
-                  width: "50%",
+                  label: { es: "Titulo Principal", en: "Main Title" },
+                  name: "title", // required
+                  type: "group", // required
+                  fields:[{
+                    label: "text",
+                    name: "text",
+                    type:"text"
                   },
+                  {
+                    label: "fontSize",
+                    name: "fontSize",
+                    type:"text"
+                  },
+                  {
+                    label: "textColor",
+                    name: "textColor",
+                    type:"text"
+                  },
+                ]
                 },
                 {
                   label: { es: "Instrucciones", en: "Instructions" },
-                  name: "instructions", 
-                  type: "text", 
-                  admin: {
-                  width: "50%",
-                  },
-                }
+                  name: "instructions", // required
+                  type: "group", // required
+                  fields:[
+                    {
+                      label: "text",
+                      name: "text",
+                      type:"text"
+                    },
+                    {
+                      label: "fontSize",
+                      name: "fontSize",
+                      type:"text"
+                    },
+                    {
+                      label: "textColor",
+                      name: "textColor",
+                      type:"text"
+                    },   
+                  ]
+                },
               ],
             },
           ],
       },
       {
         type: "group",
-        name: "successPage",
-        label: { es: "deploy exitoso", en: "Success Page"},
+        name: "ty",
+        label: { es: "Gracias", en: "TYP"},
         fields: [
           {
             type: "row",
             fields: [
               {
                 label: { es: "Titulo", en: "Title" },
-                name: "title", 
-                type: "text", 
-                admin: {
-                width: "50%",
+                name: "title", // required
+                type: "group", // required
+                fields:[{
+                  label: "text",
+                  name: "text",
+                  type:"text"
                 },
+                {
+                  label: "fontSize",
+                  name: "fontSize",
+                  type:"text"
+                },
+                {
+                  label: "textColor",
+                  name: "textColor",
+                  type:"text"
+                },
+              ]
               },
-              {
-                label: { es: "Descripcion", en: "Description" },
-                name: "description", 
-                type: "text", 
-                admin: {
-                width: "50%",
+                {
+                  label: { es: "descripcion", en: "Description" },
+                  name: "description", // required
+                  type: "group", // required
+                  fields:[
+                    {
+                      label: "text",
+                      name: "text",
+                      type:"text"
+                    },
+                    {
+                      label: "fontSize",
+                      name: "fontSize",
+                      type:"text"
+                    },
+                    {
+                      label: "textColor",
+                      name: "textColor",
+                      type:"text"
+                    },   
+                  ]
                 },
-              },
-              {
-                label: { es: "Instrucciones", en: "Instructions" },
-                name: "instructions", 
-                type: "text", 
-                admin: {
-                width: "50%",
-                },
-              }
+                {
+                  label: { es: "Instrucciones", en: "Instructions" },
+                  name: "instructions", // required
+                  type: "group", // required
+                  fields:[
+                    {
+                      label: "text",
+                      name: "text",
+                      type:"text"
+                    },
+                    {
+                      label: "fontSize",
+                      name: "fontSize",
+                      type:"text"
+                    },
+                    {
+                      label: "textColor",
+                      name: "textColor",
+                      type:"text"
+                    },   
+                  ]
+                }
             ],
           },
         ],

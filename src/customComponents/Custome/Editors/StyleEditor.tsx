@@ -3,7 +3,6 @@
 import React from 'react';
 import '../sb.css'
 import { Smartphone, TabletSmartphone, AppWindowMac } from 'lucide-react';
-
 interface StyleEditorProps {
   styles: { [key: string]: string };
   onStyleChange: (key: string, value: string) => void;

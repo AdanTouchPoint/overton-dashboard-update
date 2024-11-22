@@ -5,7 +5,7 @@ import { PlusCircle, MinusCircle } from "lucide-react";
 import  {deployProject} from '../../../lib/requestsAPI'
 import { useAuth } from "payload/components/utilities";
 import { getProjectInfo } from "../../../lib/vercelRequests";
-
+import { updateCampaignData } from "../../../lib/requestsAPI";
 interface ContentEditorProps {
   setActiveForm: (value: string) => void;
   content: ContentState;
@@ -280,20 +280,9 @@ const userId = user.user.id;
   };
   const deploy = async (content) => {
 try {
-  
   const deploy = await deployProject(content)
-  console.log(deploy);
+  const saveData = updateCampaignData(content)
   setActiveForm('success')
-  //const getDeployInfo = getProjectInfo('projectName')
-  /*deploy ok ? 
- 
-
-  take deployID and request to vercel to check status 
-  when deploy is ready :
-  1 show url deploy
-  2 save in db  allData
-  
-  */
 } catch (error) {
   throw new Error("Something goes wrong!");
   

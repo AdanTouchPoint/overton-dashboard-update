@@ -44,6 +44,8 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData, setActiveForm
   }
   useEffect(() => {
   const flexD = responsiveViews(styles.formWidth, setFlexDirect)
+  const path = ['style']
+  handleContentChange(path,styles)
   return flexD
   }, [styles]);
   useEffect(() => {

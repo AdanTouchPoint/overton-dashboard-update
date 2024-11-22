@@ -59,8 +59,40 @@ const SubmissionBuilder: CollectionConfig = {
               type:"text"
             },
             {
+              label: "campaign URL",
+              name: "homepage",
+              type:"text"
+            },
+            {
               label: "clientId",
               name: "clientId",
+              type:"text"
+            },
+          ]
+      },
+      {
+        type: "group",
+          name: "style",
+          label: { es: "estilos del formulario", en: "form styles" },
+          fields: [
+            {
+              label: "backgroundColor",
+              name: "backgroundColor",
+              type:"text"
+            },
+            {
+              label: "inputBackground",
+              name: "inputBackground",
+              type:"text"
+            },
+            {
+              label: "fontFamily",
+              name: "fontFamily",
+              type:"text"
+            },
+            {
+              label: "borderRadius",
+              name: "borderRadius",
               type:"text"
             },
           ]
@@ -85,8 +117,8 @@ const SubmissionBuilder: CollectionConfig = {
                 type:"text"
               },
               {
-                label: "colorText",
-                name: "colorText",
+                label: "textColor",
+                name: "textColor",
                 type:"text"
               },
             ]
@@ -108,8 +140,8 @@ const SubmissionBuilder: CollectionConfig = {
                   type:"text"
                 },
                 {
-                  label: "colorText",
-                  name: "colorText",
+                  label: "textColor",
+                  name: "textColor",
                   type:"text"
                 },   
               ]
@@ -130,8 +162,8 @@ const SubmissionBuilder: CollectionConfig = {
                   type:"text"
                 },
                 {
-                  label: "colorText",
-                  name: "colorText",
+                  label: "textColor",
+                  name: "textColor",
                   type:"text"
                 },   
               ]
@@ -161,8 +193,8 @@ const SubmissionBuilder: CollectionConfig = {
                     type:"text"
                   },
                   {
-                    label: "colorText",
-                    name: "colorText",
+                    label: "textColor",
+                    name: "textColor",
                     type:"text"
                   },
                 ]
@@ -183,8 +215,8 @@ const SubmissionBuilder: CollectionConfig = {
                         type:"text"
                       },
                       {
-                        label: "colorText",
-                        name: "colorText",
+                        label: "textColor",
+                        name: "textColor",
                         type:"text"
                       },   
                     ]
@@ -205,8 +237,8 @@ const SubmissionBuilder: CollectionConfig = {
                         type:"text"
                       },
                       {
-                        label: "colorText",
-                        name: "colorText",
+                        label: "textColor",
+                        name: "textColor",
                         type:"text"
                       },   
                     ]
@@ -238,8 +270,8 @@ const SubmissionBuilder: CollectionConfig = {
                     type:"text"
                   },
                   {
-                    label: "colorText",
-                    name: "colorText",
+                    label: "textColor",
+                    name: "textColor",
                     type:"text"
                   },
                 ]
@@ -264,8 +296,8 @@ const SubmissionBuilder: CollectionConfig = {
                           type:"text"
                         },
                         {
-                          label: "colorText",
-                          name: "colorText",
+                          label: "textColor",
+                          name: "textColor",
                           type:"text"
                         },
                       ]
@@ -285,8 +317,8 @@ const SubmissionBuilder: CollectionConfig = {
                           type:"text"
                         },
                         {
-                          label: "colorText",
-                          name: "colorText",
+                          label: "textColor",
+                          name: "textColor",
                           type:"text"
                         },
                       ]
@@ -306,8 +338,8 @@ const SubmissionBuilder: CollectionConfig = {
                           type:"text"
                         },
                         {
-                          label: "colorText",
-                          name: "colorText",
+                          label: "textColor",
+                          name: "textColor",
                           type:"text"
                         },
                       ]
@@ -320,7 +352,7 @@ const SubmissionBuilder: CollectionConfig = {
       },
       {
         type: "group",
-        name: "emailPreview",
+        name: "email",
         label: { es: "Previsualizacion", en: "Email Preview" },
         fields: [
           {
@@ -341,8 +373,8 @@ const SubmissionBuilder: CollectionConfig = {
                   type:"text"
                 },
                 {
-                  label: "colorText",
-                  name: "colorText",
+                  label: "textColor",
+                  name: "textColor",
                   type:"text"
                 },
               ]
@@ -363,8 +395,8 @@ const SubmissionBuilder: CollectionConfig = {
                       type:"text"
                     },
                     {
-                      label: "colorText",
-                      name: "colorText",
+                      label: "textColor",
+                      name: "textColor",
                       type:"text"
                     },   
                   ]
@@ -372,11 +404,11 @@ const SubmissionBuilder: CollectionConfig = {
             ],
           },
         ],
-    }, 
+      }, 
       {
         type: "group",
-        name: "successPage",
-        label: { es: "deploy exitoso", en: "Success Page"},
+        name: "ty",
+        label: { es: "Gracias", en: "TYP"},
         fields: [
           {
             type: "row",
@@ -396,8 +428,8 @@ const SubmissionBuilder: CollectionConfig = {
                     type:"text"
                   },
                   {
-                    label: "colorText",
-                    name: "colorText",
+                    label: "textColor",
+                    name: "textColor",
                     type:"text"
                   },
                 ]
@@ -418,8 +450,8 @@ const SubmissionBuilder: CollectionConfig = {
                         type:"text"
                       },
                       {
-                        label: "colorText",
-                        name: "colorText",
+                        label: "textColor",
+                        name: "textColor",
                         type:"text"
                       },   
                     ]
@@ -440,8 +472,8 @@ const SubmissionBuilder: CollectionConfig = {
                         type:"text"
                       },
                       {
-                        label: "colorText",
-                        name: "colorText",
+                        label: "textColor",
+                        name: "textColor",
                         type:"text"
                       },   
                     ]
@@ -449,7 +481,7 @@ const SubmissionBuilder: CollectionConfig = {
             ],
           },
         ],
-    },
+      },
       {
           name: "clientId",
           type: "relationship",

@@ -43,6 +43,8 @@ const PoliticallDirectForm: React.FC<PDprops> = ({ projectData, setActiveForm
   }
   useEffect(() => {
   const flexD = responsiveViews(styles.formWidth, setFlexDirec)
+  const path = ['style']
+  handleContentChange(path,styles)
   return flexD
   }, [styles]);
 

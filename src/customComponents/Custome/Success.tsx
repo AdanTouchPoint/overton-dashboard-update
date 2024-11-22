@@ -3,7 +3,7 @@ import { useAuth } from "payload/components/utilities";
 import { SuccessProps } from "../interfaces";
 import { getRepoInfo } from "../../lib/gitHubRequests";
 import "./loading.css";
-import { postCampaignData } from "../../lib/requestsAPI";
+import { updateCampaignData } from "../../lib/requestsAPI";
 const baseClass = "after-dashboard";
 const Success: React.FC<SuccessProps> = ({ projectData, setProjectData }) => {
   const [loading, setLoading] = useState(true);
@@ -18,6 +18,8 @@ const Success: React.FC<SuccessProps> = ({ projectData, setProjectData }) => {
     );
   };
   const renderSuccessMessage = () => {
+    const content= {projectData: projectData}
+    const updateData = updateCampaignData(content);
     return (
       <div>
         <h1>Success!</h1>
@@ -35,7 +37,7 @@ const Success: React.FC<SuccessProps> = ({ projectData, setProjectData }) => {
           homepage: urlDeploy.homepage,
         });
         setLoading(false);
-        return postCampaignData(projectData);
+        return
       }
       setTimeout(() => {
         fetchInfo(projectData);

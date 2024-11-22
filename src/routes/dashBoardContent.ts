@@ -24,12 +24,12 @@ router.post("/campaign", async (req, res) => {
       });
     }
   });
-  router.put("/campaign", async (req, res) => {
+  router.put("/updateCampaign", async (req, res) => {
     try {
-      const query = req.query;
-      console.log(query)
+      const body = req.body;
+      console.log(body)
       //const objReady = await JSON.parse(query.info)
-      const data = await updateCampaign(query)
+      const data = await updateCampaign(body)
       res.json({
         success: true,
         message: "campaign update done",

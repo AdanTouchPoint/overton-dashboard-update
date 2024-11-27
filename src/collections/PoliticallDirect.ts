@@ -146,6 +146,28 @@ const PoliticallDirect: CollectionConfig = {
                 },   
               ]
             },
+            {
+              label: { es: "inputs", en: "inputs" },
+              name: "mainFormInputs", // required
+              type: "array", // required
+              fields:[
+                {
+                  label: "text",
+                  name: "text",
+                  type:"text"
+                },
+                {
+                  label: "fontSize",
+                  name: "fontSize",
+                  type:"text"
+                },
+                {
+                  label: "textColor",
+                  name: "textColor",
+                  type:"text"
+                },   
+              ]
+            },
           ],
       },
       {
@@ -218,6 +240,42 @@ const PoliticallDirect: CollectionConfig = {
                 },   
               ]
             },
+            {
+              label: { es: "Asunto", en: "Subject" },
+              name: "subject", // required
+              type: "group", // required
+              fields:[
+                {
+                  label: "text",
+                  name: "text",
+                  type:"text"
+                }
+              ]
+            },
+            {
+              label: { es: "Mensaje", en: "Message" },
+              name: "message", // required
+              type: "group", // required
+              fields:[
+                {
+                  label: "text",
+                  name: "text",
+                  type:"text"
+                }
+              ]
+            },
+            {
+              label: { es: "Tweet Mensaje", en: " Tweet Message" },
+              name: "tweetMessage", // required
+              type: "group", // required
+              fields:[
+                {
+                  label: "text",
+                  name: "text",
+                  type:"text"
+                }
+              ]
+            },
           ]
       },  
       {
@@ -284,8 +342,8 @@ const PoliticallDirect: CollectionConfig = {
             type: "row",
             fields: [
               {
-                label: { es: "Titulo", en: "Title" },
-                name: "title", // required
+                label: { es: "Agradecimientos", en: "Thankyou Message" },
+                name: "tymessage", // required
                 type: "group", // required
                 fields:[{
                   label: "text",
@@ -305,8 +363,8 @@ const PoliticallDirect: CollectionConfig = {
               ]
               },
                 {
-                  label: { es: "descripcion", en: "Description" },
-                  name: "description", // required
+                  label: { es: "Agradecimientos 2", en: "Thankyou Message 2" },
+                  name: "tymessage2", // required
                   type: "group", // required
                   fields:[
                     {
@@ -327,8 +385,52 @@ const PoliticallDirect: CollectionConfig = {
                   ]
                 },
                 {
-                  label: { es: "Instrucciones", en: "Instructions" },
-                  name: "instructions", // required
+                  label: { es: "Compartir", en: "Share" },
+                  name: "shareText", // required
+                  type: "group", // required
+                  fields:[
+                    {
+                      label: "text",
+                      name: "text",
+                      type:"text"
+                    },
+                    {
+                      label: "fontSize",
+                      name: "fontSize",
+                      type:"text"
+                    },
+                    {
+                      label: "textColor",
+                      name: "textColor",
+                      type:"text"
+                    },   
+                  ]
+                },
+                {
+                  label: { es: "Compartir Mensaje", en: "Share Message" },
+                  name: "shareMessage", // required
+                  type: "group", // required
+                  fields:[
+                    {
+                      label: "text",
+                      name: "text",
+                      type:"text"
+                    },
+                    {
+                      label: "fontSize",
+                      name: "fontSize",
+                      type:"text"
+                    },
+                    {
+                      label: "textColor",
+                      name: "textColor",
+                      type:"text"
+                    },   
+                  ]
+                },
+                {
+                  label: { es: "Comaprtir URL", en: "Share URL" },
+                  name: "shareUrl", // required
                   type: "group", // required
                   fields:[
                     {

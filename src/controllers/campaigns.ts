@@ -44,7 +44,7 @@ export const getAllCampaigns = async (query) => {
 };
 export const getCampaignById= async(query) => {
   const data = await payload.find({
-    collection: `${query.campaignType}`, // change to campaignType for dynamic search
+    collection: `${query.type}`, // change to campaignType for dynamic search
     overrideAccess: true,
     where:{
       clientId: {
@@ -59,6 +59,7 @@ export const getCampaignById= async(query) => {
       ],
     }
   });
+  return data.docs
 }
 
 

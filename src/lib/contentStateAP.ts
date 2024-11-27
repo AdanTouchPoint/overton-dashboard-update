@@ -87,6 +87,9 @@ export interface TextStyle {
         textColor: '#ffffff',
         fontSize: '16px',
       },
+      message: {
+        text: 'Email Message',
+      },
       button: '#0000ff', // Color del botón
     },
     emailreview: {
@@ -102,21 +105,31 @@ export interface TextStyle {
         },
         button: '#0000ff', // Color del botón
       },
-    ty: {
-      title: {
-        text: 'Título de agradecimiento',
-        textColor: '#ffffff',
-        fontSize: '16px',
+      ty: {
+        tymessage: {
+          text: 'Título de agradecimiento',
+          textColor: '#ffffff',
+          fontSize: '16px',
+        },
+        tymessage2: {
+          text: 'Descripción de agradecimiento',
+          textColor: '#ffffff',
+          fontSize: '16px',
+        },
+        shareText: {
+          text: 'Instrucciones de agradecimiento',
+          textColor: '#ffffff',
+          fontSize: '16px',
+        },
+        shareMessage: {
+          text: 'Instrucciones de agradecimiento',
+          textColor: '#ffffff',
+          fontSize: '16px',
+        },
+        shareUrl: {
+          text: 'Instrucciones de agradecimiento',
+          textColor: '#ffffff',
+          fontSize: '16px',
+        },
       },
-      description: {
-        text: 'Descripción de agradecimiento',
-        textColor: '#ffffff',
-        fontSize: '16px',
-      },
-      instructions: {
-        text: 'Instrucciones de agradecimiento',
-        textColor: '#ffffff',
-        fontSize: '16px',
-      },
-    },
   };

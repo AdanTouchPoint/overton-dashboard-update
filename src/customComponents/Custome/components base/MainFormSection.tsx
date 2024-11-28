@@ -9,13 +9,16 @@ export const renderMainFormSection = (content, styles, setActiveSection, flexDir
           <label>
             <span
               style={{
-                color: field.textColor,
-                fontSize: field.fontSize,
+                color: styles.labelColor,
               }}
             >
               {field.text.charAt(0).toUpperCase() + field.text.slice(1)}
             </span>
             <input
+            style={{
+              backgroundColor: styles.inputBackground,
+              color: styles.inputTextColor
+            }}
               type="text"
               name={field.text}
               disabled
@@ -30,6 +33,7 @@ export const renderMainFormSection = (content, styles, setActiveSection, flexDir
         className="activism-platform-container"
         style={{
           fontFamily: styles.fontFamily,
+          width: styles.formWidth
         }}
       >
         <div className="activism-form-container">
@@ -37,15 +41,12 @@ export const renderMainFormSection = (content, styles, setActiveSection, flexDir
             className="activism-form"
             style={{
               backgroundColor: styles.backgroundColor,
-              width: styles.formWidth,
-              padding: styles.formPadding,
-              borderRadius: styles.borderRadius,
+
             }}
           >
             <h1
               style={{
-                color: mainform.title.textColor,
-                fontSize: mainform.title.fontSize,
+                color: styles.textColor
               }}
               className="form-title"
             >
@@ -53,8 +54,7 @@ export const renderMainFormSection = (content, styles, setActiveSection, flexDir
             </h1>
             <p
               style={{
-                color: mainform.instructions.textColor,
-                fontSize: mainform.instructions.fontSize,
+                color: styles.textColor
               }}
               className="form-description"
             >
@@ -65,16 +65,9 @@ export const renderMainFormSection = (content, styles, setActiveSection, flexDir
              </div>
             <div className="form-group checkbox-group">
               <label>
-                <input
-                  type="checkbox"
-                  name="termsAccepted"
-                 // onChange={handleOnChange}
-                  required
-                />
                 <span
                   style={{
-                    color: mainform.tac.textColor,
-                    fontSize: mainform.tac.fontSize,
+                    color: styles.textColor
                   }}
                 >
                   {mainform.tac.text}
@@ -85,7 +78,8 @@ export const renderMainFormSection = (content, styles, setActiveSection, flexDir
               type="button"
               className="submit-button"
               style={{
-                backgroundColor: mainform.button,
+                backgroundColor: styles.buttonColor,
+                color: styles.buttonTextColor
               }}
               onClick={() => setActiveSection('emailform')}
             >

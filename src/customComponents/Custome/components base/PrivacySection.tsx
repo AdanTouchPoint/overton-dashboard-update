@@ -9,6 +9,7 @@ export const renderPrivacySection = (content, styles, setActiveSection) => {
       className="activism-platform-container"
       style={{
         fontFamily: styles.fontFamily,
+        
       }}
     >
       <div className="activism-form-container">
@@ -16,15 +17,13 @@ export const renderPrivacySection = (content, styles, setActiveSection) => {
           className="activism-form"
           style={{
             backgroundColor: styles.backgroundColor,
-            width: styles.formWidth,
-            padding: styles.formPadding,
-            borderRadius: styles.borderRadius,
+            width: styles.formWidth
           }}
         ><h3 
         className="form-title"
         style={{
-          color: privacy.title.textColor,
-          fontSize: privacy.title.fontSize,
+          color: styles.textColor,
+
         }}
       >
         {privacy.title.text}
@@ -32,23 +31,20 @@ export const renderPrivacySection = (content, styles, setActiveSection) => {
         <div className='activism-form' >
         <label> Public</label>
         <h5 style={{
-        color: privacy.privacyOptions.public.textColor,
-        fontSize: privacy.privacyOptions.public.fontSize,
+        color: styles.textColor,
       }}>{privacy.privacyOptions.public.text}</h5>
         <label> Confidential</label>
         <h5 style={{
-        color: privacy.privacyOptions.confidential.textColor,
-        fontSize: privacy.privacyOptions.confidential.fontSize,
+        color: styles.textColor,
       }}>{privacy.privacyOptions.confidential.text}</h5>
         <label> NameWithHeld</label>
         <h5 style={{
-        color: privacy.privacyOptions.nameWithHeld.textColor,
-        fontSize: privacy.privacyOptions.nameWithHeld.fontSize,
+        color: styles.textColor,
       }}>{privacy.privacyOptions.nameWithHeld.text}</h5>
         </div>
       {/* Contenido adicional */}
-      <button className="submit-button" onClick={() => setActiveSection('mainform')}>Back</button>
-      <button className="submit-button" onClick={() => setActiveSection('questions')}>Next</button>
+      <button className="submit-button" style={{backgroundColor: styles.buttonBColor, color: styles.buttonBTextColor}} onClick={() => setActiveSection('mainform')}>Back</button>
+      <button className="submit-button" style={{backgroundColor: styles.buttonColor, color: styles.buttonTextColor}} onClick={() => setActiveSection('questions')}>Next</button>
         </div>
       </div>
     </div>

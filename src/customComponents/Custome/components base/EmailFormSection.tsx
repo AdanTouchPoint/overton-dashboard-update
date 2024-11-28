@@ -8,6 +8,7 @@ export const renderEmailSection = (content,styles,setActiveSection) => {
       className="activism-platform-container"
       style={{
         fontFamily: styles.fontFamily,
+        width: styles.formWidth
       }}
     >
       <div className="activism-form-container">
@@ -15,31 +16,26 @@ export const renderEmailSection = (content,styles,setActiveSection) => {
           className="activism-form"
           style={{
             backgroundColor: styles.backgroundColor,
-            width: styles.formWidth,
-            padding: styles.formPadding,
-            borderRadius: styles.borderRadius,
           }}
         >
         <h3
           style={{
-            color: emailform.title.textColor,
-            fontSize: emailform.title.fontSize,
+            color: styles.textColor,
           }}
         >
           {emailform.title.text}
         </h3>
         <p
           style={{
-            color: emailform.instructions.textColor,
-            fontSize: emailform.instructions.fontSize,
+            color: styles.textColor
           }}
         >
           {emailform.instructions.text}
         </p>
-        <textarea style={{resize: 'none'}} disabled rows={10} cols={50}>Email ... </textarea>
+        <textarea style={{resize: 'none', backgroundColor: styles.inputBackground}} disabled rows={10} cols={50}>Email ... </textarea>
         {/* Contenido adicional */}
-        <button  className="submit-button" onClick={() => setActiveSection('mainform')}>Back</button>
-        <button  className="submit-button" onClick={() => setActiveSection('emailreview')}>Next</button>
+        <button  className="submit-button" style={{backgroundColor: styles.buttonBColor, color: styles.buttonBTextColor}} onClick={() => setActiveSection('mainform')}>Back</button>
+        <button  className="submit-button" style={{backgroundColor: styles.buttonColor, color: styles.buttonTextColor}} onClick={() => setActiveSection('emailreview')}>Next</button>
         </div>
       </div>
     </div>

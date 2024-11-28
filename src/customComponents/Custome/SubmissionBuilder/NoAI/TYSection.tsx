@@ -6,9 +6,6 @@ export const renderTYSection = (content, styles, setActiveSection) => {
     return (
       <div
       className="activism-platform-container"
-      style={{
-        fontFamily: styles.fontFamily,
-      }}
     >
       <div className="activism-form-container">
         <div
@@ -16,36 +13,46 @@ export const renderTYSection = (content, styles, setActiveSection) => {
           style={{
             backgroundColor: styles.backgroundColor,
             width: styles.formWidth,
-            padding: styles.formPadding,
-            borderRadius: styles.borderRadius,
             textAlign: 'center'
           }}
         >
         <h3
           style={{
-            color: ty.title.textColor,
-            fontSize: ty.title.fontSize,
+            color: styles.textColor,
           }}
         >
-          {ty.title.text}
+          {ty.tymessage.text}
         </h3>
         <p
           style={{
-            color: ty.description.textColor,
-            fontSize: ty.description.fontSize,
+            color: styles.textColor,
+
           }}
         >
-          {ty.description.text}
+          {ty.tymessage2.text}
         </p>
         <p
           style={{
-            color: ty.instructions.textColor,
-            fontSize: ty.instructions.fontSize,
+            color: styles.textColor,
           }}
         >
-          {ty.instructions.text}
+          {ty.shareText.text}
         </p>
-        <button className="submit-button" onClick={() => setActiveSection('email')}>Back</button>
+        <p
+          style={{
+            color: styles.textColor,
+          }}
+        >
+          {ty.shareMessage.text}
+        </p>
+        <p
+          style={{
+            color: styles.textColor,
+          }}
+        >
+          {ty.shareUrl.text}
+        </p>
+        <button className="submit-button" style={{backgroundColor: styles.buttonBColor, color: styles.buttonBTextColor}} onClick={() => setActiveSection('email')}>Back</button>
         </div>
       </div>
     </div>

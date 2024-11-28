@@ -63,9 +63,7 @@ const userId = user.user.id;
       if (!existingFields.some((field: any) => field.text === selectedValue)) {
         // Crear el nuevo campo con propiedades predeterminadas
         const newField = {
-          text: selectedValue,
-          textColor: "#ffffff",
-          fontSize: "16px",
+          text: selectedValue
         };
 
         // Actualizar el estado del contenido en 'mainform' -> 'mainFormInputs'
@@ -116,26 +114,6 @@ const userId = user.user.id;
                 type="text"
                 value={field.text}
                 disabled
-              />
-            </label>
-            <label>
-              Text Color:
-              <input
-                type="color"
-                value={field.textColor}
-                onChange={(e) =>
-                  handleFieldChange(index, "textColor", e.target.value)
-                }
-              />
-            </label>
-            <label>
-              Font Size:
-              <input
-                type="text"
-                value={field.fontSize}
-                onChange={(e) =>
-                  handleFieldChange(index, "fontSize", e.target.value)
-                }
               />
             </label>
             <button
@@ -198,26 +176,6 @@ const userId = user.user.id;
               type="text"
               value={question.text}
               onChange={(e) => handleEditQuestion(index, "text", e.target.value)}
-            />
-          </label>
-          <label>
-            Text Color:
-            <input
-              type="color"
-              value={question.textColor}
-              onChange={(e) =>
-                handleEditQuestion(index, "textColor", e.target.value)
-              }
-            />
-          </label>
-          <label>
-            Font Size:
-            <input
-              type="text"
-              value={question.fontSize}
-              onChange={(e) =>
-                handleEditQuestion(index, "fontSize", e.target.value)
-              }
             />
           </label>
           <button

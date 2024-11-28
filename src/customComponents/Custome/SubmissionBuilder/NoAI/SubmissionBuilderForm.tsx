@@ -17,12 +17,17 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData, setActiveForm
 }) => {
   const [content, dispatchContent] = useReducer<React.Reducer<ContentState, ContentAction>>(contentReducer, initialContentStateSB);
   const [styles, setStyles] = useState({
-    backgroundColor: '#2c3e50',
-    inputBackground: '#34495e',
-    fontFamily: 'Arial, sans-serif',
     formWidth: '400px',
-    formPadding: '30px',
-    borderRadius: '10px',
+    backgroundColor: '#2c3e50',
+    textColor: '#34495e',
+    labelColor: 'Arial, sans-serif',
+    inputBackground: '400px',
+    linkColor: '30px',
+    inputTextColor: '10px',
+    buttonColor: '',
+    buttonTextColor: '',
+    buttonBColor: '',
+    buttonBTextColor: '',
   });
   const [flexDirect,setFlexDirect] = useState<string>()
   const [activeSection, setActiveSection] = useState<ActiveSection>('mainform');

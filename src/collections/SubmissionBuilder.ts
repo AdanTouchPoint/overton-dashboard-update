@@ -81,18 +81,53 @@ const SubmissionBuilder: CollectionConfig = {
               type:"text"
             },
             {
+              label: "textColor",
+              name: "textColor",
+              type:"text"
+            },
+            {
+              label: "labelColor",
+              name: "labelColor",
+              type:"text"
+            },
+            {
               label: "inputBackground",
               name: "inputBackground",
               type:"text"
             },
             {
-              label: "fontFamily",
-              name: "fontFamily",
+              label: "linkColor",
+              name: "linkColor",
               type:"text"
             },
             {
-              label: "borderRadius",
-              name: "borderRadius",
+              label: "inputTextColor",
+              name: "inputTextColor",
+              type:"text"
+            },
+            {
+              label: "buttonColor",
+              name: "buttonColor",
+              type:"text"
+            },
+            {
+              label: "buttonTextColor",
+              name: "buttonTextColor",
+              type:"text"
+            },
+            {
+              label: "buttonBColor",
+              name: "buttonBColor",
+              type:"text"
+            },
+            {
+              label: "buttonBTextColor",
+              name: "buttonBTextColor",
+              type:"text"
+            },
+            {
+              label: "formWidth",
+              name: "formWidth",
               type:"text"
             },
           ]
@@ -110,17 +145,7 @@ const SubmissionBuilder: CollectionConfig = {
                 label: "text",
                 name: "text",
                 type:"text"
-              },
-              {
-                label: "fontSize",
-                name: "fontSize",
-                type:"text"
-              },
-              {
-                label: "textColor",
-                name: "textColor",
-                type:"text"
-              },
+              }
             ]
             },
 
@@ -133,17 +158,7 @@ const SubmissionBuilder: CollectionConfig = {
                   label: "text",
                   name: "text",
                   type:"text"
-                },
-                {
-                  label: "fontSize",
-                  name: "fontSize",
-                  type:"text"
-                },
-                {
-                  label: "textColor",
-                  name: "textColor",
-                  type:"text"
-                },   
+                }
               ]
             },
             {
@@ -155,17 +170,7 @@ const SubmissionBuilder: CollectionConfig = {
                   label: "text",
                   name: "text",
                   type:"text"
-                },
-                {
-                  label: "fontSize",
-                  name: "fontSize",
-                  type:"text"
-                },
-                {
-                  label: "textColor",
-                  name: "textColor",
-                  type:"text"
-                },   
+                }
               ]
             },
           ],
@@ -186,17 +191,7 @@ const SubmissionBuilder: CollectionConfig = {
                     label: "text",
                     name: "text",
                     type:"text"
-                  },
-                  {
-                    label: "fontSize",
-                    name: "fontSize",
-                    type:"text"
-                  },
-                  {
-                    label: "textColor",
-                    name: "textColor",
-                    type:"text"
-                  },
+                  }
                 ]
                 },
                   {
@@ -208,17 +203,7 @@ const SubmissionBuilder: CollectionConfig = {
                         label: "text",
                         name: "text",
                         type:"text"
-                      },
-                      {
-                        label: "fontSize",
-                        name: "fontSize",
-                        type:"text"
-                      },
-                      {
-                        label: "textColor",
-                        name: "textColor",
-                        type:"text"
-                      },   
+                      }   
                     ]
                   },
                   {
@@ -230,17 +215,7 @@ const SubmissionBuilder: CollectionConfig = {
                         label: "text",
                         name: "text",
                         type:"text"
-                      },
-                      {
-                        label: "fontSize",
-                        name: "fontSize",
-                        type:"text"
-                      },
-                      {
-                        label: "textColor",
-                        name: "textColor",
-                        type:"text"
-                      },   
+                      }
                     ]
                   },
               ]
@@ -263,17 +238,7 @@ const SubmissionBuilder: CollectionConfig = {
                     label: "text",
                     name: "text",
                     type:"text"
-                  },
-                  {
-                    label: "fontSize",
-                    name: "fontSize",
-                    type:"text"
-                  },
-                  {
-                    label: "textColor",
-                    name: "textColor",
-                    type:"text"
-                  },
+                  }
                 ]
                 },
                 {
@@ -289,17 +254,7 @@ const SubmissionBuilder: CollectionConfig = {
                           label: "text",
                           name: "text",
                           type:"text"
-                        },
-                        {
-                          label: "fontSize",
-                          name: "fontSize",
-                          type:"text"
-                        },
-                        {
-                          label: "textColor",
-                          name: "textColor",
-                          type:"text"
-                        },
+                        }
                       ]
                     },
                     {
@@ -310,17 +265,7 @@ const SubmissionBuilder: CollectionConfig = {
                           label: "text",
                           name: "text",
                           type:"text"
-                        },
-                        {
-                          label: "fontSize",
-                          name: "fontSize",
-                          type:"text"
-                        },
-                        {
-                          label: "textColor",
-                          name: "textColor",
-                          type:"text"
-                        },
+                        }
                       ]
                     },
                     {
@@ -331,17 +276,7 @@ const SubmissionBuilder: CollectionConfig = {
                           label: "text",
                           name: "text",
                           type:"text"
-                        },
-                        {
-                          label: "fontSize",
-                          name: "fontSize",
-                          type:"text"
-                        },
-                        {
-                          label: "textColor",
-                          name: "textColor",
-                          type:"text"
-                        },
+                        }
                       ]
                     },
                 ]
@@ -366,17 +301,7 @@ const SubmissionBuilder: CollectionConfig = {
                   label: "text",
                   name: "text",
                   type:"text"
-                },
-                {
-                  label: "fontSize",
-                  name: "fontSize",
-                  type:"text"
-                },
-                {
-                  label: "textColor",
-                  name: "textColor",
-                  type:"text"
-                },
+                }
               ]
               },
                 {
@@ -388,17 +313,7 @@ const SubmissionBuilder: CollectionConfig = {
                       label: "text",
                       name: "text",
                       type:"text"
-                    },
-                    {
-                      label: "fontSize",
-                      name: "fontSize",
-                      type:"text"
-                    },
-                    {
-                      label: "textColor",
-                      name: "textColor",
-                      type:"text"
-                    },   
+                    }   
                   ]
                 },
             ],
@@ -421,17 +336,7 @@ const SubmissionBuilder: CollectionConfig = {
                   label: "text",
                   name: "text",
                   type:"text"
-                },
-                {
-                  label: "fontSize",
-                  name: "fontSize",
-                  type:"text"
-                },
-                {
-                  label: "textColor",
-                  name: "textColor",
-                  type:"text"
-                },
+                }
               ]
               },
                 {
@@ -443,17 +348,7 @@ const SubmissionBuilder: CollectionConfig = {
                       label: "text",
                       name: "text",
                       type:"text"
-                    },
-                    {
-                      label: "fontSize",
-                      name: "fontSize",
-                      type:"text"
-                    },
-                    {
-                      label: "textColor",
-                      name: "textColor",
-                      type:"text"
-                    },   
+                    }
                   ]
                 },
                 {
@@ -465,17 +360,7 @@ const SubmissionBuilder: CollectionConfig = {
                       label: "text",
                       name: "text",
                       type:"text"
-                    },
-                    {
-                      label: "fontSize",
-                      name: "fontSize",
-                      type:"text"
-                    },
-                    {
-                      label: "textColor",
-                      name: "textColor",
-                      type:"text"
-                    },   
+                    } 
                   ]
                 },
                 {
@@ -487,17 +372,7 @@ const SubmissionBuilder: CollectionConfig = {
                       label: "text",
                       name: "text",
                       type:"text"
-                    },
-                    {
-                      label: "fontSize",
-                      name: "fontSize",
-                      type:"text"
-                    },
-                    {
-                      label: "textColor",
-                      name: "textColor",
-                      type:"text"
-                    },   
+                    }  
                   ]
                 },
                 {
@@ -509,17 +384,7 @@ const SubmissionBuilder: CollectionConfig = {
                       label: "text",
                       name: "text",
                       type:"text"
-                    },
-                    {
-                      label: "fontSize",
-                      name: "fontSize",
-                      type:"text"
-                    },
-                    {
-                      label: "textColor",
-                      name: "textColor",
-                      type:"text"
-                    },   
+                    }  
                   ]
                 }
             ],

@@ -1,8 +1,6 @@
 // contentState.ts
 export interface TextStyle {
     text: string;
-    textColor: string;
-    fontSize: string;
   }
   
   export interface ViewContent {
@@ -21,14 +19,25 @@ export interface TextStyle {
     state?:string;
   }
   export interface styleProps {
-    backgroundColor: string;
-    borderRadius: string;
-    fontFamily: string;
-    formPadding: string;
-    formWidth: string;
+    backgroundColor: string; 
+    textColor: string;
+    labelColor: string;
     inputBackground: string;
+    linkColor: string;
+    inputTextColor: string;
+    buttonColor: string;
+    buttonTextColor: string;
+    buttonBColor: string;
+    buttonBTextColor: string;
+    formWidth: string; 
   }
-  
+  export interface typ {
+    tymessage: TextStyle;
+    tymessage2: TextStyle;
+    shareText: TextStyle;
+    shareMessage: TextStyle;
+    shareUrl : TextStyle;
+  }
   export interface ContentState {
     mainform: ViewContent;
     style: styleProps;
@@ -38,7 +47,7 @@ export interface TextStyle {
     privacy?: ViewContent;
     questions?: ViewContent;
     email?: ViewContent;
-    ty: ViewContent;
+    ty: typ;
   }
   export const initialContentStateSB = {
     clientId:'',
@@ -49,116 +58,86 @@ export interface TextStyle {
       id:''
     },
     style:{
-      backgroundColor:"#2c3e50",
-      borderRadius: "10px",
-      fontFamily:"Arial, sans-serif",
-      formPadding: "30px",
-      formWidth: "400px",
-      inputBackground:"#34495e"
+      backgroundColor: '#2c3e50',
+      textColor: '#34495e',
+      labelColor: '#34495e',
+      inputBackground: '#34495e',
+      linkColor: '#34495e',
+      inputTextColor: '#34495e',
+      buttonColor: '#34495e',
+      buttonTextColor: '#34495e',
+      buttonBColor: '#34495e',
+      buttonBTextColor: '#34495e',
+      formWidth: '400px'
     },
     mainform: {
       title: {
         text: 'Título principal',
-        textColor: '#ffffff',
-        fontSize: '16px',
+
       },
       mainFormInputs:[{
         text: 'name',
-        textColor: '#ffffff',
-        fontSize: '16px',
+
       }],
       instructions: {
-        text: 'Instrucciones principales',
-        textColor: '#ffffff',
-        fontSize: '16px',
+        text: 'Instrucciones principales'
       },
       tac: {
-        text: 'Términos y condiciones',
-        textColor: '#ffffff',
-        fontSize: '16px',
+        text: 'Términos y condiciones'
       },
       button: '#ff0000', // Color del botón
     },
     privacy: {
       title: {
-        text: 'Título de privacidad',
-        textColor: '#ffffff',
-        fontSize: '16px',
+        text: 'Título de privacidad'
       },
       privacyOptions: {
         public: {
-          text: 'Título de privacidad',
-          textColor: '#ffffff',
-          fontSize: '16px', 
+          text: 'Título de privacidad' 
         },
         confidential: {
-          text: 'Título de privacidad',
-          textColor: '#ffffff',
-          fontSize: '16px', 
+          text: 'Título de privacidad'
         },
         nameWithHeld: {
-          text: 'Título de privacidad',
-          textColor: '#ffffff',
-          fontSize: '16px', 
+          text: 'Título de privacidad'
         }
       }
     },
     questions: {
       title: {
-        text: 'Título de preguntas',
-        textColor: '#ffffff',
-        fontSize: '16px',
+        text: 'Título de preguntas'
       },
       instructions: {
-        text: 'Instrucciones de preguntas',
-        textColor: '#ffffff',
-        fontSize: '16px',
+        text: 'Instrucciones de preguntas'
       },
       questions:[{
         text: 'question1',
-        textColor: '#ffffff',
-        fontSize: '16px',
-      }],
-      button: '#00ff00', // Color del botón
+
+      }]
     },
     email: {
       title: {
-        text: 'Título de email',
-        textColor: '#ffffff',
-        fontSize: '16px',
+        text: 'Título de email'
       },
       instructions: {
-        text: 'Instrucciones de email',
-        textColor: '#ffffff',
-        fontSize: '16px',
-      },
-      button: '#0000ff', // Color del botón
+        text: 'Instrucciones de email'
+      }
     },
     ty: {
       tymessage: {
-        text: 'Título de agradecimiento',
-        textColor: '#ffffff',
-        fontSize: '16px',
+        text: 'Título de agradecimiento'
       },
       tymessage2: {
-        text: 'Descripción de agradecimiento',
-        textColor: '#ffffff',
-        fontSize: '16px',
+        text: 'Descripción de agradecimiento'
       },
       shareText: {
-        text: 'Instrucciones de agradecimiento',
-        textColor: '#ffffff',
-        fontSize: '16px',
+        text: 'Instrucciones de agradecimiento'
       },
       shareMessage: {
-        text: 'Instrucciones de agradecimiento',
-        textColor: '#ffffff',
-        fontSize: '16px',
+        text: 'Instrucciones de agradecimiento'
       },
       shareUrl: {
-        text: 'Instrucciones de agradecimiento',
-        textColor: '#ffffff',
-        fontSize: '16px',
+        text: 'Instrucciones de agradecimiento'
       },
     },
   };

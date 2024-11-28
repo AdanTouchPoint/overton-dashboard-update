@@ -9,8 +9,7 @@ export const renderMainFormSection = (content, styles, setActiveSection, flexDir
           <label>
             <span
               style={{
-                color: field.textColor,
-                fontSize: field.fontSize,
+                color: styles.textColor
               }}
             >
               {field.text.charAt(0).toUpperCase() + field.text.slice(1)}
@@ -28,9 +27,6 @@ export const renderMainFormSection = (content, styles, setActiveSection, flexDir
     return (
       <div
         className="activism-platform-container"
-        style={{
-          fontFamily: styles.fontFamily,
-        }}
       >
         <div className="activism-form-container">
           <div
@@ -38,8 +34,6 @@ export const renderMainFormSection = (content, styles, setActiveSection, flexDir
             style={{
               backgroundColor: styles.backgroundColor,
               width: styles.formWidth,
-              padding: styles.formPadding,
-              borderRadius: styles.borderRadius,
             }}
           >
             <h1
@@ -65,12 +59,6 @@ export const renderMainFormSection = (content, styles, setActiveSection, flexDir
              </div>
             <div className="form-group checkbox-group">
               <label>
-                <input
-                  type="checkbox"
-                  name="termsAccepted"
-                 // onChange={handleOnChange}
-                  required
-                />
                 <span
                   style={{
                     color: mainform.tac.textColor,

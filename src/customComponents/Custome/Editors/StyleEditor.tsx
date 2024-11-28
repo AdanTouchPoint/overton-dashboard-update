@@ -21,6 +21,22 @@ const StyleEditor: React.FC<StyleEditorProps> = ({ styles, onStyleChange }) => {
         />
       </div>
       <div>
+        <label>Text color: </label>
+        <input
+          type="color"
+          value={styles.textColor}
+          onChange={(e) => onStyleChange('textColor', e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Label Color: </label>
+        <input
+          type="color"
+          value={styles.labelColor}
+          onChange={(e) => onStyleChange('labelColor', e.target.value)}
+        />
+      </div>
+      <div>
         <label>Input Background: </label>
         <input
           type="color"
@@ -29,11 +45,51 @@ const StyleEditor: React.FC<StyleEditorProps> = ({ styles, onStyleChange }) => {
         />
       </div>
       <div>
-        <label>Font Family: </label>
+        <label>Link Color: </label>
         <input
-          type="text"
-          value={styles.fontFamily}
-          onChange={(e) => onStyleChange('fontFamily', e.target.value)}
+          type="color"
+          value={styles.linkColor}
+          onChange={(e) => onStyleChange('linkColor', e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Input Text Color: </label>
+        <input
+          type="color"
+          value={styles.inputTextColor}
+          onChange={(e) => onStyleChange('inputTextColor', e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Button Color: </label>
+        <input
+          type="color"
+          value={styles.buttonColor}
+          onChange={(e) => onStyleChange('buttonColor', e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Button Text Color: </label>
+        <input
+          type="color"
+          value={styles.buttonTextColor}
+          onChange={(e) => onStyleChange('buttonTextColor', e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Button B Color: </label>
+        <input
+          type="color"
+          value={styles.buttonBColor}
+          onChange={(e) => onStyleChange('buttonBColor', e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Button B Text Color: </label>
+        <input
+          type="color"
+          value={styles.buttonBTextColor}
+          onChange={(e) => onStyleChange('buttonBTextColor', e.target.value)}
         />
       </div>
       <div>
@@ -47,22 +103,6 @@ const StyleEditor: React.FC<StyleEditorProps> = ({ styles, onStyleChange }) => {
         <button onClick={(e)=> onStyleChange('formWidth','1200px')}> 
           <AppWindowMac className="icon"/>
         </button>
-      </div>
-      <div>
-        <label>Form Padding: </label>
-        <input
-          type="text"
-          value={styles.formPadding}
-          onChange={(e) => onStyleChange('formPadding', e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Border Radius: </label>
-        <input
-          type="text"
-          value={styles.borderRadius}
-          onChange={(e) => onStyleChange('borderRadius', e.target.value)}
-        />
       </div>
     </div>
   );

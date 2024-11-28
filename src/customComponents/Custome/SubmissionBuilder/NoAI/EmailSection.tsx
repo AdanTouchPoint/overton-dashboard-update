@@ -5,19 +5,13 @@ export const renderEmailSection = (content,styles,setActiveSection) => {
 
     return (
       <div
-      className="activism-platform-container"
-      style={{
-        fontFamily: styles.fontFamily,
-      }}
-    >
+      className="activism-platform-container">
       <div className="activism-form-container">
         <div
           className="activism-form"
           style={{
             backgroundColor: styles.backgroundColor,
             width: styles.formWidth,
-            padding: styles.formPadding,
-            borderRadius: styles.borderRadius,
           }}
         >
         <h3

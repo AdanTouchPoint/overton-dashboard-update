@@ -17,7 +17,7 @@ export const renderPrivacySection = (content, styles, setActiveSection) => {
           className="activism-form"
           style={{
             backgroundColor: styles.backgroundColor,
-            width: styles.formWidth
+            width: styles.formWidth 
           }}
         ><h3 
         className="form-title"

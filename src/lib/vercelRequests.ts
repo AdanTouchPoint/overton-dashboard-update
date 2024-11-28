@@ -1,5 +1,5 @@
 
-const token = process.env.VERCEL_TOKEN;
+const token = process.env.VERCEL_TOKEN ;
 const createProject = async (projectData,name: string) => {
     try {
         const myHeaders: Headers = new Headers();
@@ -55,7 +55,7 @@ const createProject = async (projectData,name: string) => {
                   "key": "NEXT_PUBLIC_URL",
                   "target": "production",
                   "type": "plain",
-                  "value": "https://app.overton.services/dashboardContent"
+                  "value": "https://overton-dashboard-6ef65b18fac8.herokuapp.com/dashboardContent"
                 },
                 {
                   "key": "NEXT_PUBLIC_URL_SERVICES",

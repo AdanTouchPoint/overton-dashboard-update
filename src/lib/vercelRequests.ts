@@ -1,5 +1,5 @@
 
-const token = process.env.VERCEL_TOKEN ;
+const token = process.env.VERCEL_TOKEN;
 const createProject = async (projectData,name: string) => {
     try {
         const myHeaders: Headers = new Headers();

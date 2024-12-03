@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { createCampaign } from "../lib/createCampaign";
+import {batch_email} from "../controllers/emailController";
 const router = Router();
 router.post("/deploy-project", async (req, res) => {
     try {
@@ -37,4 +38,22 @@ router.post("/deploy-project", async (req, res) => {
       }
 });
 
+router.get("/email-batch", async (req, res) => {
+  try {
+    const query = req.query;
+    console.log(query);
+    const email = await batch_email(query);
+    res.json({
+      success: true,
+      message: "Email Sent",
+      data: email,
+    });
+  } catch (error) {
+    res.status(400);
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+});
 export default router  

@@ -13,6 +13,8 @@ import AlertThePress from './collections/AlertThePress';
 import AlertThePressAI from './collections/AlertThePressAI';
 import SubmissionBuilder from './collections/SubmissionBuilder';
 import SubmissionBuilderAI from './collections/SubmissionBuilderAI';
+import Representatives from './collections/Representatives';
+import Electorates from './collections/Electorates';
 import AfterNavLinks from './customComponents/afterNavLink';
 import Campaing from './customComponents/Custome/Campaign';
 import EditCampaing from './customComponents/Custome/EditCampaign'
@@ -44,7 +46,9 @@ export default buildConfig({
     AlertThePress,
     AlertThePressAI,
     SubmissionBuilder,
-    SubmissionBuilderAI
+    SubmissionBuilderAI,
+    Representatives,
+    Electorates
     // Add Collections here
     // Examples,
   ],

@@ -69,6 +69,9 @@ router.get("/campaignContentId", async (req, res) => {
       console.log(query)
       //const objReady = await JSON.parse(query.info)
       const data = await getCampaignById(query)
+      if(data.length < 1) {
+        throw new Error("No reps chek your data");
+      }
       res.json({
         success: true,
         message: "campaign found",

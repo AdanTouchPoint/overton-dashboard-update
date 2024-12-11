@@ -15,8 +15,8 @@ router.post("/deploy-project", async (req, res) => {
         message: error.message,
       });
     }
-  });  
-  router.get('/deployment-status/:deployId', async (req, res) => {
+});  
+router.get('/deployment-status/:deployId', async (req, res) => {
     const { deployId } = req.params;
     console.log(deployId)
       try {
@@ -37,16 +37,20 @@ router.post("/deploy-project", async (req, res) => {
         res.status(500).json({ error: 'Error al verificar estado del despliegue' });
       }
 });
-
 router.get("/email-batch", async (req, res) => {
   try {
     const query = req.query;
     console.log(query);
     const email = await batch_email(query);
+    console.log(email)
+    if(email === false)
+      {
+        throw new Error("email not sent");
+        
+      }
     res.json({
       success: true,
-      message: "Email Sent",
-      data: email,
+      message: "Email Sent"
     });
   } catch (error) {
     res.status(400);

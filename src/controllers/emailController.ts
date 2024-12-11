@@ -41,10 +41,8 @@ export function batch_email(input) {
     //Send email
     return sgMail
       .send(msg)
-      .then(() => {
-        console.log("Email Sent");
-      })
       .catch((error) => {
         console.error(error);
+        return false
       });
 }

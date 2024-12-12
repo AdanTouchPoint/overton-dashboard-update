@@ -15,6 +15,7 @@ import SubmissionBuilder from './collections/SubmissionBuilder';
 import SubmissionBuilderAI from './collections/SubmissionBuilderAI';
 import Representatives from './collections/Representatives';
 import Electorates from './collections/Electorates';
+import Leads from './collections/Leads';
 import AfterNavLinks from './customComponents/afterNavLink';
 import Campaing from './customComponents/Custome/Campaign';
 import EditCampaing from './customComponents/Custome/EditCampaign'
@@ -48,7 +49,8 @@ export default buildConfig({
     SubmissionBuilder,
     SubmissionBuilderAI,
     Representatives,
-    Electorates
+    Electorates,
+    Leads
     // Add Collections here
     // Examples,
   ],

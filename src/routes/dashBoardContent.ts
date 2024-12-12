@@ -1,8 +1,9 @@
 import { Router } from "express";
-const router = Router();
+import { createLeads } from "../controllers/leads";
 import {createCampaign, updateCampaign, getAllCampaigns, getCampaignById} from '../controllers/campaigns'
 import { ParsedQs } from 'qs'
 import {getElectorate,getDivision,getRepsByState} from "../controllers/representatives"
+const router = Router();
 router.post("/campaign", async (req, res) => {
     try {
       interface MyQuery extends ParsedQs {
@@ -70,7 +71,7 @@ router.get("/campaignContentId", async (req, res) => {
       //const objReady = await JSON.parse(query.info)
       const data = await getCampaignById(query)
       if(data.length < 1) {
-        throw new Error("No reps chek your data");
+        throw new Error("No content found check your data");
       }
       res.json({
         success: true,
@@ -85,6 +86,7 @@ router.get("/campaignContentId", async (req, res) => {
       });
     }
 });
+/* missing delete campaign endpoint */
 router.get("/find-mp", async (req, res) => {
     try {
       const query = req.query;
@@ -93,12 +95,7 @@ router.get("/find-mp", async (req, res) => {
       console.log(query);
       const data = await getElectorate(query);
       if (data.length === 0) {
-        console.log("hola");
-        return res.json({
-          message: "Postal Code has not Found",
-          data: data,
-          success: true,
-        });
+        throw new Error("No reps check your data");
       }
       await Promise.all(
         data.map(async (el) => {
@@ -126,5 +123,22 @@ router.get("/find-mp", async (req, res) => {
         message: error.message,
       });
     }
+});
+router.post("/leads", async (req, res) => {
+  try {
+    const query = req.query
+    const data = await createLeads(query)
+    res.json({
+      success: true,
+      message: "lead create done",
+      data: data
+    });
+  } catch (error) {
+    res.status(400);
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
 });
   export default router

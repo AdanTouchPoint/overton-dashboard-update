@@ -2,7 +2,7 @@ import { Router } from "express";
 import { createLeads } from "../controllers/leads";
 import {createCampaign, updateCampaign, getAllCampaigns, getCampaignById} from '../controllers/campaigns'
 import { ParsedQs } from 'qs'
-import {getElectorate,getDivision,getRepsByState} from "../controllers/representatives"
+import {getElectorate,getDivision,getRepsByState, getAllRepresentatives} from "../controllers/representatives"
 const router = Router();
 router.post("/campaign", async (req, res) => {
     try {
@@ -123,6 +123,25 @@ router.get("/find-mp", async (req, res) => {
         message: error.message,
       });
     }
+});
+router.get("/representatives", async (req, res) => {
+  try {
+    const query = req.query;
+    console.log(query)
+    //const objReady = await JSON.parse(query.info)
+    const data = await getAllRepresentatives(query)
+    res.json({
+      success: true,
+      message: "campaign update done",
+      data
+    });
+  } catch (error) {
+    res.status(400);
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
 });
 router.post("/leads", async (req, res) => {
   try {

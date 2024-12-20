@@ -51,3 +51,20 @@ export  const getElectorate = async (query) => {
 
     return result;
   };
+  export const getAllRepresentatives= async (query) => {
+    console.log(query);
+    const result = await payload.db.collections[
+      "representatives"
+    ].aggregate([
+      { $match: { clientId: query.clientId} },
+      {
+        $group: {
+          _id: "$email",
+          documento: { $first: "$$ROOT" },
+        },
+      },
+      { $replaceRoot: { newRoot: "$documento" } },
+    ]);
+
+    return result;
+  };

@@ -54,7 +54,7 @@ export  const getElectorate = async (query) => {
   export const getAllRepresentatives= async (query) => {
     console.log(query);
     const result = await payload.db.collections[
-      "representatives"
+      "customeReps"
     ].aggregate([
       { $match: { clientId: query.clientId} },
       {

@@ -19,6 +19,7 @@ import Leads from './collections/Leads';
 import AfterNavLinks from './customComponents/afterNavLink';
 import Campaing from './customComponents/Custome/Campaign';
 import EditCampaing from './customComponents/Custome/EditCampaign'
+import CustomeReps from './collections/CustomeReps';
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:8080',
   admin: {
@@ -50,7 +51,8 @@ export default buildConfig({
     SubmissionBuilderAI,
     Representatives,
     Electorates,
-    Leads
+    Leads,
+    CustomeReps
     // Add Collections here
     // Examples,
   ],

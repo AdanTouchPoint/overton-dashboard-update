@@ -124,7 +124,7 @@ router.get("/find-mp", async (req, res) => {
       });
     }
 });
-router.get("/representatives", async (req, res) => {
+router.get("/all-representatives", async (req, res) => {
   try {
     const query = req.query;
     console.log(query)

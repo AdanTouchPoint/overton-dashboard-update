@@ -1,6 +1,10 @@
 import { Router } from "express";
 import { createCampaign } from "../lib/createCampaign";
-import {batch_email} from "../controllers/emailController";
+import {batch_email, emailBuilder} from "../controllers/emailController";
+import {checker} from "../lib/misc";
+import {keywords} from "../lib/restrictedWords";
+import { ParsedQs } from 'qs'
+
 const router = Router();
 router.post("/deploy-project", async (req, res) => {
     try {
@@ -51,6 +55,37 @@ router.get("/email-batch", async (req, res) => {
     res.json({
       success: true,
       message: "Email Sent"
+    });
+  } catch (error) {
+    res.status(400);
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+});
+router.get("/email-builder", async (req, res) => {
+
+  try {
+    interface MyQuery extends ParsedQs {
+      user: string;
+      questions: string;
+    }
+    const query = req.query as MyQuery;
+
+    let user = JSON.parse(query.user);
+    let questions = JSON.parse(query.questions);
+    console.log(questions)
+    const checkText = await checker(questions, keywords);
+    const email = await emailBuilder(questions, user);
+    if(email === false)
+      {
+        throw new Error("email not sent");
+        
+      }
+    res.json({
+      success: true,
+      data: email,
     });
   } catch (error) {
     res.status(400);

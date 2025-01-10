@@ -97,7 +97,7 @@ const getRepoInfo = async (name: string) => {
   };
 
   const response = fetch(
-    `https://api.github.com/repos/AdanTouchPoint/${name}`,
+    `https://api.github.com/repos/AdanTouchPoint/${name.replace(/ /g, "-")}`,
     requestOptions
   );
   return response;

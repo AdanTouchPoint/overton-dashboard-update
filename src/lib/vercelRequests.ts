@@ -61,7 +61,7 @@ const createProject = async (projectData,name: string) => {
                   "key": "NEXT_PUBLIC_URL_SERVICES",
                   "target": "production",
                   "type": "plain",
-                  "value": "https://app.overton.services/dashboardServices"
+                  "value": "https://overton-dashboard-6ef65b18fac8.herokuapp.com/dashboardServices"
                 },
                 {
                   "key": "NEXT_PUBLIC_URL_GA_ID",
@@ -83,7 +83,8 @@ const createProject = async (projectData,name: string) => {
             body: raw,
             redirect: "follow"
         };
-        const response = await fetch("https://api.vercel.com/v9/projects", requestOptions)
+        const response = await fetch("https://api.vercel.com/v10/projects", requestOptions)
+        console.log(response)
         if (response.status !== 200) {
           throw new Error(`Error al crear un proyecto en vercel por favor verifica tus datos`);
          }

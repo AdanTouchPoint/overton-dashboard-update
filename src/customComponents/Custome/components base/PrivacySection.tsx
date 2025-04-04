@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './componentBase.css'
 export const renderPrivacySection = (content, styles, setActiveSection) => {
     const { privacy } = content;
     //const data = privacy?.privacyOptions

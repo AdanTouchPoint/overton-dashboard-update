@@ -1,5 +1,5 @@
 import React from "react";
-import '../sb.css'
+import './componentBase.css'
 export const renderQuestionsSection = (content, styles, setActiveSection) => {
   const { questions } = content;
   const inputs = questions?.questions || [] 

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../../components base/componentBase.css'
 export const renderEmailSection = (content,styles,setActiveSection) => {
     const { email } = content;
 

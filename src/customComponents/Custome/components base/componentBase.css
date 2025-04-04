@@ -1,0 +1,32 @@
+.form-group {
+    margin-bottom: 25px;
+  }
+  .activism-platform-container {
+    display: flex;
+    min-height: 100vh;
+    
+  }
+  .activism-form-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .activism-form {
+    /*  background-color: #ffffff;*/
+      padding: 40px;
+      border-radius: 8px;
+      /*max-width: 600px;*/
+      margin: auto;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+    }
+    .submit-button {
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+        margin-top: 10px;
+      }

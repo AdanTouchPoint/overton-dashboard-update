@@ -1,5 +1,5 @@
 import React, { FormEvent, useEffect, useState } from "react";
-import "./sb.css";
+import "./mainform.css";
 import { useAuth } from "payload/components/utilities";
 import { MainFormProps, ProjectData } from "../interfaces";
 import { postCampaignData } from "../../lib/requestsAPI";

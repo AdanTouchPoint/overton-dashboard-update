@@ -1,0 +1,19 @@
+.main-flex-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    overflow: hidden; /* Evita el scroll en el contenedor principal */
+  }
+  .style-editor-container,
+.content-editor-container {
+  width: 280px; 
+  flex-shrink: 0;
+  overflow-y: auto;
+  padding: 20px;
+  border-right: 1px solid #ddd; /* Añadimos una línea divisoria */
+}
+.preview-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 40px;
+  }

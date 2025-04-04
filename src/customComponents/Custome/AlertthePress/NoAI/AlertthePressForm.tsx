@@ -3,7 +3,7 @@ import React, { useReducer, useState, useEffect } from 'react';
 import StyleEditor from '../../Editors/StyleEditor';
 import ContentEditor from '../../Editors/ContentEditor';
 import { APprops, ProjectData } from '../../../interfaces';
-import "../../sb.css";
+import "../../formStyles.css";
 import { renderMainFormSection } from '../../components base/MainFormSection';
 import { renderEmailSection } from '../../components base/EmailFormSection';
 import { renderEmailReviewSection} from '../../components base/EmailReviewSection'

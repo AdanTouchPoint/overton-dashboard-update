@@ -1,9 +1,9 @@
 
 import React, { useReducer, useState, useEffect } from 'react';
-import StyleEditor from '../../Editors/StyleEditor';
+import StyleEditor from '../../Editors/StyleTab';
 import ContentEditor from '../../Editors/ContentEditor';
 import { SBprops, ProjectData } from '../../../interfaces';
-import "../../sb.css";
+import "../../Editors/editorBaseView.css";
 import { renderMainFormSection } from './MainFormSection';
 import { renderPrivacySection } from '../../components base/PrivacySection';
 import { renderQuestionsSection } from '../../components base/QuestionsSection';
@@ -11,10 +11,13 @@ import { renderEmailSection } from './EmailSection';
 import { renderTYSection } from './TYSection';
 import { initialContentStateSB, ContentState } from '../../../../lib/contentState';
 import { contentReducer, ContentAction } from '../../../../lib/contentReducer';
+import Header from '../../Editors/Header';
+import ControlPanel from '../../Editors/ControPanel';
 type ActiveSection = 'mainform' | 'privacy' | 'questions' | 'email' | 'ty';
 
 const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData, setActiveForm
 }) => {
+  const [activeTab, setActiveTab] = useState("styles")
   const [content, dispatchContent] = useReducer<React.Reducer<ContentState, ContentAction>>(contentReducer, initialContentStateSB);
   const [styles, setStyles] = useState({
     formWidth: '400px',
@@ -98,20 +101,23 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData, setActiveForm
   };
 
   return (
+    <>
+     <Header/>
+   
     <div className="main-flex-container">
-      <div className="style-editor-container">
-        <StyleEditor styles={styles} onStyleChange={handleStyleChange} />
-      </div>
-      <div className="content-editor-container">
-        <ContentEditor
-          setActiveForm= {setActiveForm}
-          content={content}
-          activeSection={activeSection}
-          onContentChange={handleContentChange}
-        />
-      </div>
+     <ControlPanel 
+       activeTab={activeTab}
+       setActiveTab={setActiveTab}
+        styles={styles} 
+        updateStyle={handleStyleChange}
+        setActiveForm= {setActiveForm}
+        content={content}
+        activeSection={activeSection}
+        onContentChange={handleContentChange}/>
+
       <div className="preview-container">{renderSection()}</div>
     </div>
+    </>
   )
 };
 

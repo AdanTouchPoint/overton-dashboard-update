@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ContentState } from "../../../lib/contentState";
-import "../sb.css";
+import "./contentEditor.css";
 import { PlusCircle, MinusCircle } from "lucide-react";
 import  {deployProject} from '../../../lib/requestsAPI'
 import { useAuth } from "payload/components/utilities";

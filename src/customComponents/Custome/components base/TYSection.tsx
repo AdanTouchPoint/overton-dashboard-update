@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './componentBase.css'
 export const renderTYSection = (content, styles, setActiveSection) => {
     const { ty } = content;
 

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './componentBase.css'
 export const renderMainFormSection = (content, styles, setActiveSection, flexDirect) => {
     const { mainform } = content;
     const inputs = mainform?.mainFormInputs || [] 

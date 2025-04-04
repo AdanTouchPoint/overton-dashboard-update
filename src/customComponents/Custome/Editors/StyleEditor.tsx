@@ -1,7 +1,7 @@
 // StyleEditor.tsx
 
 import React from 'react';
-import '../sb.css'
+import './style-editor.css';
 import { Smartphone, TabletSmartphone, AppWindowMac } from 'lucide-react';
 interface StyleEditorProps {
   styles: { [key: string]: string };
@@ -11,7 +11,7 @@ interface StyleEditorProps {
 const StyleEditor: React.FC<StyleEditorProps> = ({ styles, onStyleChange }) => {
   return (
     <div className="style-editor">
-      <h2>Editor de Estilos</h2>
+     
       <div>
         <label>Background Color: </label>
         <input

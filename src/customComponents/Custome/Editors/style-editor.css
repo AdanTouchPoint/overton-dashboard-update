@@ -28,7 +28,7 @@
 
 .form-group input[type="text"] {
   padding: 0.5rem;
-  border: 1px solid var(--gray-300);
+  border: 1px solid;
   border-radius: var(--border-radius);
   font-size: 0.875rem;
   transition: var(--transition);

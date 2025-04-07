@@ -107,15 +107,15 @@ const userId = user.user.id;
       const mainFormInputs = content["mainform"]["mainFormInputs"] || [];
       return mainFormInputs.map((field: any, index: number) => {
         return (
-          <div key={index} className="content-input">
-            <label>
-              Text:
-              <input
+          <div key={index} className="form-group">
+            <label >
+            {field.text}
+            </label>
+            <input
                 type="text"
                 value={field.text}
                 disabled
               />
-            </label>
             <button
               className="remove-btn"
               onClick={() => handleRemoveField(field.text)}
@@ -169,15 +169,15 @@ const userId = user.user.id;
     const questions = content["questions"]["questions"] || [];
     return questions.map((question, index) => {
       return (
-        <div key={index} className="content-input">
+        <div key={index} className="form-group">
           <label>
             Text:
-            <input
+          </label>
+          <input
               type="text"
               value={question.text}
               onChange={(e) => handleEditQuestion(index, "text", e.target.value)}
             />
-          </label>
           <button
             className="remove-btn"
             onClick={() => handleRemoveQuestion(question.text)}
@@ -199,7 +199,7 @@ const userId = user.user.id;
         !Array.isArray(value)
       ) {
         return (
-          <div key={currentKeys.join("-")} className="content-section">
+          <div key={currentKeys.join("-")} className="form-group">
             <h3>{key.charAt(0).toUpperCase() + key.slice(1)}</h3>
             {renderContent(value, currentKeys)}
           </div>
@@ -219,7 +219,7 @@ const userId = user.user.id;
           inputType = "color";
         }
         return (
-          <div key={currentKeys.join("-")} className="content-input">
+          <div key={currentKeys.join("-")} className="form-group">
             <label htmlFor={currentKeys.join("-")}>
               {key.charAt(0).toUpperCase() + key.slice(1)}:
             </label>
@@ -247,16 +247,15 @@ try {
 }
   };
   return (
-    <div className="content-editor">
+    <div className="content-panel">
       <h2>
-        Content Editor -{" "}
         {activeSection.charAt(0).toUpperCase() + activeSection.slice(1)}
       </h2>
 
       {activeSection === "mainform" && (
         <>
           <h3>User Info</h3>
-          <div className="select-inputs">
+          <div className="form-group">
             <label htmlFor="addFieldSelect">Agregar campo</label>
             <select
               id="addFieldSelect"
@@ -289,8 +288,8 @@ try {
       {activeSection === "questions" && (
         <>
           <h3>Preguntas</h3>
-          <div className="select-inputs">
-            <div className="content-input">
+          <div >
+            <div className="form-group">
               <label>Pregunta:</label>
               <input
                 type="text"

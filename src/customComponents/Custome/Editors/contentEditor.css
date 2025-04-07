@@ -1,18 +1,56 @@
-.content-input {
-    padding-top: 10px;
+.content-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
+
+.content-panel h2 h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.form-group textarea {
+  padding: 0.5rem;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
+  transition: var(--transition);
+  resize: vertical;
+}
+
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+}
+
+.display-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.display-button:hover {
+  background-color: var(--primary-hover);
+}
+
+
 
 .remove-btn{
     margin: 10px ;
   }
 
-  .content-section{
-    margin-bottom: 15px;
-  } 
+
 
 .add-btn{
     margin: 10px;
   }
-  .content-editor{
-    width:120px;
-}

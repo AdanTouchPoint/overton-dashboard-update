@@ -3,7 +3,7 @@ import React, { useReducer, useState, useEffect } from 'react';
 import StyleEditor from '../../Editors/StyleTab';
 import ContentEditor from '../../Editors/ContentEditor';
 import { SBprops, ProjectData } from '../../../interfaces';
-import "../../Editors/editorBaseView.css";
+import "../../Editors/preview-panel.css";
 import { renderMainFormSection } from './MainFormSection';
 import { renderPrivacySection } from '../../components base/PrivacySection';
 import { renderQuestionsSection } from '../../components base/QuestionsSection';
@@ -102,8 +102,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData, setActiveForm
 
   return (
     <>
-     <Header/>
-   
+    <Header/>
     <div className="main-flex-container">
      <ControlPanel 
        activeTab={activeTab}
@@ -114,8 +113,15 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData, setActiveForm
         content={content}
         activeSection={activeSection}
         onContentChange={handleContentChange}/>
-
-      <div className="preview-container">{renderSection()}</div>
+      <div className="preview-panel">
+      <div className="preview-header">
+        <h2>Vista Previa</h2>
+      </div>
+      <div className="preview-container">
+        {/*< styles={styles} emailContent={emailContent}>*/}
+        {renderSection()}
+      </div>
+    </div>
     </div>
     </>
   )

@@ -5,14 +5,18 @@ export const renderEmailSection = (content,styles,setActiveSection) => {
 
     return (
       <div
-      className="activism-platform-container">
-      <div className="activism-form-container">
+      className="email-preview"
+      style={{
+        width: `${styles.formWidth}px`,
+        maxWidth: "100%",
+      }}>
+      <div className="email-content"
+        style={{
+          backgroundColor: styles.backgroundColor,
+          color: styles.textColor,
+        }}>
         <div
-          className="activism-form"
-          style={{
-            backgroundColor: styles.backgroundColor,
-            width: styles.formWidth,
-          }}
+          className="email-header"
         >
         <h3
           style={{
@@ -32,8 +36,10 @@ export const renderEmailSection = (content,styles,setActiveSection) => {
         </p>
         <textarea style={{resize: 'none'}} disabled rows={10} cols={50}>Email ... </textarea>
         {/* Contenido adicional */}
+        <div className="button-group">
         <button  className="submit-button" onClick={() => setActiveSection('questions')}>Back</button>
         <button  className="submit-button" onClick={() => setActiveSection('ty')}>Next</button>
+        </div>
         </div>
       </div>
     </div>

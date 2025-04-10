@@ -11,7 +11,7 @@ import './campaignList.css'
 
 const baseClass = "after-dashboard";
 const Campaing: React.FC = () => {
-  const [activeForm,setActiveForm] = useState('SB')
+  const [activeForm,setActiveForm] = useState('main')
   const [projectData, setProjectData] = useState<ProjectData>();
   const [err,setErr] = useState(false)
 

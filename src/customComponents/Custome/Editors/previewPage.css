@@ -1,0 +1,86 @@
+.email-preview {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+  }
+  
+  .email-content {
+    padding: 2rem;
+  }
+  
+  .email-header {
+    margin-bottom: 2rem;
+  }
+  
+  .email-header h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .email-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .form-field label {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  
+  .form-field input {
+    padding: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .primary-button,
+  .secondary-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+  
+  .primary-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+  }
+  
+  .primary-button:hover {
+    filter: brightness(1.1);
+  }
+  
+  .secondary-button {
+    background-color: transparent;
+    border: 1px solid var(--gray-300);
+    color: var(--gray-300);
+  }
+  
+  .secondary-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  

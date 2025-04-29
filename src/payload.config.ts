@@ -20,6 +20,7 @@ import AfterNavLinks from './customComponents/afterNavLink';
 import Campaing from './customComponents/Custome/Campaign';
 import EditCampaing from './customComponents/Custome/EditCampaign'
 import CustomeReps from './collections/CustomeReps';
+import RepresentativesRecord from './collections/RepresentativesRecord';
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:8080',
   admin: {
@@ -52,7 +53,8 @@ export default buildConfig({
     Representatives,
     Electorates,
     Leads,
-    CustomeReps
+    CustomeReps,
+    RepresentativesRecord
     // Add Collections here
     // Examples,
   ],

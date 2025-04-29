@@ -14,7 +14,7 @@ export const renderMainFormSection = (
         <label>
           <span
             style={{
-              color: styles.textColor,
+              color: styles.labelColor,
             }}
           >
             {field.text.charAt(0).toUpperCase() + field.text.slice(1)}

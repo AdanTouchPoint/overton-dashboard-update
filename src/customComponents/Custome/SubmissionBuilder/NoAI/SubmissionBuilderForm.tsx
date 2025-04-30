@@ -1,14 +1,12 @@
 
 import React, { useReducer, useState, useEffect } from 'react';
-import StyleEditor from '../../Editors/StyleTab';
-import ContentEditor from '../../Editors/ContentEditor';
 import { SBprops, ProjectData } from '../../../interfaces';
 import "../../Editors/preview-panel.css";
-import { renderMainFormSection } from './MainFormSection';
+import { renderMainFormSection } from '../../components base/MainFormSection';
 import { renderPrivacySection } from '../../components base/PrivacySection';
 import { renderQuestionsSection } from '../../components base/QuestionsSection';
-import { renderEmailSection } from './EmailSection';
-import { renderTYSection } from './TYSection';
+import { renderEmailSection } from '../../components base/EmailFormSection';
+import { renderTYSection } from '../../components base/TYSection';
 import { initialContentStateSB, ContentState } from '../../../../lib/contentState';
 import { contentReducer, ContentAction } from '../../../../lib/contentReducer';
 import Header from '../../Editors/Header';
@@ -20,7 +18,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData, setActiveForm
   const [activeTab, setActiveTab] = useState("styles")
   const [content, dispatchContent] = useReducer<React.Reducer<ContentState, ContentAction>>(contentReducer, initialContentStateSB);
   const [styles, setStyles] = useState({
-    formWidth: '400px',
+    formWidth: '1200px',
     backgroundColor: '#2c3e50',
     textColor: '#34495e',
     labelColor: '#34495e',
@@ -118,8 +116,24 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData, setActiveForm
         <h2>Vista Previa</h2>
       </div>
       <div className="preview-container">
+      <div className="activism-platform-container">
+      <div className="activism-form-container">
+        <div
+          className="activism-form"
+          style={{
+            flexDirection: flexDirect === 'row' ? 'row' : 'column',
+            display: flexDirect === 'row' ? 'block' : 'flex',
+            backgroundColor: styles.backgroundColor,
+            width: styles.formWidth,
+            
+          }}
+        >
+           {renderSection()}
+        </div>
+      </div>
+    </div>
         {/*< styles={styles} emailContent={emailContent}>*/}
-        {renderSection()}
+       
       </div>
     </div>
     </div>

@@ -29,22 +29,8 @@ export const renderMainFormSection = (content, styles, setActiveSection, flexDir
     };
   
     return (
-      <div
-        className="activism-platform-container"
-        style={{
-          fontFamily: styles.fontFamily,
-          width: styles.formWidth
-        }}
-      >
-        <div className="activism-form-container">
-          <div
-            className="activism-form"
-            style={{
-              backgroundColor: styles.backgroundColor,
-
-            }}
-          >
-            <h1
+      <>
+       <h1
               style={{
                 color: styles.textColor
               }}
@@ -76,17 +62,15 @@ export const renderMainFormSection = (content, styles, setActiveSection, flexDir
             </div>
             <button
               type="button"
-              className="submit-button"
+              className="submit-button-platform"
               style={{
                 backgroundColor: styles.buttonColor,
                 color: styles.buttonTextColor
               }}
-              onClick={() => setActiveSection('emailform')}
+              onClick={() => setActiveSection('privacy')}
             >
               NEXT
             </button>
-          </div>
-        </div>
-      </div>
+      </>
     );
   };

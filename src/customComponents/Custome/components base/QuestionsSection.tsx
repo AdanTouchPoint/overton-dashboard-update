@@ -26,18 +26,8 @@ export const renderQuestionsSection = (content, styles, setActiveSection) => {
   };
 
   return (
-    <div
-      className="activism-platform-container"
-    >
-      <div className="activism-form-container">
-        <div
-          className="activism-form"
-          style={{
-            backgroundColor: styles.backgroundColor,
-            width: styles.formWidth
-          }}
-        >
-          <h3
+    <>
+    <h3
             style={{
               color: styles.textColor,
 
@@ -55,10 +45,8 @@ export const renderQuestionsSection = (content, styles, setActiveSection) => {
           <h5>Questions</h5>
             {renderDynamicInputs()}
           {/* Componente DynamicQuestions o contenido adicional */}
-          <button className="submit-button" style={{backgroundColor: styles.buttonBColor, color: styles.buttonBTextColor}} onClick={() => setActiveSection("privacy")}>Back</button>
-          <button className="submit-button" style={{backgroundColor: styles.buttonColor, color: styles.buttonTextColor}} onClick={() => setActiveSection("email")}>Next</button>
-        </div>
-      </div>
-    </div>
+          <button className="submit-button-platform" style={{backgroundColor: styles.buttonBColor, color: styles.buttonBTextColor}} onClick={() => setActiveSection("privacy")}>Back</button>
+          <button className="submit-button-platform" style={{backgroundColor: styles.buttonColor, color: styles.buttonTextColor}} onClick={() => setActiveSection("email")}>Next</button>
+    </>
   );
 };

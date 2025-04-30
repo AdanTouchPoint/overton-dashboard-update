@@ -4,19 +4,8 @@ export const renderTYSection = (content, styles, setActiveSection) => {
     const { ty } = content;
 
     return (
-      <div
-      className="activism-platform-container"
-    >
-      <div className="activism-form-container">
-        <div
-          className="activism-form"
-          style={{
-            backgroundColor: styles.backgroundColor,
-            width: styles.formWidth,
-            textAlign: 'center'
-          }}
-        >
-        <h3
+      <>
+      <h3
           style={{
             color: styles.textColor,
           }}
@@ -52,9 +41,7 @@ export const renderTYSection = (content, styles, setActiveSection) => {
         >
           {ty.shareUrl.text}
         </p>
-        <button className="submit-button" style={{backgroundColor: styles.buttonBColor, color: styles.buttonBTextColor}} onClick={() => setActiveSection('emailreview')}>Back</button>
-        </div>
-      </div>
-    </div>
+        <button className="submit-button" style={{backgroundColor: styles.buttonBColor, color: styles.buttonBTextColor}} onClick={() => setActiveSection('email')}>Back</button>
+    </>
     );
   };

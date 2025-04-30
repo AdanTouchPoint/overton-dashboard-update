@@ -5,21 +5,8 @@ export const renderPrivacySection = (content, styles, setActiveSection) => {
     //const data = privacy?.privacyOptions
     console.log(content)
     return (
-      <div
-      className="activism-platform-container"
-      style={{
-        fontFamily: styles.fontFamily,
-        
-      }}
-    >
-      <div className="activism-form-container">
-        <div
-          className="activism-form"
-          style={{
-            backgroundColor: styles.backgroundColor,
-            width: styles.formWidth 
-          }}
-        ><h3 
+      <>
+      <h3 
         className="form-title"
         style={{
           color: styles.textColor,
@@ -43,10 +30,8 @@ export const renderPrivacySection = (content, styles, setActiveSection) => {
       }}>{privacy.privacyOptions.nameWithHeld.text}</h5>
         </div>
       {/* Contenido adicional */}
-      <button className="submit-button" style={{backgroundColor: styles.buttonBColor, color: styles.buttonBTextColor}} onClick={() => setActiveSection('mainform')}>Back</button>
-      <button className="submit-button" style={{backgroundColor: styles.buttonColor, color: styles.buttonTextColor}} onClick={() => setActiveSection('questions')}>Next</button>
-        </div>
-      </div>
-    </div>
+      <button className="submit-button-platform" style={{backgroundColor: styles.buttonBColor, color: styles.buttonBTextColor}} onClick={() => setActiveSection('mainform')}>Back</button>
+      <button className="submit-button-platform" style={{backgroundColor: styles.buttonColor, color: styles.buttonTextColor}} onClick={() => setActiveSection('questions')}>Next</button>
+    </>
     );
   };

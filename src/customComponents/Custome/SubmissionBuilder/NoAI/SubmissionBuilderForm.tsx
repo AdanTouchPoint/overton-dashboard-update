@@ -18,7 +18,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData, setActiveForm
   const [activeTab, setActiveTab] = useState("styles")
   const [content, dispatchContent] = useReducer<React.Reducer<ContentState, ContentAction>>(contentReducer, initialContentStateSB);
   const [styles, setStyles] = useState({
-    formWidth: '1200px',
+    formWidth: '600px',
     backgroundColor: '#2c3e50',
     textColor: '#34495e',
     labelColor: '#34495e',

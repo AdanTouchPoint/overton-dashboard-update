@@ -15,11 +15,22 @@
     /*  background-color: #ffffff;*/
       padding: 40px;
       border-radius: 8px;
-      /*max-width: 600px;*/
+      width: 100%;
       margin: auto;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     
     }
+
+    .submit-button-container {
+        margin-top: 20px;
+      }
+      .submit-button-container > button {
+        margin-right: 10px; /* Add space between buttons */
+      }
+
+      .submit-button:hover {
+        background-color: #0056b3;
+      }
     .submit-button-platform {
         border: none;
         padding: 18px 30px;

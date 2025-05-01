@@ -1,47 +1,57 @@
-import React from 'react';
-import './componentBase.css'
+import React from "react";
+import "./componentBase.css";
 export const renderTYSection = (content, styles, setActiveSection) => {
-    const { ty } = content;
+  const { ty } = content;
 
-    return (
-      <>
+  return (
+    <>
       <h3
+        style={{
+          color: styles.textColor,
+        }}
+      >
+        {ty.tymessage.text}
+      </h3>
+      <p
+        style={{
+          color: styles.textColor,
+        }}
+      >
+        {ty.tymessage2.text}
+      </p>
+      <p
+        style={{
+          color: styles.textColor,
+        }}
+      >
+        {ty.shareText.text}
+      </p>
+      <p
+        style={{
+          color: styles.textColor,
+        }}
+      >
+        {ty.shareMessage.text}
+      </p>
+      <p
+        style={{
+          color: styles.textColor,
+        }}
+      >
+        {ty.shareUrl.text}
+      </p>
+      <div className="submit-button-container">
+        <button
+          className="submit-button-platform"
           style={{
-            color: styles.textColor,
+            backgroundColor: styles.buttonBColor,
+            color: styles.buttonBTextColor,
           }}
+          onClick={() => setActiveSection("email")}
         >
-          {ty.tymessage.text}
-        </h3>
-        <p
-          style={{
-            color: styles.textColor,
-
-          }}
-        >
-          {ty.tymessage2.text}
-        </p>
-        <p
-          style={{
-            color: styles.textColor,
-          }}
-        >
-          {ty.shareText.text}
-        </p>
-        <p
-          style={{
-            color: styles.textColor,
-          }}
-        >
-          {ty.shareMessage.text}
-        </p>
-        <p
-          style={{
-            color: styles.textColor,
-          }}
-        >
-          {ty.shareUrl.text}
-        </p>
-        <button className="submit-button" style={{backgroundColor: styles.buttonBColor, color: styles.buttonBTextColor}} onClick={() => setActiveSection('email')}>Back</button>
+          Back
+        </button>
+      </div>
     </>
-    );
-  };
+  );
+};

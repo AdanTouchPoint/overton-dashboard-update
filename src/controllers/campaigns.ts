@@ -1,28 +1,28 @@
 import payload from "payload";
-export async function createCampaign (query){
-  console.log(query, 'here starts')
+export async function createCampaign(query) {
+  console.log(query, "here starts");
   const data = await payload.create({
     collection: `${query.projectData.campaignType}`, // change to campaignType for dynamic search
-    data:query,
+    data: query,
     overrideAccess: true,
   });
   return data;
-};
-export async function updateCampaign (query){
-  console.log(query, 'here starts update')
+}
+export async function updateCampaign(query) {
+  console.log(query, "here starts update");
   const data = await payload.update({
     collection: `${query.projectData.campaignType}`, // change to campaignType for dynamic search
-    data:query,
+    data: query,
     overrideAccess: true,
     where: {
       id: {
-        equals: query.projectData.id // cambiar a campaign id
+        equals: query.projectData.id, // cambiar a campaign id
       },
     },
   });
-  console.log(data)
+  console.log(data);
   return data;
-};
+}
 export const getAllCampaigns = async (query) => {
   const findOptions = {
     sort: "-updatedAt",
@@ -42,24 +42,36 @@ export const getAllCampaigns = async (query) => {
   ]);
   return { SB, AP, PD };
 };
-export const getCampaignById= async(query) => {
-  const data = await payload.find({
-    collection: `${query.type}`, // change to campaignType for dynamic search
+export const getCampaignById = async (query) => {
+  const options = {
+    sort: "-updatedAt",
+    limit: 0,
+    depth: 0,
     overrideAccess: true,
-    where:{
-      clientId: {
-        equals: query.clientId,
+    where: {
+      id: {
+        equals: query.info,
       },
-      and: [
-        {
-          id: {
-            equals: query.id,
-          },
-        },
-      ],
+    },
+  };
+  const getData = async () => {
+    const dataSB = await payload.find({ ...options, collection: "SB" });
+    if (dataSB.docs.length > 0) {
+      return dataSB;
     }
-  });
-  return data.docs
-}
-
-
+    const dataAP = await payload.find({ ...options, collection: "AP" });
+    if (dataAP.docs.length > 0) {
+      return dataAP;
+    }
+    const dataPD = await payload.find({ ...options, collection: "PD" });
+    if (dataPD.docs.length > 0) {
+      return dataPD;
+    }
+    return null; // Si no se encuentra ningún dato, devuelve null
+  };
+  const campaign = await getData();
+  if (!campaign) {
+    throw new Error("Campaign not found");
+  }
+  return campaign;
+};

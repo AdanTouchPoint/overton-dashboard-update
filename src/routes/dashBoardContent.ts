@@ -70,7 +70,7 @@ router.get("/campaignContentId", async (req, res) => {
       console.log(query)
       //const objReady = await JSON.parse(query.info)
       const data = await getCampaignById(query)
-      if(data.length < 1) {
+      if(!data) {
         throw new Error("No content found check your data");
       }
       res.json({

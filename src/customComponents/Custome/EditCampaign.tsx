@@ -2,19 +2,25 @@ import React,{useState,useEffect} from 'react';
 import { useAuth } from 'payload/components/utilities';
 import { DefaultTemplate } from 'payload/components/templates';
 import { getCampaigns, getCampaignsById } from '../../lib/requestsAPI';
+import { campaignEditData } from '../interfaces';
+import SubmissionBuilderForm from './SubmissionBuilder/NoAI/SubmissionBuilderForm';
 const baseClass = 'after-dashboard';
 const campaignTypes=['SB','PD','AP']
 const EditCampaing: React.FC = () => {
 const [renderCamp,setRenderCamp]= useState()
 const user = useAuth()
 const userId = user.user.id
-
+const [activeView,setActiveView] = useState('all')
+const [campaignEditData,setCampaignEditData] = useState<campaignEditData>()
+const [mode,setMode] = useState('')
 const edit = async (e) => {
 	e.preventDefault()
 	const id = e.target.innerText  
 	const payload = await  getCampaignsById(id)
-	console.log(payload)
-	
+	const data = payload.data.docs[0]
+	setCampaignEditData(data)
+	setActiveView(data.projectData.campaignType)
+	setMode('edit')
 }
 
 useEffect(() => {
@@ -50,7 +56,14 @@ useEffect(() => {
   };
 	return (
 		<DefaultTemplate>
-		{renderAllData(campaignTypes,renderCamp)}
+		{activeView === 'all' && renderAllData(campaignTypes,renderCamp)}
+		{activeView === 'SB' && 
+		(<SubmissionBuilderForm
+			mode={mode}
+		  	campaignEditData={campaignEditData}
+          />) }
+		{activeView === 'PD' && console.log("HEllO PD")}
+		{activeView === 'AP' && console.log("HEllO AP")}
 	  </DefaultTemplate>
 	);
 };

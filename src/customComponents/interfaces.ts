@@ -1,4 +1,16 @@
 import { Dispatch, SetStateAction } from 'react';
+import { ViewContent,styleProps,typ } from '../lib/contentState';
+export interface campaignEditData {
+      mainform?: ViewContent;
+      style?: styleProps;
+      //mainFormInputs: inputOptions;
+      emailform?: ViewContent;
+      emailreview?: ViewContent
+      privacy?: ViewContent;
+      questions?: ViewContent;
+      email?: ViewContent;
+      ty: typ;
+}
 export interface ProjectData {
   repo: string;
   description : string;
@@ -37,8 +49,11 @@ export interface MainFormProps {
     setProjectData: Dispatch<SetStateAction<ProjectData>>;
   }
   export interface SBprops {
-    projectData: ProjectData | undefined; 
-    setActiveForm: (value: string) => void;
+    projectData?: ProjectData | undefined; 
+    setActiveForm?: (value: string) => void;
+    campaignEditData?: campaignEditData[] | undefined;
+    mode?: string;
+    //setCampaignEditData: Dispatch<SetStateAction<campaignEditData[]>>;
   }
   export interface APprops {
     projectData: ProjectData | undefined;

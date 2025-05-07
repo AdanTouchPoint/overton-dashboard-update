@@ -13,18 +13,18 @@ import Header from '../../Editors/Header';
 import ControlPanel from '../../Editors/ControPanel';
 type ActiveSection = 'mainform' | 'privacy' | 'questions' | 'email' | 'ty';
 
-const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData, setActiveForm
+const SubmissionBuilderForm: React.FC<SBprops> = ({ mode, campaignEditData,projectData, setActiveForm
 }) => {
   const [activeTab, setActiveTab] = useState("styles")
   const [content, dispatchContent] = useReducer<React.Reducer<ContentState, ContentAction>>(contentReducer, initialContentStateSB);
   const [styles, setStyles] = useState({
-    formWidth: '600px',
-    backgroundColor: '#2c3e50',
-    textColor: '#34495e',
+    formWidth:  '600px',
+    backgroundColor:  '#2c3e50',
+    textColor:  '#34495e',
     labelColor: '#34495e',
-    inputBackground: '#FFFFFF',
+    inputBackground:  '#FFFFFF',
     linkColor: '#2980b9',
-    inputTextColor: '#34495e',
+    inputTextColor:  '#34495e',
     buttonColor: '',
     buttonTextColor: '',
     buttonBColor: '',
@@ -48,7 +48,38 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData, setActiveForm
     if(size === '1200px') return setState('row')
     if(size ==='800px' || size === '400px') return setState('column')
   }
-  useEffect(() => {
+
+  const setEditData = (mode, campaignEditData, projectData,styles) => {
+  if (mode === 'edit' && campaignEditData) {
+    const {style, mainform, email, privacy, questions, ty} = campaignEditData
+    setStyles(style)
+    const stylePath = ['style']
+    handleContentChange(stylePath,style)
+    const matinformPath=['mainform']
+    handleContentChange(matinformPath,mainform)
+    const emailPath= ['email']
+    handleContentChange(emailPath,email)
+    const privacyPath = ['privacy']
+    handleContentChange(privacyPath,privacy)
+    const questionsPath = ['questions']
+    handleContentChange(questionsPath,questions)
+    const tyPath = ['ty']
+    handleContentChange(tyPath,ty)
+    console.log("completed edit")
+  }
+  if(mode === 'create') {
+    const flexD = responsiveViews(styles.formWidth, setFlexDirect)
+    const style = ['style']
+    handleContentChange(style,styles)
+    const projectDataPath=['projectData']
+    handleContentChange(projectDataPath,projectData)
+    console.log("completed create")
+  }
+}
+ useEffect(() => { 
+  setEditData(mode, campaignEditData, projectData,styles)
+}, [campaignEditData,projectData, styles]);
+ /* useEffect(() => {
   const flexD = responsiveViews(styles.formWidth, setFlexDirect)
   const path = ['style']
   handleContentChange(path,styles)
@@ -57,7 +88,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData, setActiveForm
   useEffect(() => {
   const path=['projectData']
   handleContentChange(path,projectData)
-},[projectData])
+},[projectData]) */
 /*  const handleOnChange = (event: FormEvent<HTMLInputElement>) => {
     const { name, value } = event.currentTarget;
     setProjectData((prevData) => ({
@@ -81,7 +112,9 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ projectData, setActiveForm
       setErr(error.message || 'An error occurred');
     }
   };*/
+  
   const renderSection = () => {
+    console.log('content',content)
     switch (activeSection) {
       case 'mainform':
         return renderMainFormSection(content,styles,setActiveSection,flexDirect);

@@ -62,7 +62,7 @@ export const renderMainFormSection = (
               color: styles.textColor,
             }}
           >
-            {mainform.tac.text}
+            {mainform?.tac?.text}
           </span>
         </label>
       </div>

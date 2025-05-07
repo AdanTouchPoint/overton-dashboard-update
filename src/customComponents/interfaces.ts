@@ -51,7 +51,7 @@ export interface MainFormProps {
   export interface SBprops {
     projectData?: ProjectData | undefined; 
     setActiveForm?: (value: string) => void;
-    campaignEditData?: campaignEditData[] | undefined;
+    campaignEditData?: campaignEditData | undefined;
     mode?: string;
     //setCampaignEditData: Dispatch<SetStateAction<campaignEditData[]>>;
   }

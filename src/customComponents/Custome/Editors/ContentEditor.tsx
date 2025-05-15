@@ -11,7 +11,7 @@ interface ContentEditorProps {
   content: ContentState;
   activeSection: string;
   onContentChange: (keys: string[], value: any) => void;
-  mode: string;
+  mode?: string;
 }
 
 const ContentEditor: React.FC<ContentEditorProps> = ({

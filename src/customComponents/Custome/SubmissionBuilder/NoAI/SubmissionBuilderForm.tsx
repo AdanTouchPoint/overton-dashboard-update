@@ -52,6 +52,8 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ mode, campaignEditData,proje
   const setEditData = (mode, campaignEditData, projectData,styles) => {
   if (mode === 'edit' && campaignEditData) {
     const {style, mainform, email, privacy, questions, ty} = campaignEditData
+    const projectDataPath=['projectData']
+    handleContentChange(projectDataPath,projectData)
     setStyles(style)
     const stylePath = ['style']
     handleContentChange(stylePath,style)
@@ -78,7 +80,12 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ mode, campaignEditData,proje
 }
  useEffect(() => { 
   setEditData(mode, campaignEditData, projectData,styles)
-}, [campaignEditData,projectData, styles]);
+}, [campaignEditData,projectData]);
+
+useEffect(() => {
+      const style = ['style']
+    handleContentChange(style,styles)
+},[styles])
  /* useEffect(() => {
   const flexD = responsiveViews(styles.formWidth, setFlexDirect)
   const path = ['style']
@@ -136,6 +143,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ mode, campaignEditData,proje
     <Header/>
     <div className="main-flex-container">
      <ControlPanel 
+      mode={mode}
        activeTab={activeTab}
        setActiveTab={setActiveTab}
         styles={styles} 

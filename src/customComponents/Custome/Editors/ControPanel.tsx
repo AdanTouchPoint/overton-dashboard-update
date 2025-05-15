@@ -15,9 +15,11 @@ interface ControlPanelProps {
   content: ContentState;
   activeSection: string;
   onContentChange: (keys: string[], value: any) => void;
+  mode: string;
 }
 
 export default function ControlPanel({
+  mode,
   styles,
   updateStyle,
   activeTab,
@@ -36,6 +38,7 @@ export default function ControlPanel({
         )}
         {activeTab === "content" && (
           <ContentEditor
+            mode={mode}
             setActiveForm={setActiveForm}
             content={content}
             activeSection={activeSection}

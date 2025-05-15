@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ContentState } from "../../../lib/contentState";
 import "./contentEditor.css";
 import { PlusCircle, MinusCircle } from "lucide-react";
-import  {deployProject} from '../../../lib/requestsAPI'
+import { deployProject } from "../../../lib/requestsAPI";
 import { useAuth } from "payload/components/utilities";
 import { getProjectInfo } from "../../../lib/vercelRequests";
 import { updateCampaignData } from "../../../lib/requestsAPI";
@@ -11,16 +11,18 @@ interface ContentEditorProps {
   content: ContentState;
   activeSection: string;
   onContentChange: (keys: string[], value: any) => void;
+  mode: string;
 }
 
 const ContentEditor: React.FC<ContentEditorProps> = ({
+  mode,
   setActiveForm,
   content,
   activeSection,
   onContentChange,
 }) => {
   const user = useAuth();
-const userId = user.user.id;
+  const userId = user.user.id;
   // Acceder al contenido de la sección 'mainform'
   const mainformContent = content["mainform"];
   // Estado para rastrear las opciones seleccionadas en 'mainform'
@@ -50,9 +52,9 @@ const userId = user.user.id;
     setSelectedValue(event.target.value);
   };
   useEffect(() => {
-    const path = ['clientId'];
-    const clientId = userId
-    onContentChange(path,clientId)
+    const path = ["clientId"];
+    const clientId = userId;
+    onContentChange(path, clientId);
   }, []);
   const handleAddField = () => {
     if (selectedValue) {
@@ -63,7 +65,7 @@ const userId = user.user.id;
       if (!existingFields.some((field: any) => field.text === selectedValue)) {
         // Crear el nuevo campo con propiedades predeterminadas
         const newField = {
-          text: selectedValue
+          text: selectedValue,
         };
 
         // Actualizar el estado del contenido en 'mainform' -> 'mainFormInputs'
@@ -90,41 +92,35 @@ const userId = user.user.id;
     onContentChange(keys, updatedFields);
   };
   const handleFieldChange = (
-      index: number,
-      property: string,
-      value: string
-    ) => {
-      const existingFields = content["mainform"]["mainFormInputs"] || [];
-      const updatedFields = [...existingFields];
-      updatedFields[index] = {
-        ...updatedFields[index],
-        [property]: value,
-      };
-      const keys = ["mainform", "mainFormInputs"];
-      onContentChange(keys, updatedFields);
+    index: number,
+    property: string,
+    value: string
+  ) => {
+    const existingFields = content["mainform"]["mainFormInputs"] || [];
+    const updatedFields = [...existingFields];
+    updatedFields[index] = {
+      ...updatedFields[index],
+      [property]: value,
+    };
+    const keys = ["mainform", "mainFormInputs"];
+    onContentChange(keys, updatedFields);
   };
   const renderDynamicFields = () => {
-      const mainFormInputs = content["mainform"]["mainFormInputs"] || [];
-      return mainFormInputs.map((field: any, index: number) => {
-        return (
-          <div key={index} className="form-group">
-            <label >
-            {field.text}
-            </label>
-            <input
-                type="text"
-                value={field.text}
-                disabled
-              />
-            <button
-              className="remove-btn"
-              onClick={() => handleRemoveField(field.text)}
-            >
-              <MinusCircle className="icon" />
-            </button>
-          </div>
-        );
-      });
+    const mainFormInputs = content["mainform"]["mainFormInputs"] || [];
+    return mainFormInputs.map((field: any, index: number) => {
+      return (
+        <div key={index} className="form-group">
+          <label>{field.text}</label>
+          <input type="text" value={field.text} disabled />
+          <button
+            className="remove-btn"
+            onClick={() => handleRemoveField(field.text)}
+          >
+            <MinusCircle className="icon" />
+          </button>
+        </div>
+      );
+    });
   };
   const handleChangeQuestions = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuestionsValue(e.target.value);
@@ -170,14 +166,12 @@ const userId = user.user.id;
     return questions.map((question, index) => {
       return (
         <div key={index} className="form-group">
-          <label>
-            Text:
-          </label>
+          <label>Text:</label>
           <input
-              type="text"
-              value={question.text}
-              onChange={(e) => handleEditQuestion(index, "text", e.target.value)}
-            />
+            type="text"
+            value={question.text}
+            onChange={(e) => handleEditQuestion(index, "text", e.target.value)}
+          />
           <button
             className="remove-btn"
             onClick={() => handleRemoveQuestion(question.text)}
@@ -188,7 +182,6 @@ const userId = user.user.id;
       );
     });
   };
-
   // Función para renderizar el contenido de la sección activa (sin incluir los campos dinámicos de 'mainform')
   const renderContent = (contentObj: any, parentKeys: string[] = []) => {
     return Object.entries(contentObj).map(([key, value]) => {
@@ -237,20 +230,26 @@ const userId = user.user.id;
     });
   };
   const deploy = async (content) => {
-try {
-  const deploy = await deployProject(content)
-  const saveData = updateCampaignData(content)
-  setActiveForm('success')
-} catch (error) {
-  throw new Error("Something goes wrong!");
-  
-}
+    try {
+      const deploy = await deployProject(content);
+      const saveData = updateCampaignData(content);
+      setActiveForm("success");
+    } catch (error) {
+      throw new Error("Something goes wrong!");
+    }
+  };
+  const save = async (content) => {
+    try {
+      const saveData = updateCampaignData(content);
+      console.log("saveData", saveData);
+      setActiveForm("success");
+    } catch (error) {
+      throw new Error("Something goes wrong!");
+    }
   };
   return (
     <div className="content-panel">
-      <h2>
-        {activeSection.charAt(0).toUpperCase() + activeSection.slice(1)}
-      </h2>
+      <h2>{activeSection.charAt(0).toUpperCase() + activeSection.slice(1)}</h2>
 
       {activeSection === "mainform" && (
         <>
@@ -288,7 +287,7 @@ try {
       {activeSection === "questions" && (
         <>
           <h3>Preguntas</h3>
-          <div >
+          <div>
             <div className="form-group">
               <label>Pregunta:</label>
               <input
@@ -313,7 +312,13 @@ try {
       ) : (
         <p>No hay contenido disponible para esta sección.</p>
       )}
-      <button onClick={() => deploy(content)}>Deploy</button>
+      {/* Botones para guardar y desplegar */}
+      {mode === "create" && (
+        <button onClick={() => deploy(content)}>Deploy</button>
+      )}
+      {mode === "edit" && (
+        <button onClick={() => save(content)}>Guardar</button>
+      )}
     </div>
   );
 };

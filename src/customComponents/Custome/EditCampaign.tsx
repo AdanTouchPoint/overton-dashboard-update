@@ -13,13 +13,18 @@ const userId = user.user.id
 const [activeView,setActiveView] = useState('all')
 const [campaignEditData,setCampaignEditData] = useState<campaignEditData>()
 const [mode,setMode] = useState('')
+const [projectData,setProjectData] = useState()
 const edit = async (e) => {
 	e.preventDefault()
 	const id = e.target.innerText  
 	const payload = await  getCampaignsById(id)
 	const data = payload.data.docs[0]
+	data.projectData = { ...data.projectData, id: id }
 	setCampaignEditData(data)
+	setProjectData(data.projectData)
+	
 	setActiveView(data.projectData.campaignType)
+	
 	setMode('edit')
 }
 
@@ -61,6 +66,7 @@ useEffect(() => {
 		(<SubmissionBuilderForm
 			mode={mode}
 		  	campaignEditData={campaignEditData}
+			projectData={projectData}
           />) }
 		{activeView === 'PD' && console.log("HEllO PD")}
 		{activeView === 'AP' && console.log("HEllO AP")}

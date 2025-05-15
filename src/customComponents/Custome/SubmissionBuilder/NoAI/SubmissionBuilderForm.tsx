@@ -11,9 +11,10 @@ import { initialContentStateSB, ContentState } from '../../../../lib/contentStat
 import { contentReducer, ContentAction } from '../../../../lib/contentReducer';
 import Header from '../../Editors/Header';
 import ControlPanel from '../../Editors/ControPanel';
+
 type ActiveSection = 'mainform' | 'privacy' | 'questions' | 'email' | 'ty';
 
-const SubmissionBuilderForm: React.FC<SBprops> = ({ mode, campaignEditData,projectData, setActiveForm
+const SubmissionBuilderForm: React.FC<SBprops> = ({ userId,setActiveView,mode, campaignEditData,projectData, setActiveForm
 }) => {
   const [activeTab, setActiveTab] = useState("styles")
   const [content, dispatchContent] = useReducer<React.Reducer<ContentState, ContentAction>>(contentReducer, initialContentStateSB);
@@ -32,6 +33,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ mode, campaignEditData,proje
   });
   const [flexDirect,setFlexDirect] = useState<string>()
   const [activeSection, setActiveSection] = useState<ActiveSection>('mainform');
+
   const handleContentChange = (keys: string[], value: any) => {
     dispatchContent({
       type: 'UPDATE_CONTENT',
@@ -67,6 +69,9 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({ mode, campaignEditData,proje
     handleContentChange(questionsPath,questions)
     const tyPath = ['ty']
     handleContentChange(tyPath,ty)
+    const path = ["clientId"];
+    const clientId = userId;
+    handleContentChange(path, clientId);
     console.log("completed edit")
   }
   if(mode === 'create') {
@@ -140,7 +145,12 @@ useEffect(() => {
 
   return (
     <>
-    <Header/>
+    <Header
+      setActiveView={setActiveView}
+      content={content}
+      mode={mode}
+      setActiveForm={setActiveForm}
+    />
     <div className="main-flex-container">
      <ControlPanel 
       mode={mode}

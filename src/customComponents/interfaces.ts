@@ -12,28 +12,28 @@ export interface campaignEditData {
       ty: typ;
 }
 export interface ProjectData {
-  repo: string;
-  description : string;
-  campaignType: string;
-  content: string;
-  clientId: string;
-  title: string;
-  homepage: string;
-  typdescription,
-  typinstructions,
-  typtitle,
-  mfdescription,
-  mftitle,
-  repinstructions,
-  reptitle,
-  qptitle,
-  qpinstructions,
-  pptitle,
-  eftitle,
-  efinstructions,
-  efdescription,
-  name
-  id
+  repo?: string;
+  description? : string;
+  campaignType?: string;
+  content?: string;
+  clientId?: string;
+  title?: string;
+  homepage?: string;
+  typdescription?,
+  typinstructions?,
+  typtitle?,
+  mfdescription?,
+  mftitle?,
+  repinstructions?,
+  reptitle?,
+  qptitle?,
+  qpinstructions?,
+  pptitle?,
+  eftitle?,
+  efinstructions?,
+  efdescription?,
+  name?,
+  id?
 
   }
 export interface QuestionInputs {
@@ -53,6 +53,8 @@ export interface MainFormProps {
     setActiveForm?: (value: string) => void;
     campaignEditData?: campaignEditData | undefined;
     mode?: string;
+    setActiveView?: (value: string) => void;
+    userId?: string
     //setCampaignEditData: Dispatch<SetStateAction<campaignEditData[]>>;
   }
   export interface APprops {

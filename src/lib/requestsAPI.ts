@@ -60,7 +60,7 @@ async function getCampaignsById (id) {
         method: "GET",
     }
     const request = await fetchData(petition.method,petition.backendURLBase,petition.endpoint,id)
-    //console.log(request)
+    console.log(request)
     return request
 }
 async function deployProject(projectData) {

@@ -1,0 +1,20 @@
+.campaign-columns-header,
+.campaign-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 3 columnas iguales */
+  gap: 15px;
+  padding: 10px 0;
+}
+
+.campaign-columns-header {
+  font-weight: bold;
+  border-bottom: 2px solid #ccc;
+}
+.campaign-row {
+  cursor: pointer; /* Cambia el cursor al pasar sobre la fila */
+  transition: background-color 0.2s; /* Efecto hover suave */
+}
+
+.campaign-row:hover {
+background-color: rgba(83, 83, 83, 0.411)
+}

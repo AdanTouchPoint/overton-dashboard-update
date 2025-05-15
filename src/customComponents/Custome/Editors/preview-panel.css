@@ -8,7 +8,7 @@
 .preview-header {
   padding: 1rem 1.5rem;
   border-bottom: 1px solid var(--gray-300);
-  background-color: white;
+  /*background-color: white;*/
 }
 
 .preview-header h2 {

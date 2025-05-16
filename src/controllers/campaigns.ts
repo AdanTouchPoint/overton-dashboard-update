@@ -50,7 +50,7 @@ export const getCampaignById = async (query) => {
     overrideAccess: true,
     where: {
       id: {
-        equals: query.info,
+        equals: query.info? query.info : query.id,
       },
     },
   };

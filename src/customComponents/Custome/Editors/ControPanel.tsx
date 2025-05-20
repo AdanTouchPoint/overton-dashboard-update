@@ -5,6 +5,7 @@ import ContentEditor from "./ContentEditor";
 //import SettingsTab from "./settings-tab"
 import "./control-panel.css";
 import { ContentState } from "../../../lib/contentState";
+import DeploySettings from "./DeploySettings";
 
 interface ControlPanelProps {
   styles: { [key: string]: string };
@@ -43,6 +44,12 @@ export default function ControlPanel({
             content={content}
             activeSection={activeSection}
             onContentChange={onContentChange}
+          />
+        )}
+        {activeTab === "settings" && (
+          <DeploySettings
+            content={content}
+            mode={mode}
           />
         )}
       </div>

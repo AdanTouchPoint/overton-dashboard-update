@@ -229,24 +229,7 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
       }
     });
   };
-  const deploy = async (content) => {
-    try {
-      const deploy = await deployProject(content);
-      const saveData = updateCampaignData(content);
-      setActiveForm("success");
-    } catch (error) {
-      throw new Error("Something goes wrong!");
-    }
-  };
-  const save = async (content) => {
-    try {
-      const saveData = updateCampaignData(content);
-      console.log("saveData", saveData);
-      setActiveForm("success");
-    } catch (error) {
-      throw new Error("Something goes wrong!");
-    }
-  };
+
   return (
     <div className="content-panel">
       <h2>{activeSection.charAt(0).toUpperCase() + activeSection.slice(1)}</h2>
@@ -311,13 +294,6 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
         renderContent(content[activeSection], [activeSection])
       ) : (
         <p>No hay contenido disponible para esta sección.</p>
-      )}
-      {/* Botones para guardar y desplegar */}
-      {mode === "create" && (
-        <button onClick={() => deploy(content)}>Deploy</button>
-      )}
-      {mode === "edit" && (
-        <button onClick={() => save(content)}>Guardar</button>
       )}
     </div>
   );

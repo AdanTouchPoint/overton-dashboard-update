@@ -93,23 +93,6 @@ const createProject = async (projectData,name: string) => {
         throw new Error(error.message);
     }
 }
-/*const updateProject = async (projectData : ProjectData) => {
-  try {
-    const myHeaders: Headers = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Authorization", token);
-    const raw = string = JSON.stringify({})
-    const requestOptions: RequestInit = {
-      method: "patch",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow"
-  };
-    cons response = await fetch("https://api.vercel.com/v9/projects/prj_12HKQaOmR5t5Uy6vdcQsNIiZgHGB",requestOptions)
-  } catch (error) {
-    
-  }
-}*/
 const deployProject = async (fullName: string, id: number,name :string) => {
   try {
 const myHeaders = new Headers();

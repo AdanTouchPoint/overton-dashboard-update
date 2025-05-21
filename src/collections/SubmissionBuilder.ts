@@ -68,6 +68,11 @@ const SubmissionBuilder: CollectionConfig = {
               name: "clientId",
               type:"text"
             },
+                        {
+              label: "projectId",
+              name: "projectId",
+              type:"text"
+            },
           ]
       },
       {

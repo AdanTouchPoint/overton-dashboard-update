@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "payload/components/utilities";
 import { SuccessProps } from "../interfaces";
 import { getRepoInfo } from "../../lib/gitHubRequests";
+import { getProjectInfo } from "../../lib/vercelRequests";
 import "./loading.css";
 import { updateCampaignData } from "../../lib/requestsAPI";
 const baseClass = "after-dashboard";
@@ -30,11 +31,13 @@ const Success: React.FC<SuccessProps> = ({ projectData, setProjectData }) => {
   useEffect(() => {
     const fetchInfo = async (projectData) => {
       const data = await getRepoInfo(projectData?.repo);
+      const payload = await  getProjectInfo(projectData?.repo)
       const urlDeploy = await data.json();
       if (urlDeploy.homepage) {
         setProjectData({
           ...projectData,
           homepage: urlDeploy.homepage,
+          projectId: payload.id,
         });
         setLoading(false);
         return

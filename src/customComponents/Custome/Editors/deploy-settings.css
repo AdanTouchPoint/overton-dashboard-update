@@ -1,7 +1,7 @@
 
 .url-section {
   margin-bottom: 2rem;
-  background: #ffffff;
+ 
   padding: 1rem;
   border-radius: 8px;
 }
@@ -83,11 +83,12 @@ button {
 }
 
 .save-button {
-  color: #1a1a1a;
+background-color: #00cc6a;
+border-radius: 8px;
 }
 
 .save-button:hover {
-  
+  background-color: #00743c;
 }
 
 .save-button:disabled {
@@ -96,15 +97,16 @@ button {
 }
 
 .cancel-button {
+border-radius: 8px;
+background-color: #cc0000;
 }
 
 .cancel-button:hover {
-  background: #666;
+  background: #910101;
 }
 
 .delete-button {
   background: #ff4444;
-  color: white;
   margin-top: 2rem;
 }
 

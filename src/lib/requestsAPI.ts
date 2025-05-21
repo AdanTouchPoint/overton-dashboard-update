@@ -92,7 +92,27 @@ async function deployStatus(deployId) {
     const request = await fetch(`${petition.backendURLBase}${petition.endpoint}?deployId=${deployId}`,requestOptions)
     return request
 }
+
+async function updateProjectURL (projectData) {
+    const readyData = await JSON.stringify(projectData)
+    const petition = {
+        backendURLBase : process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:8080',
+        endpoint: "/dashBoardContent/update-project-url",
+        method: "PUT",
+    }
+    const requestOptions = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json" // Añadir encabezado Content-Type
+        },
+        body: readyData
+    }
+    console.log(readyData)
+    //onst objPrepare = await prepareData(projectData)
+    const request = await fetch(`${petition.method,petition.backendURLBase,petition.endpoint}`,requestOptions)
+    console.log(request)
+}
 export {
-    fetchData, postCampaignData,updateCampaignData,getCampaigns, deployProject, deployStatus, getCampaignsById
+    fetchData, postCampaignData,updateCampaignData,getCampaigns, deployProject, deployStatus, getCampaignsById, updateProjectURL
 }
 

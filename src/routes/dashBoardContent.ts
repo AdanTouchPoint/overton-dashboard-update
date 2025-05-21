@@ -160,4 +160,23 @@ router.post("/leads", async (req, res) => {
     });
   }
 });
+/* router.put("/update-project-url", async (req, res) => {
+    try {
+      const body = req.body;
+      console.log(body)
+      //const objReady = await JSON.parse(query.info)
+      const data = await safeUpdateProjectName(body)
+      res.json({
+        success: true,
+        message: "campaign update done",
+        data
+      });
+    } catch (error) {
+      res.status(400);
+      res.json({
+        success: false,
+        message: error.message,
+      });
+    }
+}); */
   export default router

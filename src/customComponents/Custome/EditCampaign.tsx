@@ -23,7 +23,7 @@ const EditCampaing: React.FC = () => {
     data.projectData = { ...data?.projectData, id: id };
     setCampaignEditData(data);
     setProjectData(data?.projectData);
-    setActiveView(data?.projectData?.campaignType);
+    setActiveView(data?.projectData?.campaignType.toUpperCase());
     setMode("edit");
   };
 

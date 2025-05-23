@@ -33,7 +33,8 @@ const MainForm: React.FC<MainFormProps> = ({
     try {
       const validate = await verifyInputs(projectData);
       // guardar en BD
-      const prepareData = { projectData, clientId: userId };
+      //const sanitizedData =  sanitizeProjectObject(projectData)
+      const prepareData = {projectData, clientId: userId };
       const data = await postCampaignData(prepareData);
       const id = await data.data.id;
       const payload = {
@@ -42,7 +43,7 @@ const MainForm: React.FC<MainFormProps> = ({
         clientId: userId
       };
       setProjectData(payload);
-      setActiveForm(projectData.campaignType);
+      setActiveForm(projectData.campaignType.toUpperCase());
     } catch (error) {
       throw new Error(error);
     }
@@ -55,7 +56,12 @@ const MainForm: React.FC<MainFormProps> = ({
       ...projectData,
       [(event.target as HTMLInputElement).name]: (
         event.target as HTMLInputElement
-      ).value,
+      ).value.replace(/^(https?:\/\/|www\.)/i, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9-]/g, '-')
+        .replace(/-+/g, '-')
+        .slice(0, 100)
+        .replace(/^-|-$/g, '')
     };
     setProjectData(info);
     setActiveSection("data-form");

@@ -1,8 +1,9 @@
 import payload from "payload";
 export async function createCampaign(query) {
   console.log(query, "here starts");
+    const formType = query.projectData.campaignType.toUpperCase();
   const data = await payload.create({
-    collection: `${query.projectData.campaignType}`, // change to campaignType for dynamic search
+    collection: formType, // change to campaignType for dynamic search
     data: query,
     overrideAccess: true,
   });

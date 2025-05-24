@@ -8,7 +8,8 @@ import { deployProject, updateCampaignData } from '../../../lib/requestsAPI';
   setActiveView:(value: string) => void;
   setActiveForm:(value: string) => void;
   }
-export default function Header({content,mode,setActiveView,setActiveForm}) {
+export default function Header ({content,mode,setActiveView,setActiveForm,setActiveSection}) {
+  const [hideModalWarning, setHideModalWarning] = React.useState(true);
    const deploy = async (content) => {
     try {
       const deploy = await deployProject(content);
@@ -42,6 +43,13 @@ export default function Header({content,mode,setActiveView,setActiveForm}) {
     if (mode === 'edit')
     return setActiveView('all')
     if(mode === 'create' )
+    {
+      console.log(mode)
+      if (!content.projectData.homepage || content.projectData.homepage === undefined ) {
+        return setActiveSection('modal-warning')
+      }
+
+    }
     return setActiveForm('main')
   }
   return (

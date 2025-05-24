@@ -45,6 +45,7 @@ const Campaing: React.FC = () => {
           mode="create"
           projectData={projectData}
           setActiveForm={setActiveForm}
+          activeForm={activeForm}
           />
         )}
 

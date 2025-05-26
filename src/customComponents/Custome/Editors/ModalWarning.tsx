@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './modal-warning.css'; // Asegúrate de tener un archivo CSS para los estilos del modal
 interface ModalWarningProps {
   setActiveForm: (value: string) => void;
   onClose: () => void; // Nuevo prop para cerrar el modal
@@ -17,7 +17,7 @@ const ModalWarning: React.FC<ModalWarningProps> = ({ setActiveForm, mode, onClos
   };
 
   return (
-    <div className="modal">
+    <div className="modal-div">
       <div className="modal-content">
         <h2>Warning</h2>
         <p>This is a warning modal.</p>

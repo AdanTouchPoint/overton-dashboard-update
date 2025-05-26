@@ -135,14 +135,9 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
 
   return (
     <>
-{activeSection === "modal-warning" && (
-        <ModalWarning
-          setActiveForm={setActiveForm}
-          mode={mode}
-          onClose={() => setActiveSection("mainform")}
-        />
-      )}
+
      <div>
+      
  <Header
         setActiveSection={setActiveSection}
         setActiveView={setActiveView}
@@ -151,6 +146,13 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
         setActiveForm={setActiveForm}
       />
       <div className="main-flex-container">
+        {activeSection === "modal-warning" && (
+        <ModalWarning
+          setActiveForm={setActiveForm}
+          mode={mode}
+          onClose={() => setActiveSection("mainform")}
+        />
+      )}
         <ControlPanel
           mode={mode}
           activeTab={activeTab}
@@ -185,7 +187,6 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
             </div>
           </div>
         </div>
-
       </div>
      </div>
     </>

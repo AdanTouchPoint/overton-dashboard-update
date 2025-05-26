@@ -52,7 +52,7 @@ export interface MainFormProps {
     projectData?: ProjectData | undefined; 
     setActiveForm?: (value: string) => void;
     campaignEditData?: campaignEditData | undefined;
-    mode?: string;
+    mode?: "edit" | "create";	
     setActiveView?: (value: string) => void;
     userId?: string
     activeForm?: string;

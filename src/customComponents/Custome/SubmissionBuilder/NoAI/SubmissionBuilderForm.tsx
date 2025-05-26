@@ -139,7 +139,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
         <ModalWarning
           setActiveForm={setActiveForm}
           mode={mode}
-          activeForm={activeForm}
+          onClose={() => setActiveSection("mainform")}
         />
       )}
      <div>

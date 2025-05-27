@@ -3,6 +3,7 @@ import { createLeads } from "../controllers/leads";
 import {createCampaign, updateCampaign, getAllCampaigns, getCampaignById} from '../controllers/campaigns'
 import { ParsedQs } from 'qs'
 import {getElectorate,getDivision,getRepsByState, getAllRepresentatives} from "../controllers/representatives"
+import { deleteCampaign } from '../controllers/campaigns';
 const router = Router();
 router.post("/campaign", async (req, res) => {
     try {
@@ -86,7 +87,25 @@ router.get("/campaignContentId", async (req, res) => {
       });
     }
 });
-/* missing delete campaign endpoint */
+// delete campaign endpoint
+router.delete("/deleteCampaign", async (req, res) => {
+  try {
+    const query = req.body;
+    console.log(query)
+    const data = await deleteCampaign(query);
+    res.json({
+      success: true,
+      message: "campaign delete done",
+      data
+    });
+  } catch (error) {
+    res.status(400);
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+});
 router.get("/find-mp", async (req, res) => {
     try {
       const query = req.query;

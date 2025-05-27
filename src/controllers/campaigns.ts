@@ -76,3 +76,17 @@ export const getCampaignById = async (query) => {
   }
   return campaign;
 };
+export const deleteCampaign = async (query) => {
+  const collection = query.projectData.campaignType.toUpperCase(); 
+  const id = query.projectData.id;
+  const result = await payload.delete({
+    collection,
+    where: {
+      id: {
+        equals: id,
+      },
+    },
+    overrideAccess: true,
+  });
+  return result;
+};

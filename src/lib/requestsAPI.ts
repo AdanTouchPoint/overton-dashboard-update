@@ -25,7 +25,7 @@ async function postCampaignData (projectData) {
 // añadir update request
 
 async function updateCampaignData (projectData) {
-    const readyData = await JSON.stringify(projectData)
+
     const petition = {
         backendURLBase : process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:8080',
         endpoint: "/dashBoardContent/updateCampaign",
@@ -36,12 +36,26 @@ async function updateCampaignData (projectData) {
         headers: {
             "Content-Type": "application/json" // Añadir encabezado Content-Type
         },
-        body: readyData
+         body: JSON.stringify({ projectData })
     }
-    console.log(readyData)
     //onst objPrepare = await prepareData(projectData)
     const request = await fetch(`${petition.method,petition.backendURLBase,petition.endpoint}`,requestOptions)
-    console.log(request)
+}
+async function deleteCampaign( projectData) {
+    const petition = {
+        backendURLBase: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:8080',
+        endpoint: "/dashBoardContent/deleteCampaign",
+        method: "DELETE",
+    };
+    const requestOptions = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ projectData })
+    };
+    const response = await fetch(`${petition.backendURLBase}${petition.endpoint}`, requestOptions);
+    return response;
 }
 async function getCampaigns (clientId) {
     const petition = {
@@ -113,6 +127,6 @@ async function updateProjectURL (projectData) {
     console.log(request)
 }
 export {
-    fetchData, postCampaignData,updateCampaignData,getCampaigns, deployProject, deployStatus, getCampaignsById, updateProjectURL
+    fetchData, postCampaignData,updateCampaignData,getCampaigns, deployProject, deployStatus, getCampaignsById, updateProjectURL, deleteCampaign
 }
 

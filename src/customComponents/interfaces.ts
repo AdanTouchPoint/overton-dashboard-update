@@ -56,6 +56,7 @@ export interface MainFormProps {
     setActiveView?: (value: string) => void;
     userId?: string
     activeForm?: string;
+    setProjectData: Dispatch<SetStateAction<ProjectData>>;
     //setCampaignEditData: Dispatch<SetStateAction<campaignEditData[]>>;
   }
   export interface APprops {

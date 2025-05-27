@@ -25,7 +25,8 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
   campaignEditData,
   projectData,
   setActiveForm,
-  activeForm
+  activeForm,
+  setProjectData
 }) => {
   const [activeTab, setActiveTab] = useState("styles");
   const [content, dispatchContent] = useReducer<
@@ -151,6 +152,8 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
           setActiveForm={setActiveForm}
           mode={mode}
           onClose={() => setActiveSection("mainform")}
+          projectData={projectData}
+          setProjectData={setProjectData}
         />
       )}
         <ControlPanel

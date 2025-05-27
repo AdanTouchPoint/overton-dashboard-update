@@ -2,7 +2,7 @@ import React, { FormEvent, useEffect, useState } from "react";
 import "./mainform.css";
 import { useAuth } from "payload/components/utilities";
 import { MainFormProps, ProjectData } from "../interfaces";
-import { postCampaignData } from "../../lib/requestsAPI";
+import { postCampaignData } from "../../lib/requestsAPI"; 
 import sbImage from "../assets/SBImage.png";
 import pdImage from "../assets/PDImage.png";
 import apImage from "../assets/APImage.png";
@@ -33,7 +33,6 @@ const MainForm: React.FC<MainFormProps> = ({
     try {
       const validate = await verifyInputs(projectData);
       // guardar en BD
-      //const sanitizedData =  sanitizeProjectObject(projectData)
       const prepareData = {projectData, clientId: userId };
       const data = await postCampaignData(prepareData);
       const id = await data.data.id;

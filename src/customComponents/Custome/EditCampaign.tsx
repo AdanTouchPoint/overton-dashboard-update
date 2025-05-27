@@ -33,7 +33,7 @@ const EditCampaing: React.FC = () => {
       const fetchCampaigns = async () => {
         try {
           const data = await getCampaigns(userId);
-          console.log(data,'fetch');
+          console.log(data, "fetch");
           setRenderCamp(data);
         } catch (error) {
           console.error("Error fetching campaigns:", error);
@@ -43,58 +43,58 @@ const EditCampaing: React.FC = () => {
     }
   }, [userId]); // Añadir userId como dependencia
 
-const renderAllData = (campaignTypes, renderCamp) => {
-  return campaignTypes.map((ele) => (
-    <div
-      key={ele}
-      className="gutter--left gutter--right collection-list__wrap"
-    >
-      <p>EDIT {ele}</p>
-      
-      {/* Encabezados de columnas */}
-      <div className="campaign-columns-header">
-        <div>Title</div>
-        <div>Description</div>    {/* Columna nueva 1 */}
-        <div>Type</div>     {/* Columna nueva 2 */}
+  const renderAllData = (campaignTypes, renderCamp) => {
+    return campaignTypes.map((ele) => (
+      <div
+        key={ele}
+        className="gutter--left gutter--right collection-list__wrap"
+      >
+        <p>EDIT {ele}</p>
+
+        {/* Encabezados de columnas */}
+        <div className="campaign-columns-header">
+          <div>Title</div>
+          <div>Description</div> {/* Columna nueva 1 */}
+          <div>Type</div> {/* Columna nueva 2 */}
+        </div>
+        {renderCamp?.data?.[ele]?.docs?.length > 0 ? (
+          renderCamp.data[ele].docs.map((el: any) => (
+            <div onClick={edit} key={el.id} className="campaign-row" id={el.id}>
+              {/* Contenido de las columnas */}
+              <div>
+                <p id={el.id} className="campaign-title">
+                  {el.projectData.title}
+                </p>
+              </div>
+
+              {/* Nueva columna 1 - Autor */}
+              <div>
+                <p id={el.id}>{el.projectData.description || "Sin autor"}</p>
+              </div>
+
+              {/* Nueva columna 2 - Fecha */}
+              <div>
+                <p id={el.id}>{el.projectData.campaignType}</p>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>No campaigns found</p>
+        )}
       </div>
-      {renderCamp?.data?.[ele]?.docs?.length > 0 ? (
-        renderCamp.data[ele].docs.map((el: any) => (
-          <div onClick={edit} key={el.id} className="campaign-row" id={el.id}> 
-            {/* Contenido de las columnas */}
-            <div>
-              <p id={el.id} className="campaign-title">
-                {el.projectData.title}
-              </p>
-            </div>
-            
-            {/* Nueva columna 1 - Autor */}
-            <div>
-              <p id={el.id}>{el.projectData.description || 'Sin autor'}</p>
-            </div>
-            
-            {/* Nueva columna 2 - Fecha */}
-            <div>
-              <p id={el.id} >{el.projectData.campaignType}</p>
-            </div>
-            
-          </div>
-        ))
-      ) : (
-        <p>No campaigns found</p>
-      )}
-    </div>
-  ));
-};
+    ));
+  };
   return (
     <DefaultTemplate>
       {activeView === "all" && renderAllData(campaignTypes, renderCamp)}
       {activeView === "SB" && (
         <SubmissionBuilderForm
-          mode={mode}
+          mode="edit"
           campaignEditData={campaignEditData}
           projectData={projectData}
-		  setActiveView={setActiveView}
-		  userId={userId}
+          setActiveView={setActiveView}
+          userId={userId}
+          setProjectData={setProjectData}
         />
       )}
       {activeView === "PD" && console.log("HEllO PD")}
@@ -104,5 +104,3 @@ const renderAllData = (campaignTypes, renderCamp) => {
 };
 
 export default EditCampaing;
-
-

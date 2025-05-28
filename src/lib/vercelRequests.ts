@@ -141,4 +141,23 @@ const getProjectInfo = async (project: string) => {
         throw new Error(error.message);
     }
 }
-export {createProject, getProjectInfo,deployProject}
+const deleteProject = async (project: string) => {
+  try {
+    const myHeaders: Headers = new Headers();
+    myHeaders.append("Authorization", token);
+
+    const requestOptions: RequestInit = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow"
+    };
+    const response = await fetch(`https://api.vercel.com/v9/projects/${project}`, requestOptions);
+    if (response.status !== 200) {
+      throw new Error(`Error al eliminar el proyecto, por favor verifica tus datos`);
+    }
+    return await response.json();
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+export {createProject, getProjectInfo,deployProject,deleteProject}

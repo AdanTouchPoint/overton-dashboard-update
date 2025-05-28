@@ -105,4 +105,24 @@ const getRepoInfo = async (name: string) => {
     throw new Error(error.message);
   }
 };
-export { createGhRepo, setPermissions, CreateRepoLabel, getRepoInfo };
+const deleteRepo = async (name: string) => {
+  try {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", token);
+
+    const requestOptions: RequestInit = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    const response = await fetch(
+      `https://api.github.com/repos/AdanTouchPoint/${name.replace(/ /g, "-")}`,
+      requestOptions
+    );
+    return response;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+export { createGhRepo, setPermissions, CreateRepoLabel, getRepoInfo, deleteRepo };

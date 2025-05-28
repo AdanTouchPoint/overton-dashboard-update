@@ -4,6 +4,9 @@ import {batch_email, emailBuilder} from "../controllers/emailController";
 import {checker} from "../lib/misc";
 import {keywords} from "../lib/restrictedWords";
 import { ParsedQs } from 'qs'
+import {deleteProject} from "../lib/vercelRequests"
+import { deleteRepo } from "../lib/gitHubRequests";
+import { deleteCampaign } from "../lib/requestsAPI";
 
 const router = Router();
 router.post("/deploy-project", async (req, res) => {
@@ -41,6 +44,32 @@ router.get('/deployment-status/:deployId', async (req, res) => {
         res.status(500).json({ error: 'Error al verificar estado del despliegue' });
       }
 });
+router.delete('/delete-project', async (req, res) => {
+  try {
+    console.log(req.body)
+    const project = req.body;
+    const [deleteVercelProject, deleteGHRepo, deleteCampaignDB] = await Promise.all([
+      deleteProject(project),
+      deleteRepo(project.repo),
+      deleteCampaign(project.id)
+    ]);
+
+    if (deleteVercelProject.success !== true) {
+      throw new Error('Error deleting Vercel project');
+    }
+    if (deleteGHRepo.status !== 204) {
+      throw new Error('Error deleting Github Repo');
+    }
+    if (deleteCampaignDB.status !== 204) {
+      throw new Error('Error deleting Campaign');
+    }
+
+    res.status(200).json({ success: true, message: `totally project  deleted .` });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error deleting entire project' });
+  }
+});
+
 router.get("/email-batch", async (req, res) => {
   try {
     const query = req.query;

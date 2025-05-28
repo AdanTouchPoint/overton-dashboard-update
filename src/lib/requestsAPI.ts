@@ -126,7 +126,23 @@ async function updateProjectURL (projectData) {
     const request = await fetch(`${petition.method,petition.backendURLBase,petition.endpoint}`,requestOptions)
     console.log(request)
 }
+async function destroyProject(projectData) {
+    const petition = {
+        backendURLBase : process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:8080',
+        endpoint: "/dashboardServices/delete-project",
+        method: "DELETE",
+    }
+    const requestOptions = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json" // Añadir encabezado Content-Type
+        },
+        body: JSON.stringify({ projectData })
+    }
+    const request = await fetch(`${petition.backendURLBase}${petition.endpoint}`,requestOptions)
+    return request
+}
 export {
-    fetchData, postCampaignData,updateCampaignData,getCampaigns, deployProject, deployStatus, getCampaignsById, updateProjectURL, deleteCampaign
+    fetchData, postCampaignData,updateCampaignData,getCampaigns, deployProject, deployStatus, getCampaignsById, updateProjectURL, deleteCampaign,destroyProject
 }
 

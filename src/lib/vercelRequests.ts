@@ -152,9 +152,9 @@ const deleteProject = async (project: string) => {
       redirect: "follow"
     };
     const response = await fetch(`https://api.vercel.com/v9/projects/${project}`, requestOptions);
-    if (response.status !== 200) {
+    if (response.status !== 204) {
       throw new Error(`Error al eliminar el proyecto, por favor verifica tus datos`);
-    }
+    } 
     return await response.json();
   } catch (error) {
     throw new Error(error.message);

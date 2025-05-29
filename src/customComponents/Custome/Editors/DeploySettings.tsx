@@ -32,7 +32,7 @@ export default function DeploySettings ({ content, mode })  {
           </div>
         {errorMessage && <div className="error-message">{errorMessage}</div>}
       </div>
-      <button className="delete-button">Delete Project</button>
+      <button onClick={totallyCampaignDelete} className="delete-button">Delete Project</button>
     </div>
   );
 }

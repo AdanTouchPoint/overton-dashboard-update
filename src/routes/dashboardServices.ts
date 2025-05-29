@@ -47,26 +47,16 @@ router.get('/deployment-status/:deployId', async (req, res) => {
 router.delete('/delete-project', async (req, res) => {
   try {
     console.log(req.body)
-    const project = req.body;
-    const [deleteVercelProject, deleteGHRepo, deleteCampaignDB] = await Promise.all([
-      deleteProject(project),
-      deleteRepo(project.repo),
-      deleteCampaign(project.id)
-    ]);
-
-    if (deleteVercelProject.success !== true) {
-      throw new Error('Error deleting Vercel project');
-    }
-    if (deleteGHRepo.status !== 204) {
-      throw new Error('Error deleting Github Repo');
-    }
-    if (deleteCampaignDB.status !== 204) {
+    const project = req.body.projectData;
+    const deleteCampaignDB = await deleteCampaign(project);
+    if (deleteCampaignDB.status !== 200) {
       throw new Error('Error deleting Campaign');
     }
-
+    const deleteGHRepo = await deleteRepo(project.repo);
+    const deleteVercelProject = await deleteProject(project.title)  
     res.status(200).json({ success: true, message: `totally project  deleted .` });
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Error deleting entire project' });
+    res.status(500).json({ success: false, message: error.message });
   }
 });
 

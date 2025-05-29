@@ -24,7 +24,7 @@ const createGhRepo = async (projectData) => {
       body: raw,
       redirect: "follow",
     };
-    const response = await fetch(repoSelector(campaignType), requestOptions);
+    const response = await fetch(repoSelector(campaignType.toUpperCase()), requestOptions);
     console.log(response)
     return response;
   } catch (error) {

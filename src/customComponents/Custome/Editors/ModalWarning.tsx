@@ -17,6 +17,7 @@ const ModalWarning: React.FC<ModalWarningProps> = ({ setActiveForm, mode, onClos
       const deletedData = deleteCampaign(projectData); // Llama a la función deleteCampaign
       setProjectData(''); // Actualiza el estado eliminando los datos
       setActiveForm("main");
+     
     }
     onClose(); // Cierra el modal después de la acción
   };

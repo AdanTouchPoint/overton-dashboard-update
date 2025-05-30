@@ -4,6 +4,7 @@ import { DefaultTemplate } from "payload/components/templates";
 import { getCampaigns, getCampaignsById } from "../../lib/requestsAPI";
 import { campaignEditData } from "../interfaces";
 import SubmissionBuilderForm from "./SubmissionBuilder/NoAI/SubmissionBuilderForm";
+import  {formSelector} from "../../lib/misc";
 const baseClass = "after-dashboard";
 import "./edit-campaign.css";
 const campaignTypes = ["SB", "PD", "AP"];
@@ -15,16 +16,18 @@ const EditCampaing: React.FC = () => {
   const [campaignEditData, setCampaignEditData] = useState<campaignEditData>();
   const [mode, setMode] = useState("create");
   const [projectData, setProjectData] = useState({});
+  
   const edit = async (e) => {
     e.preventDefault();
     const id = e.target.id;
     const payload = await getCampaignsById(id);
     const data = payload?.data?.docs[0];
     data.projectData = { ...data?.projectData, id: id };
+    const formType = formSelector(data?.projectData?.campaignType)
     setCampaignEditData(data);
     setProjectData(data?.projectData);
-    setActiveView(data?.projectData?.campaignType.toUpperCase());
-    setMode("edit");
+    setActiveView(formType ? formType : "all");
+    //setMode("edit");
   };
 
   useEffect(() => {
@@ -59,22 +62,22 @@ const EditCampaing: React.FC = () => {
         </div>
         {renderCamp?.data?.[ele]?.docs?.length > 0 ? (
           renderCamp.data[ele].docs.map((el: any) => (
-            <div onClick={edit} key={el.id} className="campaign-row" id={el.id}>
+            <div onClick={edit} key={el.id ? el.id : ""} className="campaign-row" id={el.id ? el.id : ""}>
               {/* Contenido de las columnas */}
               <div>
-                <p id={el.id} className="campaign-title">
-                  {el.projectData.title}
+                <p id={el.id ? el.id : ""} className="campaign-title">
+                  {el.projectData.title || "Sin autor"}
                 </p>
               </div>
 
               {/* Nueva columna 1 - Autor */}
               <div>
-                <p id={el.id}>{el.projectData.description || "Sin autor"}</p>
+                <p id={el.id ? el.id : ""}>{el.projectData.description || "Sin autor"}</p>
               </div>
 
               {/* Nueva columna 2 - Fecha */}
               <div>
-                <p id={el.id}>{el.projectData.campaignType}</p>
+                <p id={el.id ? el.id : ""}>{el.projectData.campaignType || "Sin autor"}</p>
               </div>
             </div>
           ))

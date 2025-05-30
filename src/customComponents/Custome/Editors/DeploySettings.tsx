@@ -9,12 +9,7 @@ export default function DeploySettings ({ content, mode })  {
     try {
       const projectData = content?.projectData;
       const response = await destroyProject(projectData);
-      if (response.status === 200) {
-        // Aquí puedes manejar la respuesta si es necesario
-        console.log('Project deleted successfully');
-      } else {
-        setErrorMessage('Failed to delete project');
-      }
+       window.location.reload();
     } catch (error) {
       setErrorMessage('An error occurred while deleting the project');
       console.error(error);

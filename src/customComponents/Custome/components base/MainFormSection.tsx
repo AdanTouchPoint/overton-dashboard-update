@@ -52,7 +52,7 @@ export const renderMainFormSection = (
       >
         {mainform.instructions.text}
       </p>
-      <div className="dynamic-inputs" style={{ flexDirection: flexDirect }}>
+      <div className="dynamic-inputs" >
         {renderDynamicInputs()}
       </div>
       <div className="form-group checkbox-group">

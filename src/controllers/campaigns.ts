@@ -1,6 +1,5 @@
 import payload from "payload";
 export async function createCampaign(query) {
-  console.log(query, "here starts");
     const formType = query.projectData.campaignType.toUpperCase();
   const data = await payload.create({
     collection: formType, // change to campaignType for dynamic search
@@ -10,18 +9,18 @@ export async function createCampaign(query) {
   return data;
 }
 export async function updateCampaign(query) {
-  console.log(query, "here starts update");
+   const formType = query.projectData.campaignType ? query.projectData.campaignType.toUpperCase() : query.projectData.projectData.campaignType.toUpperCase();
+   const id  = query.projectData.id ? query.projectData.id : query.projectData.projectData.id // cambiar a campaign id
   const data = await payload.update({
-    collection: `${query.projectData.campaignType.toUpperCase()}`, // change to campaignType for dynamic search
+    collection: formType, // change to campaignType for dynamic search
     data: query,
     overrideAccess: true,
     where: {
       id: {
-        equals: query.projectData.id, // cambiar a campaign id
+        equals: id
       },
     },
   });
-  console.log(data);
   return data;
 }
 export const getAllCampaigns = async (query) => {

@@ -12,7 +12,6 @@ router.post("/campaign", async (req, res) => {
       }
       const query = req.query as MyQuery;
       const objReady = JSON.parse(query.info);
-      console.log(objReady)
       const data = await createCampaign(objReady)
       res.json({
         success: true,
@@ -30,8 +29,6 @@ router.post("/campaign", async (req, res) => {
 router.put("/updateCampaign", async (req, res) => {
     try {
       const body = req.body;
-      console.log(body)
-      //const objReady = await JSON.parse(query.info)
       const data = await updateCampaign(body)
       res.json({
         success: true,
@@ -91,7 +88,6 @@ router.get("/campaignContentId", async (req, res) => {
 router.delete("/deleteCampaign", async (req, res) => {
   try {
     const query = req.body;
-    console.log(query)
     const data = await deleteCampaign(query);
     res.json({
       success: true,

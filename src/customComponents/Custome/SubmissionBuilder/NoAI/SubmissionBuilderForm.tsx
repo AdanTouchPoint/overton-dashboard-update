@@ -90,7 +90,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
       console.log("completed edit");
     }
     if (mode === "create") {
-      const flexD = responsiveViews(styles.formWidth, setFlexDirect);
+     // const flexD = responsiveViews(styles.formWidth, setFlexDirect);
       const style = ["style"];
       handleContentChange(style, styles);
       const projectDataPath = ["projectData"];

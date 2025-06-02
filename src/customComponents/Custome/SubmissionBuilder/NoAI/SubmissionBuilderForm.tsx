@@ -28,6 +28,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
   activeForm,
   setProjectData
 }) => {
+  const [ modalMessage, setModalMessage ] = useState<string>("");
   const [activeTab, setActiveTab] = useState("styles");
   const [content, dispatchContent] = useReducer<
     React.Reducer<ContentState, ContentAction>
@@ -145,6 +146,8 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
         content={content}
         mode={mode}
         setActiveForm={setActiveForm}
+        setModalMessage={setModalMessage}
+        modalMessage={modalMessage}
       />
       <div className="main-flex-container">
         {activeSection === "modal-warning" && (
@@ -154,6 +157,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
           onClose={() => setActiveSection("mainform")}
           projectData={projectData}
           setProjectData={setProjectData}
+          modalMessage={modalMessage}
         />
       )}
         <ControlPanel

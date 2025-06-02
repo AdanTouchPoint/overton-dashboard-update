@@ -7,9 +7,12 @@ import { deployProject, updateCampaignData } from '../../../lib/requestsAPI';
   content: ContentState;
   setActiveView:(value: string) => void;
   setActiveForm:(value: string) => void;
+  modalMessage?: string;
+  mode: "edit" | "create";
+  setActiveSection?: (value: string) => void;
+  setModalMessage?: (value: string) => void;
   }
-export default function Header ({content,mode,setActiveView,setActiveForm,setActiveSection}) {
-  const [hideModalWarning, setHideModalWarning] = React.useState(true);
+export default function Header ({content,mode,setActiveView,setActiveForm,setActiveSection,modalMessage,setModalMessage} ) {
    const deploy = async (content) => {
     try {
       const deploy = await deployProject(content);
@@ -21,20 +24,27 @@ export default function Header ({content,mode,setActiveView,setActiveForm,setAct
   };
   const save = async (content) => {
     try {
-      const saveData = updateCampaignData(content);
+      const saveData = await updateCampaignData(content);
       console.log("saveData", saveData);
-      setActiveForm("success");
+      if( saveData.success === true ) {
+        setModalMessage("Project has been saved successfully!");
+        setActiveSection("modal-warning");
+      }
+        if( saveData.success === false ) {
+        setModalMessage("Project hasnt been saved successfully!");
+        setActiveSection("modal-warning");
+      }
     } catch (error) {
       throw new Error("Something goes wrong!");
     }
   };
-  const click = (mode, content) => {
+  const click =async  (mode, content) => {
     if(mode === 'edit') {
-      const payload = save(content)
+      const payload = await save(content)
       return payload
     }
     if (mode === 'create') {
-      const payload = deploy(content)
+      const payload = await  deploy(content)
       return payload
     }
   }

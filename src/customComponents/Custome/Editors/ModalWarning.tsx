@@ -7,9 +7,10 @@ interface ModalWarningProps {
   mode?: "edit" | "create"; // Hacer explícitos los valores posibles
   projectData?: any; // Cambia el tipo según tu estructura de datos
   setProjectData: (data: any) => void; // Cambia el tipo según tu estructura de datos
+  modalMessage?: string; // Opcional, si necesitas un mensaje específico
 }
 
-const ModalWarning: React.FC<ModalWarningProps> = ({ setActiveForm, mode, onClose,projectData,setProjectData }) => {
+const ModalWarning: React.FC<ModalWarningProps> = ({ setActiveForm, mode, onClose,projectData,setProjectData,modalMessage }) => {
   const handleProceed = () => {
     if (mode === "edit") {
       setActiveForm("all");
@@ -21,19 +22,40 @@ const ModalWarning: React.FC<ModalWarningProps> = ({ setActiveForm, mode, onClos
     }
     onClose(); // Cierra el modal después de la acción
   };
-
-  return (
+  const continueWithoutSaving = (modalMessage) => {
+    return (
     <div className="modal-div">
       <div className="modal-content">
         <h2>Warning</h2>
-        <p>This is a warning modal.</p>
-        <p>Are you sure you want to proceed?</p>
+          {modalMessage && <p>{modalMessage}</p>} {/* Muestra el mensaje si está definido */}
         <div className="modal-buttons">
           <button onClick={onClose}>Cancel</button> {/* Cierra el modal */}
           <button onClick={handleProceed}>Proceed</button>
         </div>
       </div>
     </div>
+    )
+  }
+  const successSave = (modalMessage) => {
+return(
+      <div className="modal-div">
+      <div className="modal-content">
+        <h2>Warning</h2>
+          {modalMessage && <p>{modalMessage}</p>} {/* Muestra el mensaje si está definido */}
+        <div className="modal-buttons">
+          <button onClick={() => onClose()}>Ok</button> {/* Cierra el modal */}
+        </div>
+      </div>
+    </div>
+)
+
+  }
+
+  return (
+<div>
+   { mode === "create" && (continueWithoutSaving(modalMessage)) }
+   { mode === "edit" && (successSave(modalMessage)) }
+</div>
   );
 };
 

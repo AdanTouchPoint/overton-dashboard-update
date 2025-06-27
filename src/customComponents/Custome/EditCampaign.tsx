@@ -14,7 +14,7 @@ const EditCampaing: React.FC = () => {
   const userId = user.user.id;
   const [activeView, setActiveView] = useState("all");
   const [campaignEditData, setCampaignEditData] = useState<campaignEditData>();
-  const [mode, setMode] = useState("create");
+  const [mode, setMode] = useState("edit");
   const [projectData, setProjectData] = useState({});
   
   const edit = async (e) => {
@@ -92,7 +92,8 @@ const EditCampaing: React.FC = () => {
       {activeView === "all" && renderAllData(campaignTypes, renderCamp)}
       {activeView === "SB" && (
         <SubmissionBuilderForm
-          mode="edit"
+          mode={mode}
+          setMode={setMode}
           campaignEditData={campaignEditData}
           projectData={projectData}
           setActiveView={setActiveView}

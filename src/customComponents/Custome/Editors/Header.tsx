@@ -15,7 +15,13 @@ import { deployProject, updateCampaignData } from '../../../lib/requestsAPI';
 export default function Header ({content,mode,setActiveView,setActiveForm,setActiveSection,modalMessage,setModalMessage} ) {
    const deploy = async (content) => {
     try {
-      const deploy = await deployProject(content);
+/*       const deploy = await deployProject(content);
+      console.log("deploy", deploy);
+      if (deploy.ok === false) {
+        setModalMessage("Project hasnt been deployed successfully!");
+        setActiveSection("modal-warning");
+        return;
+      } */
       const saveData = updateCampaignData(content);
       setActiveForm("success");
     } catch (error) {

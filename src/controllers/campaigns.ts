@@ -9,18 +9,19 @@ export async function createCampaign(query) {
   return data;
 }
 export async function updateCampaign(query) {
-   const formType = query.projectData.campaignType ? query.projectData.campaignType.toUpperCase() : query.projectData.projectData.campaignType.toUpperCase();
-   const id  = query.projectData.id ? query.projectData.id : query.projectData.projectData.id // cambiar a campaign id
-  const data = await payload.update({
+  console.log(query, "updateCampaign query");
+   const formType = query.projectData.campaignType.toUpperCase(); // change to campaignType for dynamic search
+   const id  = query.projectData.id 
+ const data = await payload.update({
     collection: formType, // change to campaignType for dynamic search
     data: query,
-    overrideAccess: true,
+    //overrideAccess: true,
     where: {
       id: {
         equals: id
       },
     },
-  });
+  }); 
   return data;
 }
 export const getAllCampaigns = async (query) => {

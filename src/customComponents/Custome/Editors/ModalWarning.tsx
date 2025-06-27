@@ -1,10 +1,10 @@
 import React from 'react';
 import './modal-warning.css'; // Asegúrate de tener un archivo CSS para los estilos del modal
-import { deleteCampaign } from '../../../lib/requestsAPI'; // Asegúrate de que esta función esté correctamente importada
+import { deleteCampaign,destroyProject } from '../../../lib/requestsAPI'; // Asegúrate de que esta función esté correctamente importad
 interface ModalWarningProps {
   setActiveForm: (value: string) => void;
   onClose: () => void; // Nuevo prop para cerrar el modal
-  mode?: "edit" | "create"; // Hacer explícitos los valores posibles
+  mode?: string; // Hacer explícitos los valores posibles
   projectData?: any; // Cambia el tipo según tu estructura de datos
   setProjectData: (data: any) => void; // Cambia el tipo según tu estructura de datos
   modalMessage?: string; // Opcional, si necesitas un mensaje específico
@@ -22,6 +22,10 @@ const ModalWarning: React.FC<ModalWarningProps> = ({ setActiveForm, mode, onClos
     }
     onClose(); // Cierra el modal después de la acción
   };
+  const destroyData = async () => {
+      const response = await destroyProject(projectData);
+       window.location.reload();
+  }
   const continueWithoutSaving = (modalMessage) => {
     return (
     <div className="modal-div">
@@ -49,12 +53,28 @@ return(
     </div>
 )
 
-  }
+}
+
+const deleteProjectWarining = (modalMessage) => {
+  return(
+      <div className="modal-div">
+      <div className="modal-content">
+        <h2>Warning</h2>
+          {modalMessage && <p>{modalMessage}</p>} {/* Muestra el mensaje si está definido */}
+        <div className="modal-buttons">
+          <button onClick={destroyData}>Proceed</button>
+          <button onClick={() => onClose()}>Cancel</button> {/* Cierra el modal */}
+        </div>
+      </div>
+    </div>
+)
+}
 
   return (
 <div>
    { mode === "create" && (continueWithoutSaving(modalMessage)) }
    { mode === "edit" && (successSave(modalMessage)) }
+   { mode === "delete" && (deleteProjectWarining(modalMessage)) }
 </div>
   );
 };

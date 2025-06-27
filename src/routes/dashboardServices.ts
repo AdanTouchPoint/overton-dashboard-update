@@ -14,13 +14,19 @@ router.post("/deploy-project", async (req, res) => {
         console.log(req.body)
         const projectData = req.body
         const data = await createCampaign(projectData)
-        res.status(200).json({ data: data });
+       if( data === false) {
+            throw new Error('Error creating campaign, please check your data');
+        }
+        res.status(200).json({
+            success: true,  
+            message: "Campaign created successfully",
+            data: data        
+        });
     } catch (error) {
-      res.status(400);
-      res.json({
-        success: false,
-        message: error.message,
-      });
+        res.status(400).json({
+            success: false,
+            message: error.message,
+        });
     }
 });  
 router.get('/deployment-status/:deployId', async (req, res) => {

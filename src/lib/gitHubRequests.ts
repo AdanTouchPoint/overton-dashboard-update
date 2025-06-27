@@ -26,6 +26,9 @@ const createGhRepo = async (projectData) => {
     };
     const response = await fetch(repoSelector(campaignType.toUpperCase()), requestOptions);
     console.log(response)
+    if (response.status !== 201) {
+      throw new Error(`Error creating repository: ${response.statusText}`);
+    }
     return response;
   } catch (error) {
     throw new Error(error.message);

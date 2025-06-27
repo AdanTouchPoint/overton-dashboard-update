@@ -3,13 +3,20 @@
 import React, { useState } from 'react';
 import './deploy-settings.css'; // Asegúrate de tener estilos para tus clases
 import { deleteCampaign, destroyProject } from '../../../lib/requestsAPI'; // Asegúrate de que la ruta sea correcta
-export default function DeploySettings ({ content, mode })  {
+interface DeploySettingsProps {
+  content: any; // Cambia el tipo según tu estructura de datos
+  setModalMessage?: (value: string) => void; // Opcional, si necesitas un mensaje específico
+  setActiveSection?: (value: string) => void; // Opcional, si necesitas cambiar la sección acti
+  mode?: string; // Hacer explícitos los valores posibles
+  setMode?: (value: string) => void; // Opcional, si necesitas cambiar el modo
+}
+export default function DeploySettings ({ content,setModalMessage, setActiveSection,mode,setMode }: DeploySettingsProps) {
   const [errorMessage, setErrorMessage] = useState('');
   const totallyCampaignDelete  = async ()  => {
     try {
-      const projectData = content?.projectData;
-      const response = await destroyProject(projectData);
-       window.location.reload();
+      setMode('delete');
+      setModalMessage('are you sure you want to delete this project?');
+      setActiveSection('modal-warning');
     } catch (error) {
       setErrorMessage('An error occurred while deleting the project');
       console.error(error);

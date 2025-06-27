@@ -26,7 +26,8 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
   projectData,
   setActiveForm,
   activeForm,
-  setProjectData
+  setProjectData,
+  setMode
 }) => {
   const [ modalMessage, setModalMessage ] = useState<string>("");
   const [activeTab, setActiveTab] = useState("styles");
@@ -91,7 +92,6 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
       console.log("completed edit");
     }
     if (mode === "create") {
-     // const flexD = responsiveViews(styles.formWidth, setFlexDirect);
       const style = ["style"];
       handleContentChange(style, styles);
       const projectDataPath = ["projectData"];
@@ -161,6 +161,7 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
         />
       )}
         <ControlPanel
+        setMode={setMode}
           mode={mode}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
@@ -170,6 +171,9 @@ const SubmissionBuilderForm: React.FC<SBprops> = ({
           content={content}
           activeSection={activeSection}
           onContentChange={handleContentChange}
+          modalMessage={modalMessage}
+          setActiveSection={setActiveSection}
+          setModalMessage={setModalMessage}
         />
         <div className="preview-panel">
           <div className="preview-header">

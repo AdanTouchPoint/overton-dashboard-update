@@ -18,7 +18,7 @@ async function postCampaignData (projectData) {
     }
     //const objPrepare = await prepareData(projectData)
     const readyData =  JSON.stringify(projectData)
-    console.log(readyData)
+    console.log(readyData, "readyData")
     const request = await fetchData(petition.method,petition.backendURLBase,petition.endpoint,encodeURIComponent(readyData))
     return request
 }
@@ -36,7 +36,7 @@ async function updateCampaignData (projectData) {
         headers: {
             "Content-Type": "application/json" // Añadir encabezado Content-Type
         },
-         body: JSON.stringify({ projectData })
+         body: JSON.stringify( projectData )
     }
     //onst objPrepare = await prepareData(projectData)
     const request = await fetch(`${petition.method,petition.backendURLBase,petition.endpoint}`,requestOptions)

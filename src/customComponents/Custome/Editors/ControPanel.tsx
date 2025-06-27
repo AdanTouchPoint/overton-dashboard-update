@@ -6,7 +6,7 @@ import ContentEditor from "./ContentEditor";
 import "./control-panel.css";
 import { ContentState } from "../../../lib/contentState";
 import DeploySettings from "./DeploySettings";
-
+ type ActiveSection = "mainform" | "privacy" | "questions" | "email" | "ty" | "modal-warning";
 interface ControlPanelProps {
   styles: { [key: string]: string };
   updateStyle: (key: string, value: string | number) => void;
@@ -17,10 +17,15 @@ interface ControlPanelProps {
   activeSection: string;
   onContentChange: (keys: string[], value: any) => void;
   mode: string;
+  modalMessage?: string;
+  setModalMessage?: (value: string) => void;
+  setActiveSection?: (value: ActiveSection) => void;
+  setMode?: (value: string) => void;
 }
 
 export default function ControlPanel({
   mode,
+  setMode,
   styles,
   updateStyle,
   activeTab,
@@ -29,6 +34,8 @@ export default function ControlPanel({
   content,
   activeSection,
   onContentChange,
+  setActiveSection,
+  setModalMessage,
 }: ControlPanelProps) {
   return (
     <div className="control-panel">
@@ -49,7 +56,10 @@ export default function ControlPanel({
         {activeTab === "settings" && (
           <DeploySettings
             content={content}
-            mode={mode}
+            setModalMessage={setModalMessage}
+            setActiveSection={setActiveSection}
+            mode={"delete"}
+            setMode={setMode}
           />
         )}
       </div>

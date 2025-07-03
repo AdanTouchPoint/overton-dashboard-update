@@ -39,7 +39,7 @@ async function updateCampaignData (projectData) {
          body: JSON.stringify( projectData )
     }
     //onst objPrepare = await prepareData(projectData)
-    const request = await fetch(`${petition.method,petition.backendURLBase,petition.endpoint}`,requestOptions)
+    const request = await fetch(`${petition.backendURLBase}${petition.endpoint}`,requestOptions)
     return request.json()
 }
 async function deleteCampaign( projectData) {

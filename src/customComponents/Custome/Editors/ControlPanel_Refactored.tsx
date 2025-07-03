@@ -1,19 +1,19 @@
+
 import React from "react";
 import TabSystem from "./TabSystem";
 import StylesTab from "./StyleTab";
-import ContentEditor from "./ContentEditor";
-//import SettingsTab from "./settings-tab"
-import "./control-panel.css";
-import { ContentState } from "../../../lib/contentState";
+import ContentEditorRefactored from "./ContentEditor_Refactored"; // Usamos el refactorizado
 import DeploySettings from "./DeploySettings";
- type ActiveSection = "mainform" | "privacy" | "questions" | "email" | "ty" | "modal-warning";
+import "./control-panel.css";
+import { styleProps } from "../../../lib/contentState"; // Asegúrate de que este tipo esté definido correctamente
+type ActiveSection = "mainform" | "privacy" | "questions" | "email" | "ty" | "modal-warning" | "emailreview";
 interface ControlPanelProps {
-  styles: { [key: string]: string };
+  styles: styleProps;
   updateStyle: (key: string, value: string | number) => void;
   activeTab: string;
   setActiveTab: (tab: string) => void;
   setActiveForm: (value: string) => void;
-  content: ContentState;
+  content: any; // Debería ser un tipo más específico, pero lo dejamos flexible
   activeSection: string;
   onContentChange: (keys: string[], value: any) => void;
   mode: string;
@@ -21,9 +21,11 @@ interface ControlPanelProps {
   setModalMessage?: (value: string) => void;
   setActiveSection?: (value: ActiveSection) => void;
   setMode?: (value: string) => void;
+  // NUEVA PROP:
+  availableSections: string[];
 }
 
-export default function ControlPanel({
+export default function ControlPanelRefactored({
   mode,
   setMode,
   styles,
@@ -36,18 +38,34 @@ export default function ControlPanel({
   onContentChange,
   setActiveSection,
   setModalMessage,
+  availableSections, // Recibimos la nueva prop
 }: ControlPanelProps) {
   return (
     <div className="control-panel">
       <TabSystem activeTab={activeTab} setActiveTab={setActiveTab} />
+
+      {/* NAVEGACIÓN DE SECCIONES - AHORA ES DINÁMICA */}
+      {activeTab === 'content' && (
+        <div className="section-navigation">
+          <h4>Sections</h4>
+          {availableSections.map(sectionId => (
+            <button 
+              key={sectionId}
+              className={`section-nav-button ${activeSection === sectionId ? 'active' : ''}`}
+              onClick={() => setActiveSection(sectionId as ActiveSection)}
+            >
+              {sectionId.charAt(0).toUpperCase() + sectionId.slice(1)}
+            </button>
+          ))}
+        </div>
+      )}
+
       <div className="tab-content">
         {activeTab === "styles" && (
           <StylesTab styles={styles} updateStyle={updateStyle} />
         )}
         {activeTab === "content" && (
-          <ContentEditor
-            mode={mode}
-            setActiveForm={setActiveForm}
+          <ContentEditorRefactored
             content={content}
             activeSection={activeSection}
             onContentChange={onContentChange}
@@ -63,6 +81,7 @@ export default function ControlPanel({
           />
         )}
       </div>
+ 
     </div>
   );
 }

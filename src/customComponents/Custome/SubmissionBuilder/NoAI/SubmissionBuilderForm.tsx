@@ -7,7 +7,6 @@ import { renderQuestionsSection } from "../../components base/QuestionsSection";
 import { renderEmailSection } from "../../components base/EmailFormSection";
 import { renderTYSection } from "../../components base/TYSection";
 import ModalWarning from '../../Editors/ModalWarning';
-
 import {
   initialContentStateSB,
   ContentState,

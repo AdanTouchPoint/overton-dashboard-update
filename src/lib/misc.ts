@@ -16,12 +16,15 @@ export function validatestring(repo) {
        return questions
  }
  export function formSelector(formType: string) {
-    switch (formType) {
-      case "sb":
-        return "SB";
-      case "pd":
-        return "PD";
-      case "ap":
-        return "AP";
-    }
+  if (typeof formType !== 'string') {
+    return undefined; // o un valor por defecto
   }
+  switch (formType.toLowerCase()) {
+    case "sb":
+      return "SB";
+    case "pd":
+      return "PD";
+    case "ap":
+      return "AP";
+  }
+}

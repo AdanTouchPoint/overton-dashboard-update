@@ -16,22 +16,26 @@ export default function Header ({content,mode,setActiveView,setActiveForm,setAct
    const deploy = async (content) => {
     try {
     const deploy = await deployProject(content);
-      console.log("deploy", deploy);
+      console.log("deploy response:", deploy);
       if (deploy.ok === false) {
         setModalMessage("Project hasnt been deployed successfully!");
         setActiveSection("modal-warning");
         return;
-      } 
-      const saveData = updateCampaignData(content);
+      }
+
+      const saveData = await updateCampaignData(content);
+      console.log("saveData after deploy:", saveData);
       setActiveForm("success");
     } catch (error) {
-      throw new Error("Something goes wrong!");
+      console.error("Error in deploy function:", error);
+      setModalMessage("Something went wrong during deploy!");
+      setActiveSection("modal-warning");
     }
   };
   const save = async (content) => {
     try {
       const saveData = await updateCampaignData(content);
-      console.log("saveData", saveData);
+      console.log("saveData after save:", saveData);
       if( saveData.success === true ) {
         setModalMessage("Project has been saved successfully!");
         setActiveSection("modal-warning");
@@ -41,7 +45,9 @@ export default function Header ({content,mode,setActiveView,setActiveForm,setAct
         setActiveSection("modal-warning");
       }
     } catch (error) {
-      throw new Error("Something goes wrong!");
+      console.error("Error in save function:", error);
+      setModalMessage("Something went wrong during save!");
+      setActiveSection("modal-warning");
     }
   };
   const click =async  (mode, content) => {
@@ -84,4 +90,3 @@ export default function Header ({content,mode,setActiveView,setActiveForm,setAct
     </header>
   )
 }
-

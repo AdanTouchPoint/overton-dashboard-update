@@ -1,7 +1,7 @@
 import React, { useState,useReducer } from "react";
 import { DefaultTemplate } from "payload/components/templates";
 import MainForm from "./MainForm";
-import SubmissionBuilderForm from "./SubmissionBuilder/NoAI/SubmissionBuilderForm";
+import SubmissionBuilderForm from "./SubmissionBuilder/NoAI/SubmissionBuilderForm_Refactored";
 import PoliticallDirectForm from "./Politicall/NoAI//PoliticallDirectForm";
 import AlertthePressForm from "./AlertthePress/NoAI/AlertthePressForm";
 import Success from "./Success";

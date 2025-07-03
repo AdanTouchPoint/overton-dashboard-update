@@ -43,7 +43,7 @@ export interface TextStyle {
     mainform: ViewContent;
     style: styleProps;
     //mainFormInputs: inputOptions;
-    emailform: ViewContent;
+    email: ViewContent;
     emailreview: ViewContent;
     ty: typ;
   }
@@ -86,7 +86,7 @@ export interface TextStyle {
       },
 
     },
-    emailform: {
+    email: {
       title: {
         text: 'Título de email',
 

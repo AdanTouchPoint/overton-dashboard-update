@@ -17,7 +17,7 @@ import Representatives from './collections/Representatives';
 import Electorates from './collections/Electorates';
 import Leads from './collections/Leads';
 import AfterNavLinks from './customComponents/afterNavLink';
-import Campaing from './customComponents/Custome/Campaign';
+import Campaing from './customComponents/Custome/Campaing_Refactored';
 import EditCampaing from './customComponents/Custome/EditCampaign'
 import CustomeReps from './collections/CustomeReps';
 import RepresentativesRecord from './collections/RepresentativesRecord';

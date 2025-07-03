@@ -29,6 +29,9 @@ router.post("/campaign", async (req, res) => {
 router.put("/updateCampaign", async (req, res) => {
     try {
       const body = req.body;
+      if (req.user) {
+        body.clientId = req.user.id;
+      }
       console.log(body, "update Start")
       const data = await updateCampaign(body)
       res.json({

@@ -1,9 +1,11 @@
+
 import React from 'react';
 import { Eye, Check, XIcon } from "lucide-react"
 import "./header.css"
 import { ContentState } from "../../../lib/contentState";
 import { deployProject, updateCampaignData } from '../../../lib/requestsAPI';
-  interface HeaderProps {
+
+interface HeaderProps {
   content: ContentState;
   setActiveView:(value: string) => void;
   setActiveForm:(value: string) => void;
@@ -11,27 +13,30 @@ import { deployProject, updateCampaignData } from '../../../lib/requestsAPI';
   mode: "edit" | "create";
   setActiveSection?: (value: string) => void;
   setModalMessage?: (value: string) => void;
-  }
-export default function Header ({content,mode,setActiveView,setActiveForm,setActiveSection,modalMessage,setModalMessage} ) {
-   const deploy = async (content) => {
+  setIsDeploying: (value: boolean) => void;
+}
+
+export default function Header ({content,mode,setActiveView,setActiveForm,setActiveSection,modalMessage,setModalMessage, setIsDeploying} ) {
+
+  const deploy = async (content) => {
     try {
-    const deploy = await deployProject(content);
+      const deploy = await deployProject(content);
       console.log("deploy response:", deploy);
       if (deploy.ok === false) {
         setModalMessage("Project hasnt been deployed successfully!");
         setActiveSection("modal-warning");
         return;
       }
-
       const saveData = await updateCampaignData(content);
       console.log("saveData after deploy:", saveData);
-      setActiveForm("success");
+      setIsDeploying(true);
     } catch (error) {
       console.error("Error in deploy function:", error);
       setModalMessage("Something went wrong during deploy!");
       setActiveSection("modal-warning");
     }
   };
+
   const save = async (content) => {
     try {
       const saveData = await updateCampaignData(content);
@@ -50,6 +55,7 @@ export default function Header ({content,mode,setActiveView,setActiveForm,setAct
       setActiveSection("modal-warning");
     }
   };
+
   const click =async  (mode, content) => {
     if(mode === 'edit') {
       const payload = await save(content)
@@ -74,6 +80,7 @@ export default function Header ({content,mode,setActiveView,setActiveForm,setAct
     }
     return setActiveForm('main')
   }
+
   return (
     <header className="editor-header">
       <h1>Editor de Estilos de Email</h1>
@@ -90,3 +97,4 @@ export default function Header ({content,mode,setActiveView,setActiveForm,setAct
     </header>
   )
 }
+

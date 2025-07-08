@@ -35,7 +35,6 @@ export interface ProjectData {
   efdescription?,
   name?,
   id?
-
   }
 export interface QuestionInputs {
   name: string,

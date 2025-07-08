@@ -31,11 +31,22 @@
       .submit-button:hover {
         background-color: #0056b3;
       }
-    .submit-button-platform {
+    .platform-button {
         border: none;
         padding: 18px 30px;
         border-radius: 10px;
         cursor: pointer;
         float: right;
         margin-top: 10px;
+      }
+      
+      .platform-button-secondary {
+        border: 1px solid #ccc; /* Example border */
+        padding: 18px 30px;
+        border-radius: 10px;
+        cursor: pointer;
+        float: right;
+        margin-top: 10px;
+        background-color: transparent; /* Example style */
+        color: #333; /* Example text color */
       }

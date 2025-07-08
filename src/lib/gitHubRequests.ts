@@ -99,11 +99,11 @@ const getRepoInfo = async (name: string) => {
     redirect: "follow",
   };
 
-  const response = fetch(
+  const response = await fetch(
     `https://api.github.com/repos/AdanTouchPoint/${name.replace(/ /g, "-")}`,
     requestOptions
   );
-  return response;
+  return response.json();
   } catch (error) {
     throw new Error(error.message);
   }

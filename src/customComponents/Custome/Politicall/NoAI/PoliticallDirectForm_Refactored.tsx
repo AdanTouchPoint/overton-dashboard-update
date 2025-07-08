@@ -13,6 +13,7 @@ import { genericContentReducer, GenericAction } from "../../../../lib/genericCon
 import Header from "../../Editors/Header_Refactored";
 import ControlPanelRefactored from "../../Editors/ControlPanel_Refactored"; // Usamos el refactorizado
 import "../../Editors/editorBaseView.css";
+import { useCampaignFlow } from "../../context/CampaignFlowContext";
 
 type ActiveSection =  "mainform" | "privacy" | "questions" | "email" | "ty" | "modal-warning" | "emailreview";
 
@@ -28,8 +29,9 @@ const PoliticallDirectFormRefactored: React.FC<PDprops> = ({
 }) => {
   const [modalMessage, setModalMessage] = useState<string>("");
   const [activeTab, setActiveTab] = useState("styles");
-  const [flexDirect, setFlexDirect] = useState<string>();
+  
   const [activeSection, setActiveSection] = useState<ActiveSection>("mainform");
+  const { setIsDeploying } = useCampaignFlow();
 
   const [content, dispatchContent] = useReducer<
     React.Reducer<ContentStatePD, GenericAction>
@@ -88,7 +90,7 @@ const PoliticallDirectFormRefactored: React.FC<PDprops> = ({
         const styles = content.style;
         switch (activeSection) {
           case "mainform":
-            return renderMainFormSection(content, styles, setActiveSection, flexDirect);
+            return renderMainFormSection(content, styles, setActiveSection);
           case "email":
             return renderEmailSection(content, styles, setActiveSection);
           case "emailreview":
@@ -96,7 +98,7 @@ const PoliticallDirectFormRefactored: React.FC<PDprops> = ({
           case "ty":
             return renderTYSection(content, styles, setActiveSection);
           default:
-            return renderMainFormSection(content, styles, setActiveSection, flexDirect);
+            return renderMainFormSection(content, styles, setActiveSection);
         }
       };
   
@@ -112,6 +114,7 @@ const PoliticallDirectFormRefactored: React.FC<PDprops> = ({
           setActiveForm={setActiveForm}
           setModalMessage={setModalMessage}
           modalMessage={modalMessage}
+          setIsDeploying={setIsDeploying}
         />
         <div className="main-flex-container">
           {activeSection === "modal-warning" && (
@@ -148,8 +151,6 @@ const PoliticallDirectFormRefactored: React.FC<PDprops> = ({
                   <div
                     className="activism-form"
                     style={{
-                      flexDirection: flexDirect === "row" ? "row" : "column",
-                      display: flexDirect === "row" ? "block" : "flex",
                       backgroundColor: content.style.backgroundColor,
                       width: content.style.formWidth,
                     }}

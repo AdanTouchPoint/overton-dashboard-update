@@ -7,10 +7,12 @@ import { formSelector } from "../../lib/misc";
 import SubmissionBuilderFormRefactored from "./SubmissionBuilder/NoAI/SubmissionBuilderForm_Refactored";
 import PoliticallDirectFormRefactored from "./Politicall/NoAI/PoliticallDirectForm_Refactored";
 import AlertthePressFormRefactored from "./AlertthePress/NoAI/AlertthePressForm_Refactored";
+import { CampaignFlowProvider, useCampaignFlow } from './context/CampaignFlowContext';
+
 const baseClass = "after-dashboard";
 import "./edit-campaign.css";
 const campaignTypes = ["SB", "PD", "AP"];
-const EditCampaing: React.FC = () => {
+const EditCampaingView: React.FC = () => {
   const [renderCamp, setRenderCamp] = useState();
   const user = useAuth();
   const userId = user.user.id;
@@ -105,8 +107,8 @@ const EditCampaing: React.FC = () => {
     ));
   };
   return (
-    <DefaultTemplate>
-      {activeView === "all" && renderAllData(campaignTypes, renderCamp)}
+    <>
+    {activeView === "all" && renderAllData(campaignTypes, renderCamp)}
       {activeView === "SB" && (
         <SubmissionBuilderFormRefactored
           mode={mode}
@@ -140,8 +142,17 @@ const EditCampaing: React.FC = () => {
           setProjectData={setProjectData}
         />
       )}
-    </DefaultTemplate>
+    </>
   );
 };
 
+const EditCampaing: React.FC = () => {
+  return (
+    <DefaultTemplate>
+      <CampaignFlowProvider>
+        <EditCampaingView />
+      </CampaignFlowProvider>
+    </DefaultTemplate>
+  );
+}
 export default EditCampaing;

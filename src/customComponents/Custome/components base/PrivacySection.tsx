@@ -15,35 +15,47 @@ export const renderPrivacySection = (content, styles, setActiveSection) => {
         {privacy.title.text}
       </h3>
       <div className="activism-form">
-        <label> Public</label>
-        <h5
-          style={{
-            color: styles.textColor,
-          }}
-        >
-          {privacy.privacyOptions.public.text}
-        </h5>
-        <label> Confidential</label>
-        <h5
-          style={{
-            color: styles.textColor,
-          }}
-        >
-          {privacy.privacyOptions.confidential.text}
-        </h5>
-        <label> NameWithHeld</label>
-        <h5
-          style={{
-            color: styles.textColor,
-          }}
-        >
-          {privacy.privacyOptions.nameWithHeld.text}
-        </h5>
+        <div className="form-group">
+          <label>
+            <input type="radio" name="privacy" value="public" /> Public
+          </label>
+          <h5
+            style={{
+              color: styles.textColor,
+            }}
+          >
+            {privacy.privacyOptions.public.text}
+          </h5>
+        </div>
+        <div className="form-group">
+          <label>
+            <input type="radio" name="privacy" value="confidential" /> Confidential
+          </label>
+          <h5
+            style={{
+              color: styles.textColor,
+            }}
+          >
+            {privacy.privacyOptions.confidential.text}
+          </h5>
+        </div>
+        <div className="form-group">
+          <label>
+            <input type="radio" name="privacy" value="nameWithHeld" /> Name Withheld
+          </label>
+          <h5
+            style={{
+              color: styles.textColor,
+            }}
+          >
+            {privacy.privacyOptions.nameWithHeld.text}
+          </h5>
+        </div>
       </div>
       {/* Contenido adicional */}
       <div className="submit-button-container">
       <button
-          className="submit-button-platform"
+          className="platform-button"
           style={{
             backgroundColor: styles.buttonColor,
             color: styles.buttonTextColor,
@@ -53,7 +65,7 @@ export const renderPrivacySection = (content, styles, setActiveSection) => {
           Next
         </button>
         <button
-          className="submit-button-platform"
+          className="platform-button-secondary"
           style={{
             backgroundColor: styles.buttonBColor,
             color: styles.buttonBTextColor,

@@ -3,8 +3,7 @@ import "./componentBase.css";
 export const renderMainFormSection = (
   content,
   styles,
-  setActiveSection,
-  flexDirect
+  setActiveSection
 ) => {
   const { mainform } = content;
   const inputs = mainform?.mainFormInputs || [];
@@ -69,7 +68,7 @@ export const renderMainFormSection = (
       <div className="submit-button-container">
         <button
           type="button"
-          className="submit-button-platform"
+          className="platform-button"
           style={{
             backgroundColor: styles.buttonColor,
             color: styles.buttonTextColor,

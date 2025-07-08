@@ -13,6 +13,9 @@ import { genericContentReducer, GenericAction } from "../../../../lib/genericCon
 import Header from "../../Editors/Header_Refactored";
 import ControlPanelRefactored from "../../Editors/ControlPanel_Refactored";
 import "../../Editors/editorBaseView.css";
+import { useCampaignFlow } from "../../context/CampaignFlowContext";
+import { updateCampaignData } from "../../../../lib/requestsAPI"; // IMPORTAMOS LA FUNCIÓN PARA ACTUALIZAR DATOS
+
 export interface styleProps {
   [key: string]: string;
   backgroundColor: string;
@@ -33,14 +36,14 @@ const SubmissionBuilderFormRefactored: React.FC<SBprops> = ({
 }) => {
   const [modalMessage, setModalMessage] = useState<string>("");
   const [activeTab, setActiveTab] = useState("styles");
-  const [flexDirect, setFlexDirect] = useState<string>();
+  
   const [activeSection, setActiveSection] = useState<ActiveSection>("mainform");
+  const { setIsDeploying } = useCampaignFlow();
 
   // --- Gestión de Estado Refactorizada ---
   const [content, dispatchContent] = useReducer<
     React.Reducer<ContentState, GenericAction>
   >(genericContentReducer, initialContentStateSB);
-
   // --- Inicialización Correcta ---
   useEffect(() => {
     if (mode === 'edit' && campaignEditData) {
@@ -106,7 +109,7 @@ const SubmissionBuilderFormRefactored: React.FC<SBprops> = ({
     const styles = content.style;
     switch (activeSection) {
       case "mainform":
-        return renderMainFormSection(content, styles, setActiveSection, flexDirect);
+        return renderMainFormSection(content, styles, setActiveSection);
       case "privacy":
         return renderPrivacySection(content, styles, setActiveSection);
       case "questions":
@@ -116,9 +119,11 @@ const SubmissionBuilderFormRefactored: React.FC<SBprops> = ({
       case "ty":
         return renderTYSection(content, styles, setActiveSection);
       default:
-        return renderMainFormSection(content, styles, setActiveSection, flexDirect);
+        return renderMainFormSection(content, styles, setActiveSection);
     }
   };
+
+
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
@@ -130,6 +135,7 @@ const SubmissionBuilderFormRefactored: React.FC<SBprops> = ({
         setActiveForm={setActiveForm}
         setModalMessage={setModalMessage}
         modalMessage={modalMessage}
+        setIsDeploying={setIsDeploying}
       />
       <div className="main-flex-container" style={{ flexGrow: 1 }}>
         {activeSection === "modal-warning" && (
@@ -168,8 +174,6 @@ const SubmissionBuilderFormRefactored: React.FC<SBprops> = ({
                 <div
                   className="activism-form"
                   style={{
-                    flexDirection: flexDirect === "row" ? "row" : "column",
-                    display: flexDirect === "row" ? "block" : "flex",
                     backgroundColor: content.style.backgroundColor,
                     width: content.style.formWidth,
                   }}

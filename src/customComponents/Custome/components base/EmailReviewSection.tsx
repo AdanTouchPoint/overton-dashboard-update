@@ -35,8 +35,8 @@ export const renderEmailReviewSection = (content,styles,setActiveSection) => {
         </p>
         <textarea style={{resize: 'none', backgroundColor: styles.inputBackground}} disabled rows={10} cols={50} defaultValue={"Email ..."}></textarea>
         {/* Contenido adicional */}
-        <button  className="submit-button" style={{backgroundColor: styles.buttonBColor, color: styles.buttonBTextColor}} onClick={() => setActiveSection('emailform')}>Back</button>
-        <button  className="submit-button" style={{backgroundColor: styles.buttonColor, color: styles.buttonTextColor}} onClick={() => setActiveSection('ty')}>Next</button>
+        <button  className="platform-button-secondary" style={{backgroundColor: styles.buttonBColor, color: styles.buttonBTextColor}} onClick={() => setActiveSection('emailform')}>Back</button>
+        <button  className="platform-button" style={{backgroundColor: styles.buttonColor, color: styles.buttonTextColor}} onClick={() => setActiveSection('ty')}>Next</button>
         </div>
       </div>
     </div>

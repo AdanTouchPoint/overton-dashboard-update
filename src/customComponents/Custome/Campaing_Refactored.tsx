@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DefaultTemplate } from 'payload/components/templates';
 import { CampaignFlowProvider, useCampaignFlow } from './context/CampaignFlowContext';
 import MainFormRefactored from "./MainForm_Refactored"; // Asumimos que crearemos este
@@ -10,13 +10,51 @@ import SuccessRefactored from "./Success_Refactored"; // Asumimos que crearemos 
 import { Button } from "payload/components/elements";
 import './campaignList.css'
 import { useAuth } from "payload/components/utilities";
+import LoadingURL from './LoadingURL';
+import { getRepoInfo } from '../../lib/gitHubRequests';
+import { updateCampaignData } from '../../lib/requestsAPI';
 
 // El componente que renderiza el contenido basado en el contexto
 const CampaignFlowView: React.FC = () => {
-  const { activeForm, projectData, error, setError, setActiveForm, setProjectData } = useCampaignFlow();
-const baseClass = "after-dashboard";
-const user = useAuth();
-const userId = user.user.id;
+  const { activeForm, projectData, error, setError, setActiveForm, setProjectData, isDeploying, setIsDeploying } = useCampaignFlow();
+  const baseClass = "after-dashboard";
+  const user = useAuth();
+  const userId = user.user.id;
+  const [isOnline, setIsOnline] = React.useState(false);
+
+  useEffect(() => {
+    if (isDeploying) {
+      const timer = setTimeout(async () => {
+        try {
+         const homePage = await getRepoInfo(projectData.repo);
+          console.log("homePage:", homePage)
+          const projectUrl = homePage?.homepage || homePage.homepage || null;
+          if (projectUrl) {
+            const payload = {
+              clientId: userId,
+              projectData: {
+                ...projectData,
+                homepage: projectUrl, // Asignamos la URL obtenida
+              }
+            }
+            const response = await updateCampaignData(payload);
+            console.log("API response:", response);
+            setIsDeploying(false);
+            setActiveForm('success');
+          } else {
+            setError("No se pudo obtener la URL de Vercel.");
+            setIsDeploying(false);
+          }
+        } catch (error) {
+          setError("Error al obtener la URL de Vercel.");
+          setIsDeploying(false);
+        }
+      }, 60000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isDeploying]);
+
   const closeModal = () => {
     setError(null);
   }
@@ -30,6 +68,10 @@ const userId = user.user.id;
       </div>
     </div>
   );
+
+  if (isDeploying) {
+    return <LoadingURL />;
+  }
 
   return (
     <div className={baseClass}>

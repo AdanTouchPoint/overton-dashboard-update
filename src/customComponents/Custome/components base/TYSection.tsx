@@ -42,7 +42,7 @@ export const renderTYSection = (content, styles, setActiveSection) => {
       </p>
       <div className="submit-button-container">
         <button
-          className="submit-button-platform"
+          className="platform-button-secondary"
           style={{
             backgroundColor: styles.buttonBColor,
             color: styles.buttonBTextColor,

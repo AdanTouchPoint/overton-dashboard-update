@@ -19,8 +19,9 @@ const SuccessRefactored: React.FC = () => {
         <h3>Detalles del Proyecto:</h3>
         <ul>
           <li><strong>ID:</strong> {projectData?.id}</li>
-          <li><strong>Tipo:</strong> {projectData?.campaignType}</li>
           <li><strong>Nombre (Repo):</strong> {projectData?.repo}</li>
+          <li><strong>Tipo:</strong> {projectData?.campaignType}</li>
+          <li><strong>URL:</strong> {projectData?.homepage}</li>
         </ul>
       </div>
       <button onClick={handleNewCampaign} className="submit-button">

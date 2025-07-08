@@ -10,6 +10,8 @@ interface CampaignFlowContextState {
   setProjectData: (data: ProjectData) => void;
   error: string | null;
   setError: (error: string | null) => void;
+  isDeploying: boolean;
+  setIsDeploying: (isDeploying: boolean) => void;
 }
 
 // 2. Crear el Contexto
@@ -24,6 +26,7 @@ export const CampaignFlowProvider: React.FC<CampaignFlowProviderProps> = ({ chil
   const [activeForm, setActiveForm] = useState('main');
   const [projectData, setProjectData] = useState<ProjectData>();
   const [error, setError] = useState<string | null>(null);
+  const [isDeploying, setIsDeploying] = useState<boolean>(false);
 
   const value = {
     activeForm,
@@ -32,6 +35,8 @@ export const CampaignFlowProvider: React.FC<CampaignFlowProviderProps> = ({ chil
     setProjectData,
     error,
     setError,
+    isDeploying,
+    setIsDeploying,
   };
 
   return (

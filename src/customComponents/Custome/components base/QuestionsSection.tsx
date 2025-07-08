@@ -41,7 +41,7 @@ export const renderQuestionsSection = (content, styles, setActiveSection) => {
       {/* Componente DynamicQuestions o contenido adicional */}
       <div className="submit-button-container">
       <button
-          className="submit-button-platform"
+          className="platform-button"
           style={{
             backgroundColor: styles.buttonColor,
             color: styles.buttonTextColor,
@@ -51,7 +51,7 @@ export const renderQuestionsSection = (content, styles, setActiveSection) => {
           Next
         </button>
         <button
-          className="submit-button-platform"
+          className="platform-button-secondary"
           style={{
             backgroundColor: styles.buttonBColor,
             color: styles.buttonBTextColor,

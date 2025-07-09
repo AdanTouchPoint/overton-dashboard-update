@@ -64,16 +64,16 @@ const SuccessRefactored = () => {
             <div className="icon-container animate-pulse-slow" />
             
             <h1 className="main-title">
-              ¡Campaña "{projectData?.title}" Creada con Éxito!
+              ¡ Campaign "{projectData?.title}" has been created successfully !
             </h1>
             
             <p className="subtitle">
-              Tu campaña ha sido creada y está lista para despegar. Todos los sistemas están operativos.
+              Your campaign has been created and is ready to go. All systems are operational.
             </p>
             
             <div className="details-container">
               <h2 className="details-title">
-                Detalles del Proyecto
+                Project Details
                 <span className="details-title-underline" />
               </h2>
               
@@ -87,14 +87,14 @@ const SuccessRefactored = () => {
                 
                 <div className="detail-item">
                   <div className="detail-item-header">
-                    <span className="detail-item-header-title">Nombre (Repo)</span>
+                    <span className="detail-item-header-title">Name (Repo)</span>
                   </div>
                   <div className="detail-item-value">{projectData?.repo}</div>
                 </div>
                 
                 <div className="detail-item">
                   <div className="detail-item-header">
-                    <span className="detail-item-header-title">Tipo</span>
+                    <span className="detail-item-header-title">Type</span>
                   </div>
                   <div className="detail-item-value">{projectData?.campaignType}</div>
                 </div>
@@ -113,7 +113,7 @@ const SuccessRefactored = () => {
               className="create-new-button"
             >
               <span className="create-new-button-bg"></span>
-              <span className="create-new-button-text">Crear Nueva Campaña</span>
+              <span className="create-new-button-text">Create New Campaign</span>
             </button>
           </div>
         </div>

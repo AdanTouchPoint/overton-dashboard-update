@@ -37,7 +37,7 @@ const QuestionsEditor: React.FC<QuestionsEditorProps> = ({ content, onContentCha
         />
         <button onClick={handleAdd} className="add-btn">
           <PlusCircle className="icon" />
-          Agregar
+          Add
         </button>
       </div>
 

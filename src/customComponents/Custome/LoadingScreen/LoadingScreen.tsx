@@ -7,9 +7,9 @@ interface FloatingElement {
 }
 
 const statusMessages = [
-    ["Cargando datos", "Verificando seguridad", "Validando información"],
-    ["Procesando información", "Encriptando datos", "Generando reportes"],
-    ["Optimizando recursos", "Preparando resultados", "Finalizando operación"]
+    ["Loading data", "Verifying security", "Validating information"],
+    ["Processing information", "Encrypting data", "Generating reports"],
+    ["Optimizing resources", "Preparing results", "Finalizing operation"]
 ];
 
 const LoadingScreen: FC = () => {
@@ -63,8 +63,8 @@ const LoadingScreen: FC = () => {
                 <div className={styles.loadingContainer}>
                     <div className={styles.loadingCard}>
                         <div className={styles.loadingHeader}>
-                            <h1 className={styles.loadingTitle}>Procesando su solicitud</h1>
-                            <p className={styles.loadingSubtitle}>Estamos preparando su experiencia. Este proceso tomará solo unos momentos.</p>
+                            <h1 className={styles.loadingTitle}>Processing your request</h1>
+                            <p className={styles.loadingSubtitle}>We are preparing your experience. This process will only take a few moments.</p>
                         </div>
 
                         <div className={styles.loadingContent}>
@@ -79,7 +79,7 @@ const LoadingScreen: FC = () => {
                                 <div className={styles.progressBar}></div>
                             </div>
 
-                            <p className={styles.loadingText}>Por favor, espere mientras completamos la operación</p>
+                            <p className={styles.loadingText}>Please wait while we complete the operation</p>
 
                             <div className={styles.statusContainer}>
                                 <div className={styles.statusItem}>

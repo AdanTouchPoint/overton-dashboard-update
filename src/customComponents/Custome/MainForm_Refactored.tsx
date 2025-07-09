@@ -44,7 +44,7 @@ const MainFormRefactored: React.FC<{ userId: string }> = ({ userId }) => {
       setProjectData(payload);
       setActiveForm(projectData!.campaignType.toUpperCase());
     } catch (error: any) {
-      setError(`Ocurrió un error al crear la campaña: ${error.message}`);
+      setError(`Error: ${error.message}`);
     }
   };
 

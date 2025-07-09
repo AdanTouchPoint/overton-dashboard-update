@@ -13,15 +13,15 @@ export default function TabSystem({ activeTab, setActiveTab }: TabSystemProps) {
     <div className="tabs">
       <button className={`tab ${activeTab === "styles" ? "active" : ""}`} onClick={() => setActiveTab("styles")}>
         <Palette size={18} />
-        <span>Estilos</span>
+        <span>Styles</span>
       </button>
       <button className={`tab ${activeTab === "content" ? "active" : ""}`} onClick={() => setActiveTab("content")}>
         <Type size={18} />
-        <span>Contenido</span>
+        <span>Content</span>
       </button>
       <button className={`tab ${activeTab === "settings" ? "active" : ""}`} onClick={() => setActiveTab("settings")}>
         <Settings size={18} />
-        <span>Ajustes</span>
+        <span>Settings</span>
       </button>
     </div>
   )

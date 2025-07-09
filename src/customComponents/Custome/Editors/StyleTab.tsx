@@ -28,10 +28,10 @@ export default function StylesTab({ styles, updateStyle }: StylesTabProps) {
 
   return (
     <div className="styles-panel">
-      <h2>Colores</h2>
+      <h2>Colors</h2>
 
       <div className="form-group">
-        <label htmlFor="backgroundColor">Color de Fondo:</label>
+        <label htmlFor="backgroundColor">Background Color:</label>
         <div className="color-input-group">
           <input
             type="text"
@@ -50,7 +50,7 @@ export default function StylesTab({ styles, updateStyle }: StylesTabProps) {
       </div>
 
       <div className="form-group">
-        <label htmlFor="textColor">Color de Texto:</label>
+        <label htmlFor="textColor">Text Color:</label>
         <div className="color-input-group">
           <input
             type="text"
@@ -69,7 +69,7 @@ export default function StylesTab({ styles, updateStyle }: StylesTabProps) {
       </div>
 
       <div className="form-group">
-        <label htmlFor="labelColor">Color de Etiquetas:</label>
+        <label htmlFor="labelColor">Label Color:</label>
         <div className="color-input-group">
           <input
             type="text"
@@ -88,7 +88,7 @@ export default function StylesTab({ styles, updateStyle }: StylesTabProps) {
       </div>
 
       <div className="form-group">
-        <label htmlFor="inputBackground">Fondo de Input:</label>
+        <label htmlFor="inputBackground">Input Background:</label>
         <div className="color-input-group">
           <input
             type="text"
@@ -109,7 +109,7 @@ export default function StylesTab({ styles, updateStyle }: StylesTabProps) {
       <h2>Botones</h2>
 
       <div className="form-group">
-        <label htmlFor="buttonColor">Color de Botón:</label>
+        <label htmlFor="buttonColor">Button Color:</label>
         <div className="color-input-group">
           <input
             type="text"
@@ -128,7 +128,7 @@ export default function StylesTab({ styles, updateStyle }: StylesTabProps) {
       </div>
 
       <div className="form-group">
-        <label htmlFor="buttonTextColor">Color de Texto de Botón:</label>
+        <label htmlFor="buttonTextColor">Button Text Color:</label>
         <div className="color-input-group">
           <input
             type="text"

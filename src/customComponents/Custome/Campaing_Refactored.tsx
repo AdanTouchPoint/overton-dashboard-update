@@ -42,11 +42,11 @@ const CampaignFlowView: React.FC = () => {
             setIsDeploying(false);
             setActiveForm('success');
           } else {
-            setError("No se pudo obtener la URL de Vercel.");
+            setError(" cannot get the project URL.");
             setIsDeploying(false);
           }
         } catch (error) {
-          setError("Error al obtener la URL de Vercel.");
+          setError("Error getting project URL.");
           setIsDeploying(false);
         }
       }, 60000);
@@ -64,7 +64,7 @@ const CampaignFlowView: React.FC = () => {
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <h2>Error</h2>
         <p>{error}</p>
-        <Button onClick={closeModal} className="close-button">Cerrar</Button>
+        <Button onClick={closeModal} className="close-button">Close</Button>
       </div>
     </div>
   );

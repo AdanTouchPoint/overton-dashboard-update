@@ -39,13 +39,13 @@ const MainFormEditor: React.FC<MainFormEditorProps> = ({ content, onContentChang
     <>
       <h3>User Info Fields</h3>
       <div className="form-group">
-        <label htmlFor="addFieldSelect">Agregar campo</label>
+        <label htmlFor="addFieldSelect">Add Field</label>
         <select
           id="addFieldSelect"
           value={selectedValue}
           onChange={(e) => setSelectedValue(e.target.value)}
         >
-          <option value="">-- Seleccione --</option>
+          <option value="">-- Select --</option>
           {availableOptions.map((option) => (
             <option
               key={option.value}
@@ -58,7 +58,7 @@ const MainFormEditor: React.FC<MainFormEditorProps> = ({ content, onContentChang
         </select>
         <button onClick={handleAdd} className="add-btn">
           <PlusCircle className="icon" />
-          Agregar
+          Add
         </button>
       </div>
 

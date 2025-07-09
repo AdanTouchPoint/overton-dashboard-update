@@ -22,7 +22,7 @@ const ContentEditorRefactored: React.FC<ContentEditorProps> = ({
     const sectionContent = content[activeSection];
 
     if (!sectionContent) {
-      return <p>No hay contenido disponible para esta sección.</p>;
+      return <p>theres no content available for this section.</p>;
     }
 
     switch (activeSection) {

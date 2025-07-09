@@ -10,7 +10,7 @@ import SuccessRefactored from "./Success_Refactored"; // Asumimos que crearemos 
 import { Button } from "payload/components/elements";
 import './campaignList.css'
 import { useAuth } from "payload/components/utilities";
-import LoadingURL from './LoadingURL';
+import LoadingScreen from './LoadingScreen/LoadingScreen';
 import { getRepoInfo } from '../../lib/gitHubRequests';
 import { updateCampaignData } from '../../lib/requestsAPI';
 
@@ -70,7 +70,7 @@ const CampaignFlowView: React.FC = () => {
   );
 
   if (isDeploying) {
-    return <LoadingURL />;
+    return <LoadingScreen />;
   }
 
   return (
@@ -106,7 +106,11 @@ const CampaignFlowView: React.FC = () => {
             userId={userId}
         />
       )}
-      {activeForm === 'success' && <SuccessRefactored />}
+      {activeForm === 'success' && 
+      <>
+      <SuccessRefactored />  
+      </>
+      }
       {error && renderErrorModal()}
     </div>
   );

@@ -38,10 +38,18 @@ export interface TextStyle {
     shareMessage: TextStyle;
     shareUrl : TextStyle;
   }
+
+  export  interface ProjectData {
+    title: string;
+    description: string;
+    campaignType: string;
+    id: string;
+  }
+  
   export interface ContentState {
     mainform: ViewContent;
     style: styleProps;
-    //mainFormInputs: inputOptions;
+    projectData: ProjectData;
     emailform?: ViewContent;
     emailreview?: ViewContent
     privacy?: ViewContent;

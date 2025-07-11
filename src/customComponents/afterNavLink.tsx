@@ -19,6 +19,12 @@ const AfterNavLinks: React.FC = () => {
             >
             { 'Edit Campaing' }
             </NavLink>
+            <NavLink
+            activeClassName='active'
+            to={`${adminRoute}/campaingdetails`}
+            >
+            { 'Campaign Details' }
+            </NavLink>
         </div>
     )
 }

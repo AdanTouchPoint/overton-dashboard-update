@@ -21,6 +21,7 @@ import Campaing from './customComponents/Custome/Campaing_Refactored';
 import EditCampaing from './customComponents/Custome/EditCampaign'
 import CustomeReps from './collections/CustomeReps';
 import RepresentativesRecord from './collections/RepresentativesRecord';
+import CampaignDetails from './customComponents/Custome/Details/Details';
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:8080',
   admin: {
@@ -35,6 +36,10 @@ export default buildConfig({
       editCampaing: {
         Component: EditCampaing,
         path: '/editcampaing'
+      },
+      Details: {
+        Component: CampaignDetails,
+        path: '/campaingdetails'
       }
     },
       afterNavLinks: [AfterNavLinks]

@@ -1,20 +1,35 @@
-.campaign-columns-header,
-.campaign-row {
+.campaign-columns-header {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* 3 columnas iguales */
+  grid-template-columns: repeat(5, 1fr);
   gap: 15px;
   padding: 10px 0;
-}
-
-.campaign-columns-header {
   font-weight: bold;
   border-bottom: 2px solid #ccc;
 }
+
 .campaign-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 columnas con el mismo ancho */
+  gap: 10px; /* Espacio entre columnas */
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
   cursor: pointer; /* Cambia el cursor al pasar sobre la fila */
   transition: background-color 0.2s; /* Efecto hover suave */
 }
 
 .campaign-row:hover {
-background-color: rgba(83, 83, 83, 0.411)
+  background-color: rgba(83, 83, 83, 0.411);
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
 }

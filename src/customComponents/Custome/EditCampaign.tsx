@@ -8,9 +8,8 @@ import SubmissionBuilderFormRefactored from "./SubmissionBuilder/NoAI/Submission
 import PoliticallDirectFormRefactored from "./Politicall/NoAI/PoliticallDirectForm_Refactored";
 import AlertthePressFormRefactored from "./AlertthePress/NoAI/AlertthePressForm_Refactored";
 import { CampaignFlowProvider, useCampaignFlow } from './context/CampaignFlowContext';
-
-const baseClass = "after-dashboard";
 import "./edit-campaign.css";
+const baseClass = "after-dashboard";
 const campaignTypes = ["SB", "PD", "AP"];
 const EditCampaingView: React.FC = () => {
   const [renderCamp, setRenderCamp] = useState();
@@ -39,7 +38,6 @@ const EditCampaingView: React.FC = () => {
 
       const formType = formSelector(campaignData?.projectData?.campaignType);
       console.log(`[5] formSelector result (formType): ${formType}`);
-
       setCampaignEditData(campaignData);
       setProjectData(campaignData?.projectData);
       setActiveView(formType ? formType : "all");
@@ -73,30 +71,35 @@ const EditCampaingView: React.FC = () => {
       >
         <p>EDIT {ele}</p>
 
-        {/* Encabezados de columnas */}
+        {/* Column Headers */}
         <div className="campaign-columns-header">
           <div>Title</div>
-          <div>Description</div> {/* Columna nueva 1 */}
-          <div>Type</div> {/* Columna nueva 2 */}
+          <div>URL</div>
+          <div>Details</div>
+          <div>Edit</div>
+          <div>Status</div>
         </div>
         {renderCamp?.data?.[ele]?.docs?.length > 0 ? (
           renderCamp.data[ele].docs.map((el: any) => (
-            <div onClick={() => edit(el.id)} key={el.id ? el.id : ""} className="campaign-row" id={el.id ? el.id : ""}>
-              {/* Contenido de las columnas */}
+            <div key={el.id} className="campaign-row">
               <div>
-                <p id={el.id ? el.id : ""} className="campaign-title">
-                  {el.projectData.title || "Sin autor"}
+                <p className="campaign-title">
+                  {el.projectData.title || "Sin título"}
                 </p>
               </div>
-
-              {/* Nueva columna 1 - Autor */}
               <div>
-                <p id={el.id ? el.id : ""}>{el.projectData.description || "Sin autor"}</p>
+                <p>{el.projectData.homepage || "Sin URL"}</p>
               </div>
-
-              {/* Nueva columna 2 - Fecha */}
               <div>
-                <p id={el.id ? el.id : ""}>{el.projectData.campaignType || "Sin autor"}</p>
+                <p>Details</p>
+              </div>
+              <div>
+                <button onClick={() => edit(el.id)} className="edit-button">
+                  EDIT
+                </button>
+              </div>
+              <div>
+                <p>Status</p>
               </div>
             </div>
           ))

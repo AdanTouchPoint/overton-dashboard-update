@@ -8,7 +8,9 @@ import SubmissionBuilderFormRefactored from "./SubmissionBuilder/NoAI/Submission
 import PoliticallDirectFormRefactored from "./Politicall/NoAI/PoliticallDirectForm_Refactored";
 import AlertthePressFormRefactored from "./AlertthePress/NoAI/AlertthePressForm_Refactored";
 import { CampaignFlowProvider, useCampaignFlow } from './context/CampaignFlowContext';
+import "./Details/Details"
 import "./edit-campaign.css";
+import CampaignDetails from "./Details/Details";
 const baseClass = "after-dashboard";
 const campaignTypes = ["SB", "PD", "AP"];
 const EditCampaingView: React.FC = () => {
@@ -19,34 +21,28 @@ const EditCampaingView: React.FC = () => {
   const [campaignEditData, setCampaignEditData] = useState<campaignEditData>();
   const [mode, setMode] = useState("edit");
   const [projectData, setProjectData] = useState({});
-  
+  const [viewDetails, setViewDetails] = useState(false);
   const edit = async (id) => {
-    console.log(`[1] Starting edit for ID: ${id}`);
     try {
       const payload = await getCampaignsById(id);
-      console.log('[2] API Payload received:', payload);
-
       const campaignData = payload?.data?.docs[0]; // Corrected data extraction
       if (!campaignData) {
         console.error('[Error] No campaign document found in payload');
         return;
       }
-      console.log('[3] Extracted campaign data:', campaignData);
-
       campaignData.projectData = { ...campaignData?.projectData, id: id };
-      console.log('[4] Campaign type to check:', campaignData?.projectData?.campaignType);
-
       const formType = formSelector(campaignData?.projectData?.campaignType);
-      console.log(`[5] formSelector result (formType): ${formType}`);
       setCampaignEditData(campaignData);
       setProjectData(campaignData?.projectData);
       setActiveView(formType ? formType : "all");
-      console.log(`[6] States updated. activeView is now: ${formType || 'all'}`);
     } catch (error) {
       console.error('[Error] An error occurred during the edit process:', error);
     }
   };
-
+  const view = (id)=> {
+    // search the id  on renderCamp 
+    setActiveView("Details");
+  }
   useEffect(() => {
     if (userId) {
       // Asegúrate de que userId esté definido antes de ejecutar la llamada
@@ -88,10 +84,10 @@ const EditCampaingView: React.FC = () => {
                 </p>
               </div>
               <div>
-                <p>{el.projectData.homepage || "Sin URL"}</p>
+                <a href={el.projectData.homepage || "#"} target="_blank">{el.projectData.homepage || "Sin URL"}</a>
               </div>
               <div>
-                <p>Details</p>
+                <button onClick={() => view(el.id)} className="view-button">VIEW</button>
               </div>
               <div>
                 <button onClick={() => edit(el.id)} className="edit-button">
@@ -99,7 +95,7 @@ const EditCampaingView: React.FC = () => {
                 </button>
               </div>
               <div>
-                <p>Status</p>
+                <p>{el.projectData.homepage ? "online" : "offline"}</p>
               </div>
             </div>
           ))
@@ -143,6 +139,10 @@ const EditCampaingView: React.FC = () => {
           setActiveView={setActiveView}
           userId={userId}
           setProjectData={setProjectData}
+        />
+      )}
+      {activeView === "Details" && (
+        <CampaignDetails
         />
       )}
     </>

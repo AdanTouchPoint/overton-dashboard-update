@@ -42,24 +42,15 @@ const CampaignDetails: React.FC = () => {
               <div className={styles.headerStats}>
                 <div className={styles.headerStat}>
                   <span className={styles.statValue}>{campaign.leads}</span>
-                  <span className={styles.statLabel}>Leads Generados</span>
+                  <span className={styles.statLabel}>Leads</span>
                 </div>
                 <div className={styles.headerStat}>
                   <span className={styles.statValue}>
                     {campaign.conversionRate}
                   </span>
-                  <span className={styles.statLabel}>Tasa de Conversión</span>
+                  <span className={styles.statLabel}>Email sended </span>
                 </div>
-                <div className={styles.headerStat}>
-                  <span className={styles.statValue}>{campaign.revenue}</span>
-                  <span className={styles.statLabel}>Ingresos Generados</span>
-                </div>
-                <div className={styles.headerStat}>
-                  <span className={styles.statValue}>
-                    {campaign.costPerLead}
-                  </span>
-                  <span className={styles.statLabel}>Costo por Lead</span>
-                </div>
+
               </div>
             </div>
           </div>
@@ -69,13 +60,13 @@ const CampaignDetails: React.FC = () => {
               <div className={styles.section}>
                 <h2 className={styles.sectionTitle}>
                   <i className="fas fa-info-circle"></i>
-                  Información General
+                    General Information  
                 </h2>
                 <div className={styles.infoGrid}>
                   <div className={styles.infoItem}>
                     <span className={styles.infoLabel}>
                       <i className="fas fa-link"></i>
-                      URL de la Campaña
+                      URL Campaign
                     </span>
                     <a
                       href={campaign.url}
@@ -87,14 +78,14 @@ const CampaignDetails: React.FC = () => {
                   <div className={styles.infoItem}>
                     <span className={styles.infoLabel}>
                       <i className="fas fa-tags"></i>
-                      Tipo de Campaña
+                      Campaign Type
                     </span>
                     <span className={styles.infoValue}>{campaign.type}</span>
                   </div>
                   <div className={styles.infoItem}>
                     <span className={styles.infoLabel}>
                       <i className="fas fa-calendar-alt"></i>
-                      Fecha de Inicio
+                      Start Date
                     </span>
                     <span className={styles.infoValue}>
                       {campaign.startDate}
@@ -103,14 +94,14 @@ const CampaignDetails: React.FC = () => {
                   <div className={styles.infoItem}>
                     <span className={styles.infoLabel}>
                       <i className="fas fa-calendar-check"></i>
-                      Fecha de Finalización
+                      End Date
                     </span>
                     <span className={styles.infoValue}>{campaign.endDate}</span>
                   </div>
                   <div className={styles.infoItem}>
                     <span className={styles.infoLabel}>
                       <i className="fas fa-bullseye"></i>
-                      Objetivo Principal
+                      Objective
                     </span>
                     <span className={styles.infoValue}>
                       {campaign.objective}
@@ -119,7 +110,7 @@ const CampaignDetails: React.FC = () => {
                   <div className={styles.infoItem}>
                     <span className={styles.infoLabel}>
                       <i className="fas fa-user-tie"></i>
-                      Responsable
+                      Responsible
                     </span>
                     <span className={styles.infoValue}>{campaign.manager}</span>
                   </div>
@@ -131,7 +122,7 @@ const CampaignDetails: React.FC = () => {
               <div className={styles.statusCard}>
                 <h2 className={styles.statusTitle}>
                   <i className="fas fa-clipboard-check"></i>
-                  Estado Actual
+                  Current Status
                 </h2>
                 <div className={styles.statusIndicator}>
                   <div className={styles.indicatorDot}></div>
@@ -142,18 +133,18 @@ const CampaignDetails: React.FC = () => {
                   style={{ fontSize: "1.1rem", marginTop: "25px" }}
                 >
                   <i className="fas fa-calendar-day"></i>
-                  Cronología
+                  Timeline
                 </h3>
                 <div className={styles.datesContainer}>
                   <div className={styles.dateItem}>
-                    <span className={styles.dateLabel}>Fecha de inicio:</span>
+                    <span className={styles.dateLabel}>Start Date:</span>
                     <span className={styles.dateValue}>
                       {campaign.startDateFull}
                     </span>
                   </div>
                   <div className={styles.dateItem}>
                     <span className={styles.dateLabel}>
-                      Fecha de finalización:
+                      End Date:
                     </span>
                     <span className={styles.dateValue}>
                       {campaign.endDateFull}
@@ -161,16 +152,16 @@ const CampaignDetails: React.FC = () => {
                   </div>
                   <div className={styles.dateItem}>
                     <span className={styles.dateLabel}>
-                      Días transcurridos:
+                      DDays Elapsed:
                     </span>
                     <span className={styles.dateValue}>
-                      {campaign.daysElapsed} días
+                      {campaign.daysElapsed} days
                     </span>
                   </div>
                   <div className={styles.dateItem}>
-                    <span className={styles.dateLabel}>Días restantes:</span>
+                    <span className={styles.dateLabel}>Days Remaining:</span>
                     <span className={styles.dateValue}>
-                      {campaign.daysRemaining} días
+                      {campaign.daysRemaining} days
                     </span>
                   </div>
                 </div>
@@ -179,24 +170,24 @@ const CampaignDetails: React.FC = () => {
               <div className={styles.actionsCard}>
                 <h2 className={styles.actionTitle}>
                   <i className="fas fa-cog"></i>
-                  Acciones
+                  Actions
                 </h2>
                 <div className={styles.actionButtons}>
                   <button className={styles.actionBtn}>
                     <i className="fas fa-edit"></i>
-                    Editar Campaña
+                    Edit Campaign
                   </button>
                   <button className={styles.actionBtn}>
                     <i className="fas fa-chart-pie"></i>
-                    Ver Reporte Completo
+                    View Full Report
                   </button>
                   <button className={styles.actionBtn}>
                     <i className="fas fa-file-export"></i>
-                    Exportar Datos
+                    Export Data
                   </button>
                   <button className={styles.actionBtn}>
                     <i className="fas fa-pause"></i>
-                    Pausar Campaña
+                    Pause Campaign
                   </button>
                 </div>
               </div>

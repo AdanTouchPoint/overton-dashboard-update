@@ -21,7 +21,7 @@ const EditCampaingView: React.FC = () => {
   const [campaignEditData, setCampaignEditData] = useState<campaignEditData>();
   const [mode, setMode] = useState("edit");
   const [projectData, setProjectData] = useState({});
-  const [viewDetails, setViewDetails] = useState(false);
+  const [dataDetails, setdataDetails] = useState();
   const edit = async (id) => {
     try {
       const payload = await getCampaignsById(id);
@@ -39,9 +39,21 @@ const EditCampaingView: React.FC = () => {
       console.error('[Error] An error occurred during the edit process:', error);
     }
   };
-  const view = (id)=> {
-    // search the id  on renderCamp 
-    setActiveView("Details");
+  const view = async (id) => {
+      try {
+      const payload = await getCampaignsById(id);
+      console.log(payload, "payload");
+      const campaignData = payload?.data?.docs[0]; // Corrected data extraction
+      if (!campaignData) {
+        console.error('[Error] No campaign document found in payload');
+        return;
+      }
+      campaignData.projectData = { ...campaignData?.projectData, id: id };
+      setProjectData(campaignData?.projectData);
+      setActiveView("Details");
+    } catch (error) {
+      console.error('[Error] An error occurred during the edit process:', error);
+    }
   }
   useEffect(() => {
     if (userId) {
@@ -143,6 +155,8 @@ const EditCampaingView: React.FC = () => {
       )}
       {activeView === "Details" && (
         <CampaignDetails
+        projectData={projectData}
+        setActiveView={setActiveView}
         />
       )}
     </>

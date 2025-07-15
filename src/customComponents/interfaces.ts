@@ -34,7 +34,10 @@ export interface ProjectData {
   efinstructions?,
   efdescription?,
   name?,
-  id?
+  id?,
+  startDate?: string;
+  endDate?: string;
+  leads?: number;
   }
 export interface QuestionInputs {
   name: string,

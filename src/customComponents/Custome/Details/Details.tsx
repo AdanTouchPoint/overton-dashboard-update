@@ -1,21 +1,23 @@
 import React from "react";
 import styles from "./Details.module.css";
-import { DefaultTemplate } from "payload/components/templates";
+import { ProjectData } from "../../interfaces";
 
-const CampaignDetails: React.FC = () => {
+type CampaignDetailsProps = {
+  projectData: ProjectData;
+  setActiveView: (value: string) => void;
+};
+
+const CampaignDetails: React.FC<CampaignDetailsProps> = ({ projectData, setActiveView }) => {
   const campaign = {
-    id: "12345",
-    title: "Campaña de Concientización Ambiental",
-    subtitle: "Un esfuerzo para promover la sostenibilidad",
-    leads: 1500,
-    conversionRate: "12%",
-    revenue: "$5000",
-    costPerLead: "$3.33",
-    url: "https://example.com/campaign",
-    type: "Digital",
-    startDate: "2023-01-01",
-    endDate: "2023-12-31",
-    objective: "Aumentar la conciencia sobre el reciclaje",
+    id: projectData.id || "12345",
+    title: projectData.repo || "Please enter a title",
+    subtitle: projectData.title,
+    leads: projectData.leads || 0,
+    url: projectData.homepage || "https://example.com/campaign",
+    type: projectData.campaignType || "Digital",
+    startDate: projectData.startDate || "2023-01-01",
+    endDate: projectData.endDate || "2023-12-31",
+    objective: projectData.description || "Aumentar la conciencia sobre el reciclaje",
     manager: "Juan Pérez",
     visits: 20000,
     ctr: "5%",
@@ -30,15 +32,30 @@ const CampaignDetails: React.FC = () => {
     ownerInitial: "JP",
     owner: "Juan Pérez",
   };
+  const back = () => {
+    setActiveView("all");
+  };
+  const formatTypesNames = (type: string) => {
+    switch (type) {
+      case "SB":
+        return "Submission Builder Campaign";
+      case "PD":
+        return "Politicall Direct Campaign";
+    case "AP":
+        return "Alert the Press Campaign";
+      default:
+        return "Unknown Campaign Type";
+    }
+  };
   return (
-    <DefaultTemplate>
+
       <div className={styles.contentAll}>
         <div className={styles.campaignContainer}>
           <div className={styles.campaignHeader}>
             <div className={styles.campaignTitleContainer}>
               <div className={styles.campaignId}>ID: {campaign.id}</div>
               <h1 className={styles.campaignTitle}>{campaign.title}</h1>
-              <p className={styles.campaignSubtitle}>{campaign.subtitle}</p>
+              <p className={styles.campaignSubtitle}>{campaign.objective}</p>
               <div className={styles.headerStats}>
                 <div className={styles.headerStat}>
                   <span className={styles.statValue}>{campaign.leads}</span>
@@ -46,7 +63,7 @@ const CampaignDetails: React.FC = () => {
                 </div>
                 <div className={styles.headerStat}>
                   <span className={styles.statValue}>
-                    {campaign.conversionRate}
+                    {campaign.visits}
                   </span>
                   <span className={styles.statLabel}>Email sended </span>
                 </div>
@@ -71,6 +88,7 @@ const CampaignDetails: React.FC = () => {
                     <a
                       href={campaign.url}
                       className={`${styles.infoValue} ${styles.urlValue}`}
+                      target="_blank"
                     >
                       {campaign.url}
                     </a>
@@ -80,7 +98,7 @@ const CampaignDetails: React.FC = () => {
                       <i className="fas fa-tags"></i>
                       Campaign Type
                     </span>
-                    <span className={styles.infoValue}>{campaign.type}</span>
+                    <span className={styles.infoValue}>{formatTypesNames(campaign.type)}</span>
                   </div>
                   <div className={styles.infoItem}>
                     <span className={styles.infoLabel}>
@@ -152,7 +170,7 @@ const CampaignDetails: React.FC = () => {
                   </div>
                   <div className={styles.dateItem}>
                     <span className={styles.dateLabel}>
-                      DDays Elapsed:
+                      Days Elapsed:
                     </span>
                     <span className={styles.dateValue}>
                       {campaign.daysElapsed} days
@@ -175,27 +193,27 @@ const CampaignDetails: React.FC = () => {
                 <div className={styles.actionButtons}>
                   <button className={styles.actionBtn}>
                     <i className="fas fa-edit"></i>
-                    Edit Campaign
-                  </button>
-                  <button className={styles.actionBtn}>
-                    <i className="fas fa-chart-pie"></i>
-                    View Full Report
-                  </button>
-                  <button className={styles.actionBtn}>
-                    <i className="fas fa-file-export"></i>
                     Export Data
                   </button>
                   <button className={styles.actionBtn}>
-                    <i className="fas fa-pause"></i>
+                    <i className="fas fa-chart-pie"></i>
                     Pause Campaign
+                  </button>
+                  <button className={styles.actionBtn}>
+                    <i className="fas fa-file-export"></i>
+                    Delete Campaign
                   </button>
                 </div>
               </div>
             </div>
           </div>
+        <button onClick={back}>
+          Back to Campaigns
+        </button>
         </div>
+
       </div>
-    </DefaultTemplate>
+
   );
 };
 

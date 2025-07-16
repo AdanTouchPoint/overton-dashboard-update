@@ -240,13 +240,37 @@
     margin-bottom: 25px;
 }
 
-.indicatorDot {
+.dotActive {
     width: 12px;
     height: 12px;
     border-radius: 50%;
     background: #38b2ac;
     box-shadow: 0 0 10px rgba(56, 178, 172, 0.5);
 }
+
+.dotPaused {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #f6ad55;
+    box-shadow: 0 0 10px rgba(246, 173, 85, 0.5);
+}
+
+.dotCompleted {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #486cbb;
+    box-shadow: 0 0 10px rgba(72, 99, 187, 0.5);
+}
+.dotOffline {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #e53e3e;
+    box-shadow: 0 0 10px rgba(229, 62, 62, 0.5);
+}
+
 
 .indicatorText {
     font-size: 1.1rem;

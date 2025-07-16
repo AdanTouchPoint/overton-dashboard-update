@@ -13,6 +13,20 @@ type CampaignDetailsProps = {
 const CampaignDetails: React.FC<CampaignDetailsProps> = ({ projectData, setActiveView,setProjectData }) => {
   const [showDeleteModal, setShowDeleteModal] = React.useState(false);
   const [showPauseModal, setShowPauseModal] = React.useState(false);
+  const handleDotColor = (status: string) => {
+    switch (status) {
+      case "active":
+        return styles.dotActive;
+      case "paused":
+        return styles.dotPaused;
+      case "completed":
+        return styles.dotCompleted;
+      case "offline":
+        return styles.dotOffline;
+      default:
+        return "";
+    }
+  };
   const campaign = {
     id: projectData.id || "12345",
     title: projectData.repo || "Please enter a title",
@@ -29,7 +43,7 @@ const CampaignDetails: React.FC<CampaignDetailsProps> = ({ projectData, setActiv
     bounceRate: "30%",
     avgTime: "2 min 30 sec",
     progress: 75,
-    status: projectData.status || "active",
+    status: projectData.status || "offline",
     startDateFull: "1 de enero de 2023",
     endDateFull: "31 de diciembre de 2023",
     daysElapsed: 150,
@@ -166,8 +180,8 @@ const CampaignDetails: React.FC<CampaignDetailsProps> = ({ projectData, setActiv
                   Current Status
                 </h2>
                 <div className={styles.statusIndicator}>
-                  <div className={styles.indicatorDot}></div>
-                  <div className={styles.indicatorText}>{campaign.url === "NO URL" ? 'Offline' : 'Active'}</div>
+                  <div className={handleDotColor(campaign.status)}></div>
+                  <div className={styles.indicatorText}>{campaign.status }</div>
                 </div>
                 <h3
                   className={styles.statusTitle}

@@ -82,10 +82,11 @@ const EditCampaingView: React.FC = () => {
         {/* Column Headers */}
         <div className="campaign-columns-header">
           <div>Title</div>
-          <div>URL</div>
           <div>Details</div>
           <div>Edit</div>
+          <div>URL</div>
           <div>Status</div>
+          
         </div>
         {renderCamp?.data?.[ele]?.docs?.length > 0 ? (
           renderCamp.data[ele].docs.map((el: any) => (
@@ -96,9 +97,6 @@ const EditCampaingView: React.FC = () => {
                 </p>
               </div>
               <div>
-                <a href={el.projectData.homepage || "#"} target="_blank">{el.projectData.homepage || "Sin URL"}</a>
-              </div>
-              <div>
                 <button onClick={() => view(el.id)} className="view-button">VIEW</button>
               </div>
               <div>
@@ -107,8 +105,12 @@ const EditCampaingView: React.FC = () => {
                 </button>
               </div>
               <div>
+                <a href={el.projectData.homepage || "#"} target="_blank">{el.projectData.homepage || "Sin URL"}</a>
+              </div>
+              <div>
                 <p>{el.projectData.homepage ? "online" : "offline"}</p>
               </div>
+
             </div>
           ))
         ) : (

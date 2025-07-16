@@ -68,9 +68,34 @@ const SubmissionBuilder: CollectionConfig = {
               name: "clientId",
               type:"text"
             },
-                        {
+           {
               label: "projectId",
               name: "projectId",
+              type:"text"
+            },
+            {
+              label: "leads",
+              name: "leads",
+              type:"number"
+            },
+            {
+              label: "startDate",
+              name: "startDate",
+              type:"date"
+            },
+            {
+              label: "endDate",
+              name: "endDate",
+              type:"date"
+            },
+            {
+              label: "emailCount",
+              name: "emailCount",
+              type:"number"
+            },
+            {
+              label: "status",
+              name: "status",
               type:"text"
             },
           ]

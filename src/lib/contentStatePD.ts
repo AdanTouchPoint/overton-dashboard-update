@@ -39,10 +39,24 @@ export interface TextStyle {
     formWidth: string; 
   }
   
+    export  interface ProjectData {
+    title: string;
+    description: string;
+    campaignType: string;
+    id: string;
+    leads: number;
+    homepage: string;
+    startDate: string;
+    endDate: string;
+    repo: string;
+    status: string;
+    projectId: string;
+    emailCount: number;
+  }
   export interface ContentStatePD {
     mainform: ViewContent;
     style: styleProps;
-    //mainFormInputs: inputOptions;
+    projectData: ProjectData;
     email: ViewContent;
     emailreview: ViewContent;
     ty: typ;
@@ -53,7 +67,15 @@ export interface TextStyle {
       title:'',
       description:'',
       campaignType: '',
-      id:''
+      id:'',
+      leads: 0,
+      homepage: '',
+      startDate: '',
+      endDate: '',
+      repo: '',
+      status: '',
+      projectId: '',
+      emailCount: 0,
     },
     style: {
       backgroundColor: '#2c3e50',

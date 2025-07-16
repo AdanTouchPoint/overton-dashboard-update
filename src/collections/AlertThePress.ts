@@ -38,37 +38,67 @@ const AlertThePress: CollectionConfig = {
         name: "projectData",
         label: { es: "datos de proyecto", en: "Project Data" },
         fields: [
-          {
-            label: "title",
-            name: "title",
-            type:"text"
-          },
-          {
-            label: "repo",
-            name: "repo",
-            type:"text"
-          },
-          {
-            label: "description",
-            name: "description",
-            type:"text"
-          },
-          {
-            label: "campaign type",
-            name: "campaignType",
-            type:"text"
-          },
-          {
-            label: "campaign URL",
-            name: "homepage",
-            type:"text"
-          },
-          {
-            label: "clientId",
-            name: "clientId",
-            type:"text"
-          },
-        ]
+            {
+              label: "title",
+              name: "title",
+              type:"text"
+            },
+            {
+              label: "repo",
+              name: "repo",
+              type:"text"
+            },
+            {
+              label: "description",
+              name: "description",
+              type:"text"
+            },
+            {
+              label: "campaign type",
+              name: "campaignType",
+              type:"text"
+            },
+            {
+              label: "campaign URL",
+              name: "homepage",
+              type:"text"
+            },
+            {
+              label: "clientId",
+              name: "clientId",
+              type:"text"
+            },
+           {
+              label: "projectId",
+              name: "projectId",
+              type:"text"
+            },
+            {
+              label: "leads",
+              name: "leads",
+              type:"number"
+            },
+            {
+              label: "startDate",
+              name: "startDate",
+              type:"date"
+            },
+            {
+              label: "endDate",
+              name: "endDate",
+              type:"date"
+            },
+            {
+              label: "emailCount",
+              name: "emailCount",
+              type:"number"
+            },
+            {
+              label: "status",
+              name: "status",
+              type:"text"
+            },
+          ]
     },
     {
       type: "group",

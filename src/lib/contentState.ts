@@ -44,6 +44,14 @@ export interface TextStyle {
     description: string;
     campaignType: string;
     id: string;
+    leads: number;
+    homepage: string;
+    startDate: string;
+    endDate: string;
+    repo: string;
+    status: string;
+    projectId: string;
+    emailCount: number;
   }
   
   export interface ContentState {
@@ -63,7 +71,15 @@ export interface TextStyle {
       title:'',
       description:'',
       campaignType: '',
-      id:''
+      id:'',
+      leads: 0,
+      homepage: '',
+      startDate: '',
+      endDate: '',
+      repo: '',
+      status: '',
+      projectId: '',
+      emailCount: 0,
     },
     style:{
       backgroundColor: '#2c3e50',

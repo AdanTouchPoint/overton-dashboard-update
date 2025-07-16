@@ -1,19 +1,24 @@
 import React from "react";
 import styles from "./Details.module.css";
 import { ProjectData } from "../../interfaces";
+import DeleteModal from "./DeleteModal";
+import PauseModal from "./PauseModal";
 
 type CampaignDetailsProps = {
   projectData: ProjectData;
   setActiveView: (value: string) => void;
+  setProjectData: (data: ProjectData) => void;
 };
 
-const CampaignDetails: React.FC<CampaignDetailsProps> = ({ projectData, setActiveView }) => {
+const CampaignDetails: React.FC<CampaignDetailsProps> = ({ projectData, setActiveView,setProjectData }) => {
+  const [showDeleteModal, setShowDeleteModal] = React.useState(false);
+  const [showPauseModal, setShowPauseModal] = React.useState(false);
   const campaign = {
     id: projectData.id || "12345",
     title: projectData.repo || "Please enter a title",
     subtitle: projectData.title,
     leads: projectData.leads || 0,
-    url: projectData.homepage || "https://example.com/campaign",
+    url: projectData.homepage || "NO URL",
     type: projectData.campaignType || "Digital",
     startDate: projectData.startDate || "2023-01-01",
     endDate: projectData.endDate || "2023-12-31",
@@ -24,7 +29,7 @@ const CampaignDetails: React.FC<CampaignDetailsProps> = ({ projectData, setActiv
     bounceRate: "30%",
     avgTime: "2 min 30 sec",
     progress: 75,
-    status: "En Progreso",
+    status: projectData.status || "active",
     startDateFull: "1 de enero de 2023",
     endDateFull: "31 de diciembre de 2023",
     daysElapsed: 150,
@@ -50,6 +55,20 @@ const CampaignDetails: React.FC<CampaignDetailsProps> = ({ projectData, setActiv
   return (
 
       <div className={styles.contentAll}>
+        {showDeleteModal && (
+          <DeleteModal
+            onClose={() => setShowDeleteModal(false)}
+            projectData={projectData}
+            setProjectData={setProjectData}
+          />
+        )}
+        {showPauseModal && (
+          <PauseModal
+            onClose={() => setShowPauseModal(false)}
+            projectData={projectData}
+            setProjectData={setProjectData}
+          />
+        )}
         <div className={styles.campaignContainer}>
           <div className={styles.campaignHeader}>
             <div className={styles.campaignTitleContainer}>
@@ -85,13 +104,17 @@ const CampaignDetails: React.FC<CampaignDetailsProps> = ({ projectData, setActiv
                       <i className="fas fa-link"></i>
                       URL Campaign
                     </span>
-                    <a
-                      href={campaign.url}
-                      className={`${styles.infoValue} ${styles.urlValue}`}
-                      target="_blank"
-                    >
-                      {campaign.url}
-                    </a>
+                    { campaign.url === "NO URL" ? (
+                      <span className={styles.infoValue}>No URL provided</span>
+                    ) : (
+                      <a
+                        href={campaign.url}
+                        className={`${styles.infoValue} ${styles.urlValue}`}
+                        target="_blank"
+                      >
+                        {campaign.url}
+                      </a>
+                    )}
                   </div>
                   <div className={styles.infoItem}>
                     <span className={styles.infoLabel}>
@@ -144,7 +167,7 @@ const CampaignDetails: React.FC<CampaignDetailsProps> = ({ projectData, setActiv
                 </h2>
                 <div className={styles.statusIndicator}>
                   <div className={styles.indicatorDot}></div>
-                  <div className={styles.indicatorText}>{campaign.status}</div>
+                  <div className={styles.indicatorText}>{campaign.url === "NO URL" ? 'Offline' : 'Active'}</div>
                 </div>
                 <h3
                   className={styles.statusTitle}
@@ -195,11 +218,10 @@ const CampaignDetails: React.FC<CampaignDetailsProps> = ({ projectData, setActiv
                     <i className="fas fa-edit"></i>
                     Export Data
                   </button>
-                  <button className={styles.actionBtn}>
-                    <i className="fas fa-chart-pie"></i>
-                    Pause Campaign
+                  <button disabled={campaign.url === "NO URL"? true : false}  onClick={() => setShowPauseModal(true)} className={styles.actionBtn}>
+                    {campaign.status === "paused" ? "Resume Campaign" : "Pause Campaign"}
                   </button>
-                  <button className={styles.actionBtn}>
+                  <button onClick={() => setShowDeleteModal(true)} className={styles.actionBtn}>
                     <i className="fas fa-file-export"></i>
                     Delete Campaign
                   </button>

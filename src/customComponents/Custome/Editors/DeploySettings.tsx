@@ -34,6 +34,19 @@ export default function DeploySettings ({ content,setModalMessage, setActiveSect
           </div>
         {errorMessage && <div className="error-message">{errorMessage}</div>}
       </div>
+      <div className="url-section">
+        <label>start date:</label>
+          <div className="display-container">
+            <input type="date" />
+          </div>
+      </div>
+            <div className="url-section">
+        <label>end date:</label>
+          <div className="display-container">
+            <input type="date" />
+          </div>
+      </div>
+      <button onClick={totallyCampaignDelete} className="delete-button">Pause Project</button>
       <button onClick={totallyCampaignDelete} className="delete-button">Delete Project</button>
     </div>
   );

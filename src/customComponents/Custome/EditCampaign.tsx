@@ -108,7 +108,7 @@ const EditCampaingView: React.FC = () => {
                 <a href={el.projectData.homepage || "#"} target="_blank">{el.projectData.homepage || "Sin URL"}</a>
               </div>
               <div>
-                <p>{el.projectData.homepage ? "online" : "offline"}</p>
+                <p>{el.projectData.homepage ? "active" : "offline"}</p>
               </div>
 
             </div>
@@ -157,8 +157,9 @@ const EditCampaingView: React.FC = () => {
       )}
       {activeView === "Details" && (
         <CampaignDetails
-        projectData={projectData}
-        setActiveView={setActiveView}
+          setProjectData={setProjectData}
+          projectData={projectData}
+          setActiveView={setActiveView}
         />
       )}
     </>

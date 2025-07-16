@@ -28,3 +28,10 @@ export function validatestring(repo) {
       return "AP";
   }
 }
+export function exportData(obj) {
+// preguntar funcionalidad
+}
+
+export function campaignStatus(status,id) {
+
+}

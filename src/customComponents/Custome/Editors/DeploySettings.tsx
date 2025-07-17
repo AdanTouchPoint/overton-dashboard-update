@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import './deploy-settings.css'; // Asegúrate de tener estilos para tus clases
 import { deleteCampaign, destroyProject } from '../../../lib/requestsAPI'; // Asegúrate de que la ruta sea correcta
+import { Radius } from 'lucide-react';
 interface DeploySettingsProps {
   content: any; // Cambia el tipo según tu estructura de datos
   setModalMessage?: (value: string) => void; // Opcional, si necesitas un mensaje específico
@@ -22,6 +23,24 @@ export default function DeploySettings ({ content,setModalMessage, setActiveSect
       console.error(error);
     }
   }
+const renderDates = () => {
+  return (
+    <>
+      <div className="url-section">
+        <label>start date:</label>
+        <div className="display-container">
+          <input type="date" />
+        </div>
+      </div>
+      <div className="url-section">
+        <label>end date:</label>
+        <div className="display-container">
+          <input type="date" />
+        </div>
+      </div>
+    </>
+  );
+}
   return (
     <div className="settings-tab">
       <h1>Settings</h1>
@@ -35,16 +54,12 @@ export default function DeploySettings ({ content,setModalMessage, setActiveSect
         {errorMessage && <div className="error-message">{errorMessage}</div>}
       </div>
       <div className="url-section">
-        <label>start date:</label>
+        <label>Program Campaign:</label>
           <div className="display-container">
-            <input type="date" />
+            <input type={"radio"} /> Program Dates
+
           </div>
-      </div>
-            <div className="url-section">
-        <label>end date:</label>
-          <div className="display-container">
-            <input type="date" />
-          </div>
+
       </div>
       <button onClick={totallyCampaignDelete} className="delete-button">Pause Project</button>
       <button onClick={totallyCampaignDelete} className="delete-button">Delete Project</button>

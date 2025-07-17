@@ -4,13 +4,9 @@ import { ProjectData } from "../../interfaces";
 import DeleteModal from "./DeleteModal";
 import PauseModal from "./PauseModal";
 
-type CampaignDetailsProps = {
-  projectData: ProjectData;
-  setActiveView: (value: string) => void;
-  setProjectData: (data: ProjectData) => void;
-};
 
-const CampaignDetails: React.FC<CampaignDetailsProps> = ({ projectData, setActiveView,setProjectData }) => {
+
+const CampaignDetails = ({ projectData, setActiveView,setProjectData }) => {
   const [showDeleteModal, setShowDeleteModal] = React.useState(false);
   const [showPauseModal, setShowPauseModal] = React.useState(false);
   const handleDotColor = (status: string) => {

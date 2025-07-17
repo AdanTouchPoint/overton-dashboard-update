@@ -1,5 +1,11 @@
 import { Dispatch, SetStateAction } from 'react';
 import { ViewContent,styleProps,typ } from '../lib/contentState';
+
+export interface DetailsProps{
+  projectData: ProjectData;
+  setActiveView: (value: string) => void;
+  setProjectData: Dispatch<SetStateAction<ProjectData>>;
+}
 export interface campaignEditData {
     projectData?: ProjectData;
       mainform?: ViewContent;
@@ -20,20 +26,6 @@ export interface ProjectData {
   clientId?: string;
   title?: string;
   homepage?: string;
-  typdescription?,
-  typinstructions?,
-  typtitle?,
-  mfdescription?,
-  mftitle?,
-  repinstructions?,
-  reptitle?,
-  qptitle?,
-  qpinstructions?,
-  pptitle?,
-  eftitle?,
-  efinstructions?,
-  efdescription?,
-  name?,
   id?,
   startDate?: string;
   endDate?: string;

@@ -7,7 +7,7 @@ export interface DetailsProps{
   setProjectData: Dispatch<SetStateAction<ProjectData>>;
 }
 export interface campaignEditData {
-    projectData?: ProjectData;
+      projectData?: ProjectData;
       mainform?: ViewContent;
       style?: styleProps;
       //mainFormInputs: inputOptions;

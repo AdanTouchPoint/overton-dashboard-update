@@ -1,6 +1,4 @@
-import { application } from "express";
-import { ProjectData } from "../customComponents/interfaces";
-import { prepareData } from "./createCampaign";
+
 async function fetchData (petitionMethod, backendURLBase,endpoint,info){
     const requestOptions : RequestInit = {
         method: `${petitionMethod}`,

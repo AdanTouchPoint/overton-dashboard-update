@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createLeads } from "../controllers/leads";
+import { createLeads,countLeads,countEmailSent } from "../controllers/leads";
 import {createCampaign, updateCampaign, getAllCampaigns, getCampaignById} from '../controllers/campaigns'
 import { ParsedQs } from 'qs'
 import {getElectorate,getDivision,getRepsByState, getAllRepresentatives} from "../controllers/representatives"
@@ -167,6 +167,40 @@ router.post("/leads", async (req, res) => {
       success: true,
       message: "lead create done",
       data: data
+    });
+  } catch (error) {
+    res.status(400);
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+});
+router.get("/count-leads", async (req, res) => {
+  try {
+    const query = req.query;
+    const data = await countLeads(query);
+    res.json({
+      success: true,
+      message: "leads found",
+      data
+    });
+  } catch (error) {
+    res.status(400);
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+});
+router.put("/count-email-sent", async (req, res) => {
+  try {
+    const query = req.query;
+    const data = await countEmailSent(query);
+    res.json({
+      success: true,
+      message: "emails found",
+      data
     });
   } catch (error) {
     res.status(400);

@@ -141,7 +141,29 @@ async function destroyProject(projectData) {
     const request = await fetch(`${petition.backendURLBase}${petition.endpoint}`,requestOptions)
     return request
 }
+async function getCountLeads (id) {
+        const petition = {
+        backendURLBase : process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:8080',
+        endpoint: "/dashBoardContent/count-leads",
+        method: "GET",
+    }
+    const request = await fetchData(petition.method,petition.backendURLBase,petition.endpoint,id)
+    console.log(request)
+    return request
+} 
+
+async function getCountEmailSent (id) {
+
+    const petition = {
+        backendURLBase : process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:8080',
+        endpoint: "/dashBoardContent/count-email-sent",
+        method: "GET",
+    }
+    const request = await fetchData(petition.method,petition.backendURLBase,petition.endpoint,id)
+    console.log(request)
+}
+
 export {
-    fetchData, postCampaignData,updateCampaignData,getCampaigns, deployProject, deployStatus, getCampaignsById, updateProjectURL, deleteCampaign,destroyProject
+    fetchData, postCampaignData,updateCampaignData,getCampaigns, deployProject, deployStatus, getCampaignsById, updateProjectURL, deleteCampaign,destroyProject,getCountLeads,getCountEmailSent
 }
 

@@ -82,6 +82,13 @@ const Leads: CollectionConfig = {
       type: "text",
     },
     {
+      label: { es: "ID del Proyecto", en: "Project ID" },
+      name: "projectId",
+      type: "text",
+      required: true,
+      admin: { hidden: true },
+    },
+    {
       name: "clientId",
       type: "relationship",
       relationTo: "users",

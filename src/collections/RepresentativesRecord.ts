@@ -1,4 +1,4 @@
-import { isAdminFieldLevel } from "../access/isAdmin";
+import { isAdminFieldLevel,isAdmin } from "../access/isAdmin";
 import { isAdminOrSelf } from "../access/isAdminOrSelf";
 import { CollectionConfig } from 'payload/types';
 
@@ -12,7 +12,7 @@ const RepresentativesRecord: CollectionConfig = {
     // Only admins can create users
     create: isAdminOrSelf,
     // Admins can read all, but any other logged in user can only read themselves
-    read: () => true,
+    read: isAdmin,
     // Admins can update all, but any other logged in user can only update themselves
     update: isAdminOrSelf,
     // Admins can update all, but any other logged in user can only update themselves

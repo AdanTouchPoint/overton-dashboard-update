@@ -193,7 +193,7 @@ router.get("/count-leads", async (req, res) => {
     });
   }
 });
-router.put("/count-email-sent", async (req, res) => {
+router.get("/count-email-sent", async (req, res) => {
   try {
     const query = req.query;
     const data = await countEmailSent(query);

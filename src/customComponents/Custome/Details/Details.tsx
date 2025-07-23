@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef,useEffect } from "react";
 import styles from "./Details.module.css";
 import { DetailsProps } from "../../interfaces";
 import DeleteModal from "./DeleteModal";
 import PauseModal from "./PauseModal";
 import { exportComponentToPDF } from "../../../lib/misc"; // Asegúrate de que esta función esté definida correctamente
-
+import { getCountEmailSent, getCountLeads } from "../../../lib/requestsAPI";
 const CampaignDetails: React.FC<DetailsProps> = ({
   projectData,
   setActiveView,
@@ -27,6 +27,21 @@ const CampaignDetails: React.FC<DetailsProps> = ({
         return "";
     }
   };
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log("Fetching data for project:", projectData.id);
+      const leadsCount = await getCountLeads(projectData.id);
+      const emailSentCount = await getCountEmailSent(projectData.id);
+      console.log("Leads count:", leadsCount.data.totalDocs);
+      console.log("Email sent count:", emailSentCount.data.totalDocs);
+      setProjectData({
+        ...projectData,
+        leads: leadsCount.data.totalDocs,
+        emailSent: emailSentCount.data.totalDocs
+      });
+    };
+    fetchData();
+  }, []);
   const campaign = {
     id: projectData.id || "12345",
     title: projectData.repo || "Please enter a title",
@@ -37,9 +52,9 @@ const CampaignDetails: React.FC<DetailsProps> = ({
     startDate: projectData.startDate || "2023-01-01",
     endDate: projectData.endDate || "2023-12-31",
     objective:
-      projectData.description || "Aumentar la conciencia sobre el reciclaje",
+    projectData.description || "Aumentar la conciencia sobre el reciclaje",
     manager: "Juan Pérez",
-    visits: 20000,
+    emailSent: projectData.emailSent || 0,
     status: projectData.status || "offline",
     startDateFull: "1 de enero de 2023",
     endDateFull: "31 de diciembre de 2023",
@@ -89,8 +104,8 @@ const CampaignDetails: React.FC<DetailsProps> = ({
                 <span className={styles.statLabel}>Leads</span>
               </div>
               <div className={styles.headerStat}>
-                <span className={styles.statValue}>{campaign.visits}</span>
-                <span className={styles.statLabel}>Email sended </span>
+                <span className={styles.statValue}>{campaign.emailSent}</span>
+                <span className={styles.statLabel}>Email sent</span>
               </div>
             </div>
           </div>

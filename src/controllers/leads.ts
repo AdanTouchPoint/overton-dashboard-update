@@ -8,11 +8,12 @@ export async function createLeads (query){
   return data;
 };
 export async function countLeads (query){
+  console.log("Counting leads for project ID:", query);
   const data = await payload.count({
     collection: "leads",
     where: {
       projectId: {
-        equals: query.id,
+        equals: query.info,
       },
     },
     overrideAccess: true,
@@ -24,10 +25,10 @@ export async function countEmailSent (query){
     collection: "leads",
     where: {
       projectId: {
-        equals: query.id,
+        equals: query.info,
       },
       sended: {
-        equals: true,
+        equals: "true",
       },
     },
 

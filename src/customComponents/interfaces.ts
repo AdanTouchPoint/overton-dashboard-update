@@ -31,6 +31,7 @@ export interface ProjectData {
   endDate?: string;
   leads?: number;
   status?: string;
+  emailSent?: number;
   }
 export interface QuestionInputs {
   name: string,

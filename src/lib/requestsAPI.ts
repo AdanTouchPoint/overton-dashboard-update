@@ -161,6 +161,7 @@ async function getCountEmailSent (id) {
     }
     const request = await fetchData(petition.method,petition.backendURLBase,petition.endpoint,id)
     console.log(request)
+    return request
 }
 
 export {

@@ -57,6 +57,11 @@ const Leads: CollectionConfig = {
       type: "text",
     },
     {
+      label: { es: "EMail del Representante", en: "Representative Email" },
+      name: "representativeEmail",
+      type: "email",
+    },
+    {
       label: { es: "Asunto", en: "Subject" },
       name: "subject",
       type: "text",
